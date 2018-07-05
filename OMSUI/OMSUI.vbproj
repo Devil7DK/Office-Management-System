@@ -8,13 +8,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A57B2412-F5CE-4847-B8F8-85869DAC5436}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>OMSUI.My.MyApplication</StartupObject>
-    <RootNamespace>OMSUI</RootNamespace>
-    <AssemblyName>OMSUI</AssemblyName>
+    <StartupObject>Devil7.Automation.OMS.UI.My.MyApplication</StartupObject>
+    <RootNamespace>Devil7.Automation.OMS.UI</RootNamespace>
+    <AssemblyName>Devil7.Automation.OMS.UI</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -23,7 +24,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>OMSUI.xml</DocumentationFile>
+    <DocumentationFile>Devil7.Automation.OMS.UI.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -33,7 +34,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>OMSUI.xml</DocumentationFile>
+    <DocumentationFile>Devil7.Automation.OMS.UI.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -104,6 +105,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

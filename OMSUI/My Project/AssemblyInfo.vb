@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("OMSUI")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("OMSUI")> 
-<Assembly: AssemblyCopyright("Copyright ©  2018")> 
+<Assembly: AssemblyTitle("Office Management System User Interface")> 
+<Assembly: AssemblyDescription("User Interface for Devil7 Office Management System")> 
+<Assembly: AssemblyCompany("Devil7 Softwares")> 
+<Assembly: AssemblyProduct("Devil7 Office Management System")> 
+<Assembly: AssemblyCopyright("Copyright © Devil7 2018")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
