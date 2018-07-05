@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="AssessmentYear" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2016-2017</Value>
+    </Setting>
+    <Setting Name="Title" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ANNUAL FINANCIAL STATEMENTS</Value>
+    </Setting>
+    <Setting Name="Abstract" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Financial statements for the year ended March 31, 2016</Value>
+    </Setting>
+    <Setting Name="YearEnding" Type="System.String" Scope="User">
+      <Value Profile="(Default)">March 31, 2016</Value>
+    </Setting>
+    <Setting Name="FinancialYear" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2015-2016</Value>
+    </Setting>
+    <Setting Name="PDFPrinter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Microsoft Print to PDF</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66F712DE-C0AB-409C-9641-8AC50125A1D4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Scan_n_Crop.My.MyApplication</StartupObject>
+    <RootNamespace>Scan_n_Crop</RootNamespace>
+    <AssemblyName>Devil7 Scan-n-Crop</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Devil7 Scan-n-Crop.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Devil7 Scan-n-Crop.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Scan copy.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClearImageNet.70, Version=7.0.0.0, Culture=neutral, PublicKeyToken=71e5888be264aae0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Inlite\ClearImage SDK.8_4_5152\ClearImageNet.70.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
+    <Reference Include="PdfSharp">
+      <HintPath>..\dll\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Saraff.Twain">
+      <HintPath>C:\Users\Shruthi\Downloads\Saraff.Twain.VbSamples\Saraff.Twain.VbSamples\Saraff.Twain.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSplashScreen.Designer.vb">
+      <DependentUpon>AppSplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AppSplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoSizePanel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlFactory.vb" />
+    <Compile Include="EditImage.designer.vb">
+      <DependentUpon>EditImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppMainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppMainForm.Designer.vb">
+      <DependentUpon>AppMainForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Crop.Designer.vb">
+      <DependentUpon>frm_Crop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Crop.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlowLabel\DropdownColorBlender.designer.vb">
+      <DependentUpon>DropdownColorBlender.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GlowLabel\DropdownColorBlender.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlowLabel\gLabel.Designer.vb">
+      <DependentUpon>gLabel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GlowLabel\gLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GSGlassButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageEditor.designer.vb">
+      <DependentUpon>ImageEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImageEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImageToolTip.Designer.vb">
+      <DependentUpon>ImageToolTip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ImageToolTip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PageTab.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScannedImage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Theme.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToolStripNumricUpDown.vb">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AppSplashScreen.resx">
+      <DependentUpon>AppSplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditImage.resx">
+      <DependentUpon>EditImage.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppMainForm.resx">
+      <DependentUpon>AppMainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Crop.resx">
+      <DependentUpon>frm_Crop.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlowLabel\DropdownColorBlender.resx">
+      <DependentUpon>DropdownColorBlender.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageEditor.resx">
+      <DependentUpon>ImageEditor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageToolTip.resx">
+      <DependentUpon>ImageToolTip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScannedImage.resx">
+      <DependentUpon>ScannedImage.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Annam store provisional.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Downarrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leftarrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Uparrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Downarrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rightarrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Uparrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leftarrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rightarrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Scan copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clipboard Next Down.png" />
+    <None Include="Resources\Print.png" />
+    <None Include="Resources\Print-02-WF.png" />
+    <None Include="Resources\erasing-file.png" />
+    <None Include="Resources\browser - Copy.png" />
+    <None Include="Resources\browser.png" />
+    <None Include="Resources\add-page.png" />
+    <None Include="Resources\Monitor-02-WF.png" />
+    <None Include="Resources\Folder-WF.png" />
+    <None Include="Resources\Zip file-03-WF.png" />
+    <None Include="Resources\Save-02-WF.png" />
+    <None Include="Resources\PDF Export.png" />
+    <None Include="Resources\Images.png" />
+    <None Include="Resources\Document-Add-01.png" />
+    <None Include="Resources\Open Folder-WF.png" />
+    <Content Include="Scan copy.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

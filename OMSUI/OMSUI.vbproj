@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AD39A4D5-B29C-4F7F-B705-20C077B8ED83}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>OMSUI.My.MyApplication</StartupObject>
+    <RootNamespace>OMSUI</RootNamespace>
+    <AssemblyName>Office Management System</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\bin\</OutputPath>
+    <DocumentationFile>Office Management System.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Office Management System.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>OMS.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataGridViewGrouper">
+      <HintPath>..\dll\DataGridViewGrouper.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v17.2.Core, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ObjectListView">
+      <HintPath>..\dll\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Dialogs\Client\frm_Credential.Designer.vb">
+      <DependentUpon>frm_Credential.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Credential.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Job_Lite.Designer.vb">
+      <DependentUpon>frm_Job_Lite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Job_Lite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_ClientAddEdit.Designer.vb">
+      <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_ClientAddEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Permission.Designer.vb">
+      <DependentUpon>frm_Permission.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Permission.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Job.Designer.vb">
+      <DependentUpon>frm_Job.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Job.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Partner.Designer.vb">
+      <DependentUpon>frm_Partner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Partner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_CustomView.Designer.vb">
+      <DependentUpon>frm_CustomView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_CustomView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_User.Designer.vb">
+      <DependentUpon>frm_User.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_User.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_WorkBook.Designer.vb">
+      <DependentUpon>frm_WorkBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_WorkBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IDObj.vb" />
+    <Compile Include="Main.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PublicVariables.vb" />
+    <Compile Include="frm_Main_GenUser.Designer.vb">
+      <DependentUpon>frm_Main_GenUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Main_GenUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.vb">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Theme.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm_Login.Designer.vb">
+      <DependentUpon>frm_Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraForm1.Designer.vb">
+      <DependentUpon>XtraForm1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="XtraForm1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraFormTemp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraUserControl1.Designer.vb">
+      <DependentUpon>XtraUserControl1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="XtraUserControl1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dialogs\Client\frm_Credential.resx">
+      <DependentUpon>frm_Credential.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_Job_Lite.resx">
+      <DependentUpon>frm_Job_Lite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_ClientAddEdit.resx">
+      <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Permission.resx">
+      <DependentUpon>frm_Permission.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Job.resx">
+      <DependentUpon>frm_Job.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_Partner.resx">
+      <DependentUpon>frm_Partner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_CustomView.resx">
+      <DependentUpon>frm_CustomView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_User.resx">
+      <DependentUpon>frm_User.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_WorkBook.resx">
+      <DependentUpon>frm_WorkBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Main_GenUser.resx">
+      <DependentUpon>frm_Main_GenUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Login.resx">
+      <DependentUpon>frm_Login.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TriggerImage6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TriggerImage6_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GlobalCode\GlobalCode.vbproj">
+      <Project>{DDA1C7A8-F955-485B-823D-BD2C60656613}</Project>
+      <Name>GlobalCode</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Office-Customer-Male-Light-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A002.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A003.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A004.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B002.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B003.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\B004.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C002.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C003.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\C004.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D001.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D002.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D003.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\D004.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User-Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client_male_light_256.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1484061133_add_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1484062108_add_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Window new-WF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OMS.ico" />
+    <None Include="Resources\1499189097_062.ico" />
+    <None Include="Resources\User-Delete1.png" />
+    <None Include="Resources\User-New.png" />
+    <None Include="Resources\User-Edit.png" />
+    <None Include="Resources\Calendar Remove-WF.png" />
+    <None Include="Resources\Calendar edit-WF.png" />
+    <None Include="Resources\User-Delete.png" />
+    <None Include="Resources\User-Modify.png" />
+    <None Include="Resources\Window Edit-WF.png" />
+    <None Include="Resources\Window Delete-WF.png" />
+    <None Include="Resources\Minus.png" />
+    <None Include="Resources\Edit.png" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\Calendar Add-WF.png" />
+    <None Include="Resources\OMS.png" />
+    <None Include="Resources\splash.jpg" />
+    <None Include="Resources\Devil7Sun.GIF" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

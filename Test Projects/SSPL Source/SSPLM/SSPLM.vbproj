@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{672844B8-B933-4603-B250-F76895B47D2B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SSPLM.My.MyApplication</StartupObject>
+    <RootNamespace>SSPLM</RootNamespace>
+    <AssemblyName>Sai Subramanian Pathology Laboratory Report Manager</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\BIN\</OutputPath>
+    <DocumentationFile>Sai Subramanian Pathology Laboratory Report Manager.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Sai Subramanian Pathology Laboratory Report Manager.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LogoGlow.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>Sai Subramanian Pathology Laboratory Report Manager.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>Sai Subramanian Pathology Laboratory Report Manager.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AE.Net.Mail, Version=1.7.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AE.Net.Mail.1.7.10.0\lib\net40\AE.Net.Mail.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DirectShowLib">
+      <HintPath>..\dll\DirectShowLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.10.0.25332, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.10.0\lib\net40\Google.Apis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.10.0.25333, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.10.0\lib\net40\Google.Apis.Auth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.10.0.25333, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.10.0\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.10.0.25331, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.10.0\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Gmail.v1, Version=1.16.0.557, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Gmail.v1.1.16.0.557\lib\portable-net40+sl50+netcore45+wpa81+wp8\Google.Apis.Gmail.v1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.10.0.25332, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.10.0\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="i00BindingList">
+      <HintPath>..\dll\i00BindingList.exe</HintPath>
+    </Reference>
+    <Reference Include="i00SpellCheck">
+      <HintPath>..\dll\i00SpellCheck.exe</HintPath>
+    </Reference>
+    <Reference Include="Imapi2.Interop">
+      <HintPath>..\dll\Imapi2.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.DAO">
+      <HintPath>..\dll\Interop.DAO.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp">
+      <HintPath>..\dll\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.Ribbon35">
+      <HintPath>..\dll\System.Windows.Forms.Ribbon35.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Classes\AvastProgressBar.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Burner\BurnData.vb" />
+    <Compile Include="Classes\Burner\DirectoryItem.vb" />
+    <Compile Include="Classes\Burner\FileItem.vb" />
+    <Compile Include="Classes\Burner\iMediaItem.vb" />
+    <Compile Include="Classes\Burner\Win32.vb" />
+    <Compile Include="Classes\DSCamCapture.vb" />
+    <Compile Include="Classes\EditWatcher.vb" />
+    <Compile Include="Classes\GSGlassButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ImageEditor.designer.vb">
+      <DependentUpon>ImageEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ImageEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\listViewPrinter.vb" />
+    <Compile Include="Classes\modFuncAndProced.vb" />
+    <Compile Include="Classes\PrintCover.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Printer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\Reporter.designer.vb">
+      <DependentUpon>Reporter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Reporter.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ReporterImage.designer.vb">
+      <DependentUpon>ReporterImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ReporterImage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ReporterL2.Designer.vb">
+      <DependentUpon>ReporterL2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ReporterL2.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\ReportImage.Designer.vb">
+      <DependentUpon>ReportImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ReportImage.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\SingleReportL2.vb" />
+    <Compile Include="Classes\SingleReportImage.vb" />
+    <Compile Include="Classes\SingleReport.vb" />
+    <Compile Include="Classes\Theme.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Classes\GetWithQuot.vb" />
+    <Compile Include="Dialogs\Burner.Designer.vb">
+      <DependentUpon>Burner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Burner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CDBackup.Designer.vb">
+      <DependentUpon>CDBackup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CDBackup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Doctor\EditDoc.Designer.vb">
+      <DependentUpon>EditDoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Doctor\EditDoc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Doctor\AddNewDoc.Designer.vb">
+      <DependentUpon>AddNewDoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Doctor\AddNewDoc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DuplicatePatient.Designer.vb">
+      <DependentUpon>DuplicatePatient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DuplicatePatient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditPatient.Designer.vb">
+      <DependentUpon>EditPatient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditPatient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddPatient.Designer.vb">
+      <DependentUpon>AddPatient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddPatient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Capture Image.Designer.vb">
+      <DependentUpon>Capture Image.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Capture Image.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditImage.Designer.vb">
+      <DependentUpon>EditImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Diagnostics.Designer.vb">
+      <DependentUpon>Diagnostics.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Diagnostics.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Doctor\Doctors.Designer.vb">
+      <DependentUpon>Doctors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Doctor\Doctors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Email.Designer.vb">
+      <DependentUpon>Email.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Email.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ImportExport\ImportFiles.Designer.vb">
+      <DependentUpon>ImportFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ImportExport\ImportFiles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RecordHistory.Designer.vb">
+      <DependentUpon>RecordHistory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\RecordHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelectFileForView.Designer.vb">
+      <DependentUpon>SelectFileForView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectFileForView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Settings.Designer.vb">
+      <DependentUpon>Settings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Settings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Sites.Designer.vb">
+      <DependentUpon>Sites.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Sites.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\Statement.designer.vb">
+      <DependentUpon>Statement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Statement.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dialogs\StartNewDb.Designer.vb">
+      <DependentUpon>StartNewDb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StartNewDb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Statements.Designer.vb">
+      <DependentUpon>Statements.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Statements.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\UnhandledException.designer.vb">
+      <DependentUpon>UnhandledException.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\UnhandledException.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Splash.Designer.vb">
+      <DependentUpon>Splash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Splash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Classes\ImageEditor.resx">
+      <DependentUpon>ImageEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\PrintCover.resx">
+      <DependentUpon>PrintCover.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Reporter.resx">
+      <DependentUpon>Reporter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ReporterImage.resx">
+      <DependentUpon>ReporterImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ReporterL2.resx">
+      <DependentUpon>ReporterL2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\ReportImage.resx">
+      <DependentUpon>ReportImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Burner.resx">
+      <DependentUpon>Burner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CDBackup.resx">
+      <DependentUpon>CDBackup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Doctor\EditDoc.resx">
+      <DependentUpon>EditDoc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Doctor\AddNewDoc.resx">
+      <DependentUpon>AddNewDoc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DuplicatePatient.resx">
+      <DependentUpon>DuplicatePatient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditPatient.resx">
+      <DependentUpon>EditPatient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddPatient.resx">
+      <DependentUpon>AddPatient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Capture Image.resx">
+      <DependentUpon>Capture Image.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditImage.resx">
+      <DependentUpon>EditImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Diagnostics.resx">
+      <DependentUpon>Diagnostics.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Doctor\Doctors.resx">
+      <DependentUpon>Doctors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Email.resx">
+      <DependentUpon>Email.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ImportExport\ImportFiles.resx">
+      <DependentUpon>ImportFiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\RecordHistory.resx">
+      <DependentUpon>RecordHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SelectFileForView.resx">
+      <DependentUpon>SelectFileForView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Settings.resx">
+      <DependentUpon>Settings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Sites.resx">
+      <DependentUpon>Sites.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\Statement.resx">
+      <DependentUpon>Statement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\StartNewDb.resx">
+      <DependentUpon>StartNewDb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Statements.resx">
+      <DependentUpon>Statements.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\UnhandledException.resx">
+      <DependentUpon>UnhandledException.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dic.dic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="syn.syn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-list-add-user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Files-Edit-file.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageres_54.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageres_196.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageres_20.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imageres_51.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Splash2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Camera.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\72.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17_2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\132.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Downarrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Downarrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leftarrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Leftarrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rightarrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rightarrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Uparrow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Uparrow_W.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-dialog-ok-apply.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Actions-edit-delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Empty.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nurse_Male_Light.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ajouter.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24 %282%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart-add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\129_Old1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Applications Black Alt.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="def.def">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LogoGlow.ico" />
+    <None Include="Resources\1472748209_pdf.ico" />
+    <None Include="Resources\history_New11.ico" />
+    <None Include="Resources\history_New1.ico" />
+    <None Include="Resources\19_Old1.ico" />
+    <None Include="Resources\cd_go.png" />
+    <None Include="Resources\table_export.png" />
+    <None Include="Resources\cd_add.png" />
+    <None Include="Resources\cdrom_mount.png" />
+    <None Include="Resources\setting_tools.png" />
+    <None Include="Resources\settings_iOS.png" />
+    <None Include="Resources\table_import.png" />
+    <None Include="Resources\SSPLStatementHeader.jpg" />
+    <None Include="Resources\Custom-Icon-Design-Pretty-Office-2-Earning-statements.ico" />
+    <None Include="Resources\Calendario.ico" />
+    <None Include="Resources\Empty.jpg" />
+    <None Include="Resources\SSPL Header.jpg" />
+    <None Include="Resources\SSPL Footer.jpg" />
+    <None Include="Resources\20_Old1.ico" />
+    <None Include="Resources\20 %282%29.ico" />
+    <None Include="Resources\68_Old1.ico" />
+    <None Include="Resources\mail.ico" />
+    <None Include="Resources\add_New3.png" />
+    <None Include="Resources\90_Old1.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,4 @@
+1/27/2017 3:35 PM: Everything 1.3.4.686 (x64): .\src\tray.c(106): _tray_add_taskbar_icon(): Failed to notify shell icon, GetLastError(): 0
+1/27/2017 4:12 PM: Everything 1.3.4.686 (x64): .\src\tray.c(106): _tray_add_taskbar_icon(): Failed to notify shell icon, GetLastError(): 0
+1/27/2017 4:13 PM: Everything 1.3.4.686 (x64): .\src\tray.c(137): _tray_remove_taskbar_icon(): Failed to notify shell icon, GetLastError(): 0
+1/27/2017 4:13 PM: Everything 1.3.4.686 (x64): .\src\tray.c(106): _tray_add_taskbar_icon(): Failed to notify shell icon, GetLastError(): 0

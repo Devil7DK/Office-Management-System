@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{5367DBD3-704C-4E0A-A36C-63AE155258A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AdvancedTCP</RootNamespace>
+    <AssemblyName>AdvancedTCP</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>AdvancedTCP.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>AdvancedTCP.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Client.vb" />
+    <Compile Include="Client\EventArguments\FileUploadProgressEventArguments.vb" />
+    <Compile Include="Client\EventArguments\FileUploadRequestEventArguments.vb" />
+    <Compile Include="Client\EventArguments\SessionRequestEventArguments.vb" />
+    <Compile Include="Client\Helpers\FileHelper.vb" />
+    <Compile Include="Client\Helpers\RemoteDesktop.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Server\Delegates.vb" />
+    <Compile Include="Server\EventArguments\ClientValidatingEventArgs.vb" />
+    <Compile Include="Server\Receiver.vb" />
+    <Compile Include="Server\Server.vb" />
+    <Compile Include="Shared\AllowAllAssemblyVersionsDeserializationBinder.vb" />
+    <Compile Include="Shared\Enums\StatusEnum.vb" />
+    <Compile Include="Shared\ExtensionMethods\TcpClientMethods.vb" />
+    <Compile Include="Shared\Messages\DisconnectRequest.vb" />
+    <Compile Include="Shared\Messages\EndSessionRequest.vb" />
+    <Compile Include="Shared\Messages\EndSessionResponse.vb" />
+    <Compile Include="Shared\Messages\FileUploadRequest.vb" />
+    <Compile Include="Shared\Messages\FileUploadResponse.vb" />
+    <Compile Include="Shared\Messages\GenericRequest.vb" />
+    <Compile Include="Shared\Messages\GenericResponse.vb" />
+    <Compile Include="Shared\Messages\MessageBase.vb" />
+    <Compile Include="Shared\Messages\RemoteDesktopRequest.vb" />
+    <Compile Include="Shared\Messages\RemoteDesktopResponse.vb" />
+    <Compile Include="Shared\Messages\RequestMessageBase.vb" />
+    <Compile Include="Shared\Messages\ResponseMessageBase.vb" />
+    <Compile Include="Shared\Messages\SessionRequest.vb" />
+    <Compile Include="Shared\Messages\SessionResponse.vb" />
+    <Compile Include="Shared\Messages\TextMessageRequest.vb" />
+    <Compile Include="Shared\Messages\ValidationRequest.vb" />
+    <Compile Include="Shared\Messages\ValidationResponse.vb" />
+    <Compile Include="Shared\Models\ResponseCallbackObject.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

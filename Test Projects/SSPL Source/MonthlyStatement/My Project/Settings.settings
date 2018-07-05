@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="StatementHeaderFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Times New Roman, 15.75pt, style=Bold</Value>
+    </Setting>
+    <Setting Name="StatementMarginRight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">71</Value>
+    </Setting>
+    <Setting Name="StatementMarginLeft" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">71</Value>
+    </Setting>
+    <Setting Name="StatementMarginTop" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">71</Value>
+    </Setting>
+    <Setting Name="StatementMarginBottom" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">71</Value>
+    </Setting>
+    <Setting Name="StatementFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Times New Roman, 11.25pt</Value>
+    </Setting>
+    <Setting Name="StatementImage" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="StatementPageNumberY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1150</Value>
+    </Setting>
+    <Setting Name="DefaultFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
