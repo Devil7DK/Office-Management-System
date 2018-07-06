@@ -7,7 +7,7 @@ Public Module Database
     Dim connection_ As SqlConnection
     Function GetConnection() As SqlConnection
         If connection_ Is Nothing Then
-            connection_ = New SqlConnection(String.Format("Server={0};Database={1};User Id={2};Password={3};Application Name=Office Management System;Pooling={4};", GetSettings.ServerName, GetSettings.DatabaseName, GetSettings.UserName, DecryptString(GetSettings.Password), GetSettings.Pooling))
+            connection_ = New SqlConnection(String.Format("Server={0};Database={1};User Id={2};Password={3};Application Name=Office Management System;Pooling={4};", DecryptString(GetSettings.ServerName), DecryptString(GetSettings.DatabaseName), DecryptString(GetSettings.UserName), DecryptString(GetSettings.Password), GetSettings.Pooling))
         End If
         Return connection_
     End Function
@@ -89,7 +89,7 @@ Public Module Database
         conn.Close()
         Return Works
     End Function
-    Function LoadJob(ByVal ConnectionString As String) As System.ComponentModel.BindingList(Of Job)
+    Function LoadJob() As System.ComponentModel.BindingList(Of Job)
         Dim Jobs As New System.ComponentModel.BindingList(Of Job)
         Jobs = New System.ComponentModel.BindingList(Of Job)
         Dim conn As SqlConnection = GetConnection()
@@ -110,33 +110,37 @@ Public Module Database
         conn.Close()
         Return Jobs
     End Function
-    Function LoadUsers(ByVal ConnectionString As String) As System.ComponentModel.BindingList(Of User)
+    Function LoadUsers() As System.ComponentModel.BindingList(Of User)
         Dim r As New System.ComponentModel.BindingList(Of User)
-        Dim conn As SqlConnection = GetConnection()
-        conn.Open()
-        Dim comm As New SqlCommand("SELECT * FROM Users", conn)
-        Dim reader As SqlDataReader = comm.ExecuteReader
-        Dim i As Integer = -1
-        While reader.Read()
-            Dim PH As Image = My.Resources.User_Default
-            Try
-                PH = Image.FromStream(New IO.MemoryStream(CType(reader.Item("Photo"), Byte())))
-            Catch ex As Exception
+        Try
+            Dim conn As SqlConnection = GetConnection()
+            conn.Open()
+            Dim comm As New SqlCommand("SELECT * FROM Users", conn)
+            Dim reader As SqlDataReader = comm.ExecuteReader
+            Dim i As Integer = -1
+            While reader.Read()
+                Dim PH As Image = My.Resources.User_Default
+                Try
+                    PH = Image.FromStream(New IO.MemoryStream(CType(reader.Item("Photo"), Byte())))
+                Catch ex As Exception
 
-            End Try
-            Dim Credentials_ As String = reader.Item("Credentials").ToString
-            Dim cls As System.ComponentModel.BindingList(Of Credential) = Nothing
-            If Credentials_ <> "" Then
-                cls = XMLParsers.Credentials.FromXML(Credentials_)
-            End If
-            Dim Permissions_ As String = reader.Item("Permissions").ToString
-            Dim Per As New List(Of String)
-            If Permissions_ <> "" Then
-                Per = XMLParsers.ListOfString.FromXML(Permissions_)
-            End If
-            r.Add(New User(reader.Item("ID").ToString, reader.Item("Username").ToString, reader.Item("Password").ToString, reader.Item("Desktop").ToString, reader.Item("Home").ToString, reader.Item("UserType").ToString, reader.Item("Address").ToString, reader.Item("Mobile").ToString, reader.Item("Email").ToString, Per.ToArray, reader.Item("Status").ToString, PH, cls))
-        End While
-        conn.Close()
+                End Try
+                Dim Credentials_ As String = reader.Item("Credentials").ToString
+                Dim cls As System.ComponentModel.BindingList(Of Credential) = Nothing
+                If Credentials_ <> "" Then
+                    cls = XMLParsers.Credentials.FromXML(Credentials_)
+                End If
+                Dim Permissions_ As String = reader.Item("Permissions").ToString
+                Dim Per As New List(Of String)
+                If Permissions_ <> "" Then
+                    Per = XMLParsers.ListOfString.FromXML(Permissions_)
+                End If
+                r.Add(New User(reader.Item("ID").ToString, reader.Item("Username").ToString, reader.Item("Password").ToString, reader.Item("Desktop").ToString, reader.Item("Home").ToString, reader.Item("UserType").ToString, reader.Item("Address").ToString, reader.Item("Mobile").ToString, reader.Item("Email").ToString, Per.ToArray, reader.Item("Status").ToString, PH, cls))
+            End While
+            conn.Close()
+        Catch ex As Exception
+            ShowError("Error on Loading Users List", ex)
+        End Try
         Return r
     End Function
     Function LoadUserByID(ByVal ID As Integer) As User

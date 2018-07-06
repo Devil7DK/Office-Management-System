@@ -49,4 +49,10 @@ Public Module PublicSubs
         Return FixFileName(r)
     End Function
 
+    Sub ShowError(ByVal Message As String, ByVal Exception As Exception)
+        MsgBox(Message & vbNewLine & vbNewLine & vbNewLine & _
+                "Additional Information:" & vbNewLine & vbNewLine & _
+                Exception.Message & vbNewLine & vbNewLine & Exception.StackTrace, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+    End Sub
+
 End Module

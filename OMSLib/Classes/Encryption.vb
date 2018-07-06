@@ -26,10 +26,15 @@ Friend Class TripleDES
         Return Convert.ToBase64String(output)
     End Function
     Public Function Decrypt(ByVal text As String) As String
-        Dim input() As Byte = Convert.FromBase64String(text)
-        Dim output() As Byte = Transform(input, _
-                         m_des.CreateDecryptor(m_key, m_iv))
-        Return m_utf8.GetString(output)
+        Try
+            Dim input() As Byte = Convert.FromBase64String(text)
+            Dim output() As Byte = Transform(input, _
+                             m_des.CreateDecryptor(m_key, m_iv))
+            Return m_utf8.GetString(output)
+        Catch ex As Exception
+
+        End Try
+        Return ""
     End Function
     Private Function Transform(ByVal input() As Byte, _
         ByVal CryptoTransform As ICryptoTransform) As Byte()

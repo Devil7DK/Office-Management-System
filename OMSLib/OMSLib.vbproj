@@ -46,6 +46,8 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -72,6 +74,18 @@
     <Compile Include="Classes\PublicSubs.vb" />
     <Compile Include="Classes\Settings.vb" />
     <Compile Include="Classes\XMLParser.vb" />
+    <Compile Include="Controls\AlertBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PasswordShowButton.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PictureFrame.designer.vb">
+      <DependentUpon>PictureFrame.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PictureFrame.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Enums\JobType.vb" />
     <Compile Include="Enums\LogType.vb" />
     <Compile Include="Enums\Priority.vb" />
@@ -100,6 +114,9 @@
     <Compile Include="Objects\WorkBookItem.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\PictureFrame.resx">
+      <DependentUpon>PictureFrame.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -120,6 +137,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\User_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frame.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
