@@ -3,7 +3,7 @@
     Sub New(ByVal ID As Integer)
         Me.ID = ID
     End Sub
-    Sub New(ByVal ID As String, ByVal Username As String, ByVal Password As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As String() = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
+    Sub New(ByVal ID As String, ByVal Username As String, ByVal Password As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As String() = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
         Me.ID = ID
         Me.Username = Username
         Me.Password = Password

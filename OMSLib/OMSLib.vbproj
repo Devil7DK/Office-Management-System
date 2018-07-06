@@ -65,9 +65,15 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="Classes\CompareByID.vb" />
+    <Compile Include="Classes\Database.vb" />
+    <Compile Include="Classes\Encryption.vb" />
+    <Compile Include="Classes\PublicSubs.vb" />
+    <Compile Include="Classes\XMLParser.vb" />
     <Compile Include="Enums\JobType.vb" />
     <Compile Include="Enums\LogType.vb" />
+    <Compile Include="Enums\Priority.vb" />
+    <Compile Include="Enums\WorkStatus.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -89,6 +95,7 @@
     <Compile Include="Objects\Log.vb" />
     <Compile Include="Objects\Partner.vb" />
     <Compile Include="Objects\User.vb" />
+    <Compile Include="Objects\WorkBookItem.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
