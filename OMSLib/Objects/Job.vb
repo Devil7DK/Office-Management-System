@@ -14,7 +14,7 @@
     End Sub
     Sub New(ByVal JID As String, ByVal ConnectionString As String)
         Me.JID = JID
-        LoadJobByID(ConnectionString, JID, Me.ID_, Me.Name, Me.Group, Me.Type, Me.SubGroup)
+        LoadJobByID(JID, Me.ID_, Me.Name, Me.Group, Me.Type, Me.SubGroup)
     End Sub
     Dim ID_ As Integer = -1
     Property ID As Integer

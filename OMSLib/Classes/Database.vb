@@ -3,11 +3,19 @@ Imports System.ComponentModel
 Imports System.Drawing
 
 Public Module Database
+
+    Dim connection_ As SqlConnection
+    Function GetConnection() As SqlConnection
+        If connection_ Is Nothing Then
+            connection_ = New SqlConnection(String.Format("Server={0};Database={1};User Id={2};Password={3};Application Name=Office Management System;Pooling={4};", GetSettings.ServerName, GetSettings.DatabaseName, GetSettings.UserName, DecryptString(GetSettings.Password), GetSettings.Pooling))
+        End If
+        Return connection_
+    End Function
 #Region "LoadData"
-    Function LoadClients(ByVal ConnectionString As String, ByVal Jobs_ As BindingList(Of Job), Optional CredentialList As System.ComponentModel.BindingList(Of CredentialWithClient) = Nothing) As System.ComponentModel.BindingList(Of Client)
+    Function LoadClients(ByVal Jobs_ As BindingList(Of Job), Optional CredentialList As System.ComponentModel.BindingList(Of CredentialWithClient) = Nothing) As System.ComponentModel.BindingList(Of Client)
         Dim Clients As New System.ComponentModel.BindingList(Of Client)
         Clients = New System.ComponentModel.BindingList(Of Client)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Clients", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -44,9 +52,9 @@ Public Module Database
         conn.Close()
         Return Clients
     End Function
-    Function LoadWorks(ByVal ConnectionString As String, ByVal Clients As BindingList(Of Client), ByVal Jobs As BindingList(Of Job), ByVal Users As BindingList(Of User)) As System.ComponentModel.BindingList(Of WorkbookItem)
+    Function LoadWorks(ByVal Clients As BindingList(Of Client), ByVal Jobs As BindingList(Of Job), ByVal Users As BindingList(Of User)) As System.ComponentModel.BindingList(Of WorkbookItem)
         Dim Works As New System.ComponentModel.BindingList(Of WorkbookItem)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Workbook", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -84,7 +92,7 @@ Public Module Database
     Function LoadJob(ByVal ConnectionString As String) As System.ComponentModel.BindingList(Of Job)
         Dim Jobs As New System.ComponentModel.BindingList(Of Job)
         Jobs = New System.ComponentModel.BindingList(Of Job)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Jobs", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -104,7 +112,7 @@ Public Module Database
     End Function
     Function LoadUsers(ByVal ConnectionString As String) As System.ComponentModel.BindingList(Of User)
         Dim r As New System.ComponentModel.BindingList(Of User)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Users", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -131,9 +139,9 @@ Public Module Database
         conn.Close()
         Return r
     End Function
-    Function LoadUserByID(ByVal ConnectionString As String, ByVal ID As Integer) As User
+    Function LoadUserByID(ByVal ID As Integer) As User
         Dim r As User = Nothing
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Users WHERE [ID]=" & ID & ";", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -162,8 +170,8 @@ Public Module Database
     End Function
 #End Region
 #Region "User"
-    Sub NewUser(ByVal ConnectionString As String, ByVal Photo As Image, ByVal Name As String, ByVal UserType As String, ByVal Password As String, ByVal Address As String, ByVal Mobile As String, ByVal Email As String, ByVal Permissions As List(Of String), ByVal Status As String, ByVal Credentials As BindingList(Of Credential))
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub NewUser(ByVal Photo As Image, ByVal Name As String, ByVal UserType As String, ByVal Password As String, ByVal Address As String, ByVal Mobile As String, ByVal Email As String, ByVal Permissions As List(Of String), ByVal Status As String, ByVal Credentials As BindingList(Of Credential))
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("INSERT INTO Users ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo],[Credentials]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo,@credentials);", conn)
         Dim ms As New IO.MemoryStream
@@ -181,8 +189,8 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub UpdateUser(ByVal ConnectionString As String, ByVal ID As Integer, ByVal Photo As Image, ByVal Name As String, ByVal UserType As String, ByVal Password As String, ByVal Address As String, ByVal Mobile As String, ByVal Email As String, ByVal Permissions As List(Of String), ByVal Status As String, ByVal Credentials As BindingList(Of Credential))
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub UpdateUser(ByVal ID As Integer, ByVal Photo As Image, ByVal Name As String, ByVal UserType As String, ByVal Password As String, ByVal Address As String, ByVal Mobile As String, ByVal Email As String, ByVal Permissions As List(Of String), ByVal Status As String, ByVal Credentials As BindingList(Of Credential))
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Password]=@password,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Credentials]=@credentials WHERE [ID]=" & ID & ";", conn)
         Dim ms As New IO.MemoryStream
@@ -200,8 +208,8 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub GetUserByID(ByVal ConnectionString As String, ByVal ID As Integer, ByRef Username As String, ByRef UserType As String, ByRef Password As String, ByRef Address As String, ByRef Mobile As String, ByRef EMail As String, ByRef Permissions As List(Of String), ByRef Credentials As BindingList(Of Credential), ByRef Status As String, ByRef Photo As Image)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub GetUserByID(ByVal ID As Integer, ByRef Username As String, ByRef UserType As String, ByRef Password As String, ByRef Address As String, ByRef Mobile As String, ByRef EMail As String, ByRef Permissions As List(Of String), ByRef Credentials As BindingList(Of Credential), ByRef Status As String, ByRef Photo As Image)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Users WHERE [ID]=" & ID & ";", conn)
         Dim Reader As SqlDataReader = comm.ExecuteReader
@@ -239,11 +247,11 @@ Public Module Database
     End Sub
 #End Region
 #Region "Client"
-    Sub AddNewClient(ByVal ConnectionString As String, ByVal Photo As Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String, _
+    Sub AddNewClient(ByVal Photo As Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String, _
                      ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As BindingList(Of Partner), ByVal Type As String, ByVal Credentials As BindingList(Of Credential), ByVal Jobs As BindingList(Of Job), ByVal Status As String)
         Dim img As New System.IO.MemoryStream
         Photo.Save(img, Imaging.ImageFormat.Jpeg)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("INSERT INTO Clients ([PAN],[ClientName],[FatherName],[Mobile],[Email],[DOB],[Address1],[Address2],[District],[Pincode],[State],[AadharNo],[Description],[TypeOfEngagement],[TIN],[CIN],[PartnerDirector],[Type],[Credentials],[Jobs],[Status],[Photo]) VALUES(@pan,@clientname,@fathername,@mobile,@email,@dob,@address1,@address2,@district,@pincode,@state,@aadharno,@description,@typeofengagement,@tin,@cin,@partnerdirector,@type,@credentials,@jobs,@status,@photo);", conn)
         AddParameter(comm, "@pan", PAN)
@@ -271,11 +279,11 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub EditClient(ByVal ConnectionString As String, ByVal ID As Integer, ByVal Photo As Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String, _
+    Sub EditClient(ByVal ID As Integer, ByVal Photo As Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String, _
                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As BindingList(Of Partner), ByVal Type As String, ByVal Credentials As BindingList(Of Credential), ByVal Jobs As BindingList(Of Job), ByVal Status As String)
         Dim img As New System.IO.MemoryStream
         Photo.Save(img, Imaging.ImageFormat.Jpeg)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[Mobile]=@mobile,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[District]=@district,[Pincode]=@pincode,[State]=@state,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[TIN]=@tin,[CIN]=@cin,[PartnerDirector]=@partnerdirector,[Type]=@type,[Credentials]=@credentials,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo WHERE [ID]=" & ID & ";", conn)
         AddParameter(comm, "@pan", PAN)
@@ -303,9 +311,9 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub GetClientByID(ByVal ConnectionString As String, ByVal ID As Integer, ByRef PAN As String, ByRef ClientName As String, ByRef FatherName As String, ByRef Mobile As String, ByRef Email As String, ByRef DOB As String, ByRef AddressLine1 As String, ByRef AddressLine2 As String, ByRef District As String, ByRef PinCode As String, ByRef Aadhar As String, ByRef Description As String, ByRef TypeOfEngagement As String, _
+    Sub GetClientByID(ByVal ID As Integer, ByRef PAN As String, ByRef ClientName As String, ByRef FatherName As String, ByRef Mobile As String, ByRef Email As String, ByRef DOB As String, ByRef AddressLine1 As String, ByRef AddressLine2 As String, ByRef District As String, ByRef PinCode As String, ByRef Aadhar As String, ByRef Description As String, ByRef TypeOfEngagement As String, _
                            ByRef TIN As String, ByRef CIN As String, ByRef PartnersOrDirectors As Object, ByRef Type As Object, ByRef Credentials As Object, ByRef Jobs As Object, ByRef Status As String, ByRef Photo As Image)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Clients WHERE [ID]=" & ID & ";", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -341,10 +349,10 @@ Public Module Database
     End Sub
 #End Region
 #Region "Workbook"
-    Sub AddNewWork(ByVal ConnectionString As String, ByVal User As User, ByVal Job As Job, ByVal DueDate As Date, _
+    Sub AddNewWork(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date, _
                    ByVal Client As Client, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date, _
                    ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As String, ByVal Financial As String, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History);", conn)
         AddParameter(comm, "@User", User.ID)
@@ -368,10 +376,10 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub EditWork(ByVal ConnectionString As String, ByVal ID As Integer, ByVal User As User, ByVal Job As Job, ByVal DueDate As Date, _
+    Sub EditWork(ByVal ID As Integer, ByVal User As User, ByVal Job As Job, ByVal DueDate As Date, _
                   ByVal Client As Client, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date, _
                   ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As String, ByVal Financial As String, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Workbook SET [DueDate]=@DueDate,[DateCompleted]=@DateCompleted,[Status]=@Status,[Description]=@Description,[Remarks]=@Remarks,[TargetDate]=@TargetDate,[Priority]=@Priority,[DateUpdated]=@DateUpdated,[CurrentStep]=@CurrentStep,[History]=@History WHERE [ID]=" & ID & ";", conn)
         AddParameter(comm, "@DueDate", DueDate)
@@ -387,8 +395,8 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub GetWorkByID(ByVal ConnectionString As String, ByVal ID As Integer, ByRef OwnerUser As Integer, ByRef Job As String, ByRef Client As Integer, ByRef DueDate As Date, ByRef TargetDate As Date, ByRef Priority As String, ByRef FinancialDetail As String, ByRef AssessmentDetail As String, ByRef Description As String, ByRef Remarks As String, ByRef Status As String, ByRef CurrentStep As String, ByRef CurrentlyAssignedTo As Integer, ByRef History As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub GetWorkByID(ByVal ID As Integer, ByRef OwnerUser As Integer, ByRef Job As String, ByRef Client As Integer, ByRef DueDate As Date, ByRef TargetDate As Date, ByRef Priority As String, ByRef FinancialDetail As String, ByRef AssessmentDetail As String, ByRef Description As String, ByRef Remarks As String, ByRef Status As String, ByRef CurrentStep As String, ByRef CurrentlyAssignedTo As Integer, ByRef History As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Workbook WHERE [ID]=" & ID & ";", conn)
         Dim Reader As SqlDataReader = comm.ExecuteReader
@@ -410,8 +418,8 @@ Public Module Database
         End While
         conn.Close()
     End Sub
-    Sub UpdateStep(ByVal ConnectionString As String, ByVal ID As Integer, ByVal Step_ As String, ByVal History As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub UpdateStep(ByVal ID As Integer, ByVal Step_ As String, ByVal History As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Workbook SET [CurrentStep]=@CurrentStep,[History]=@History WHERE [ID]=" & ID & ";", conn)
         AddParameter(comm, "@DateUpdated", Now)
@@ -420,8 +428,8 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub UpdateStatus(ByVal ConnectionString As String, ByVal ID As Integer, ByVal Status As String, ByVal History As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub UpdateStatus(ByVal ID As Integer, ByVal Status As String, ByVal History As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Workbook SET [Status]=@Status,[History]=@History WHERE [ID]=" & ID & ";", conn)
         AddParameter(comm, "@DateUpdated", Now)
@@ -430,8 +438,8 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub AssignTo(ByVal ConnectionString As String, ByVal ID As Integer, ByVal NewUser As Integer, ByVal History As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub AssignTo(ByVal ID As Integer, ByVal NewUser As Integer, ByVal History As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Workbook SET [User]=@User,[History]=@History WHERE [ID]=" & ID & ";", conn)
         AddParameter(comm, "@DateUpdated", Now)
@@ -442,8 +450,8 @@ Public Module Database
     End Sub
 #End Region
 #Region "Job"
-    Sub AddNewJob(ByVal ConnectionString As String, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal JobID As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub AddNewJob(ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal JobID As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("INSERT INTO Jobs ([JobName],[Group],[Type],[Steps],[SubGroup],[Templates],[JID]) VALUES (@jobname,@group,@type,@steps,@subgroup,@templates,@jid);", conn)
         AddParameter(comm, "@jobname", Name)
@@ -456,8 +464,8 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub EditJob(ByVal ConnectionString As String, ByVal ID As Integer, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal JobID As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub EditJob(ByVal ID As Integer, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal JobID As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("UPDATE Jobs SET [JobName]=@jobname,[Group]=@group,[Type]=@type,[Steps]=@steps,[SubGroup]=@subgroup,[Templates]=@templates,[JID]=@jid WHERE [ID]=" & ID & ";", conn)
         AddParameter(comm, "@jobname", Name)
@@ -470,9 +478,9 @@ Public Module Database
         comm.ExecuteNonQuery()
         conn.Close()
     End Sub
-    Sub LoadJobByID(ByVal ConnectionString As String, ByVal JID As String, ByRef ID_ As String, _
+    Sub LoadJobByID(ByVal JID As String, ByRef ID_ As String, _
                     ByRef Name As String, ByRef Group As String, ByRef Type As String, ByRef SubGroup As String)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Jobs WHERE JID=" & JID & ";", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -485,9 +493,9 @@ Public Module Database
             SubGroup = reader.Item("SubGroup")
         End While
     End Sub
-    Sub GetJobByID(ByVal ConnectionString As String, ByVal ID As Integer, ByRef Name As String, ByRef Group As String, ByRef SubGroup As String, ByRef Type As String, _
-                   ByRef StepsText As String, ByVal TemplatesBox As ListBox, ByRef JobID As String)
-        Dim conn As New SqlConnection(ConnectionString)
+    Sub GetJobByID(ByVal ID As Integer, ByRef Name As String, ByRef Group As String, ByRef SubGroup As String, ByRef Type As String, _
+                   ByRef StepsText As String, ByVal TemplatesBox As Windows.Forms.ListBox, ByRef JobID As String)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Jobs WHERE [ID]=" & ID & ";", conn)
         Dim reader As SqlDataReader = comm.ExecuteReader
@@ -507,9 +515,9 @@ Public Module Database
         End While
         conn.Close()
     End Sub
-    Function GetJID(ByVal ConnectionString As String, ByVal Group As String, ByVal SubGroup As String) As String
+    Function GetJID(ByVal Group As String, ByVal SubGroup As String) As String
         Dim SV As String = Group.ToString.Substring(0, 1) & SubGroup.ToString.Substring(0, 1)
-        Dim conn As New SqlConnection(ConnectionString)
+        Dim conn As SqlConnection = GetConnection()
         conn.Open()
         Dim comm As New SqlCommand("SELECT * FROM Jobs WHERE [JID] LIKE '%" & SV & "%'", conn)
         Dim c As Integer = 0

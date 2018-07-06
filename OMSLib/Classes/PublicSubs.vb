@@ -1,7 +1,13 @@
 ﻿Imports System.Drawing
 
 Public Module PublicSubs
-
+    Dim Settings_ As Settings
+    Public Function GetSettings() As Settings
+        If Settings_ Is Nothing Then
+            Settings_ = Settings.Load
+        End If
+        Return Settings_
+    End Function
     Public Function ImageFromBytes(ByVal Data As Byte()) As Image
         Dim ms As New IO.MemoryStream(Data)
         Return Image.FromStream(ms)
