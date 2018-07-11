@@ -57,28 +57,29 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@Username", Username)
                 AddParameter(Command, "@Password", Encryption.EncryptString(Password))
-                Dim Reader As SqlDataReader = Command.ExecuteReader
-                If Reader.Read Then
-                    Dim ID As Integer = Reader.Item("ID")
-                    Dim UserType As String = Reader.Item("UserType").ToString
-                    Dim Address As String = Reader.Item("Address").ToString
-                    Dim Mobile As String = Reader.Item("Mobile").ToString
-                    Dim Email As String = Reader.Item("Email").ToString
-                    Dim Permissions As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Reader.Item("Permissions").ToString)
-                    Dim Status As String = Reader.Item("Status").ToString
-                    Dim Photo As Drawing.Image = My.Resources.User_Default
-                    Try
-                        Photo = Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte())))
-                    Catch ex As Exception
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    If Reader.Read Then
+                        Dim ID As Integer = Reader.Item("ID")
+                        Dim UserType As String = Reader.Item("UserType").ToString
+                        Dim Address As String = Reader.Item("Address").ToString
+                        Dim Mobile As String = Reader.Item("Mobile").ToString
+                        Dim Email As String = Reader.Item("Email").ToString
+                        Dim Permissions As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Reader.Item("Permissions").ToString)
+                        Dim Status As String = Reader.Item("Status").ToString
+                        Dim Photo As Drawing.Image = My.Resources.User_Default
+                        Try
+                            Photo = Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte())))
+                        Catch ex As Exception
 
-                    End Try
-                    Dim Credentials As IEnumerable(Of Credential) = ObjectSerilizer.FromXML(Of ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString)
-                    Dim Desktop As String = Reader.Item("Desktop").ToString
-                    Dim Home As String = Reader.Item("Home").ToString
-                    R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
-                Else
-                    MsgBox("Invalid Username or Password.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
-                End If
+                        End Try
+                        Dim Credentials As IEnumerable(Of Credential) = ObjectSerilizer.FromXML(Of ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString)
+                        Dim Desktop As String = Reader.Item("Desktop").ToString
+                        Dim Home As String = Reader.Item("Home").ToString
+                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
+                    Else
+                        MsgBox("Invalid Username or Password.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    End If
+                End Using
             End Using
 
             Return R
