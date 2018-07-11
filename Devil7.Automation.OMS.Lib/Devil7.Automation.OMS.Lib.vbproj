@@ -70,10 +70,10 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Misc\Encryption.vb" />
-    <Compile Include="Misc\ObjectSerilizer.vb" />
-    <Compile Include="Misc\SettingsManager.vb" />
-    <Compile Include="Misc\XtraFormTemp.vb">
+    <Compile Include="Utils\Encryption.vb" />
+    <Compile Include="Utils\ObjectSerilizer.vb" />
+    <Compile Include="Utils\SettingsManager.vb" />
+    <Compile Include="Utils\XtraFormTemp.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
