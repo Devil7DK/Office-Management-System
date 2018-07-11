@@ -24,7 +24,7 @@ Imports Devil7.Automation.OMS.Lib.Objects
 Imports Devil7.Automation.OMS.Lib.Utils
 
 Namespace Database
-    Module Users
+    Public Module Users
 
         Function GetUsernames() As String()
             Dim R As New List(Of String)
