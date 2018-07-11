@@ -28,10 +28,9 @@ Namespace Objects
             Me.ID = ID
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Username As String, ByVal Password As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As String() = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
+        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Specialized.StringCollection = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
             Me.ID = ID
             Me.Username = Username
-            Me.Password = Password
             Me.UserType = UserType
             Me.Address = Address
             Me.Mobile = Mobile
@@ -40,7 +39,7 @@ Namespace Objects
             Me.Home = Home
             Me.Permissions = New Specialized.StringCollection
             If Permissions IsNot Nothing Then
-                Me.Permissions.AddRange(Permissions)
+                Me.Permissions = Permissions
             End If
             Me.Status = Status
             Me.img = Photo
@@ -54,7 +53,6 @@ Namespace Objects
         Property ID As Integer = -1
         Property Username As String = ""
         Property UserType As String = ""
-        Property Password As String = ""
         Property Address As String = ""
         Property Mobile As String = ""
         Property Email As String = ""

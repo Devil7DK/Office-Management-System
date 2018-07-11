@@ -70,10 +70,13 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Common.vb" />
+    <Compile Include="Database\Connection.vb" />
+    <Compile Include="Database\Users.vb" />
     <Compile Include="Utils\Encryption.vb" />
     <Compile Include="Utils\ObjectSerilizer.vb" />
     <Compile Include="Utils\SettingsManager.vb" />
-    <Compile Include="Utils\XtraFormTemp.vb">
+    <Compile Include="XtraFormTemp.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -113,9 +116,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\User_Default.png" />
   </ItemGroup>
