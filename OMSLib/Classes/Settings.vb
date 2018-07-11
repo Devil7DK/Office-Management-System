@@ -6,7 +6,8 @@ Public Class Settings
     Property ServerName As String
     Property Password As String
     Property UserName As String
-    Property Pooling As String
+    Property Pooling As Boolean
+    Property DefaultStorage As String
     Shared Function Load() As Settings
         Dim serializer As New XmlSerializer(GetType(Settings))
         Dim deserialized As New Settings

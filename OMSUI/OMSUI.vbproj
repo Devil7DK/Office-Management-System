@@ -55,6 +55,7 @@
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v17.2, Version=17.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -90,7 +91,7 @@
     <Compile Include="frm_Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Main.Designer.vb">
+    <Compile Include="frm_Main.designer.vb">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_Main.vb">
@@ -122,6 +123,9 @@
     <EmbeddedResource Include="frm_Login.resx">
       <DependentUpon>frm_Login.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_Main.resx">
+      <DependentUpon>frm_Main.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -147,6 +151,42 @@
       <Project>{3834ADF8-CE6B-4709-9628-748E72971117}</Project>
       <Name>OMSLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_add_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_add_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_delete_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_delete_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_edit_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_edit_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

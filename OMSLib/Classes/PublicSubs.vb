@@ -55,4 +55,56 @@ Public Module PublicSubs
                 Exception.Message & vbNewLine & vbNewLine & Exception.StackTrace, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
     End Sub
 
+    Dim random_ As New Random
+    Function GetOppositeColor(ByVal Color2Get As Color) As Color
+        Return GetOppositeColor(Color2Get.R, Color2Get.G, Color2Get.B)
+    End Function
+
+    Function GetOppositeColor(ByVal r As Integer, ByVal g As Integer, ByVal b As Integer) As Color
+        If (r + g + b) > 480 Then
+            Return Color.Black
+        Else
+            Return Color.White
+        End If
+    End Function
+
+    Private Sub ItemClickSub(sender As Object, e As DevExpress.XtraEditors.TileItemEventArgs)
+        Try
+            Process.Start(e.Item.Tag)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Sub LoadUtilities(ByVal TileContainer As DevExpress.XtraEditors.TileControl)
+        On Error Resume Next
+        Dim defaultgroup As New DevExpress.XtraEditors.TileGroup() With {.Text = "Default"}
+        For Each i As String In My.Computer.FileSystem.GetFiles(Windows.Forms.Application.StartupPath & "\Utilities", FileIO.SearchOption.SearchTopLevelOnly, "*.exe")
+            If IO.Path.GetFileName(i).EndsWith("vshot.exe") = False Then
+                Dim it As New DevExpress.XtraEditors.TileItem() With {.Image = Icon.ExtractAssociatedIcon(i).ToBitmap, .Text = IO.Path.GetFileNameWithoutExtension(i), .Tag = i}
+                it.AppearanceItem.Normal.BackColor = Color.FromArgb(random_.Next(0, 257), random_.Next(0, 257), random_.Next(0, 257))
+                it.AppearanceItem.Normal.ForeColor = (GetOppositeColor(it.AppearanceItem.Normal.BackColor))
+                it.ItemSize = random_.Next(2, 4)
+                AddHandler it.ItemClick, AddressOf ItemClickSub
+                defaultgroup.Items.Add(it)
+            End If
+        Next
+        TileContainer.Groups.Add(defaultgroup)
+        For Each f As String In My.Computer.FileSystem.GetDirectories(Windows.Forms.Application.StartupPath & "\Utilities", FileIO.SearchOption.SearchAllSubDirectories, "*")
+            Dim g As New DevExpress.XtraEditors.TileGroup
+            g.Text = IO.Path.GetDirectoryName(f)
+            For Each i As String In My.Computer.FileSystem.GetFiles(f, FileIO.SearchOption.SearchTopLevelOnly, "*.exe")
+                If IO.Path.GetFileName(i).EndsWith("vshot.exe") = False Then
+                    Dim it As New DevExpress.XtraEditors.TileItem() With {.Image = Icon.ExtractAssociatedIcon(i).ToBitmap, .Text = IO.Path.GetFileNameWithoutExtension(i), .Tag = i}
+                    it.AppearanceItem.Normal.BackColor = Color.FromArgb(random_.Next(0, 257), random_.Next(0, 257), random_.Next(0, 257))
+                    it.AppearanceItem.Normal.ForeColor = (GetOppositeColor(it.AppearanceItem.Normal.BackColor))
+                    it.ItemSize = random_.Next(2, 4)
+                    AddHandler it.ItemClick, AddressOf ItemClickSub
+                    g.Items.Add(it)
+                End If
+            Next
+            TileContainer.Groups.Add(g)
+        Next
+    End Sub
+
 End Module

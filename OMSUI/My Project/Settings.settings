@@ -8,5 +8,81 @@
     <Setting Name="LastLogin" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="View_Client_Basic" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;ID&lt;/string&gt;
+  &lt;string&gt;PAN&lt;/string&gt;
+  &lt;string&gt;ClientName&lt;/string&gt;
+  &lt;string&gt;Mobile&lt;/string&gt;
+  &lt;string&gt;Email&lt;/string&gt;
+  &lt;string&gt;DOB&lt;/string&gt;
+  &lt;string&gt;Address1&lt;/string&gt;
+  &lt;string&gt;Address2&lt;/string&gt;
+  &lt;string&gt;District&lt;/string&gt;
+  &lt;string&gt;Pincode&lt;/string&gt;
+  &lt;string&gt;AadharNo&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="View_Client_Custom" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Photo&lt;/string&gt;
+  &lt;string&gt;ID&lt;/string&gt;
+  &lt;string&gt;PAN&lt;/string&gt;
+  &lt;string&gt;ClientName&lt;/string&gt;
+  &lt;string&gt;FatherName&lt;/string&gt;
+  &lt;string&gt;Mobile&lt;/string&gt;
+  &lt;string&gt;Email&lt;/string&gt;
+  &lt;string&gt;DOB&lt;/string&gt;
+  &lt;string&gt;Address1&lt;/string&gt;
+  &lt;string&gt;Address2&lt;/string&gt;
+  &lt;string&gt;District&lt;/string&gt;
+  &lt;string&gt;Pincode&lt;/string&gt;
+  &lt;string&gt;State&lt;/string&gt;
+  &lt;string&gt;AadharNo&lt;/string&gt;
+  &lt;string&gt;Description&lt;/string&gt;
+  &lt;string&gt;TypeOfEngagement&lt;/string&gt;
+  &lt;string&gt;TIN&lt;/string&gt;
+  &lt;string&gt;CIN&lt;/string&gt;
+  &lt;string&gt;PartnerDirector&lt;/string&gt;
+  &lt;string&gt;Type&lt;/string&gt;
+  &lt;string&gt;Credentials&lt;/string&gt;
+  &lt;string&gt;Jobs&lt;/string&gt;
+  &lt;string&gt;Status&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="View_Client_All" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Photo&lt;/string&gt;
+  &lt;string&gt;ID&lt;/string&gt;
+  &lt;string&gt;PAN&lt;/string&gt;
+  &lt;string&gt;ClientName&lt;/string&gt;
+  &lt;string&gt;FatherName&lt;/string&gt;
+  &lt;string&gt;Mobile&lt;/string&gt;
+  &lt;string&gt;Email&lt;/string&gt;
+  &lt;string&gt;DOB&lt;/string&gt;
+  &lt;string&gt;Address1&lt;/string&gt;
+  &lt;string&gt;Address2&lt;/string&gt;
+  &lt;string&gt;District&lt;/string&gt;
+  &lt;string&gt;Pincode&lt;/string&gt;
+  &lt;string&gt;State&lt;/string&gt;
+  &lt;string&gt;AadharNo&lt;/string&gt;
+  &lt;string&gt;Description&lt;/string&gt;
+  &lt;string&gt;TypeOfEngagement&lt;/string&gt;
+  &lt;string&gt;TIN&lt;/string&gt;
+  &lt;string&gt;CIN&lt;/string&gt;
+  &lt;string&gt;PartnerDirector&lt;/string&gt;
+  &lt;string&gt;Type&lt;/string&gt;
+  &lt;string&gt;Credentials&lt;/string&gt;
+  &lt;string&gt;Jobs&lt;/string&gt;
+  &lt;string&gt;Status&lt;/string&gt;
+  &lt;string&gt;SSMA_TimeStamp&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="View_Client_Current" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
