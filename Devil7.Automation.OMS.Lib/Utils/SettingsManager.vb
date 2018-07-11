@@ -19,40 +19,42 @@
 '                                                                          '
 '=========================================================================='
 
-Public Module SettingsManager
+Namespace Utils
+    Public Module SettingsManager
 
-    Dim ConfigFile As String = IO.Path.Combine(Windows.Forms.Application.StartupPath, "Settings.config")
+        Dim ConfigFile As String = IO.Path.Combine(Windows.Forms.Application.StartupPath, "Settings.config")
 
-    Dim Settings_ As SettingsContainer
+        Dim Settings_ As SettingsContainer
 
-    Function GetSettings() As SettingsContainer
-        If Settings_ Is Nothing Then
-            LoadSettings()
-        End If
-        Return Settings_
-    End Function
+        Function GetSettings() As SettingsContainer
+            If Settings_ Is Nothing Then
+                LoadSettings()
+            End If
+            Return Settings_
+        End Function
 
-    Sub LoadSettings()
-        Settings_ = FromFile(Of SettingsContainer)(ConfigFile)
-        If Settings_ Is Nothing Then
-            Settings_ = New SettingsContainer
-        End If
-    End Sub
+        Sub LoadSettings()
+            Settings_ = FromFile(Of SettingsContainer)(ConfigFile)
+            If Settings_ Is Nothing Then
+                Settings_ = New SettingsContainer
+            End If
+        End Sub
 
-    Sub SaveSettings()
-        If Settings_ Is Nothing Then
-            LoadSettings()
-        End If
-        ToFile(Of SettingsContainer)(Settings_, ConfigFile)
-    End Sub
+        Sub SaveSettings()
+            If Settings_ Is Nothing Then
+                LoadSettings()
+            End If
+            ToFile(Of SettingsContainer)(Settings_, ConfigFile)
+        End Sub
 
-    Class SettingsContainer
-        Property Skin As String = ""
-        Property ServerName As String = ""
-        Property DatabaseName As String = ""
-        Property UserName As String = ""
-        Property Password As String = ""
-        Property Pooling As Boolean = False
-    End Class
+        Class SettingsContainer
+            Property Skin As String = ""
+            Property ServerName As String = ""
+            Property DatabaseName As String = ""
+            Property UserName As String = ""
+            Property Password As String = ""
+            Property Pooling As Boolean = False
+        End Class
 
-End Module
+    End Module
+End Namespace

@@ -21,57 +21,59 @@
 
 Imports System.Xml.Serialization
 
-Public Module ObjectSerilizer
+Namespace Utils
+    Public Module ObjectSerilizer
 
-    Function FromXML(Of T)(ByVal XML As String) As T
-        Dim R As T = Nothing
-        Dim XS As New XmlSerializer(GetType(T))
-        Using MS As New IO.MemoryStream(Text.Encoding.ASCII.GetBytes(XML))
-            Try
-                R = XS.Deserialize(MS)
-            Catch ex As Exception
-
-            End Try
-        End Using
-        Return R
-    End Function
-
-    Function ToXML(Of T)(ByVal Obj As T) As String
-        Dim R As String = ""
-        Dim XS As New XmlSerializer(GetType(T))
-        Using MS As New IO.MemoryStream
-            Try
-                XS.Serialize(MS, Obj)
-                R = Text.Encoding.ASCII.GetString(MS.ToArray)
-            Catch ex As Exception
-
-            End Try
-        End Using
-        Return R
-    End Function
-
-    Function FromFile(Of T)(ByVal FilePath As String) As T
-        Dim R As T = Nothing
-        If My.Computer.FileSystem.FileExists(FilePath) Then
+        Function FromXML(Of T)(ByVal XML As String) As T
+            Dim R As T = Nothing
             Dim XS As New XmlSerializer(GetType(T))
-            Using FS As New IO.FileStream(FilePath, IO.FileMode.Open)
+            Using MS As New IO.MemoryStream(Text.Encoding.ASCII.GetBytes(XML))
                 Try
-                    R = XS.Deserialize(FS)
+                    R = XS.Deserialize(MS)
                 Catch ex As Exception
 
                 End Try
             End Using
-        End If
-        Return R
-    End Function
+            Return R
+        End Function
 
-    Sub ToFile(Of T)(ByVal Obj As T, ByVal FilePath As String)
-        If Obj IsNot Nothing Then
+        Function ToXML(Of T)(ByVal Obj As T) As String
+            Dim R As String = ""
             Dim XS As New XmlSerializer(GetType(T))
-            Using FS As New IO.FileStream(FilePath, IO.FileMode.Create)
-                XS.Serialize(FS, Obj)
-            End Using
-        End If
-    End Sub
+            Using MS As New IO.MemoryStream
+                Try
+                    XS.Serialize(MS, Obj)
+                    R = Text.Encoding.ASCII.GetString(MS.ToArray)
+                Catch ex As Exception
 
-End Module
+                End Try
+            End Using
+            Return R
+        End Function
+
+        Function FromFile(Of T)(ByVal FilePath As String) As T
+            Dim R As T = Nothing
+            If My.Computer.FileSystem.FileExists(FilePath) Then
+                Dim XS As New XmlSerializer(GetType(T))
+                Using FS As New IO.FileStream(FilePath, IO.FileMode.Open)
+                    Try
+                        R = XS.Deserialize(FS)
+                    Catch ex As Exception
+
+                    End Try
+                End Using
+            End If
+            Return R
+        End Function
+
+        Sub ToFile(Of T)(ByVal Obj As T, ByVal FilePath As String)
+            If Obj IsNot Nothing Then
+                Dim XS As New XmlSerializer(GetType(T))
+                Using FS As New IO.FileStream(FilePath, IO.FileMode.Create)
+                    XS.Serialize(FS, Obj)
+                End Using
+            End If
+        End Sub
+
+    End Module
+End Namespace

@@ -26,8 +26,8 @@ Public Class XtraFormTemp
     End Function
     Sub New()
         Try
-            If GetSettings.Skin <> "" Then
-                Me.LookAndFeel.SkinName = GetSettings.Skin
+            If Utils.SettingsManager.GetSettings.Skin <> "" Then
+                Me.LookAndFeel.SkinName = Utils.SettingsManager.GetSettings.Skin
             End If
         Catch ex As Exception
 
