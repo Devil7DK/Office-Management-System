@@ -155,6 +155,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 Dim ms As New IO.MemoryStream
                 Photo.Save(ms, Drawing.Imaging.ImageFormat.Jpeg)
+                AddParameter(Command, "@ID", ID)
                 AddParameter(Command, "@username", Username)
                 AddParameter(Command, "@usertype", UserType)
                 AddParameter(Command, "@address", Address)
@@ -267,7 +268,8 @@ Namespace Database
                         End If
                         Permissions = New List(Of String)
                         If Permissions_ <> "" Then
-                            Permissions.AddRange(ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Permissions_))
+                            Dim P As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Permissions_)
+                            If P IsNot Nothing Then Permissions.AddRange(P)
                         End If
                         Try
                             Photo = Drawing.Image.FromStream(New IO.MemoryStream(PhotoData))
