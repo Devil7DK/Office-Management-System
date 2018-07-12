@@ -216,5 +216,45 @@ Namespace Database
             Return R
         End Function
 
+        Sub GetUserByID(ByVal ID As Integer, ByRef Username As String, ByRef UserType As String, ByRef Password As String, ByRef Address As String, ByRef Mobile As String, ByRef EMail As String, ByRef Permissions As List(Of String), ByRef Credentials As ComponentModel.BindingList(Of Credential), ByRef Status As String, ByRef Photo As Drawing.Image)
+            Dim CommandString As String = "SELECT * FROM Users WHERE [ID]=@ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        Dim PhotoData As Byte()
+                        Dim Permissions_ As String
+                        Dim Credentials_ As String
+                        Username = Reader.Item("Username").ToString
+                        UserType = Reader.Item("UserType").ToString
+                        Password = DecryptString(Reader.Item("Password").ToString)
+                        Address = Reader.Item("Address").ToString
+                        Mobile = Reader.Item("Mobile").ToString
+                        EMail = Reader.Item("Email").ToString
+                        Permissions_ = Reader.Item("Permissions").ToString
+                        Status = Reader.Item("Status").ToString
+                        PhotoData = Reader.Item("Photo")
+                        Credentials_ = Reader.Item("Credentials").ToString
+                        If Credentials_ <> "" Then
+                            Credentials = ObjectSerilizer.FromXML(Of ComponentModel.BindingList(Of Credential))(Credentials_)
+                        Else
+                            Credentials = New ComponentModel.BindingList(Of Credential)
+                        End If
+                        Permissions = New List(Of String)
+                        If Permissions_ <> "" Then
+                            Permissions.AddRange(ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Permissions_))
+                        End If
+                        Try
+                            Photo = Drawing.Image.FromStream(New IO.MemoryStream(PhotoData))
+                        Catch ex As Exception
+
+                        End Try
+                    End While
+                End Using
+            End Using
+        End Sub
+
     End Module
 End Namespace
