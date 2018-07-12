@@ -31,6 +31,15 @@ Namespace Objects
             Me.Password3 = Password3
         End Sub
 
+        Sub New()
+            Template = ""
+            Name = ""
+            Username = ""
+            Password = ""
+            Password2 = ""
+            Password3 = ""
+        End Sub
+
         Property Template As String
         Property Name As String
         Property Username As String
