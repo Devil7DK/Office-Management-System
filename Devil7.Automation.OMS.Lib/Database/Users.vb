@@ -238,7 +238,8 @@ Namespace Database
             Return R
         End Function
 
-        Sub GetUserByID(ByVal ID As Integer, ByRef Username As String, ByRef UserType As String, ByRef Password As String, ByRef Address As String, ByRef Mobile As String, ByRef EMail As String, ByRef Permissions As List(Of String), ByRef Credentials As ComponentModel.BindingList(Of Credential), ByRef Status As String, ByRef Photo As Drawing.Image)
+        Function GetUserByID(ByVal ID As Integer) As User
+            Dim R As User = Nothing
             Dim CommandString As String = "SELECT * FROM Users WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
@@ -248,38 +249,28 @@ Namespace Database
                 AddParameter(Command, "@ID", ID)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
-                        Dim PhotoData As Byte()
-                        Dim Permissions_ As String
-                        Dim Credentials_ As String
-                        Username = Reader.Item("Username").ToString
-                        UserType = Reader.Item("UserType").ToString
-                        Password = DecryptString(Reader.Item("Password").ToString)
-                        Address = Reader.Item("Address").ToString
-                        Mobile = Reader.Item("Mobile").ToString
-                        EMail = Reader.Item("Email").ToString
-                        Permissions_ = Reader.Item("Permissions").ToString
-                        Status = Reader.Item("Status").ToString
-                        PhotoData = Reader.Item("Photo")
-                        Credentials_ = Reader.Item("Credentials").ToString
-                        If Credentials_ <> "" Then
-                            Credentials = ObjectSerilizer.FromXML(Of ComponentModel.BindingList(Of Credential))(Credentials_)
-                        Else
-                            Credentials = New ComponentModel.BindingList(Of Credential)
-                        End If
-                        Permissions = New List(Of String)
-                        If Permissions_ <> "" Then
-                            Dim P As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Permissions_)
-                            If P IsNot Nothing Then Permissions.AddRange(P)
-                        End If
+                        Dim Username As String = Reader.Item("Username").ToString
+                        Dim UserType As String = Reader.Item("UserType").ToString
+                        Dim Address As String = Reader.Item("Address").ToString
+                        Dim Mobile As String = Reader.Item("Mobile").ToString
+                        Dim Email As String = Reader.Item("Email").ToString
+                        Dim Permissions As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Reader.Item("Permissions").ToString)
+                        Dim Status As String = Reader.Item("Status").ToString
+                        Dim Photo As Drawing.Image = My.Resources.User_Default
                         Try
-                            Photo = Drawing.Image.FromStream(New IO.MemoryStream(PhotoData))
+                            Photo = Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte())))
                         Catch ex As Exception
 
                         End Try
+                        Dim Credentials As IEnumerable(Of Credential) = ObjectSerilizer.FromXML(Of ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString)
+                        Dim Desktop As String = Reader.Item("Desktop").ToString
+                        Dim Home As String = Reader.Item("Home").ToString
+                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
                     End While
                 End Using
             End Using
-        End Sub
+            Return R
+        End Function
 
     End Module
 End Namespace
