@@ -177,6 +177,27 @@ Namespace Database
             Return R
         End Function
 
+        Function Remove(ByVal ID As Integer) As Boolean
+            Dim R As Boolean = False
+
+            Dim CommandString As String = "DELETE FROM Users WHERE [ID]=@ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                Dim Result As Integer = Command.ExecuteNonQuery
+                If Result > 0 Then
+                    R = True
+                Else
+                    R = False
+                End If
+            End Using
+
+            Return R
+        End Function
+
         Function GetAll(CloseConnection As Boolean) As IEnumerable(Of User)
             Dim R As New List(Of User)
 
