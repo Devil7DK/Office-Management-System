@@ -147,7 +147,7 @@ Namespace Database
         Function Update(ByVal ID As Integer, Username As String, UserType As String, Address As String, Mobile As String, Email As String, Permissions As Specialized.StringCollection, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Credentials]=@credentials WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Credentials]=@credentials,[Desktop]=@desktop,[Home]=@home WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -165,6 +165,8 @@ Namespace Database
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", ms.ToArray)
                 AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
+                AddParameter(Command, "@desktop", Desktop)
+                AddParameter(Command, "@home", Home)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
                 If ID > 0 Then
