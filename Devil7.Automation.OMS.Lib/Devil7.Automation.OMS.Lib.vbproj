@@ -73,6 +73,7 @@
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
     <Compile Include="Database\Users.vb" />
+    <Compile Include="Enums\DialogMode.vb" />
     <Compile Include="Utils\Encryption.vb" />
     <Compile Include="Utils\ObjectSerilizer.vb" />
     <Compile Include="Utils\SettingsManager.vb" />
