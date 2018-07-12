@@ -30,6 +30,8 @@ Partial Class frm_Main
         Me.TVC_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
+        Me.btn_EditProfile = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_ChangePassword = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_AddClient = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_EditClient = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_RemoveClient = New DevExpress.XtraBars.BarButtonItem()
@@ -54,7 +56,6 @@ Partial Class frm_Main
         Me.btn_ResetPassword = New DevExpress.XtraBars.BarButtonItem()
         Me.rpg_Skin = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.SkinRibbonGalleryBarItem1 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
-        Me.RibbonMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.MainPane = New DevExpress.XtraBars.Navigation.NavigationPane()
         Me.np_Home = New DevExpress.XtraBars.Navigation.NavigationPage()
@@ -72,13 +73,15 @@ Partial Class frm_Main
         Me.gc_Jobs = New DevExpress.XtraGrid.GridControl()
         Me.gv_Jobs = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.np_Users = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Users = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Users = New DevExpress.XtraGrid.GridControl()
         Me.tv_Users = New DevExpress.XtraGrid.Views.Tile.TileView()
         Me.np_Credentials = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.gc_Credentials = New DevExpress.XtraGrid.GridControl()
         Me.gv_Credentials = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
+        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
@@ -100,6 +103,7 @@ Partial Class frm_Main
         Me.np_Credentials.SuspendLayout()
         CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TVC_Name
@@ -136,13 +140,13 @@ Partial Class frm_Main
         '
         'RibbonControl
         '
+        Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 19
+        Me.RibbonControl.MaxItemId = 21
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rpg_Edit})
-        Me.RibbonControl.SetPopupContextMenu(Me.RibbonControl, Me.RibbonMenu)
         Me.RibbonControl.ShowCategoryInCaption = False
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -150,6 +154,24 @@ Partial Class frm_Main
         Me.RibbonControl.Size = New System.Drawing.Size(778, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
+        '
+        'btn_EditProfile
+        '
+        Me.btn_EditProfile.Caption = "Edit Profile"
+        Me.btn_EditProfile.Description = "Edit your user details."
+        Me.btn_EditProfile.Id = 19
+        Me.btn_EditProfile.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_profile
+        Me.btn_EditProfile.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_profile
+        Me.btn_EditProfile.Name = "btn_EditProfile"
+        '
+        'btn_ChangePassword
+        '
+        Me.btn_ChangePassword.Caption = "Change Password"
+        Me.btn_ChangePassword.Description = "Change your login password of this application"
+        Me.btn_ChangePassword.Id = 20
+        Me.btn_ChangePassword.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_password
+        Me.btn_ChangePassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_password
+        Me.btn_ChangePassword.Name = "btn_ChangePassword"
         '
         'btn_AddClient
         '
@@ -294,7 +316,7 @@ Partial Class frm_Main
         'rpg_Users
         '
         Me.rpg_Users.ItemLinks.Add(Me.btn_RefreshUsers)
-        Me.rpg_Users.ItemLinks.Add(Me.btn_AddUser)
+        Me.rpg_Users.ItemLinks.Add(Me.btn_AddUser, True)
         Me.rpg_Users.ItemLinks.Add(Me.btn_EditUser)
         Me.rpg_Users.ItemLinks.Add(Me.btn_RemoveUser)
         Me.rpg_Users.ItemLinks.Add(Me.btn_ResetPassword, True)
@@ -346,11 +368,6 @@ Partial Class frm_Main
         Me.SkinRibbonGalleryBarItem1.Caption = "SkinRibbonGalleryBarItem1"
         Me.SkinRibbonGalleryBarItem1.Id = 1
         Me.SkinRibbonGalleryBarItem1.Name = "SkinRibbonGalleryBarItem1"
-        '
-        'RibbonMenu
-        '
-        Me.RibbonMenu.Name = "RibbonMenu"
-        Me.RibbonMenu.Ribbon = Me.RibbonControl
         '
         'RibbonStatusBar
         '
@@ -500,9 +517,22 @@ Partial Class frm_Main
         'np_Users
         '
         Me.np_Users.Caption = "Users"
+        Me.np_Users.Controls.Add(Me.ProgressPanel_Users)
         Me.np_Users.Controls.Add(Me.gc_Users)
         Me.np_Users.Name = "np_Users"
         Me.np_Users.Size = New System.Drawing.Size(690, 229)
+        '
+        'ProgressPanel_Users
+        '
+        Me.ProgressPanel_Users.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Users.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Users.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Users.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Users.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Users.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Users.Name = "ProgressPanel_Users"
+        Me.ProgressPanel_Users.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Users.TabIndex = 2
         '
         'gc_Users
         '
@@ -577,6 +607,16 @@ Partial Class frm_Main
         Me.gv_Credentials.OptionsBehavior.Editable = False
         Me.gv_Credentials.OptionsBehavior.ReadOnly = True
         '
+        'Loader_Users
+        '
+        '
+        'RibbonMenu
+        '
+        Me.RibbonMenu.ItemLinks.Add(Me.btn_EditProfile)
+        Me.RibbonMenu.ItemLinks.Add(Me.btn_ChangePassword)
+        Me.RibbonMenu.Name = "RibbonMenu"
+        Me.RibbonMenu.Ribbon = Me.RibbonControl
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -592,7 +632,6 @@ Partial Class frm_Main
         Me.Text = "Devil7 - Office Management System"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
@@ -614,6 +653,7 @@ Partial Class frm_Main
         Me.np_Credentials.ResumeLayout(False)
         CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -622,7 +662,6 @@ Partial Class frm_Main
     Friend WithEvents RibbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
     Friend WithEvents rpg_Edit As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
-    Friend WithEvents RibbonMenu As DevExpress.XtraBars.PopupMenu
     Friend WithEvents SkinRibbonGalleryBarItem1 As DevExpress.XtraBars.SkinRibbonGalleryBarItem
     Friend WithEvents rpg_Skin As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents MainPane As DevExpress.XtraBars.Navigation.NavigationPane
@@ -671,6 +710,11 @@ Partial Class frm_Main
     Friend WithEvents btn_RefreshClients As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_RefreshJobs As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_RefreshUsers As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Loader_Users As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ProgressPanel_Users As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents btn_EditProfile As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_ChangePassword As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonMenu As DevExpress.XtraBars.Ribbon.ApplicationMenu
 
 
 End Class
