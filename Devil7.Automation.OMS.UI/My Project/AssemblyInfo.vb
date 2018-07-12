@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Devil7.Automation.OMS.UI")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Devil7.Automation.OMS.UI")> 
-<Assembly: AssemblyCopyright("Copyright ©  2018")> 
+<Assembly: AssemblyTitle("Devil7 - Office Management System User Interface")> 
+<Assembly: AssemblyDescription("User Interface for Devil7 Office Management System")> 
+<Assembly: AssemblyCompany("Devil7 Softwares")> 
+<Assembly: AssemblyProduct("Devil7 - Office Management System")> 
+<Assembly: AssemblyCopyright("Copyright © Devil7 Softwares 2018")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("2.0.0.0")> 
+<Assembly: AssemblyFileVersion("2.0.0.0")> 
