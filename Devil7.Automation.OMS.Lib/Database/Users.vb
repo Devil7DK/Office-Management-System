@@ -114,7 +114,7 @@ Namespace Database
         Function AddNew(Username As String, UserType As String, Password As String, Address As String, Mobile As String, Email As String, Permissions As Specialized.StringCollection, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As User
             Dim R As User = Nothing
 
-            Dim CommandString As String = "INSERT INTO [Users] ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo],[Credentials]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo,@credentials);LAST_INSERT_ID();"
+            Dim CommandString As String = "INSERT INTO [Users] ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo],[Credentials]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo,@credentials);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
