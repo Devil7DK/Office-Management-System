@@ -241,6 +241,8 @@ Namespace Database
             Dim CommandString As String = "SELECT * FROM Users WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@ID", ID)
                 Using Reader As SqlDataReader = Command.ExecuteReader
