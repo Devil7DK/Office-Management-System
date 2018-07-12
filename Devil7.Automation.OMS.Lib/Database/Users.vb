@@ -111,6 +111,32 @@ Namespace Database
             Return R
         End Function
 
+        Function ResetPassword(ID As String, CloseConnection As Boolean) As Boolean
+            Dim R As Boolean = False
+
+            Dim CommandString As String = "UPDATE [Users] SET [Password]=@Password WHERE [ID] = @ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                AddParameter(Command, "@Password", Encryption.EncryptString("123"))
+                Dim Count As Integer = Command.ExecuteNonQuery
+                If Count = 0 Then
+                    MsgBox("Unable to reset password.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    R = False
+                Else
+                    MsgBox("Successfully reseted password to 123.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    R = True
+                End If
+            End Using
+
+            If CloseConnection Then Connection.Close()
+
+            Return R
+        End Function
+
         Function AddNew(Username As String, UserType As String, Password As String, Address As String, Mobile As String, Email As String, Permissions As Specialized.StringCollection, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As User
             Dim R As User = Nothing
 
