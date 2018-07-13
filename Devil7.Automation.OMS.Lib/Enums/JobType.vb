@@ -20,11 +20,11 @@
 '=========================================================================='
 
 Namespace Enums
-    Public Enum JobType
-        Monthly
-        Yearly
-        Once
-        Quarterly
-        HalfYerly
+    Public Enum JobType As Integer
+        Monthly = 1
+        Yearly = 4
+        Once = 0
+        Quarterly = 2
+        HalfYerly = 3
     End Enum
 End Namespace
