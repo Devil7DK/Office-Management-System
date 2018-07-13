@@ -121,4 +121,8 @@ Public Class frm_Main
         Dim d As New frm_ChangePassword(User)
         d.ShowDialog()
     End Sub
+
+    Private Sub btn_Exit_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_Exit.ItemClick
+        Me.Close()
+    End Sub
 End Class

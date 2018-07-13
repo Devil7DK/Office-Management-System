@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\exit.png" />
     <None Include="Resources\edit_password.png" />
     <None Include="Resources\edit_profile.png" />
     <None Include="Resources\Edit.png" />

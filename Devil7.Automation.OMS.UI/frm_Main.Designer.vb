@@ -30,6 +30,7 @@ Partial Class frm_Main
         Me.TVC_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
+        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
         Me.btn_EditProfile = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ChangePassword = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_AddClient = New DevExpress.XtraBars.BarButtonItem()
@@ -80,8 +81,9 @@ Partial Class frm_Main
         Me.gc_Credentials = New DevExpress.XtraGrid.GridControl()
         Me.gv_Credentials = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
-        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
+        Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
@@ -103,7 +105,6 @@ Partial Class frm_Main
         Me.np_Credentials.SuspendLayout()
         CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TVC_Name
@@ -142,9 +143,9 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 21
+        Me.RibbonControl.MaxItemId = 22
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rpg_Edit})
         Me.RibbonControl.ShowCategoryInCaption = False
@@ -154,6 +155,14 @@ Partial Class frm_Main
         Me.RibbonControl.Size = New System.Drawing.Size(778, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
+        '
+        'RibbonMenu
+        '
+        Me.RibbonMenu.ItemLinks.Add(Me.btn_EditProfile)
+        Me.RibbonMenu.ItemLinks.Add(Me.btn_ChangePassword)
+        Me.RibbonMenu.ItemLinks.Add(Me.btn_Exit)
+        Me.RibbonMenu.Name = "RibbonMenu"
+        Me.RibbonMenu.Ribbon = Me.RibbonControl
         '
         'btn_EditProfile
         '
@@ -610,12 +619,14 @@ Partial Class frm_Main
         'Loader_Users
         '
         '
-        'RibbonMenu
+        'btn_Exit
         '
-        Me.RibbonMenu.ItemLinks.Add(Me.btn_EditProfile)
-        Me.RibbonMenu.ItemLinks.Add(Me.btn_ChangePassword)
-        Me.RibbonMenu.Name = "RibbonMenu"
-        Me.RibbonMenu.Ribbon = Me.RibbonControl
+        Me.btn_Exit.Caption = "Exit"
+        Me.btn_Exit.Description = "Logout & Close Application"
+        Me.btn_Exit.Id = 21
+        Me.btn_Exit.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
+        Me.btn_Exit.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
+        Me.btn_Exit.Name = "btn_Exit"
         '
         'frm_Main
         '
@@ -632,6 +643,7 @@ Partial Class frm_Main
         Me.Text = "Devil7 - Office Management System"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
@@ -653,7 +665,6 @@ Partial Class frm_Main
         Me.np_Credentials.ResumeLayout(False)
         CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -715,6 +726,7 @@ Partial Class frm_Main
     Friend WithEvents btn_EditProfile As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_ChangePassword As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonMenu As DevExpress.XtraBars.Ribbon.ApplicationMenu
+    Friend WithEvents btn_Exit As DevExpress.XtraBars.BarButtonItem
 
 
 End Class
