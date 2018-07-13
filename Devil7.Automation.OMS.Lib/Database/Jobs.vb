@@ -26,6 +26,31 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Jobs
 
+        Function GetJID(ByVal Group As String, ByVal SubGroup As String, ByVal CloseConnection As Boolean) As String
+            Dim R As String = ""
+            Dim c As Integer = 0
+
+            Dim SV As String = Group.ToString.Substring(0, 1) & SubGroup.ToString.Substring(0, 1)
+            Dim CommandString As String = "SELECT * FROM Jobs WHERE [JID] LIKE '%" & SV & "%'"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using reader = Command.ExecuteReader
+                    While reader.Read
+                        c += 1
+                    End While
+                End Using
+            End Using
+
+            If CloseConnection Then Connection.Close()
+
+            R = SV & CInt(c + 1).ToString("000")
+
+            Return R
+        End Function
+
         Function AddNew(ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal JobID As String, ByVal CloseConnection As Boolean) As Job
             Dim R As New Job
 
