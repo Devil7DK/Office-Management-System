@@ -33,6 +33,7 @@ Partial Class frm_Main
         Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
         Me.btn_EditProfile = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ChangePassword = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_AddClient = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_EditClient = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_RemoveClient = New DevExpress.XtraBars.BarButtonItem()
@@ -71,6 +72,7 @@ Partial Class frm_Main
         Me.gc_Clients = New DevExpress.XtraGrid.GridControl()
         Me.gv_Clients = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.np_Jobs = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Jobs = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Jobs = New DevExpress.XtraGrid.GridControl()
         Me.gv_Jobs = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.np_Users = New DevExpress.XtraBars.Navigation.NavigationPage()
@@ -81,7 +83,7 @@ Partial Class frm_Main
         Me.gc_Credentials = New DevExpress.XtraGrid.GridControl()
         Me.gv_Credentials = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
-        Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
+        Me.Loader_Jobs = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,6 +183,15 @@ Partial Class frm_Main
         Me.btn_ChangePassword.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_password
         Me.btn_ChangePassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_password
         Me.btn_ChangePassword.Name = "btn_ChangePassword"
+        '
+        'btn_Exit
+        '
+        Me.btn_Exit.Caption = "Exit"
+        Me.btn_Exit.Description = "Logout & Close Application"
+        Me.btn_Exit.Id = 21
+        Me.btn_Exit.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
+        Me.btn_Exit.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
+        Me.btn_Exit.Name = "btn_Exit"
         '
         'btn_AddClient
         '
@@ -501,9 +512,22 @@ Partial Class frm_Main
         'np_Jobs
         '
         Me.np_Jobs.Caption = "Jobs"
+        Me.np_Jobs.Controls.Add(Me.ProgressPanel_Jobs)
         Me.np_Jobs.Controls.Add(Me.gc_Jobs)
         Me.np_Jobs.Name = "np_Jobs"
-        Me.np_Jobs.Size = New System.Drawing.Size(600, 229)
+        Me.np_Jobs.Size = New System.Drawing.Size(690, 229)
+        '
+        'ProgressPanel_Jobs
+        '
+        Me.ProgressPanel_Jobs.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Jobs.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Jobs.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Jobs.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Jobs.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Jobs.Name = "ProgressPanel_Jobs"
+        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Jobs.TabIndex = 3
         '
         'gc_Jobs
         '
@@ -512,7 +536,7 @@ Partial Class frm_Main
         Me.gc_Jobs.MainView = Me.gv_Jobs
         Me.gc_Jobs.MenuManager = Me.RibbonControl
         Me.gc_Jobs.Name = "gc_Jobs"
-        Me.gc_Jobs.Size = New System.Drawing.Size(600, 229)
+        Me.gc_Jobs.Size = New System.Drawing.Size(690, 229)
         Me.gc_Jobs.TabIndex = 1
         Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
         '
@@ -619,14 +643,8 @@ Partial Class frm_Main
         'Loader_Users
         '
         '
-        'btn_Exit
+        'Loader_Jobs
         '
-        Me.btn_Exit.Caption = "Exit"
-        Me.btn_Exit.Description = "Logout & Close Application"
-        Me.btn_Exit.Id = 21
-        Me.btn_Exit.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
-        Me.btn_Exit.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
-        Me.btn_Exit.Name = "btn_Exit"
         '
         'frm_Main
         '
@@ -727,6 +745,8 @@ Partial Class frm_Main
     Friend WithEvents btn_ChangePassword As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonMenu As DevExpress.XtraBars.Ribbon.ApplicationMenu
     Friend WithEvents btn_Exit As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents ProgressPanel_Jobs As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents Loader_Jobs As System.ComponentModel.BackgroundWorker
 
 
 End Class

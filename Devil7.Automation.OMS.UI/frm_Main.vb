@@ -35,11 +35,19 @@ Public Class frm_Main
             If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
         End If
     End Sub
+
+    Sub JobsPageLoad()
+        If gc_Jobs.DataSource Is Nothing Then
+            If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
+        End If
+    End Sub
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
         If MainPane.SelectedPage Is np_Users Then
             UsersPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Jobs Then
+            JobsPageLoad()
         End If
     End Sub
 
@@ -124,5 +132,69 @@ Public Class frm_Main
 
     Private Sub btn_Exit_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_Exit.ItemClick
         Me.Close()
+    End Sub
+
+    Private Sub Loader_Jobs_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Jobs.DoWork
+        Me.Invoke(Sub()
+                      rpg_Jobs.Enabled = False
+                      ProgressPanel_Jobs.Visible = True
+                  End Sub)
+        Try
+            Dim Jobs As List(Of Objects.Job) = Database.Jobs.GetAll(True)
+            Me.Invoke(Sub()
+                          gc_Jobs.DataSource = Jobs
+                      End Sub)
+        Catch ex As Exception
+
+        End Try
+        Me.Invoke(Sub()
+                      rpg_Jobs.Enabled = True
+                      ProgressPanel_Jobs.Visible = False
+                  End Sub)
+    End Sub
+
+    Private Sub btn_RefreshJobs_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshJobs.ItemClick
+        If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
+    End Sub
+
+    Private Sub btn_NewJob_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_NewJob.ItemClick
+        Dim group, subgroup As New List(Of String)
+        For Each i As Objects.Job In CType(gc_Jobs.DataSource, List(Of Objects.Job))
+            If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
+            If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
+        Next
+        Dim d As New frm_Job(Enums.DialogMode.Add, group.ToArray, subgroup.ToArray)
+        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.Job IsNot Nothing Then
+                CType(gc_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
+                gc_Jobs.RefreshDataSource()
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_EditJob_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditJob.ItemClick
+        If gv_Jobs.SelectedRowsCount = 1 Then
+            Dim row As Objects.Job = gv_Jobs.GetRow(gv_Jobs.GetSelectedRows()(0))
+            Dim group, subgroup As New List(Of String)
+            For Each i As Objects.Job In CType(gc_Jobs.DataSource, List(Of Objects.Job))
+                If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
+                If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
+            Next
+            Dim d As New frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, row.ID)
+            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_RemoveJob_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RemoveJob.ItemClick
+        If gv_Jobs.SelectedRowsCount > 0 Then
+            Dim sr As Integer() = gv_Jobs.GetSelectedRows
+            For Each i As Integer In sr
+                Dim row As Objects.Job = gv_Jobs.GetRow(i)
+                If Database.Jobs.Remove(row.ID) Then CType(gc_Jobs.DataSource, List(Of Objects.Job)).Remove(row)
+            Next
+            gc_Jobs.RefreshDataSource()
+        End If
     End Sub
 End Class

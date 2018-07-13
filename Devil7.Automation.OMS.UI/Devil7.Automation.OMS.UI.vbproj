@@ -95,6 +95,12 @@
     <Compile Include="Dialogs\frm_Credential.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_Job.designer.vb">
+      <DependentUpon>frm_Job.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Job.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_Permission.designer.vb">
       <DependentUpon>frm_Permission.vb</DependentUpon>
     </Compile>
@@ -153,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Credential.resx">
       <DependentUpon>frm_Credential.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Job.resx">
+      <DependentUpon>frm_Job.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Permission.resx">
       <DependentUpon>frm_Permission.vb</DependentUpon>
