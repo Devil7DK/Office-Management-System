@@ -143,6 +143,7 @@ Namespace Database
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
             Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     If Reader.Read() Then
                         Dim ID_ As Integer = CInt(Reader.Item("ID").ToString)
