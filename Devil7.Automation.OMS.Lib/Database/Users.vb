@@ -195,11 +195,11 @@ Namespace Database
                 AddParameter(Command, "@home", Home)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
-                If ID > 0 Then
+                If Result > 0 Then
                     R = True
                 Else
                     R = False
-                    MsgBox("Unknown error while inserting user.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    MsgBox("Unknown error while editing user.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
                 End If
             End Using
 
