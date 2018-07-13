@@ -22,6 +22,17 @@
 Namespace Objects
     Public Class Job
 
+        Sub New()
+            Me.ID_ = 0
+            Me.JID = ""
+            Me.Name = ""
+            Me.Group = ""
+            Me.SubGroup = ""
+            Me.Type = Enums.JobType.Once
+            Me.Steps = New List(Of String)
+            Me.Templates = New List(Of String)
+        End Sub
+
         Sub New(ByVal ID As String, ByVal JID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String))
             Me.ID_ = ID
             Me.JID = JID
