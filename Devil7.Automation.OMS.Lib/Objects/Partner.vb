@@ -22,6 +22,13 @@
 Namespace Objects
     Public Class Partner
 
+        Sub New()
+            Me.Name = ""
+            Me.Address = ""
+            Me.PAN = ""
+            Me.DOB = ""
+        End Sub
+
         Sub New(ByVal Name As String, ByVal Address As String, ByVal PAN As String, ByVal DOB As String)
             Me.Name = Name
             Me.Address = Address
