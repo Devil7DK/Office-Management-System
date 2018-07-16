@@ -123,6 +123,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property card_view() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("card_view", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property client() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("client", resourceCulture)
@@ -166,6 +176,16 @@ Namespace My.Resources
         Friend ReadOnly Property client_remove() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("client_remove", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property details_view() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("details_view", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

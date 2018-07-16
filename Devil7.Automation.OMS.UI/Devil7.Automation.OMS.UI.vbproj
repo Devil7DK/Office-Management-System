@@ -83,10 +83,28 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialogs\frm_ChangePassword.Designer.vb">
+    <Compile Include="Dialogs\Client\frm_ClientAddEdit.designer.vb">
+      <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_ClientAddEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Job_Lite.designer.vb">
+      <DependentUpon>frm_Job_Lite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Job_Lite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Partner.designer.vb">
+      <DependentUpon>frm_Partner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Partner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_ChangePassword.Designer.vb">
       <DependentUpon>frm_ChangePassword.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\frm_ChangePassword.vb">
+    <Compile Include="Dialogs\User\frm_ChangePassword.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frm_Credential.designer.vb">
@@ -101,16 +119,16 @@
     <Compile Include="Dialogs\frm_Job.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\frm_Permission.designer.vb">
+    <Compile Include="Dialogs\User\frm_Permission.designer.vb">
       <DependentUpon>frm_Permission.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\frm_Permission.vb">
+    <Compile Include="Dialogs\User\frm_Permission.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogs\frm_User.designer.vb">
+    <Compile Include="Dialogs\User\frm_User.designer.vb">
       <DependentUpon>frm_User.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\frm_User.vb">
+    <Compile Include="Dialogs\User\frm_User.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\Settings\frm_ServerSettings.designer.vb">
@@ -154,7 +172,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dialogs\frm_ChangePassword.resx">
+    <EmbeddedResource Include="Dialogs\Client\frm_ClientAddEdit.resx">
+      <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_Job_Lite.resx">
+      <DependentUpon>frm_Job_Lite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_Partner.resx">
+      <DependentUpon>frm_Partner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\User\frm_ChangePassword.resx">
       <DependentUpon>frm_ChangePassword.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Credential.resx">
@@ -163,10 +190,10 @@
     <EmbeddedResource Include="Dialogs\frm_Job.resx">
       <DependentUpon>frm_Job.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\frm_Permission.resx">
+    <EmbeddedResource Include="Dialogs\User\frm_Permission.resx">
       <DependentUpon>frm_Permission.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\frm_User.resx">
+    <EmbeddedResource Include="Dialogs\User\frm_User.resx">
       <DependentUpon>frm_User.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Settings\frm_ServerSettings.resx">
@@ -224,6 +251,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\details_view.png" />
+    <None Include="Resources\card_view.png" />
     <None Include="Resources\exit.png" />
     <None Include="Resources\edit_password.png" />
     <None Include="Resources\edit_profile.png" />

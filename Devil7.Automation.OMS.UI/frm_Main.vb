@@ -30,24 +30,45 @@ Public Class frm_Main
     End Sub
 
 #Region "Functions"
+    Sub HideOptions()
+        rpg_Clients.Visible = False
+        rpg_Jobs.Visible = False
+        rpg_Users.Visible = False
+        rpg_Workbook.Visible = False
+        grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+    End Sub
+
     Sub UsersPageLoad()
+        rpg_Users.Visible = True
         If gc_Users.DataSource Is Nothing Then
             If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
         End If
     End Sub
 
     Sub JobsPageLoad()
+        rpg_Jobs.Visible = True
         If gc_Jobs.DataSource Is Nothing Then
             If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
+        End If
+    End Sub
+
+    Sub ClientsPageLoad()
+        rpg_Clients.Visible = True
+        grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        If gc_Clients.DataSource Is Nothing Then
+            If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
         End If
     End Sub
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
+        HideOptions()
         If MainPane.SelectedPage Is np_Users Then
             UsersPageLoad()
         ElseIf MainPane.SelectedPage Is np_Jobs Then
             JobsPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Clients Then
+            ClientsPageLoad()
         End If
     End Sub
 
@@ -195,6 +216,94 @@ Public Class frm_Main
                 If Database.Jobs.Remove(row.ID) Then CType(gc_Jobs.DataSource, List(Of Objects.Job)).Remove(row)
             Next
             gc_Jobs.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub Loader_Clients_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Clients.DoWork
+        Me.Invoke(Sub()
+                      rpg_Clients.Enabled = False
+                      ProgressPanel_Clients.Visible = True
+                  End Sub)
+        'Try
+        Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(True)
+        Me.Invoke(Sub()
+                      gc_Clients.DataSource = Clients
+                  End Sub)
+        'Catch ex As Exception
+
+        'End Try
+        Me.Invoke(Sub()
+                      rpg_Clients.Enabled = True
+                      ProgressPanel_Clients.Visible = False
+                  End Sub)
+    End Sub
+
+    Private Sub btn_RefreshClients_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshClients.ItemClick
+        If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
+    End Sub
+
+    Private Sub btn_Clients_DetailsView_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_Clients_DetailsView.ItemClick
+        If gc_Clients.MainView IsNot gv_Clients Then
+            gc_Clients.MainView = gv_Clients
+        End If
+    End Sub
+
+    Private Sub btn_Clients_CardView_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_Clients_CardView.ItemClick
+        If gc_Clients.MainView IsNot tv_Clients Then
+            gc_Clients.MainView = tv_Clients
+        End If
+    End Sub
+
+    Private Sub btn_AddClient_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddClient.ItemClick
+        Dim d As New frm_ClientAddEdit(Enums.DialogMode.Add)
+        If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            If d.Client IsNot Nothing Then
+                CType(gc_Clients.DataSource, List(Of Objects.Client)).Add(d.Client)
+                gc_Clients.RefreshDataSource()
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_EditClient_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditClient.ItemClick
+        Dim Selected As Objects.Client = Nothing
+        If gc_Clients.MainView Is gv_Clients AndAlso gv_Clients.SelectedRowsCount = 1 Then
+            Selected = gv_Clients.GetRow(gv_Clients.GetSelectedRows(0))
+        ElseIf gc_Clients.MainView Is tv_Clients AndAlso tv_Clients.SelectedRowsCount = 1 Then
+            Selected = tv_Clients.GetRow(tv_Clients.GetSelectedRows(0))
+        End If
+        If Selected IsNot Nothing Then
+            Dim d As New frm_ClientAddEdit(Enums.DialogMode.Edit, Selected.ID)
+            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_RemoveClient_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RemoveClient.ItemClick
+        Dim Selected As List(Of Objects.Client) = Nothing
+        If gc_Clients.MainView Is gv_Clients AndAlso gv_Clients.SelectedRowsCount > 0 Then
+            Selected = New List(Of Objects.Client)
+            For Each i As Integer In gv_Clients.GetSelectedRows
+                Selected.Add(gv_Clients.GetRow(i))
+            Next
+        ElseIf gc_Clients.MainView Is tv_Clients AndAlso tv_Clients.SelectedRowsCount > 0 Then
+            Selected = New List(Of Objects.Client)
+            For Each i As Integer In tv_Clients.GetSelectedRows
+                Selected.Add(tv_Clients.GetRow(i))
+            Next
+        End If
+        If Selected IsNot Nothing Then
+            If MsgBox("Are you sure...? do you want to delete all selected clients...?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Sure?") = MsgBoxResult.Yes Then
+                For Each i As Objects.Client In Selected
+                    Dim result As Boolean = Database.Clients.Remove(i.ID)
+                    If result Then
+                        CType(gc_Clients.DataSource, List(Of Objects.Client)).Remove(i)
+                    Else
+                        MsgBox("Error on deleting client with id " & i.ID, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    End If
+                Next
+                gc_Clients.RefreshDataSource()
+            End If
         End If
     End Sub
 End Class
