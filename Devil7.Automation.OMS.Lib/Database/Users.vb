@@ -273,10 +273,11 @@ Namespace Database
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
+
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@ID", ID)
                 Using Reader As SqlDataReader = Command.ExecuteReader
-                    While Reader.Read
+                    If Reader.Read Then
                         Dim Username As String = Reader.Item("Username").ToString
                         Dim UserType As String = Reader.Item("UserType").ToString
                         Dim Address As String = Reader.Item("Address").ToString
@@ -294,7 +295,7 @@ Namespace Database
                         Dim Desktop As String = Reader.Item("Desktop").ToString
                         Dim Home As String = Reader.Item("Home").ToString
                         R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
-                    End While
+                    End If
                 End Using
             End Using
             Return R
