@@ -54,14 +54,14 @@ Namespace Utils
         Function FromFile(Of T)(ByVal FilePath As String) As T
             Dim R As T = Nothing
             If My.Computer.FileSystem.FileExists(FilePath) Then
-                Dim XS As New XmlSerializer(GetType(T))
-                Using FS As New IO.FileStream(FilePath, IO.FileMode.Open)
-                    Try
+                Try
+                    Dim XS As New XmlSerializer(GetType(T))
+                    Using FS As New IO.FileStream(FilePath, IO.FileMode.Open)
                         R = XS.Deserialize(FS)
-                    Catch ex As Exception
+                    End Using
+                Catch ex As Exception
 
-                    End Try
-                End Using
+                End Try
             End If
             Return R
         End Function
