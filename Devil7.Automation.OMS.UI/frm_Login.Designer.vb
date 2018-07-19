@@ -67,6 +67,7 @@ Partial Class frm_Login
         'txt_Username
         '
         Me.txt_Username.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txt_Username.EnterMoveNextControl = True
         Me.txt_Username.Location = New System.Drawing.Point(169, 31)
         Me.txt_Username.Name = "txt_Username"
         Me.txt_Username.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})

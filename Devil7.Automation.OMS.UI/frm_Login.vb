@@ -72,4 +72,11 @@ Public Class frm_Login
                       End Sub)
         End If
     End Sub
+
+    Private Sub txt_Password_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles txt_Password.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            btn_Login.PerformClick()
+        End If
+    End Sub
+
 End Class
