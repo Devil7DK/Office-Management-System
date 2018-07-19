@@ -44,5 +44,36 @@ Namespace Utils
             End Try
         End Sub
 
+        Function FixFileName(ByVal Path As String) As String
+            Dim r As String = Path
+            For Each c As Char In IO.Path.GetInvalidFileNameChars
+                r = r.Replace(c, "_")
+            Next
+            r = r.Replace(" ", "_")
+            Do Until r.Contains("__") = False
+                r = r.Replace("__", "_")
+            Loop
+            r = r.Trim("_")
+            Return r
+        End Function
+
+        Function GetFolder(ByVal DefaultStorage As String, ByVal Client As Objects.Client, ByVal Job As Objects.Job, ByVal AssessmentDetail As String, ByVal Year As String)
+            Dim r As String = ""
+            Dim Folder As String = DefaultStorage
+            Select Case Job.Type
+                Case Enums.JobType.Once
+                    Folder = IO.Path.Combine(DefaultStorage, FixFileName(Client.Name), FixFileName(Job.Group), FixFileName(Job.SubGroup), FixFileName(Year), Now.ToString("yyyyMMddhhmm"))
+                Case Enums.JobType.Monthly
+                    Folder = IO.Path.Combine(DefaultStorage, FixFileName(Client.Name), FixFileName(Job.Group), FixFileName(Job.SubGroup), FixFileName(Year), FixFileName(AssessmentDetail))
+                Case Enums.JobType.Yearly
+                    Folder = IO.Path.Combine(DefaultStorage, FixFileName(Client.Name), FixFileName(Job.Group), FixFileName(Job.SubGroup), FixFileName(AssessmentDetail))
+                Case Enums.JobType.Quarterly
+                    Folder = IO.Path.Combine(DefaultStorage, FixFileName(Client.Name), FixFileName(Job.Group), FixFileName(Job.SubGroup), FixFileName(Year), FixFileName(AssessmentDetail))
+                Case Enums.JobType.HalfYerly
+                    Folder = IO.Path.Combine(DefaultStorage, FixFileName(Client.Name), FixFileName(Job.Group), FixFileName(Job.SubGroup), FixFileName(Year), FixFileName(AssessmentDetail))
+            End Select
+            Return FixFileName(r)
+        End Function
+
     End Module
 End Namespace
