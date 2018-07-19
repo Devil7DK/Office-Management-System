@@ -70,20 +70,26 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparers\CompareByID.vb" />
+    <Compile Include="Comparers\JobComparer.vb" />
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
+    <Compile Include="Database\Workbook.vb" />
     <Compile Include="Database\Jobs.vb" />
     <Compile Include="Database\Users.vb" />
     <Compile Include="Enums\CenterType.vb" />
     <Compile Include="Enums\DialogMode.vb" />
     <Compile Include="Enums\Functions.vb" />
     <Compile Include="Enums\JobType.vb" />
+    <Compile Include="Enums\Priority.vb" />
     <Compile Include="Enums\UserPermissions.vb" />
     <Compile Include="Enums\UserType.vb" />
+    <Compile Include="Enums\WorkStatus.vb" />
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\Job.vb" />
     <Compile Include="Objects\Partner.vb" />
+    <Compile Include="Objects\WorkbookItem.vb" />
     <Compile Include="Utils\Encryption.vb" />
     <Compile Include="Utils\Misc.vb" />
     <Compile Include="Utils\ObjectSerilizer.vb" />
