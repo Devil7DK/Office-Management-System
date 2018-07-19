@@ -125,9 +125,6 @@ Partial Class frm_Main
         Me.ProgressPanel_Users = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Users = New DevExpress.XtraGrid.GridControl()
         Me.tv_Users = New DevExpress.XtraGrid.Views.Tile.TileView()
-        Me.np_Credentials = New DevExpress.XtraBars.Navigation.NavigationPage()
-        Me.gc_Credentials = New DevExpress.XtraGrid.GridControl()
-        Me.gv_Credentials = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Jobs = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
@@ -155,9 +152,6 @@ Partial Class frm_Main
         Me.np_Users.SuspendLayout()
         CType(Me.gc_Users, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tv_Users, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.np_Credentials.SuspendLayout()
-        CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TVC_Client_Photo
@@ -566,13 +560,12 @@ Partial Class frm_Main
         Me.MainPane.Controls.Add(Me.np_Clients)
         Me.MainPane.Controls.Add(Me.np_Jobs)
         Me.MainPane.Controls.Add(Me.np_Users)
-        Me.MainPane.Controls.Add(Me.np_Credentials)
         Me.MainPane.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainPane.Location = New System.Drawing.Point(0, 143)
         Me.MainPane.Name = "MainPane"
         Me.MainPane.PageProperties.ShowCollapseButton = False
         Me.MainPane.PageProperties.ShowExpandButton = False
-        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Utilities, Me.np_Workbook, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Credentials})
+        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
         Me.MainPane.RegularSize = New System.Drawing.Size(778, 275)
         Me.MainPane.SelectedPage = Me.np_Utilities
         Me.MainPane.Size = New System.Drawing.Size(778, 275)
@@ -585,7 +578,7 @@ Partial Class frm_Main
         Me.np_Home.Controls.Add(Me.ProgressPanel_Home)
         Me.np_Home.Controls.Add(Me.gc_Home)
         Me.np_Home.Name = "np_Home"
-        Me.np_Home.Size = New System.Drawing.Size(690, 229)
+        Me.np_Home.Size = New System.Drawing.Size(696, 229)
         '
         'ProgressPanel_Home
         '
@@ -596,7 +589,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
-        Me.ProgressPanel_Home.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Home.Size = New System.Drawing.Size(696, 229)
         Me.ProgressPanel_Home.TabIndex = 6
         '
         'gc_Home
@@ -607,7 +600,7 @@ Partial Class frm_Main
         Me.gc_Home.MainView = Me.gv_Home
         Me.gc_Home.MenuManager = Me.RibbonControl
         Me.gc_Home.Name = "gc_Home"
-        Me.gc_Home.Size = New System.Drawing.Size(690, 229)
+        Me.gc_Home.Size = New System.Drawing.Size(696, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
         '
@@ -652,7 +645,7 @@ Partial Class frm_Main
         Me.np_Utilities.Caption = "Utilities"
         Me.np_Utilities.Controls.Add(Me.Panel_Utilities)
         Me.np_Utilities.Name = "np_Utilities"
-        Me.np_Utilities.Size = New System.Drawing.Size(690, 229)
+        Me.np_Utilities.Size = New System.Drawing.Size(696, 229)
         '
         'Panel_Utilities
         '
@@ -660,7 +653,7 @@ Partial Class frm_Main
         Me.Panel_Utilities.Location = New System.Drawing.Point(0, 0)
         Me.Panel_Utilities.MaxId = 5
         Me.Panel_Utilities.Name = "Panel_Utilities"
-        Me.Panel_Utilities.Size = New System.Drawing.Size(690, 229)
+        Me.Panel_Utilities.Size = New System.Drawing.Size(696, 229)
         Me.Panel_Utilities.TabIndex = 1
         Me.Panel_Utilities.Text = "Utilities"
         '
@@ -670,7 +663,7 @@ Partial Class frm_Main
         Me.np_Workbook.Controls.Add(Me.ProgressPanel_Workbook)
         Me.np_Workbook.Controls.Add(Me.gc_WorkBook)
         Me.np_Workbook.Name = "np_Workbook"
-        Me.np_Workbook.Size = New System.Drawing.Size(690, 229)
+        Me.np_Workbook.Size = New System.Drawing.Size(778, 275)
         '
         'ProgressPanel_Workbook
         '
@@ -681,7 +674,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Workbook.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Workbook.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Workbook.Name = "ProgressPanel_Workbook"
-        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(778, 275)
         Me.ProgressPanel_Workbook.TabIndex = 5
         '
         'gc_WorkBook
@@ -691,7 +684,7 @@ Partial Class frm_Main
         Me.gc_WorkBook.MainView = Me.gv_WorkBook
         Me.gc_WorkBook.MenuManager = Me.RibbonControl
         Me.gc_WorkBook.Name = "gc_WorkBook"
-        Me.gc_WorkBook.Size = New System.Drawing.Size(690, 229)
+        Me.gc_WorkBook.Size = New System.Drawing.Size(778, 275)
         Me.gc_WorkBook.TabIndex = 1
         Me.gc_WorkBook.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_WorkBook})
         '
@@ -708,7 +701,7 @@ Partial Class frm_Main
         Me.np_Clients.Controls.Add(Me.ProgressPanel_Clients)
         Me.np_Clients.Controls.Add(Me.gc_Clients)
         Me.np_Clients.Name = "np_Clients"
-        Me.np_Clients.Size = New System.Drawing.Size(690, 229)
+        Me.np_Clients.Size = New System.Drawing.Size(778, 275)
         '
         'ProgressPanel_Clients
         '
@@ -719,7 +712,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Clients.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Clients.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Clients.Name = "ProgressPanel_Clients"
-        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(778, 275)
         Me.ProgressPanel_Clients.TabIndex = 4
         '
         'gc_Clients
@@ -729,7 +722,7 @@ Partial Class frm_Main
         Me.gc_Clients.MainView = Me.tv_Clients
         Me.gc_Clients.MenuManager = Me.RibbonControl
         Me.gc_Clients.Name = "gc_Clients"
-        Me.gc_Clients.Size = New System.Drawing.Size(690, 229)
+        Me.gc_Clients.Size = New System.Drawing.Size(778, 275)
         Me.gc_Clients.TabIndex = 1
         Me.gc_Clients.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Clients, Me.gv_Clients})
         '
@@ -859,7 +852,7 @@ Partial Class frm_Main
         Me.np_Jobs.Controls.Add(Me.ProgressPanel_Jobs)
         Me.np_Jobs.Controls.Add(Me.gc_Jobs)
         Me.np_Jobs.Name = "np_Jobs"
-        Me.np_Jobs.Size = New System.Drawing.Size(690, 229)
+        Me.np_Jobs.Size = New System.Drawing.Size(778, 275)
         '
         'ProgressPanel_Jobs
         '
@@ -870,7 +863,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Jobs.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Jobs.Name = "ProgressPanel_Jobs"
-        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(778, 275)
         Me.ProgressPanel_Jobs.TabIndex = 3
         '
         'gc_Jobs
@@ -880,7 +873,7 @@ Partial Class frm_Main
         Me.gc_Jobs.MainView = Me.gv_Jobs
         Me.gc_Jobs.MenuManager = Me.RibbonControl
         Me.gc_Jobs.Name = "gc_Jobs"
-        Me.gc_Jobs.Size = New System.Drawing.Size(690, 229)
+        Me.gc_Jobs.Size = New System.Drawing.Size(778, 275)
         Me.gc_Jobs.TabIndex = 1
         Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
         '
@@ -897,7 +890,7 @@ Partial Class frm_Main
         Me.np_Users.Controls.Add(Me.ProgressPanel_Users)
         Me.np_Users.Controls.Add(Me.gc_Users)
         Me.np_Users.Name = "np_Users"
-        Me.np_Users.Size = New System.Drawing.Size(690, 229)
+        Me.np_Users.Size = New System.Drawing.Size(778, 275)
         '
         'ProgressPanel_Users
         '
@@ -908,7 +901,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Users.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Users.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Users.Name = "ProgressPanel_Users"
-        Me.ProgressPanel_Users.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Users.Size = New System.Drawing.Size(778, 275)
         Me.ProgressPanel_Users.TabIndex = 2
         '
         'gc_Users
@@ -918,7 +911,7 @@ Partial Class frm_Main
         Me.gc_Users.MainView = Me.tv_Users
         Me.gc_Users.MenuManager = Me.RibbonControl
         Me.gc_Users.Name = "gc_Users"
-        Me.gc_Users.Size = New System.Drawing.Size(690, 229)
+        Me.gc_Users.Size = New System.Drawing.Size(778, 275)
         Me.gc_Users.TabIndex = 1
         Me.gc_Users.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Users})
         '
@@ -958,31 +951,6 @@ Partial Class frm_Main
         Me.tv_Users.TileTemplate.Add(TileViewItemElement10)
         Me.tv_Users.TileTemplate.Add(TileViewItemElement11)
         Me.tv_Users.TileTemplate.Add(TileViewItemElement12)
-        '
-        'np_Credentials
-        '
-        Me.np_Credentials.Caption = "Credentials"
-        Me.np_Credentials.Controls.Add(Me.gc_Credentials)
-        Me.np_Credentials.Name = "np_Credentials"
-        Me.np_Credentials.Size = New System.Drawing.Size(690, 229)
-        '
-        'gc_Credentials
-        '
-        Me.gc_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gc_Credentials.Location = New System.Drawing.Point(0, 0)
-        Me.gc_Credentials.MainView = Me.gv_Credentials
-        Me.gc_Credentials.MenuManager = Me.RibbonControl
-        Me.gc_Credentials.Name = "gc_Credentials"
-        Me.gc_Credentials.Size = New System.Drawing.Size(690, 229)
-        Me.gc_Credentials.TabIndex = 1
-        Me.gc_Credentials.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Credentials})
-        '
-        'gv_Credentials
-        '
-        Me.gv_Credentials.GridControl = Me.gc_Credentials
-        Me.gv_Credentials.Name = "gv_Credentials"
-        Me.gv_Credentials.OptionsBehavior.Editable = False
-        Me.gv_Credentials.OptionsBehavior.ReadOnly = True
         '
         'Loader_Users
         '
@@ -1035,9 +1003,6 @@ Partial Class frm_Main
         Me.np_Users.ResumeLayout(False)
         CType(Me.gc_Users, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tv_Users, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Credentials.ResumeLayout(False)
-        CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1055,7 +1020,6 @@ Partial Class frm_Main
     Friend WithEvents np_Clients As DevExpress.XtraBars.Navigation.NavigationPage
     Friend WithEvents np_Jobs As DevExpress.XtraBars.Navigation.NavigationPage
     Friend WithEvents np_Users As DevExpress.XtraBars.Navigation.NavigationPage
-    Friend WithEvents np_Credentials As DevExpress.XtraBars.Navigation.NavigationPage
     Friend WithEvents gc_Home As DevExpress.XtraGrid.GridControl
     Friend WithEvents gv_Home As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents Panel_Utilities As DevExpress.XtraEditors.TileControl
@@ -1071,8 +1035,6 @@ Partial Class frm_Main
     Friend WithEvents TVC_UserType As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Mobile As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Photo As DevExpress.XtraGrid.Columns.TileViewColumn
-    Friend WithEvents gc_Credentials As DevExpress.XtraGrid.GridControl
-    Friend WithEvents gv_Credentials As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents rpg_Workbook As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents rpg_Clients As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents rpg_Jobs As DevExpress.XtraBars.Ribbon.RibbonPageGroup
