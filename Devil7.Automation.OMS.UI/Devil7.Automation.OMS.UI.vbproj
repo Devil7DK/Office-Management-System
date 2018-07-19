@@ -101,6 +101,12 @@
     <Compile Include="Dialogs\Client\frm_Partner.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_WorkBook.designer.vb">
+      <DependentUpon>frm_WorkBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_WorkBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\User\frm_ChangePassword.Designer.vb">
       <DependentUpon>frm_ChangePassword.vb</DependentUpon>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Client\frm_Partner.resx">
       <DependentUpon>frm_Partner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_WorkBook.resx">
+      <DependentUpon>frm_WorkBook.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\User\frm_ChangePassword.resx">
       <DependentUpon>frm_ChangePassword.vb</DependentUpon>

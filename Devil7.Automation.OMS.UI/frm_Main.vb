@@ -24,6 +24,13 @@ Imports Devil7.Automation.OMS.Lib
 Public Class frm_Main
 
     Dim User As Objects.User
+
+    Dim Users As List(Of Objects.User)
+    Dim Clients As List(Of Objects.Client)
+    Dim Jobs As List(Of Objects.Job)
+
+    Dim Loaded As Boolean = False
+
     Sub New(User As Objects.User)
         InitializeComponent()
         Me.User = User
@@ -35,6 +42,7 @@ Public Class frm_Main
         rpg_Jobs.Visible = False
         rpg_Users.Visible = False
         rpg_Workbook.Visible = False
+        rpg_Home.Visible = False
         grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
 
@@ -59,6 +67,20 @@ Public Class frm_Main
             If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
         End If
     End Sub
+
+    Sub WorkbookPageLoad()
+        rpg_Workbook.Visible = True
+        If gc_WorkBook.DataSource Is Nothing Then
+            If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
+        End If
+    End Sub
+
+    Sub HomePageLoad()
+        rpg_Home.Visible = True
+        If gc_Home.DataSource Is Nothing Then
+            If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
+        End If
+    End Sub
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
@@ -69,6 +91,10 @@ Public Class frm_Main
             JobsPageLoad()
         ElseIf MainPane.SelectedPage Is np_Clients Then
             ClientsPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Workbook Then
+            WorkbookPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Home Then
+            HomePageLoad()
         End If
     End Sub
 
@@ -83,6 +109,7 @@ Public Class frm_Main
                   End Sub)
         Try
             Dim Users As List(Of Objects.User) = Database.Users.GetAll(True)
+            Me.Users = Users
             Me.Invoke(Sub()
                           gc_Users.DataSource = Users
                       End Sub)
@@ -162,6 +189,7 @@ Public Class frm_Main
                   End Sub)
         Try
             Dim Jobs As List(Of Objects.Job) = Database.Jobs.GetAll(True)
+            Me.Jobs = Jobs
             Me.Invoke(Sub()
                           gc_Jobs.DataSource = Jobs
                       End Sub)
@@ -224,14 +252,15 @@ Public Class frm_Main
                       rpg_Clients.Enabled = False
                       ProgressPanel_Clients.Visible = True
                   End Sub)
-        'Try
-        Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(True)
-        Me.Invoke(Sub()
-                      gc_Clients.DataSource = Clients
-                  End Sub)
-        'Catch ex As Exception
+        Try
+            Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(True)
+            Me.Clients = Clients
+            Me.Invoke(Sub()
+                          gc_Clients.DataSource = Clients
+                      End Sub)
+        Catch ex As Exception
 
-        'End Try
+        End Try
         Me.Invoke(Sub()
                       rpg_Clients.Enabled = True
                       ProgressPanel_Clients.Visible = False
@@ -305,5 +334,231 @@ Public Class frm_Main
                 gc_Clients.RefreshDataSource()
             End If
         End If
+    End Sub
+
+    Private Sub Loader_Workbook_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Workbook.DoWork
+        Me.Invoke(Sub()
+                      rpg_Workbook.Enabled = False
+                      ProgressPanel_Workbook.Visible = True
+                  End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Workbook.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Workbook.Description = "Loading Jobs..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+        If Clients Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Workbook.Description = "Loading Clients..."
+                      End Sub)
+            Loader_Clients_DoWork(Me, Nothing)
+        End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_Workbook.Description = "Loading Workbook..."
+                  End Sub)
+        Try
+            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetAll(True, Clients, Jobs, Users)
+            Me.Invoke(Sub()
+                          gc_WorkBook.DataSource = Workbook
+                      End Sub)
+        Catch ex As Exception
+
+        End Try
+        Me.Invoke(Sub()
+                      rpg_Workbook.Enabled = True
+                      ProgressPanel_Workbook.Visible = False
+                  End Sub)
+    End Sub
+
+    Private Sub btn_RefreshWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshWork.ItemClick
+        If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
+    End Sub
+
+    Private Sub btn_AddWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddWork.ItemClick
+        Dim d As New frm_WorkBook(Enums.DialogMode.Add, User, Jobs, Clients, Users)
+        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
+            gc_WorkBook.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub btn_EditWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditWork.ItemClick
+        If gv_WorkBook.SelectedRowsCount = 1 Then
+            Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(gv_WorkBook.GetSelectedRows()(0))
+            Dim d As New frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, Clients, Users, row.ID)
+            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_RemoveWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RemoveWork.ItemClick
+        If gv_WorkBook.SelectedRowsCount > 0 Then
+            Dim sr As Integer() = gv_WorkBook.GetSelectedRows
+            For Each i As Integer In sr
+                Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(i)
+                If Database.Workbook.Remove(row.ID) Then CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Remove(row)
+            Next
+            gc_WorkBook.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub Loader_Home_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Home.DoWork
+        While Loaded = False
+            Threading.Thread.Sleep(1000)
+        End While
+        Me.Invoke(Sub()
+                      ProgressPanel_Home.Visible = True
+                      rpg_Home.Enabled = False
+                      ContextMenu_Home.Enabled = False
+                  End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Home.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Home.Description = "Loading Jobs..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+        If Clients Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Home.Description = "Loading Clients..."
+                      End Sub)
+            Loader_Clients_DoWork(Me, Nothing)
+        End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_Home.Description = "Loading Home..."
+                  End Sub)
+        Try
+            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetAllForUser(True, Clients, Jobs, Users, User.ID)
+            Me.Invoke(Sub()
+                          gc_Home.DataSource = Home
+                      End Sub)
+        Catch ex As Exception
+
+        End Try
+        Me.Invoke(Sub()
+                      ProgressPanel_Home.Visible = False
+                      rpg_Home.Enabled = True
+                      ContextMenu_Home.Enabled = True
+                  End Sub)
+    End Sub
+
+    Private Sub frm_Main_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+        End
+    End Sub
+
+    Private Sub frm_Main_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
+        Loaded = True
+    End Sub
+
+    Private Sub ContextMenu_Home_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenu_Home.Opening
+        If gv_Home.SelectedRowsCount <> 1 Then
+            e.Cancel = True
+        Else
+            Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+            UpdateStatusToolStripMenuItem.DropDownItems.Clear()
+            For Each i As String In [Enum].GetNames(GetType(Enums.WorkStatus))
+                Dim b = UpdateStatusToolStripMenuItem.DropDownItems.Add(i)
+                AddHandler b.Click, AddressOf UpdateStatus
+            Next
+            UpdateStepToolStripMenuItem.DropDownItems.Clear()
+            For Each i As String In row.Job.Steps
+                Dim b = UpdateStepToolStripMenuItem.DropDownItems.Add(i)
+                AddHandler b.Click, AddressOf UpdateStep
+            Next
+            AssignToToolStripMenuItem.DropDownItems.Clear()
+            For Each i As Objects.User In Users
+                Dim b = AssignToToolStripMenuItem.DropDownItems.Add(i.Username)
+                AddHandler b.Click, AddressOf AssignTo
+            Next
+        End If
+    End Sub
+
+    Private Sub UpdateStatus(sender As System.Object, e As EventArgs)
+        Try
+            Dim s As Enums.WorkStatus = Enums.Functions.StringToEnum(Of Enums.WorkStatus)(sender.Text)
+            If gv_Home.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+                If Database.Workbook.UpdateStatus(row.ID, s.ToString, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                Else
+                    MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub UpdateStep(sender As System.Object, e As EventArgs)
+        Try
+            If gv_Home.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+                If Database.Workbook.UpdateStep(row.ID, sender.Text, (row.GetHistory & vbNewLine & "Step/Stage updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    MsgBox("Successfully updated step of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                Else
+                    MsgBox("Unknown error on updating step of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on updating step of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub AssignTo(sender As System.Object, e As EventArgs)
+        Dim user As Objects.User = Me.User
+        Try
+
+            For Each i As Objects.User In Users
+                If i.Username = sender.Text Then
+                    User = i
+                End If
+            Next
+            If gv_Home.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+                If Database.Workbook.AssignTo(row.ID, User.ID, (row.GetHistory & vbNewLine & "Work transferred from " & row.AssignedTo.Username & " to " & User.Username & " by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    MsgBox("Successfully assigned selected work to the user " & User.Username & ".", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                Else
+                    MsgBox("Unknown error on assigning selected work to the user " & User.Username & ".", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on assigning selected work to the user {1}.{0}{0}{0}Additional Information:{0}{2}{0}{0}{3}", vbNewLine, user.Username, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub frm_Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        MainPane.SelectedPageIndex = 0
+    End Sub
+
+    Private Sub frm_Main_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        On Error Resume Next
+        For Each i As Form In Application.OpenForms
+            If TypeOf i Is XtraFormTemp Then
+                i.Close()
+            End If
+        Next
+    End Sub
+
+    Private Sub btn_RefreshHome_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshHome.ItemClick
+        If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
     End Sub
 End Class

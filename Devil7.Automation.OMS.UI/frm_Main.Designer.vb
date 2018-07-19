@@ -79,7 +79,9 @@ Partial Class frm_Main
         Me.btn_Clients_DetailsView = New DevExpress.XtraBars.BarButtonItem()
         Me.grp_btn_Clients_View = New DevExpress.XtraBars.BarButtonGroup()
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
-        Me.rpg_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.btn_RefreshHome = New DevExpress.XtraBars.BarButtonItem()
+        Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Workbook = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Clients = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Jobs = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -96,11 +98,18 @@ Partial Class frm_Main
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.MainPane = New DevExpress.XtraBars.Navigation.NavigationPane()
         Me.np_Home = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Home = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenu_Home = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.UpdateStepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AssignToToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gv_Home = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.np_Utilities = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.Panel_Utilities = New DevExpress.XtraEditors.TileControl()
         Me.np_Workbook = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Workbook = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_WorkBook = New DevExpress.XtraGrid.GridControl()
         Me.gv_WorkBook = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.np_Clients = New DevExpress.XtraBars.Navigation.NavigationPage()
@@ -122,12 +131,15 @@ Partial Class frm_Main
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Jobs = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
+        Me.Loader_Workbook = New System.ComponentModel.BackgroundWorker()
+        Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
         CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenu_Home.SuspendLayout()
         CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.np_Utilities.SuspendLayout()
         Me.np_Workbook.SuspendLayout()
@@ -248,11 +260,11 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.BarButtonItem3})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.BarButtonItem3, Me.btn_RefreshHome})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 28
+        Me.RibbonControl.MaxItemId = 29
         Me.RibbonControl.Name = "RibbonControl"
-        Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rpg_Edit})
+        Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
         Me.RibbonControl.ShowCategoryInCaption = False
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -407,11 +419,26 @@ Partial Class frm_Main
         Me.BarButtonItem3.Id = 27
         Me.BarButtonItem3.Name = "BarButtonItem3"
         '
-        'rpg_Edit
+        'btn_RefreshHome
         '
-        Me.rpg_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Skin})
-        Me.rpg_Edit.Name = "rpg_Edit"
-        Me.rpg_Edit.Text = "Edit"
+        Me.btn_RefreshHome.Caption = "Refresh Home"
+        Me.btn_RefreshHome.Id = 28
+        Me.btn_RefreshHome.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshHome.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshHome.Name = "btn_RefreshHome"
+        '
+        'rp_Edit
+        '
+        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Skin})
+        Me.rp_Edit.Name = "rp_Edit"
+        Me.rp_Edit.Text = "Edit"
+        '
+        'rpg_Home
+        '
+        Me.rpg_Home.ItemLinks.Add(Me.btn_RefreshHome)
+        Me.rpg_Home.Name = "rpg_Home"
+        Me.rpg_Home.ShowCaptionButton = False
+        Me.rpg_Home.Text = "Actions"
         '
         'rpg_Workbook
         '
@@ -555,12 +582,26 @@ Partial Class frm_Main
         'np_Home
         '
         Me.np_Home.Caption = "Home"
+        Me.np_Home.Controls.Add(Me.ProgressPanel_Home)
         Me.np_Home.Controls.Add(Me.gc_Home)
         Me.np_Home.Name = "np_Home"
         Me.np_Home.Size = New System.Drawing.Size(690, 229)
         '
+        'ProgressPanel_Home
+        '
+        Me.ProgressPanel_Home.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Home.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Home.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Home.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
+        Me.ProgressPanel_Home.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Home.TabIndex = 6
+        '
         'gc_Home
         '
+        Me.gc_Home.ContextMenuStrip = Me.ContextMenu_Home
         Me.gc_Home.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gc_Home.Location = New System.Drawing.Point(0, 0)
         Me.gc_Home.MainView = Me.gv_Home
@@ -569,6 +610,35 @@ Partial Class frm_Main
         Me.gc_Home.Size = New System.Drawing.Size(690, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
+        '
+        'ContextMenu_Home
+        '
+        Me.ContextMenu_Home.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateStepToolStripMenuItem, Me.UpdateStatusToolStripMenuItem, Me.ToolStripSeparator1, Me.AssignToToolStripMenuItem})
+        Me.ContextMenu_Home.Name = "ContextMenu_Home"
+        Me.ContextMenu_Home.Size = New System.Drawing.Size(173, 76)
+        '
+        'UpdateStepToolStripMenuItem
+        '
+        Me.UpdateStepToolStripMenuItem.Name = "UpdateStepToolStripMenuItem"
+        Me.UpdateStepToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.UpdateStepToolStripMenuItem.Text = "Update Step/Stage"
+        '
+        'UpdateStatusToolStripMenuItem
+        '
+        Me.UpdateStatusToolStripMenuItem.Name = "UpdateStatusToolStripMenuItem"
+        Me.UpdateStatusToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.UpdateStatusToolStripMenuItem.Text = "Update Status"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(169, 6)
+        '
+        'AssignToToolStripMenuItem
+        '
+        Me.AssignToToolStripMenuItem.Name = "AssignToToolStripMenuItem"
+        Me.AssignToToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.AssignToToolStripMenuItem.Text = "Assign to ..."
         '
         'gv_Home
         '
@@ -597,9 +667,22 @@ Partial Class frm_Main
         'np_Workbook
         '
         Me.np_Workbook.Caption = "Workbook"
+        Me.np_Workbook.Controls.Add(Me.ProgressPanel_Workbook)
         Me.np_Workbook.Controls.Add(Me.gc_WorkBook)
         Me.np_Workbook.Name = "np_Workbook"
         Me.np_Workbook.Size = New System.Drawing.Size(690, 229)
+        '
+        'ProgressPanel_Workbook
+        '
+        Me.ProgressPanel_Workbook.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Workbook.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Workbook.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Workbook.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Workbook.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Workbook.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Workbook.Name = "ProgressPanel_Workbook"
+        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(690, 229)
+        Me.ProgressPanel_Workbook.TabIndex = 5
         '
         'gc_WorkBook
         '
@@ -910,6 +993,12 @@ Partial Class frm_Main
         'Loader_Clients
         '
         '
+        'Loader_Workbook
+        '
+        '
+        'Loader_Home
+        '
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -930,6 +1019,7 @@ Partial Class frm_Main
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
         CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenu_Home.ResumeLayout(False)
         CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).EndInit()
         Me.np_Utilities.ResumeLayout(False)
         Me.np_Workbook.ResumeLayout(False)
@@ -954,7 +1044,7 @@ Partial Class frm_Main
     End Sub
 
     Friend WithEvents RibbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
-    Friend WithEvents rpg_Edit As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents rp_Edit As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
     Friend WithEvents SkinSelector As DevExpress.XtraBars.SkinRibbonGalleryBarItem
     Friend WithEvents rpg_Skin As DevExpress.XtraBars.Ribbon.RibbonPageGroup
@@ -1027,6 +1117,17 @@ Partial Class frm_Main
     Friend WithEvents TVC_Client_AddressLine2 As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_District As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_Pincode As DevExpress.XtraGrid.Columns.TileViewColumn
+    Friend WithEvents Loader_Workbook As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ProgressPanel_Workbook As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents ProgressPanel_Home As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents Loader_Home As System.ComponentModel.BackgroundWorker
+    Friend WithEvents ContextMenu_Home As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents UpdateStepToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UpdateStatusToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents AssignToToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents btn_RefreshHome As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents rpg_Home As DevExpress.XtraBars.Ribbon.RibbonPageGroup
 
 
 End Class

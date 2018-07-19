@@ -65,6 +65,18 @@ Namespace My
                 Me("LastUserIndex") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DefaultStorage() As String
+            Get
+                Return CType(Me("DefaultStorage"),String)
+            End Get
+            Set
+                Me("DefaultStorage") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
