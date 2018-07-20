@@ -42,6 +42,7 @@ Public Class frm_Main
         rpg_Jobs.Visible = False
         rpg_Users.Visible = False
         rpg_Workbook.Visible = False
+        rpg_Billing.Visible = False
         rpg_Home.Visible = False
         grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
@@ -87,6 +88,13 @@ Public Class frm_Main
             If Not Loader_Utilities.IsBusy Then Loader_Utilities.RunWorkerAsync()
         End If
     End Sub
+
+    Sub BillingPageLoad()
+        rpg_Billing.Visible = True
+        If gc_Billing.DataSource Is Nothing Then
+            If Not Loader_Billing.IsBusy Then Loader_Billing.RunWorkerAsync()
+        End If
+    End Sub
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
@@ -103,6 +111,8 @@ Public Class frm_Main
             HomePageLoad()
         ElseIf MainPane.SelectedPage Is np_Utilities Then
             UtilitiesPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Billing Then
+            BillingPageLoad()
         End If
     End Sub
 
@@ -617,5 +627,70 @@ Public Class frm_Main
             e.Menu.Items.Add(UpdateStageMenu)
             e.Menu.Items.Add(AssignToMenu)
         End If
+    End Sub
+
+    Private Sub Loader_Billing_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Billing.DoWork
+        Me.Invoke(Sub()
+                      rpg_Billing.Enabled = False
+                      ProgressPanel_Billing.Visible = True
+                  End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Billing.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Billing.Description = "Loading Jobs..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+        If Clients Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Billing.Description = "Loading Clients..."
+                      End Sub)
+            Loader_Clients_DoWork(Me, Nothing)
+        End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_Billing.Description = "Loading Billing..."
+                  End Sub)
+        Try
+            Dim Billing As List(Of Objects.WorkbookItem) = Database.Workbook.GetCompleted(True, Clients, Jobs, Users)
+            Me.Invoke(Sub()
+                          gc_Billing.DataSource = Billing
+                      End Sub)
+        Catch ex As Exception
+
+        End Try
+        Me.Invoke(Sub()
+                      rpg_Billing.Enabled = True
+                      ProgressPanel_Billing.Visible = False
+                  End Sub)
+    End Sub
+
+    Private Sub btn_RefreshBilling_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshBilling.ItemClick
+        If Not Loader_Billing.IsBusy Then Loader_Billing.RunWorkerAsync()
+    End Sub
+
+    Private Sub btn_MarkBilled_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_MarkBilled.ItemClick
+        Try
+            If gv_Billing.SelectedRowsCount > 0 Then
+                For Each i As Integer In gv_Billing.GetSelectedRows
+                    Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
+                    If Database.Workbook.UpdateBilledStatus(row.ID, True, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                        MsgBox("Successfully marked selected items as 'Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        If Not Loader_Billing.IsBusy Then Loader_Billing.RunWorkerAsync()
+                    Else
+                        MsgBox("Unknown error while marking item " & row.ID & " as billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    End If
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
     End Sub
 End Class

@@ -241,7 +241,7 @@ Namespace Database
         Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3;"
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=0;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -400,6 +400,27 @@ Namespace Database
                 AddParameter(Command, "@ID", ID)
                 AddParameter(Command, "@DateUpdated", Now)
                 AddParameter(Command, "@User", NewUser)
+                AddParameter(Command, "@History", History)
+                If Command.ExecuteNonQuery() = 1 Then
+                    R = True
+                End If
+            End Using
+
+            Return R
+        End Function
+
+        Function UpdateBilledStatus(ByVal ID As Integer, ByVal BilledStatus As Boolean, ByVal History As String)
+            Dim R As Boolean = False
+
+            Dim CommandString As String = "UPDATE Workbook SET [Billed]=@Billed,[History]=@History WHERE [ID]=@ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                AddParameter(Command, "@DateUpdated", Now)
+                AddParameter(Command, "@Billed", BilledStatus)
                 AddParameter(Command, "@History", History)
                 If Command.ExecuteNonQuery() = 1 Then
                     R = True

@@ -79,8 +79,11 @@ Partial Class frm_Main
         Me.btn_Clients_DetailsView = New DevExpress.XtraBars.BarButtonItem()
         Me.grp_btn_Clients_View = New DevExpress.XtraBars.BarButtonGroup()
         Me.btn_RefreshHome = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_RefreshBilling = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_MarkBilled = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.rpg_Billing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Workbook = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Clients = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Jobs = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -120,12 +123,17 @@ Partial Class frm_Main
         Me.ProgressPanel_Users = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Users = New DevExpress.XtraGrid.GridControl()
         Me.tv_Users = New DevExpress.XtraGrid.Views.Tile.TileView()
+        Me.np_Billing = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Billing = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.gc_Billing = New DevExpress.XtraGrid.GridControl()
+        Me.gv_Billing = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Jobs = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Workbook = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Utilities = New System.ComponentModel.BackgroundWorker()
+        Me.Loader_Billing = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,6 +155,9 @@ Partial Class frm_Main
         Me.np_Users.SuspendLayout()
         CType(Me.gc_Users, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tv_Users, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.np_Billing.SuspendLayout()
+        CType(Me.gc_Billing, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_Billing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TVC_Client_Photo
@@ -249,16 +260,16 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 33
+        Me.RibbonControl.MaxItemId = 37
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
         Me.RibbonControl.ShowCategoryInCaption = False
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowToolbarCustomizeItem = False
-        Me.RibbonControl.Size = New System.Drawing.Size(1285, 143)
+        Me.RibbonControl.Size = New System.Drawing.Size(1360, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
         '
@@ -409,9 +420,25 @@ Partial Class frm_Main
         Me.btn_RefreshHome.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
         Me.btn_RefreshHome.Name = "btn_RefreshHome"
         '
+        'btn_RefreshBilling
+        '
+        Me.btn_RefreshBilling.Caption = "Refresh Billing"
+        Me.btn_RefreshBilling.Id = 33
+        Me.btn_RefreshBilling.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshBilling.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshBilling.Name = "btn_RefreshBilling"
+        '
+        'btn_MarkBilled
+        '
+        Me.btn_MarkBilled.Caption = "Mark as Billed"
+        Me.btn_MarkBilled.Id = 34
+        Me.btn_MarkBilled.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
+        Me.btn_MarkBilled.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
+        Me.btn_MarkBilled.Name = "btn_MarkBilled"
+        '
         'rp_Edit
         '
-        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Skin})
+        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Skin})
         Me.rp_Edit.Name = "rp_Edit"
         Me.rp_Edit.Text = "Edit"
         '
@@ -421,6 +448,13 @@ Partial Class frm_Main
         Me.rpg_Home.Name = "rpg_Home"
         Me.rpg_Home.ShowCaptionButton = False
         Me.rpg_Home.Text = "Actions"
+        '
+        'rpg_Billing
+        '
+        Me.rpg_Billing.ItemLinks.Add(Me.btn_RefreshBilling)
+        Me.rpg_Billing.ItemLinks.Add(Me.btn_MarkBilled, True)
+        Me.rpg_Billing.Name = "rpg_Billing"
+        Me.rpg_Billing.Text = "Actions"
         '
         'rpg_Workbook
         '
@@ -538,7 +572,7 @@ Partial Class frm_Main
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(1285, 31)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(1360, 31)
         '
         'MainPane
         '
@@ -548,17 +582,18 @@ Partial Class frm_Main
         Me.MainPane.Controls.Add(Me.np_Clients)
         Me.MainPane.Controls.Add(Me.np_Jobs)
         Me.MainPane.Controls.Add(Me.np_Users)
+        Me.MainPane.Controls.Add(Me.np_Billing)
         Me.MainPane.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainPane.Location = New System.Drawing.Point(0, 143)
         Me.MainPane.Name = "MainPane"
         Me.MainPane.PageProperties.ShowCollapseButton = False
         Me.MainPane.PageProperties.ShowExpandButton = False
-        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
-        Me.MainPane.RegularSize = New System.Drawing.Size(1285, 275)
-        Me.MainPane.SelectedPage = Me.np_Utilities
-        Me.MainPane.Size = New System.Drawing.Size(1285, 275)
+        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Billing, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
+        Me.MainPane.RegularSize = New System.Drawing.Size(1360, 275)
+        Me.MainPane.SelectedPage = Me.np_Home
+        Me.MainPane.Size = New System.Drawing.Size(1360, 275)
         Me.MainPane.TabIndex = 2
-        Me.MainPane.Text = "NavigationPane1"
+        Me.MainPane.Text = "Main Pane"
         '
         'np_Home
         '
@@ -566,7 +601,7 @@ Partial Class frm_Main
         Me.np_Home.Controls.Add(Me.ProgressPanel_Home)
         Me.np_Home.Controls.Add(Me.gc_Home)
         Me.np_Home.Name = "np_Home"
-        Me.np_Home.Size = New System.Drawing.Size(696, 229)
+        Me.np_Home.Size = New System.Drawing.Size(1278, 229)
         '
         'ProgressPanel_Home
         '
@@ -577,7 +612,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
-        Me.ProgressPanel_Home.Size = New System.Drawing.Size(696, 229)
+        Me.ProgressPanel_Home.Size = New System.Drawing.Size(1278, 229)
         Me.ProgressPanel_Home.TabIndex = 6
         '
         'gc_Home
@@ -587,7 +622,7 @@ Partial Class frm_Main
         Me.gc_Home.MainView = Me.gv_Home
         Me.gc_Home.MenuManager = Me.RibbonControl
         Me.gc_Home.Name = "gc_Home"
-        Me.gc_Home.Size = New System.Drawing.Size(696, 229)
+        Me.gc_Home.Size = New System.Drawing.Size(1278, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
         '
@@ -604,7 +639,7 @@ Partial Class frm_Main
         Me.np_Utilities.Controls.Add(Me.ProgressPanel_Utilites)
         Me.np_Utilities.Controls.Add(Me.Panel_Utilities)
         Me.np_Utilities.Name = "np_Utilities"
-        Me.np_Utilities.Size = New System.Drawing.Size(1203, 229)
+        Me.np_Utilities.Size = New System.Drawing.Size(604, 229)
         '
         'ProgressPanel_Utilites
         '
@@ -615,7 +650,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Utilites.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Utilites.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Utilites.Name = "ProgressPanel_Utilites"
-        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(1203, 229)
+        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(604, 229)
         Me.ProgressPanel_Utilites.TabIndex = 3
         '
         'Panel_Utilities
@@ -624,7 +659,7 @@ Partial Class frm_Main
         Me.Panel_Utilities.Location = New System.Drawing.Point(0, 0)
         Me.Panel_Utilities.MaxId = 5
         Me.Panel_Utilities.Name = "Panel_Utilities"
-        Me.Panel_Utilities.Size = New System.Drawing.Size(1203, 229)
+        Me.Panel_Utilities.Size = New System.Drawing.Size(604, 229)
         Me.Panel_Utilities.TabIndex = 1
         Me.Panel_Utilities.Text = "Utilities"
         '
@@ -634,7 +669,7 @@ Partial Class frm_Main
         Me.np_Workbook.Controls.Add(Me.ProgressPanel_Workbook)
         Me.np_Workbook.Controls.Add(Me.gc_WorkBook)
         Me.np_Workbook.Name = "np_Workbook"
-        Me.np_Workbook.Size = New System.Drawing.Size(778, 275)
+        Me.np_Workbook.Size = New System.Drawing.Size(604, 229)
         '
         'ProgressPanel_Workbook
         '
@@ -645,7 +680,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Workbook.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Workbook.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Workbook.Name = "ProgressPanel_Workbook"
-        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(778, 275)
+        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(604, 229)
         Me.ProgressPanel_Workbook.TabIndex = 5
         '
         'gc_WorkBook
@@ -655,7 +690,7 @@ Partial Class frm_Main
         Me.gc_WorkBook.MainView = Me.gv_WorkBook
         Me.gc_WorkBook.MenuManager = Me.RibbonControl
         Me.gc_WorkBook.Name = "gc_WorkBook"
-        Me.gc_WorkBook.Size = New System.Drawing.Size(778, 275)
+        Me.gc_WorkBook.Size = New System.Drawing.Size(604, 229)
         Me.gc_WorkBook.TabIndex = 1
         Me.gc_WorkBook.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_WorkBook})
         '
@@ -672,7 +707,7 @@ Partial Class frm_Main
         Me.np_Clients.Controls.Add(Me.ProgressPanel_Clients)
         Me.np_Clients.Controls.Add(Me.gc_Clients)
         Me.np_Clients.Name = "np_Clients"
-        Me.np_Clients.Size = New System.Drawing.Size(778, 275)
+        Me.np_Clients.Size = New System.Drawing.Size(686, 275)
         '
         'ProgressPanel_Clients
         '
@@ -683,7 +718,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Clients.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Clients.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Clients.Name = "ProgressPanel_Clients"
-        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(778, 275)
+        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(686, 275)
         Me.ProgressPanel_Clients.TabIndex = 4
         '
         'gc_Clients
@@ -693,7 +728,7 @@ Partial Class frm_Main
         Me.gc_Clients.MainView = Me.tv_Clients
         Me.gc_Clients.MenuManager = Me.RibbonControl
         Me.gc_Clients.Name = "gc_Clients"
-        Me.gc_Clients.Size = New System.Drawing.Size(778, 275)
+        Me.gc_Clients.Size = New System.Drawing.Size(686, 275)
         Me.gc_Clients.TabIndex = 1
         Me.gc_Clients.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Clients, Me.gv_Clients})
         '
@@ -823,7 +858,7 @@ Partial Class frm_Main
         Me.np_Jobs.Controls.Add(Me.ProgressPanel_Jobs)
         Me.np_Jobs.Controls.Add(Me.gc_Jobs)
         Me.np_Jobs.Name = "np_Jobs"
-        Me.np_Jobs.Size = New System.Drawing.Size(778, 275)
+        Me.np_Jobs.Size = New System.Drawing.Size(686, 275)
         '
         'ProgressPanel_Jobs
         '
@@ -834,7 +869,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Jobs.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Jobs.Name = "ProgressPanel_Jobs"
-        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(778, 275)
+        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(686, 275)
         Me.ProgressPanel_Jobs.TabIndex = 3
         '
         'gc_Jobs
@@ -844,7 +879,7 @@ Partial Class frm_Main
         Me.gc_Jobs.MainView = Me.gv_Jobs
         Me.gc_Jobs.MenuManager = Me.RibbonControl
         Me.gc_Jobs.Name = "gc_Jobs"
-        Me.gc_Jobs.Size = New System.Drawing.Size(778, 275)
+        Me.gc_Jobs.Size = New System.Drawing.Size(686, 275)
         Me.gc_Jobs.TabIndex = 1
         Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
         '
@@ -861,7 +896,7 @@ Partial Class frm_Main
         Me.np_Users.Controls.Add(Me.ProgressPanel_Users)
         Me.np_Users.Controls.Add(Me.gc_Users)
         Me.np_Users.Name = "np_Users"
-        Me.np_Users.Size = New System.Drawing.Size(696, 229)
+        Me.np_Users.Size = New System.Drawing.Size(604, 229)
         '
         'ProgressPanel_Users
         '
@@ -872,7 +907,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Users.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Users.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Users.Name = "ProgressPanel_Users"
-        Me.ProgressPanel_Users.Size = New System.Drawing.Size(696, 229)
+        Me.ProgressPanel_Users.Size = New System.Drawing.Size(604, 229)
         Me.ProgressPanel_Users.TabIndex = 2
         '
         'gc_Users
@@ -882,7 +917,7 @@ Partial Class frm_Main
         Me.gc_Users.MainView = Me.tv_Users
         Me.gc_Users.MenuManager = Me.RibbonControl
         Me.gc_Users.Name = "gc_Users"
-        Me.gc_Users.Size = New System.Drawing.Size(696, 229)
+        Me.gc_Users.Size = New System.Drawing.Size(604, 229)
         Me.gc_Users.TabIndex = 1
         Me.gc_Users.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Users})
         '
@@ -923,6 +958,45 @@ Partial Class frm_Main
         Me.tv_Users.TileTemplate.Add(TileViewItemElement11)
         Me.tv_Users.TileTemplate.Add(TileViewItemElement12)
         '
+        'np_Billing
+        '
+        Me.np_Billing.Caption = "Billing"
+        Me.np_Billing.Controls.Add(Me.ProgressPanel_Billing)
+        Me.np_Billing.Controls.Add(Me.gc_Billing)
+        Me.np_Billing.Name = "np_Billing"
+        Me.np_Billing.Size = New System.Drawing.Size(1278, 229)
+        '
+        'ProgressPanel_Billing
+        '
+        Me.ProgressPanel_Billing.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Billing.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Billing.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Billing.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Billing.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Billing.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Billing.Name = "ProgressPanel_Billing"
+        Me.ProgressPanel_Billing.Size = New System.Drawing.Size(1278, 229)
+        Me.ProgressPanel_Billing.TabIndex = 7
+        '
+        'gc_Billing
+        '
+        Me.gc_Billing.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_Billing.Location = New System.Drawing.Point(0, 0)
+        Me.gc_Billing.MainView = Me.gv_Billing
+        Me.gc_Billing.MenuManager = Me.RibbonControl
+        Me.gc_Billing.Name = "gc_Billing"
+        Me.gc_Billing.Size = New System.Drawing.Size(1278, 229)
+        Me.gc_Billing.TabIndex = 2
+        Me.gc_Billing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Billing})
+        '
+        'gv_Billing
+        '
+        Me.gv_Billing.GridControl = Me.gc_Billing
+        Me.gv_Billing.Name = "gv_Billing"
+        Me.gv_Billing.OptionsBehavior.Editable = False
+        Me.gv_Billing.OptionsBehavior.ReadOnly = True
+        Me.gv_Billing.OptionsSelection.MultiSelect = True
+        '
         'Loader_Users
         '
         '
@@ -941,11 +1015,14 @@ Partial Class frm_Main
         'Loader_Utilities
         '
         '
+        'Loader_Billing
+        '
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1285, 449)
+        Me.ClientSize = New System.Drawing.Size(1360, 449)
         Me.Controls.Add(Me.MainPane)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
@@ -976,6 +1053,9 @@ Partial Class frm_Main
         Me.np_Users.ResumeLayout(False)
         CType(Me.gc_Users, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tv_Users, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.np_Billing.ResumeLayout(False)
+        CType(Me.gc_Billing, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_Billing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1059,6 +1139,14 @@ Partial Class frm_Main
     Friend WithEvents rpg_Home As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents ProgressPanel_Utilites As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents Loader_Utilities As System.ComponentModel.BackgroundWorker
+    Friend WithEvents np_Billing As DevExpress.XtraBars.Navigation.NavigationPage
+    Friend WithEvents gc_Billing As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_Billing As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ProgressPanel_Billing As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents Loader_Billing As System.ComponentModel.BackgroundWorker
+    Friend WithEvents rpg_Billing As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents btn_RefreshBilling As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_MarkBilled As DevExpress.XtraBars.BarButtonItem
 
 
 End Class
