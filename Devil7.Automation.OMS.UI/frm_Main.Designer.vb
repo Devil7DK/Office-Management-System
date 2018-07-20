@@ -78,7 +78,6 @@ Partial Class frm_Main
         Me.btn_Clients_CardView = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Clients_DetailsView = New DevExpress.XtraBars.BarButtonItem()
         Me.grp_btn_Clients_View = New DevExpress.XtraBars.BarButtonGroup()
-        Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_RefreshHome = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -100,13 +99,9 @@ Partial Class frm_Main
         Me.np_Home = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Home = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenu_Home = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.UpdateStepToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UpdateStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AssignToToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.gv_Home = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.np_Utilities = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Utilites = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Panel_Utilities = New DevExpress.XtraEditors.TileControl()
         Me.np_Workbook = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.ProgressPanel_Workbook = New DevExpress.XtraWaitForm.ProgressPanel()
@@ -130,7 +125,6 @@ Partial Class frm_Main
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Workbook = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
-        Me.ProgressPanel_Utilites = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader_Utilities = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,7 +132,6 @@ Partial Class frm_Main
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
         CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenu_Home.SuspendLayout()
         CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.np_Utilities.SuspendLayout()
         Me.np_Workbook.SuspendLayout()
@@ -256,16 +249,16 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.BarButtonItem3, Me.btn_RefreshHome})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 29
+        Me.RibbonControl.MaxItemId = 33
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
         Me.RibbonControl.ShowCategoryInCaption = False
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowToolbarCustomizeItem = False
-        Me.RibbonControl.Size = New System.Drawing.Size(778, 143)
+        Me.RibbonControl.Size = New System.Drawing.Size(1285, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
         '
@@ -403,17 +396,10 @@ Partial Class frm_Main
         'grp_btn_Clients_View
         '
         Me.grp_btn_Clients_View.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
-        Me.grp_btn_Clients_View.Caption = "BarButtonGroup1"
         Me.grp_btn_Clients_View.Id = 25
         Me.grp_btn_Clients_View.ItemLinks.Add(Me.btn_Clients_DetailsView)
         Me.grp_btn_Clients_View.ItemLinks.Add(Me.btn_Clients_CardView)
         Me.grp_btn_Clients_View.Name = "grp_btn_Clients_View"
-        '
-        'BarButtonItem3
-        '
-        Me.BarButtonItem3.Caption = "BarButtonItem3"
-        Me.BarButtonItem3.Id = 27
-        Me.BarButtonItem3.Name = "BarButtonItem3"
         '
         'btn_RefreshHome
         '
@@ -552,7 +538,7 @@ Partial Class frm_Main
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(778, 31)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(1285, 31)
         '
         'MainPane
         '
@@ -568,9 +554,9 @@ Partial Class frm_Main
         Me.MainPane.PageProperties.ShowCollapseButton = False
         Me.MainPane.PageProperties.ShowExpandButton = False
         Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
-        Me.MainPane.RegularSize = New System.Drawing.Size(778, 275)
+        Me.MainPane.RegularSize = New System.Drawing.Size(1285, 275)
         Me.MainPane.SelectedPage = Me.np_Utilities
-        Me.MainPane.Size = New System.Drawing.Size(778, 275)
+        Me.MainPane.Size = New System.Drawing.Size(1285, 275)
         Me.MainPane.TabIndex = 2
         Me.MainPane.Text = "NavigationPane1"
         '
@@ -596,7 +582,6 @@ Partial Class frm_Main
         '
         'gc_Home
         '
-        Me.gc_Home.ContextMenuStrip = Me.ContextMenu_Home
         Me.gc_Home.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gc_Home.Location = New System.Drawing.Point(0, 0)
         Me.gc_Home.MainView = Me.gv_Home
@@ -605,35 +590,6 @@ Partial Class frm_Main
         Me.gc_Home.Size = New System.Drawing.Size(696, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
-        '
-        'ContextMenu_Home
-        '
-        Me.ContextMenu_Home.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateStepToolStripMenuItem, Me.UpdateStatusToolStripMenuItem, Me.ToolStripSeparator1, Me.AssignToToolStripMenuItem})
-        Me.ContextMenu_Home.Name = "ContextMenu_Home"
-        Me.ContextMenu_Home.Size = New System.Drawing.Size(173, 76)
-        '
-        'UpdateStepToolStripMenuItem
-        '
-        Me.UpdateStepToolStripMenuItem.Name = "UpdateStepToolStripMenuItem"
-        Me.UpdateStepToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
-        Me.UpdateStepToolStripMenuItem.Text = "Update Step/Stage"
-        '
-        'UpdateStatusToolStripMenuItem
-        '
-        Me.UpdateStatusToolStripMenuItem.Name = "UpdateStatusToolStripMenuItem"
-        Me.UpdateStatusToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
-        Me.UpdateStatusToolStripMenuItem.Text = "Update Status"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(169, 6)
-        '
-        'AssignToToolStripMenuItem
-        '
-        Me.AssignToToolStripMenuItem.Name = "AssignToToolStripMenuItem"
-        Me.AssignToToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
-        Me.AssignToToolStripMenuItem.Text = "Assign to ..."
         '
         'gv_Home
         '
@@ -648,7 +604,19 @@ Partial Class frm_Main
         Me.np_Utilities.Controls.Add(Me.ProgressPanel_Utilites)
         Me.np_Utilities.Controls.Add(Me.Panel_Utilities)
         Me.np_Utilities.Name = "np_Utilities"
-        Me.np_Utilities.Size = New System.Drawing.Size(696, 229)
+        Me.np_Utilities.Size = New System.Drawing.Size(1203, 229)
+        '
+        'ProgressPanel_Utilites
+        '
+        Me.ProgressPanel_Utilites.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Utilites.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Utilites.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Utilites.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Utilites.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Utilites.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Utilites.Name = "ProgressPanel_Utilites"
+        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(1203, 229)
+        Me.ProgressPanel_Utilites.TabIndex = 3
         '
         'Panel_Utilities
         '
@@ -656,7 +624,7 @@ Partial Class frm_Main
         Me.Panel_Utilities.Location = New System.Drawing.Point(0, 0)
         Me.Panel_Utilities.MaxId = 5
         Me.Panel_Utilities.Name = "Panel_Utilities"
-        Me.Panel_Utilities.Size = New System.Drawing.Size(696, 229)
+        Me.Panel_Utilities.Size = New System.Drawing.Size(1203, 229)
         Me.Panel_Utilities.TabIndex = 1
         Me.Panel_Utilities.Text = "Utilities"
         '
@@ -970,18 +938,6 @@ Partial Class frm_Main
         'Loader_Home
         '
         '
-        'ProgressPanel_Utilites
-        '
-        Me.ProgressPanel_Utilites.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.ProgressPanel_Utilites.Appearance.Options.UseBackColor = True
-        Me.ProgressPanel_Utilites.BarAnimationElementThickness = 2
-        Me.ProgressPanel_Utilites.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ProgressPanel_Utilites.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProgressPanel_Utilites.Location = New System.Drawing.Point(0, 0)
-        Me.ProgressPanel_Utilites.Name = "ProgressPanel_Utilites"
-        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(696, 229)
-        Me.ProgressPanel_Utilites.TabIndex = 3
-        '
         'Loader_Utilities
         '
         '
@@ -989,7 +945,7 @@ Partial Class frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(778, 449)
+        Me.ClientSize = New System.Drawing.Size(1285, 449)
         Me.Controls.Add(Me.MainPane)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
@@ -1005,7 +961,6 @@ Partial Class frm_Main
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
         CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenu_Home.ResumeLayout(False)
         CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).EndInit()
         Me.np_Utilities.ResumeLayout(False)
         Me.np_Workbook.ResumeLayout(False)
@@ -1092,7 +1047,6 @@ Partial Class frm_Main
     Friend WithEvents TVC_Client_PAN As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_Type As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents grp_btn_Clients_View As DevExpress.XtraBars.BarButtonGroup
-    Friend WithEvents BarButtonItem3 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents TVC_Client_AddressLine1 As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_AddressLine2 As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_District As DevExpress.XtraGrid.Columns.TileViewColumn
@@ -1101,11 +1055,6 @@ Partial Class frm_Main
     Friend WithEvents ProgressPanel_Workbook As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents ProgressPanel_Home As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents Loader_Home As System.ComponentModel.BackgroundWorker
-    Friend WithEvents ContextMenu_Home As System.Windows.Forms.ContextMenuStrip
-    Friend WithEvents UpdateStepToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents UpdateStatusToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents AssignToToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btn_RefreshHome As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents rpg_Home As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents ProgressPanel_Utilites As DevExpress.XtraWaitForm.ProgressPanel

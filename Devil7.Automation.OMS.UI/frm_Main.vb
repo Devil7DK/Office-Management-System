@@ -426,7 +426,6 @@ Public Class frm_Main
         Me.Invoke(Sub()
                       ProgressPanel_Home.Visible = True
                       rpg_Home.Enabled = False
-                      ContextMenu_Home.Enabled = False
                   End Sub)
 
         If Users Is Nothing Then
@@ -462,7 +461,6 @@ Public Class frm_Main
         Me.Invoke(Sub()
                       ProgressPanel_Home.Visible = False
                       rpg_Home.Enabled = True
-                      ContextMenu_Home.Enabled = True
                   End Sub)
     End Sub
 
@@ -474,35 +472,13 @@ Public Class frm_Main
         Loaded = True
     End Sub
 
-    Private Sub ContextMenu_Home_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenu_Home.Opening
-        If gv_Home.SelectedRowsCount <> 1 Then
-            e.Cancel = True
-        Else
-            Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-            UpdateStatusToolStripMenuItem.DropDownItems.Clear()
-            For Each i As String In [Enum].GetNames(GetType(Enums.WorkStatus))
-                Dim b = UpdateStatusToolStripMenuItem.DropDownItems.Add(i)
-                AddHandler b.Click, AddressOf UpdateStatus
-            Next
-            UpdateStepToolStripMenuItem.DropDownItems.Clear()
-            For Each i As String In row.Job.Steps
-                Dim b = UpdateStepToolStripMenuItem.DropDownItems.Add(i)
-                AddHandler b.Click, AddressOf UpdateStep
-            Next
-            AssignToToolStripMenuItem.DropDownItems.Clear()
-            For Each i As Objects.User In Users
-                Dim b = AssignToToolStripMenuItem.DropDownItems.Add(i.Username)
-                AddHandler b.Click, AddressOf AssignTo
-            Next
-        End If
-    End Sub
-
     Private Sub UpdateStatus(sender As System.Object, e As EventArgs)
         Try
-            Dim s As Enums.WorkStatus = Enums.Functions.StringToEnum(Of Enums.WorkStatus)(sender.Text)
+            Dim s As Enums.WorkStatus = sender.Tag
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, s.ToString, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
                     MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
@@ -514,11 +490,30 @@ Public Class frm_Main
         End Try
     End Sub
 
+    Private Sub UpdatePriority(sender As System.Object, e As EventArgs)
+        Try
+            Dim s As Enums.Priority = sender.Tag
+            If gv_Home.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+                If Database.Workbook.UpdatePriority(row.ID, s, (row.GetHistory & vbNewLine & "Priority updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    row.PriorityOfWork = s
+                    MsgBox("Successfully updated priority of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                Else
+                    MsgBox("Unknown error on updating priority of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on updating priority of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                  , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
     Private Sub UpdateStep(sender As System.Object, e As EventArgs)
         Try
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStep(row.ID, sender.Text, (row.GetHistory & vbNewLine & "Step/Stage updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStep(row.ID, sender.Caption, (row.GetHistory & vbNewLine & "Step/Stage updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    row.CurrentStep = sender.Caption
                     MsgBox("Successfully updated step of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
                     MsgBox("Unknown error on updating step of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
@@ -533,18 +528,18 @@ Public Class frm_Main
     Private Sub AssignTo(sender As System.Object, e As EventArgs)
         Dim user As Objects.User = Me.User
         Try
-
             For Each i As Objects.User In Users
-                If i.Username = sender.Text Then
-                    User = i
+                If i.Username = sender.Caption Then
+                    user = i
                 End If
             Next
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-                If Database.Workbook.AssignTo(row.ID, User.ID, (row.GetHistory & vbNewLine & "Work transferred from " & row.AssignedTo.Username & " to " & User.Username & " by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
-                    MsgBox("Successfully assigned selected work to the user " & User.Username & ".", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                If Database.Workbook.AssignTo(row.ID, user.ID, (row.GetHistory & vbNewLine & "Work transferred from " & row.AssignedTo.Username & " to " & user.Username & " by " & Me.User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    MsgBox("Successfully assigned selected work to the user " & user.Username & ".", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
                 Else
-                    MsgBox("Unknown error on assigning selected work to the user " & User.Username & ".", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    MsgBox("Unknown error on assigning selected work to the user " & user.Username & ".", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
                 End If
             End If
         Catch ex As Exception
@@ -591,5 +586,36 @@ Public Class frm_Main
         Me.Invoke(Sub()
                       ProgressPanel_Utilites.Visible = False
                   End Sub)
+    End Sub
+
+    Private Sub gv_Home_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles gv_Home.PopupMenuShowing
+        If e.HitInfo.InRow AndAlso Not Loader_Home.IsBusy Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim item As Objects.WorkbookItem = gv_Home.GetRow(e.HitInfo.RowHandle)
+            view.FocusedRowHandle = e.HitInfo.RowHandle
+
+            Dim UpdateStageMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Update Steps/Stage"}
+            Dim UpdateStatusMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Update Status"}
+            Dim UpdatePriorityMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Update Priority"}
+            Dim AssignToMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Assign To", .BeginGroup = True}
+
+            For i As Integer = 0 To 3
+                UpdateStatusMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem([Enum].GetName(GetType(Enums.WorkStatus), i), AddressOf UpdateStatus) With {.Tag = i})
+            Next
+            For i As Integer = -2 To 2
+                UpdatePriorityMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem([Enum].GetName(GetType(Enums.Priority), i), AddressOf UpdatePriority) With {.Tag = i})
+            Next
+            For Each i As String In item.Job.Steps
+                UpdateStageMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem(i, AddressOf UpdateStep))
+            Next
+            For Each i As Objects.User In Users
+                AssignToMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem(i.Username, AddressOf AssignTo))
+            Next
+
+            e.Menu.Items.Add(UpdateStatusMenu)
+            e.Menu.Items.Add(UpdatePriorityMenu)
+            e.Menu.Items.Add(UpdateStageMenu)
+            e.Menu.Items.Add(AssignToMenu)
+        End If
     End Sub
 End Class
