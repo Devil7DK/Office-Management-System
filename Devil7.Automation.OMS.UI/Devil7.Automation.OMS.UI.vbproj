@@ -260,6 +260,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\ram.png" />
+    <None Include="Resources\clean.png" />
     <None Include="Resources\paid.png" />
     <None Include="Resources\details_view.png" />
     <None Include="Resources\card_view.png" />

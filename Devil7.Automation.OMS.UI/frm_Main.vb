@@ -29,6 +29,7 @@ Public Class frm_Main
     Dim Clients As List(Of Objects.Client)
     Dim Jobs As List(Of Objects.Job)
 
+    Dim RAMUsed As ULong 
     Dim Loaded As Boolean = False
 
     Sub New(User As Objects.User)
@@ -138,6 +139,7 @@ Public Class frm_Main
                       rpg_Users.Enabled = True
                       ProgressPanel_Users.Visible = False
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub btn_RefreshUsers_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshUsers.ItemClick
@@ -218,6 +220,7 @@ Public Class frm_Main
                       rpg_Jobs.Enabled = True
                       ProgressPanel_Jobs.Visible = False
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub btn_RefreshJobs_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshJobs.ItemClick
@@ -283,6 +286,7 @@ Public Class frm_Main
                       rpg_Clients.Enabled = True
                       ProgressPanel_Clients.Visible = False
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub btn_RefreshClients_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshClients.ItemClick
@@ -394,6 +398,7 @@ Public Class frm_Main
                       rpg_Workbook.Enabled = True
                       ProgressPanel_Workbook.Visible = False
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub btn_RefreshWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshWork.ItemClick
@@ -472,6 +477,7 @@ Public Class frm_Main
                       ProgressPanel_Home.Visible = False
                       rpg_Home.Enabled = True
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub frm_Main_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
@@ -596,6 +602,7 @@ Public Class frm_Main
         Me.Invoke(Sub()
                       ProgressPanel_Utilites.Visible = False
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub gv_Home_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles gv_Home.PopupMenuShowing
@@ -669,6 +676,7 @@ Public Class frm_Main
                       rpg_Billing.Enabled = True
                       ProgressPanel_Billing.Visible = False
                   End Sub)
+        Utils.Misc.CleanRAM()
     End Sub
 
     Private Sub btn_RefreshBilling_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshBilling.ItemClick
@@ -692,5 +700,22 @@ Public Class frm_Main
             MsgBox(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
                    , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
         End Try
+    End Sub
+
+    Private Sub RAMMonitor_Tick(sender As System.Object, e As System.EventArgs) Handles RAMMonitor.Tick
+        RAMUsed = Process.GetCurrentProcess.WorkingSet64
+        RAMUsage.EditValue = CInt((RAMUsed / My.Computer.Info.TotalPhysicalMemory) * 100)
+        Dim TipItem As New DevExpress.Utils.SuperToolTipSetupArgs
+        TipItem.Title.Text = "RAM Usage"
+        TipItem.Title.ImageOptions.Image = My.Resources.ram
+        TipItem.Contents.Text = "Shows RAM used by this application." & vbNewLine & "Current RAM Usage : " & Utils.Misc.FormatSize(RAMUsed)
+        RAMUsage.SuperTip.Setup(TipItem)
+    End Sub
+
+    Private Sub btn_FreeRAM_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_FreeRAM.ItemClick
+        Dim RAM_1 As ULong = Process.GetCurrentProcess.WorkingSet64
+        Utils.Misc.CleanRAM()
+        Dim RAM_2 As ULong = Process.GetCurrentProcess.WorkingSet64
+        ToolTipManager.ShowHint(Utils.Misc.FormatSize(RAM_1 - RAM_2) & " RAM Freed", New Point(btn_FreeRAM.Links(0).ScreenBounds.X + (btn_FreeRAM.Links(0).ScreenBounds.Width / 2), btn_FreeRAM.Links(0).ScreenBounds.Y - (btn_FreeRAM.Links(0).ScreenBounds.Height / 2)))
     End Sub
 End Class
