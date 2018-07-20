@@ -57,6 +57,7 @@ Public Class frm_WorkBook
             cmb_Status.Enabled = False
             cmb_Priority.Enabled = False
             cmb_Steps.Enabled = False
+            cmb_CurrentlyAssignedTo.Enabled = True
             txt_FinancialYear.Enabled = False
             txt_AssessmentYear.Enabled = False
         End If
@@ -100,15 +101,15 @@ Public Class frm_WorkBook
                     Exit For
                 End If
             Next
-            For Each i As Objects.User In cmb_CurrentlyAssignedTo.Properties.Items
-                If i.ID = CurrentUserID Then
-                    cmb_CurrentlyAssignedTo.SelectedItem = i
-                    Exit For
-                End If
-            Next
             For Each i As Objects.User In cmb_User.Properties.Items
                 If i.ID = OwnerID Then
                     cmb_User.SelectedItem = i
+                    Exit For
+                End If
+            Next
+            For Each i As Objects.User In cmb_CurrentlyAssignedTo.Properties.Items
+                If i.ID = CurrentUserID Then
+                    cmb_CurrentlyAssignedTo.SelectedItem = i
                     Exit For
                 End If
             Next
@@ -149,15 +150,15 @@ Public Class frm_WorkBook
                 MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
             End Try
         ElseIf Mode = Enums.DialogMode.Edit AndAlso ID > -1 Then
-            'Try
-            If Database.Workbook.Update(ID, CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, CType(cmb_Client.SelectedItem, Objects.Client), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex, cmb_Steps.SelectedItem.ToString, txt_AssessmentYear.Text, txt_FinancialYear.Text, My.Settings.DefaultStorage, CType(cmb_User.SelectedItem, Objects.User), (txt_History.Text & vbNewLine & "Item editted at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).Trim & " by user " & UserData.Username) Then
-                MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                Me.DialogResult = Windows.Forms.DialogResult.OK
-                Me.Close()
-            End If
-            'Catch ex As Exception
-            'MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
-            'End Try
+            Try
+                If Database.Workbook.Update(ID, txt_DueDate.DateTime, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, CType(cmb_CurrentlyAssignedTo.SelectedItem, Objects.User), (txt_History.Text & vbNewLine & "Item editted at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).Trim & " by user " & UserData.Username) Then
+                    MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    Me.DialogResult = Windows.Forms.DialogResult.OK
+                    Me.Close()
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+            End Try
         End If
     End Sub
 
