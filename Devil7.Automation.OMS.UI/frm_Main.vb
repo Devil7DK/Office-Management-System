@@ -373,7 +373,7 @@ Public Class frm_Main
                       ProgressPanel_Workbook.Description = "Loading Workbook..."
                   End Sub)
         Try
-            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetAll(True, Clients, Jobs, Users)
+            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Clients, Jobs, Users)
             Me.Invoke(Sub()
                           gc_WorkBook.DataSource = Workbook
                       End Sub)
@@ -451,7 +451,7 @@ Public Class frm_Main
                       ProgressPanel_Home.Description = "Loading Home..."
                   End Sub)
         Try
-            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetAllForUser(True, Clients, Jobs, Users, User.ID)
+            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Clients, Jobs, Users, User.ID)
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
                       End Sub)

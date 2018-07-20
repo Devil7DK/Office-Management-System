@@ -31,7 +31,7 @@ Namespace Database
                    ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As String, ByVal Financial As String, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
-            Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History);SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -55,10 +55,11 @@ Namespace Database
                 AddParameter(Command, "@FinancialDetails", Financial)
                 AddParameter(Command, "@Owner", Owner.ID)
                 AddParameter(Command, "@History", History)
+                AddParameter(Command, "@Billed", False)
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History)
+                    R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History, False)
                 Else
                     MsgBox("Unknown error while inserting workbook item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
                 End If
@@ -155,6 +156,7 @@ Namespace Database
                 Dim Owner As User
                 Dim OwnerID As Integer
                 Dim History As String
+                Dim Billed As Boolean
                 Dim Read As Boolean = False
 
                 Using Reader As SqlDataReader = Command.ExecuteReader
@@ -177,6 +179,7 @@ Namespace Database
                         CurrentStep = Reader.Item("CurrentStep").ToString
                         OwnerID = Reader.Item("Owner").ToString
                         History = Reader.Item("History").ToString.Trim
+                        Billed = Reader.Item("Billed")
                         Read = True
                     End If
                 End Using
@@ -185,17 +188,17 @@ Namespace Database
                     Job = GetJobByID(JobID, False)
                     Client = GetClientByID(ClientID)
                     Owner = GetUserByID(OwnerID)
-                    R = New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History)
+                    R = New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed)
                 End If
             End Using
 
             Return R
         End Function
 
-        Function GetAll(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+        Function GetIncomplete(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook]"
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]<3;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -207,7 +210,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
-                         Dim ID As Integer = reader.Item("ID")
+                        Dim ID As Integer = Reader.Item("ID")
                         Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
                         Dim Job As Job = Jobs(Jobs.BinarySearch(New Job(Reader.Item("Job").ToString), New Comparers.JobComparer))
                         Dim Client As Client = Clients(Clients.BinarySearch(New Client(Reader.Item("Client")), New Comparers.CompareByID))
@@ -226,7 +229,8 @@ Namespace Database
                         Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
-                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History))
+                        Dim Billed As Boolean = Reader.Item("Billed")
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed))
                     End While
                 End Using
             End Using
@@ -234,10 +238,53 @@ Namespace Database
             Return R
         End Function
 
-        Function GetAllForUser(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal UserID As Integer) As IEnumerable(Of WorkbookItem)
+        Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [User] = @UID;"
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Jobs.Sort(New Comparers.JobComparer)
+            Clients.Sort(New Comparers.CompareByID)
+            Users.Sort(New Comparers.CompareByID)
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        Dim ID As Integer = Reader.Item("ID")
+                        Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
+                        Dim Job As Job = Jobs(Jobs.BinarySearch(New Job(Reader.Item("Job").ToString), New Comparers.JobComparer))
+                        Dim Client As Client = Clients(Clients.BinarySearch(New Client(Reader.Item("Client")), New Comparers.CompareByID))
+                        Dim DueDate As Date = Reader.Item("DueDate")
+                        Dim AddedOn As Date = Reader.Item("DateAdded")
+                        Dim CompletedOn As Date = Reader.Item("DateCompleted")
+                        Dim UpdatedOn As Date = Reader.Item("DateUpdated")
+                        Dim Description As String = Reader.Item("Description").ToString
+                        Dim Remarks As String = Reader.Item("Remarks").ToString
+                        Dim TargetDate As Date = Reader.Item("TargetDate")
+                        Dim PriorityOfWork As Enums.Priority = DirectCast([Enum].Parse(GetType(Enums.Priority), Reader.Item("Priority").ToString), Enums.Priority)
+                        Dim Status As Enums.WorkStatus = DirectCast([Enum].Parse(GetType(Enums.WorkStatus), Reader.Item("Status").ToString), Enums.WorkStatus)
+                        Dim Folder As String = Reader.Item("Folder").ToString
+                        Dim AssementDetail As String = Reader.Item("AssessmentDetails").ToString
+                        Dim FinancialDetail As String = Reader.Item("FinancialDetails").ToString
+                        Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
+                        Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
+                        Dim History As String = Reader.Item("History").ToString.Trim
+                        Dim Billed As Boolean = Reader.Item("Billed")
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetForUser(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal UserID As Integer) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [User] = @UID AND [Status]<3;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -269,7 +316,8 @@ Namespace Database
                         Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
-                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History))
+                        Dim Billed As Boolean = Reader.Item("Billed")
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed))
                     End While
                 End Using
             End Using
