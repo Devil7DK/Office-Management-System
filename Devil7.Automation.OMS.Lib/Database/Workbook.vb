@@ -67,12 +67,12 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal User As User, ByVal Job As Job, ByVal DueDate As Date, _
-                  ByVal Client As Client, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date, _
-                  ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As String, ByVal Financial As String, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As Boolean
+        Function Update(ByVal ID As Integer, ByVal DueDate As Date, _
+                  ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date, _
+                   ByVal AssignedTo As User, ByVal History As String) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [DueDate]=@DueDate,[DateCompleted]=@DateCompleted,[Status]=@Status,[Description]=@Description,[Remarks]=@Remarks,[TargetDate]=@TargetDate,[Priority]=@Priority,[DateUpdated]=@DateUpdated,[CurrentStep]=@CurrentStep,[History]=@History WHERE [ID]=@id;"
+            Dim CommandString As String = "UPDATE Workbook SET [DueDate]=@DueDate,[DateCompleted]=@DateCompleted,[Description]=@Description,[Remarks]=@Remarks,[TargetDate]=@TargetDate,[DateUpdated]=@DateUpdated,[User]=@User,[History]=@History WHERE [ID]=@id;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -81,14 +81,12 @@ Namespace Database
                 AddParameter(Command, "@id", ID)
                 AddParameter(Command, "@DueDate", DueDate)
                 AddParameter(Command, "@DateCompleted", Now)
-                AddParameter(Command, "@Status", Status)
                 AddParameter(Command, "@Description", Description)
                 AddParameter(Command, "@Remarks", Remarks)
                 AddParameter(Command, "@TargetDate", TargetDate)
-                AddParameter(Command, "@Priority", Priority)
                 AddParameter(Command, "@DateUpdated", Now)
-                AddParameter(Command, "@CurrentStep", CurrentStep)
                 AddParameter(Command, "@History", History)
+                AddParameter(Command, "@User", AssignedTo.ID)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
                 If Result > 0 Then
@@ -300,7 +298,7 @@ Namespace Database
             Return R
         End Function
 
-        Function UpdateStatus(ByVal ID As Integer, ByVal Status As String, ByVal History As String)
+        Function UpdateStatus(ByVal ID As Integer, ByVal Status As Integer, ByVal History As String)
             Dim R As Boolean = False
 
             Dim CommandString As String = "UPDATE Workbook SET [Status]=@Status,[History]=@History WHERE [ID]=@ID;"
@@ -312,6 +310,27 @@ Namespace Database
                 AddParameter(Command, "@ID", ID)
                 AddParameter(Command, "@DateUpdated", Now)
                 AddParameter(Command, "@Status", Status)
+                AddParameter(Command, "@History", History)
+                If Command.ExecuteNonQuery() = 1 Then
+                    R = True
+                End If
+            End Using
+
+            Return R
+        End Function
+
+        Function UpdatePriority(ByVal ID As Integer, ByVal Priority As Integer, ByVal History As String)
+            Dim R As Boolean = False
+
+            Dim CommandString As String = "UPDATE Workbook SET [Priority]=@Priority,[History]=@History WHERE [ID]=@ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                AddParameter(Command, "@DateUpdated", Now)
+                AddParameter(Command, "@Priority", Priority)
                 AddParameter(Command, "@History", History)
                 If Command.ExecuteNonQuery() = 1 Then
                     R = True
