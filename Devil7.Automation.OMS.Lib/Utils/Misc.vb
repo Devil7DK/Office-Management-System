@@ -157,5 +157,14 @@ Namespace Utils
 
         End Function
 
+        Private Declare Function SetProcessWorkingSetSize Lib "kernel32.dll" (ByVal process As IntPtr, ByVal minimumWorkingSetSize As Integer, ByVal maximumWorkingSetSize As Integer) As Integer
+        Sub CleanRAM()
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
+            If (Environment.OSVersion.Platform = PlatformID.Win32NT) Then
+                SetProcessWorkingSetSize(Process.GetCurrentProcess().Handle, -1, -1)
+            End If
+        End Sub
+
     End Module
 End Namespace
