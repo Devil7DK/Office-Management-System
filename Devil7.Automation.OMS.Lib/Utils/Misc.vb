@@ -128,5 +128,34 @@ Namespace Utils
             Return R
         End Function
 
+        Dim DoubleBytes As Double
+        Public Function FormatSize(ByVal Value As ULong) As String
+
+            Try
+                Select Case Value
+                    Case Is >= 1099511627776
+                        DoubleBytes = CDbl(Value / 1099511627776) 'TB
+                        Return FormatNumber(DoubleBytes, 2) & " TB"
+                    Case 1073741824 To 1099511627775
+                        DoubleBytes = CDbl(Value / 1073741824) 'GB
+                        Return FormatNumber(DoubleBytes, 2) & " GB"
+                    Case 1048576 To 1073741823
+                        DoubleBytes = CDbl(Value / 1048576) 'MB
+                        Return FormatNumber(DoubleBytes, 2) & " MB"
+                    Case 1024 To 1048575
+                        DoubleBytes = CDbl(Value / 1024) 'KB
+                        Return FormatNumber(DoubleBytes, 2) & " KB"
+                    Case 0 To 1023
+                        DoubleBytes = Value ' bytes
+                        Return FormatNumber(DoubleBytes, 2) & " bytes"
+                    Case Else
+                        Return ""
+                End Select
+            Catch
+                Return Value
+            End Try
+
+        End Function
+
     End Module
 End Namespace
