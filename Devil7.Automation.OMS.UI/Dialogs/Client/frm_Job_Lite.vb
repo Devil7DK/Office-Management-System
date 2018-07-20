@@ -30,7 +30,7 @@ Public Class frm_Job_Lite
         Me.Mode = Type
         Me.Job = Job_
         Try
-            cmb_Name.Items.AddRange(Database.Jobs.GetAll(False).ToArray)
+            cmb_Name.Properties.Items.AddRange(Database.Jobs.GetAll(False).ToArray)
         Catch ex As Exception
 
         End Try
@@ -40,7 +40,7 @@ Public Class frm_Job_Lite
 
     Private Sub frm_Job_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Mode = Enums.DialogMode.Edit AndAlso Job IsNot Nothing Then
-            For Each i As Objects.Job In cmb_Name.Items
+            For Each i As Objects.Job In cmb_Name.Properties.Items
                 If i.JID = Job.JID Then
                     cmb_Name.SelectedItem = i
                     Exit For

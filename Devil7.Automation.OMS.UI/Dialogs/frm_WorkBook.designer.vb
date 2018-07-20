@@ -106,7 +106,7 @@ Partial Class frm_WorkBook
         Me.btn_Cancel.Location = New System.Drawing.Point(349, 3)
         Me.btn_Cancel.Name = "btn_Cancel"
         Me.btn_Cancel.Size = New System.Drawing.Size(65, 24)
-        Me.btn_Cancel.TabIndex = 2
+        Me.btn_Cancel.TabIndex = 14
         Me.btn_Cancel.TabStop = False
         Me.btn_Cancel.Text = "Cancel"
         '
@@ -118,7 +118,7 @@ Partial Class frm_WorkBook
         Me.btn_Done.Location = New System.Drawing.Point(420, 3)
         Me.btn_Done.Name = "btn_Done"
         Me.btn_Done.Size = New System.Drawing.Size(65, 24)
-        Me.btn_Done.TabIndex = 1
+        Me.btn_Done.TabIndex = 13
         Me.btn_Done.TabStop = False
         Me.btn_Done.Text = "Done"
         '
@@ -367,7 +367,7 @@ Partial Class frm_WorkBook
         Me.cmb_User.Name = "cmb_User"
         Me.cmb_User.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_User.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_User.TabIndex = 11
+        Me.cmb_User.TabIndex = 0
         '
         'cmb_Job
         '
@@ -376,7 +376,7 @@ Partial Class frm_WorkBook
         Me.cmb_Job.Name = "cmb_Job"
         Me.cmb_Job.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Job.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_Job.TabIndex = 12
+        Me.cmb_Job.TabIndex = 1
         '
         'cmb_Client
         '
@@ -385,7 +385,7 @@ Partial Class frm_WorkBook
         Me.cmb_Client.Name = "cmb_Client"
         Me.cmb_Client.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Client.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_Client.TabIndex = 13
+        Me.cmb_Client.TabIndex = 2
         '
         'txt_DueDate
         '
@@ -396,7 +396,7 @@ Partial Class frm_WorkBook
         Me.txt_DueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_DueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_DueDate.Size = New System.Drawing.Size(349, 20)
-        Me.txt_DueDate.TabIndex = 14
+        Me.txt_DueDate.TabIndex = 3
         '
         'txt_TargetDate
         '
@@ -407,7 +407,7 @@ Partial Class frm_WorkBook
         Me.txt_TargetDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_TargetDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_TargetDate.Size = New System.Drawing.Size(349, 20)
-        Me.txt_TargetDate.TabIndex = 15
+        Me.txt_TargetDate.TabIndex = 4
         '
         'cmb_Priority
         '
@@ -416,7 +416,7 @@ Partial Class frm_WorkBook
         Me.cmb_Priority.Name = "cmb_Priority"
         Me.cmb_Priority.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Priority.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_Priority.TabIndex = 16
+        Me.cmb_Priority.TabIndex = 5
         '
         'txt_FinancialYear
         '
@@ -424,7 +424,7 @@ Partial Class frm_WorkBook
         Me.txt_FinancialYear.Location = New System.Drawing.Point(136, 153)
         Me.txt_FinancialYear.Name = "txt_FinancialYear"
         Me.txt_FinancialYear.Size = New System.Drawing.Size(349, 20)
-        Me.txt_FinancialYear.TabIndex = 17
+        Me.txt_FinancialYear.TabIndex = 6
         '
         'txt_AssessmentYear
         '
@@ -432,7 +432,7 @@ Partial Class frm_WorkBook
         Me.txt_AssessmentYear.Location = New System.Drawing.Point(136, 178)
         Me.txt_AssessmentYear.Name = "txt_AssessmentYear"
         Me.txt_AssessmentYear.Size = New System.Drawing.Size(349, 20)
-        Me.txt_AssessmentYear.TabIndex = 18
+        Me.txt_AssessmentYear.TabIndex = 7
         '
         'LabelControl21
         '
@@ -473,7 +473,7 @@ Partial Class frm_WorkBook
         Me.cmb_Status.Name = "cmb_Status"
         Me.cmb_Status.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Status.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_Status.TabIndex = 19
+        Me.cmb_Status.TabIndex = 10
         '
         'cmb_Steps
         '
@@ -482,7 +482,7 @@ Partial Class frm_WorkBook
         Me.cmb_Steps.Name = "cmb_Steps"
         Me.cmb_Steps.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Steps.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_Steps.TabIndex = 20
+        Me.cmb_Steps.TabIndex = 11
         '
         'txt_Description
         '
@@ -490,7 +490,7 @@ Partial Class frm_WorkBook
         Me.txt_Description.Location = New System.Drawing.Point(136, 203)
         Me.txt_Description.Name = "txt_Description"
         Me.txt_Description.Size = New System.Drawing.Size(349, 20)
-        Me.txt_Description.TabIndex = 21
+        Me.txt_Description.TabIndex = 8
         '
         'txt_Remarks
         '
@@ -498,7 +498,7 @@ Partial Class frm_WorkBook
         Me.txt_Remarks.Location = New System.Drawing.Point(136, 228)
         Me.txt_Remarks.Name = "txt_Remarks"
         Me.txt_Remarks.Size = New System.Drawing.Size(349, 20)
-        Me.txt_Remarks.TabIndex = 22
+        Me.txt_Remarks.TabIndex = 9
         '
         'LabelControl24
         '

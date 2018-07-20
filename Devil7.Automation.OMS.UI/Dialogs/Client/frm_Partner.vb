@@ -38,13 +38,13 @@ Public Class frm_Partner
             txt_Name.Text = Partner.Name
             txt_Address.Text = Partner.Address
             txt_PAN.Text = Partner.PAN
-            txt_Date.Value = Partner.DOB
+            txt_Date.DateTime = Partner.DOB
         End If
         txt_PAN.Focus()
     End Sub
 
     Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
-        Me.Partner = New Objects.Partner(txt_Name.Text, txt_Address.Text, txt_PAN.Text, txt_Date.Value.ToString("dd/MM/yyyy"))
+        Me.Partner = New Objects.Partner(txt_Name.Text, txt_Address.Text, txt_PAN.Text, txt_Date.DateTime.ToString("dd/MM/yyyy"))
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub

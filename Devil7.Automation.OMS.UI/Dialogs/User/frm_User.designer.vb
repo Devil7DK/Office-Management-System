@@ -97,6 +97,7 @@ Partial Class frm_User
         Me.btn_Cancel.Name = "btn_Cancel"
         Me.btn_Cancel.Size = New System.Drawing.Size(98, 29)
         Me.btn_Cancel.TabIndex = 1
+        Me.btn_Cancel.TabStop = False
         Me.btn_Cancel.Text = "Cancel"
         '
         'btn_Done
@@ -106,6 +107,7 @@ Partial Class frm_User
         Me.btn_Done.Name = "btn_Done"
         Me.btn_Done.Size = New System.Drawing.Size(75, 29)
         Me.btn_Done.TabIndex = 0
+        Me.btn_Done.TabStop = False
         Me.btn_Done.Text = "Done"
         '
         'Photo
@@ -126,6 +128,7 @@ Partial Class frm_User
         Me.btn_Browse.Name = "btn_Browse"
         Me.btn_Browse.Size = New System.Drawing.Size(75, 23)
         Me.btn_Browse.TabIndex = 2
+        Me.btn_Browse.TabStop = False
         Me.btn_Browse.Text = "Browse"
         '
         'LabelControl1
@@ -300,7 +303,7 @@ Partial Class frm_User
         Me.txt_Status.Location = New System.Drawing.Point(87, 528)
         Me.txt_Status.Name = "txt_Status"
         Me.txt_Status.Size = New System.Drawing.Size(334, 20)
-        Me.txt_Status.TabIndex = 11
+        Me.txt_Status.TabIndex = 9
         '
         'lst_Permissions
         '
@@ -391,7 +394,7 @@ Partial Class frm_User
         Me.txt_Home.Name = "txt_Home"
         Me.txt_Home.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.txt_Home.Size = New System.Drawing.Size(334, 20)
-        Me.txt_Home.TabIndex = 9
+        Me.txt_Home.TabIndex = 7
         '
         'LabelControl12
         '
@@ -407,7 +410,7 @@ Partial Class frm_User
         Me.txt_Desktop.Name = "txt_Desktop"
         Me.txt_Desktop.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.txt_Desktop.Size = New System.Drawing.Size(334, 20)
-        Me.txt_Desktop.TabIndex = 10
+        Me.txt_Desktop.TabIndex = 8
         '
         'frm_User
         '

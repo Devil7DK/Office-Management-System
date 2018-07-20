@@ -116,6 +116,16 @@ Public Class frm_WorkBook
             cmb_Steps.SelectedIndex = cmb_Steps.Properties.Items.IndexOf(CurrentStep)
             cmb_Priority.SelectedIndex = Enums.Functions.StringToEnum(Of Enums.Priority)(Priority)
             cmb_Status.SelectedIndex = Enums.Functions.StringToEnum(Of Enums.WorkStatus)(Status)
+        Else
+            On Error Resume Next
+            cmb_User.SelectedIndex = 0
+            cmb_Job.SelectedIndex = 0
+            cmb_Client.SelectedIndex = 0
+            txt_DueDate.DateTime = Now.AddDays(10)
+            txt_TargetDate.DateTime = Now.AddDays(8)
+            cmb_Priority.SelectedIndex = 2
+            cmb_Status.SelectedIndex = 0
+            cmb_Steps.SelectedIndex = 0
         End If
     End Sub
 
@@ -140,7 +150,7 @@ Public Class frm_WorkBook
         If Mode = Enums.DialogMode.Add Then
             Try
                 WorkItemSelected = Nothing
-                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, CType(cmb_Client.SelectedItem, Objects.Client), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex, cmb_Steps.SelectedItem.ToString, txt_AssessmentYear.Text, txt_FinancialYear.Text, Utils.Misc.GetFolder(GetDefaultStorage, CType(cmb_Client.SelectedItem, Objects.Client), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYear.Text, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
+                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, CType(cmb_Client.SelectedItem, Objects.Client), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYear.Text, txt_FinancialYear.Text, Utils.Misc.GetFolder(GetDefaultStorage, CType(cmb_Client.SelectedItem, Objects.Client), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYear.Text, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
                 If WorkItemSelected IsNot Nothing Then
                     MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                     Me.DialogResult = Windows.Forms.DialogResult.OK
