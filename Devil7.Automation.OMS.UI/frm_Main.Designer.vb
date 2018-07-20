@@ -130,6 +130,8 @@ Partial Class frm_Main
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Workbook = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
+        Me.ProgressPanel_Utilites = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.Loader_Utilities = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -643,6 +645,7 @@ Partial Class frm_Main
         'np_Utilities
         '
         Me.np_Utilities.Caption = "Utilities"
+        Me.np_Utilities.Controls.Add(Me.ProgressPanel_Utilites)
         Me.np_Utilities.Controls.Add(Me.Panel_Utilities)
         Me.np_Utilities.Name = "np_Utilities"
         Me.np_Utilities.Size = New System.Drawing.Size(696, 229)
@@ -890,7 +893,7 @@ Partial Class frm_Main
         Me.np_Users.Controls.Add(Me.ProgressPanel_Users)
         Me.np_Users.Controls.Add(Me.gc_Users)
         Me.np_Users.Name = "np_Users"
-        Me.np_Users.Size = New System.Drawing.Size(778, 275)
+        Me.np_Users.Size = New System.Drawing.Size(696, 229)
         '
         'ProgressPanel_Users
         '
@@ -901,7 +904,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Users.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Users.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Users.Name = "ProgressPanel_Users"
-        Me.ProgressPanel_Users.Size = New System.Drawing.Size(778, 275)
+        Me.ProgressPanel_Users.Size = New System.Drawing.Size(696, 229)
         Me.ProgressPanel_Users.TabIndex = 2
         '
         'gc_Users
@@ -911,7 +914,7 @@ Partial Class frm_Main
         Me.gc_Users.MainView = Me.tv_Users
         Me.gc_Users.MenuManager = Me.RibbonControl
         Me.gc_Users.Name = "gc_Users"
-        Me.gc_Users.Size = New System.Drawing.Size(778, 275)
+        Me.gc_Users.Size = New System.Drawing.Size(696, 229)
         Me.gc_Users.TabIndex = 1
         Me.gc_Users.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Users})
         '
@@ -965,6 +968,21 @@ Partial Class frm_Main
         '
         '
         'Loader_Home
+        '
+        '
+        'ProgressPanel_Utilites
+        '
+        Me.ProgressPanel_Utilites.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Utilites.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Utilites.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Utilites.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Utilites.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Utilites.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Utilites.Name = "ProgressPanel_Utilites"
+        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(696, 229)
+        Me.ProgressPanel_Utilites.TabIndex = 3
+        '
+        'Loader_Utilities
         '
         '
         'frm_Main
@@ -1090,6 +1108,8 @@ Partial Class frm_Main
     Friend WithEvents AssignToToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btn_RefreshHome As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents rpg_Home As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents ProgressPanel_Utilites As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents Loader_Utilities As System.ComponentModel.BackgroundWorker
 
 
 End Class

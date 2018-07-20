@@ -81,6 +81,12 @@ Public Class frm_Main
             If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
         End If
     End Sub
+
+    Sub UtilitiesPageLoad()
+        If Panel_Utilities.Groups.Count = 0 Then
+            If Not Loader_Utilities.IsBusy Then Loader_Utilities.RunWorkerAsync()
+        End If
+    End Sub
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
@@ -95,6 +101,8 @@ Public Class frm_Main
             WorkbookPageLoad()
         ElseIf MainPane.SelectedPage Is np_Home Then
             HomePageLoad()
+        ElseIf MainPane.SelectedPage Is np_Utilities Then
+            UtilitiesPageLoad()
         End If
     End Sub
 
@@ -560,5 +568,28 @@ Public Class frm_Main
 
     Private Sub btn_RefreshHome_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshHome.ItemClick
         If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
+    End Sub
+
+    Private Sub Loader_Utilities_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Utilities.DoWork
+        While Loaded = False
+            Threading.Thread.Sleep(1000)
+        End While
+        Me.Invoke(Sub()
+                      ProgressPanel_Utilites.Visible = True
+                  End Sub)
+        Try
+            Dim Utilites As List(Of DevExpress.XtraEditors.TileGroup) = Utils.Misc.LoadUtilities
+            Me.Invoke(Sub()
+                          Panel_Utilities.Groups.Clear()
+                          For Each i As DevExpress.XtraEditors.TileGroup In Utilites
+                              Panel_Utilities.Groups.Add(i)
+                          Next
+                      End Sub)
+        Catch ex As Exception
+
+        End Try
+        Me.Invoke(Sub()
+                      ProgressPanel_Utilites.Visible = False
+                  End Sub)
     End Sub
 End Class
