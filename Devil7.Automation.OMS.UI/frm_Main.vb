@@ -566,6 +566,7 @@ Public Class frm_Main
 
     Private Sub frm_Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         MainPane.SelectedPageIndex = 0
+        ProcessPermissions()
     End Sub
 
     Private Sub frm_Main_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -717,5 +718,48 @@ Public Class frm_Main
         Utils.Misc.CleanRAM()
         Dim RAM_2 As ULong = Process.GetCurrentProcess.WorkingSet64
         ToolTipManager.ShowHint(Utils.Misc.FormatSize(RAM_1 - RAM_2) & " RAM Freed", New Point(btn_FreeRAM.Links(0).ScreenBounds.X + (btn_FreeRAM.Links(0).ScreenBounds.Width / 2), btn_FreeRAM.Links(0).ScreenBounds.Y - (btn_FreeRAM.Links(0).ScreenBounds.Height / 2)))
+    End Sub
+
+    Sub ProcessPermissions()
+        Select Case User.UserType
+            Case Enums.UserType.Administrator
+                np_Billing.PageVisible = False
+            Case Enums.UserType.Auditor
+                np_Billing.PageVisible = True
+            Case Enums.UserType.User
+                np_Billing.PageVisible = False
+                If User.Permissions.HasFlag(Enums.UserPermissions.ViewWork) Then
+                    np_Workbook.PageVisible = True
+                    btn_AddWork.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.AddWork)
+                    btn_EditWork.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditWork)
+                    btn_RemoveWork.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditWork)
+                Else
+                    np_Workbook.PageVisible = False
+                End If
+                If User.Permissions.HasFlag(Enums.UserPermissions.ViewUser) Then
+                    np_Users.PageVisible = True
+                    btn_AddUser.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.CreateUser)
+                    btn_EditUser.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditUser)
+                    btn_RemoveUser.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditUser)
+                Else
+                    np_Users.PageVisible = False
+                End If
+                If User.Permissions.HasFlag(Enums.UserPermissions.ViewJob) Then
+                    np_Jobs.PageVisible = True
+                    btn_NewJob.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.AddJob)
+                    btn_EditJob.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditJob)
+                    btn_RemoveJob.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditJob)
+                Else
+                    np_Jobs.PageVisible = False
+                End If
+                If User.Permissions.HasFlag(Enums.UserPermissions.ViewClient) Then
+                    np_Clients.PageVisible = True
+                    btn_AddClient.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.AddClient)
+                    btn_EditClient.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditClient)
+                    btn_RemoveClient.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.EditClient)
+                Else
+                    np_Clients.PageVisible = False
+                End If
+        End Select
     End Sub
 End Class
