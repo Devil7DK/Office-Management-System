@@ -185,7 +185,7 @@ Namespace Database
                 End Using
                 If Read Then
                     AssignedTo = GetUserByID(AssignedID)
-                    Job = GetJobByID(JobID, False)
+                    Job = GetJobByJID(JobID, False)
                     Client = GetClientByID(ClientID)
                     Owner = GetUserByID(OwnerID)
                     R = New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed)
