@@ -502,6 +502,14 @@ Public Class frm_Main
 
     Private Sub frm_Main_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
         Loaded = True
+        If User.UserType = Enums.UserType.System Then
+            If MsgBox("WARNING: You are logged in as and 'System' User." &
+                      " Playing/Testing with this account without proper knowledge " &
+                      "can lead to worst consequences. Use this accound only if you" &
+                      " know what you are doing. Do you want to exit this application..?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Critical Warning!") = MsgBoxResult.Yes Then
+                Me.Close()
+            End If
+        End If
     End Sub
 
     Private Sub UpdateStatus(sender As System.Object, e As EventArgs)
