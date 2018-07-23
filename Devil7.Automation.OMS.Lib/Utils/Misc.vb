@@ -88,8 +88,6 @@ Namespace Utils
         End Function
 
         Function LoadUtilities() As List(Of DevExpress.XtraEditors.TileGroup)
-            On Error Resume Next
-
             Dim R As New List(Of DevExpress.XtraEditors.TileGroup)
 
             Dim random_ As New Random
