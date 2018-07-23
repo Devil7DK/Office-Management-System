@@ -20,9 +20,10 @@
 '=========================================================================='
 
 Namespace Enums
-    Public Enum UserType
-        Administrator
-        Auditor
-        User
+    Public Enum UserType As Integer
+        System = 3
+        Administrator = 2
+        Auditor = 1
+        User = 0
     End Enum
 End Namespace

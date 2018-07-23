@@ -156,9 +156,14 @@ Public Class frm_Main
     Private Sub btn_EditUser_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditUser.ItemClick
         If tv_Users.SelectedRowsCount = 1 Then
             Dim row As Objects.User = tv_Users.GetRow(tv_Users.GetSelectedRows()(0))
-            Dim d As New frm_User(Enums.DialogMode.Edit, row.ID)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
-                If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
+
+            If row.UserType >= User.UserType Then
+                MsgBox("You cannot edit an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            Else
+                Dim d As New frm_User(Enums.DialogMode.Edit, row.ID, If(User.ID = row.ID, If(User.UserType = Enums.UserType.System, False, True), False))
+                If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
+                End If
             End If
         End If
     End Sub
@@ -168,8 +173,13 @@ Public Class frm_Main
             Dim sr As Integer() = tv_Users.GetSelectedRows
             For Each i As Integer In sr
                 Dim row As Objects.User = tv_Users.GetRow(i)
-                If Database.Users.Remove(row.ID) Then
-                    CType(gc_Users.DataSource, List(Of Objects.User)).Remove(row)
+
+                If row.UserType >= User.UserType Then
+                    MsgBox("You cannot remove an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                Else
+                    If Database.Users.Remove(row.ID) Then
+                        CType(gc_Users.DataSource, List(Of Objects.User)).Remove(row)
+                    End If
                 End If
             Next
             gc_Users.RefreshDataSource()
@@ -178,15 +188,19 @@ Public Class frm_Main
 
     Private Sub btn_ResetPassword_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_ResetPassword.ItemClick
         If tv_Users.SelectedRowsCount = 1 Then
-            If MsgBox("Are you sure to reset password for selected user...?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Sure..?") = MsgBoxResult.Yes Then
-                Dim row As Objects.User = tv_Users.GetRow(tv_Users.GetSelectedRows(0))
-                Database.Users.ResetPassword(User.ID, True)
+            Dim row As Objects.User = tv_Users.GetRow(tv_Users.GetSelectedRows(0))
+            If row.UserType >= User.UserType Then
+                MsgBox("You cannot reset password of an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            Else
+                If MsgBox("Are you sure to reset password for selected user...?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Sure..?") = MsgBoxResult.Yes Then
+                    Database.Users.ResetPassword(User.ID, True)
+                End If
             End If
         End If
     End Sub
 
     Private Sub btn_EditProfile_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditProfile.ItemClick
-        Dim d As New frm_User(Enums.DialogMode.Edit, User.ID)
+        Dim d As New frm_User(Enums.DialogMode.Edit, User.ID, True)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             User = Database.Users.GetUserByID(User.ID)
             If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()

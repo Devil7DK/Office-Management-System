@@ -28,10 +28,10 @@ Namespace Objects
             Me.ID = ID
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
+        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As Enums.UserType = Enums.UserType.User, Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
             Me.ID = ID
             Me.Username = Username
-            Me.UserType = [Enum].Parse(GetType(Enums.UserType), UserType)
+            Me.UserType = UserType
             Me.Address = Address
             Me.Mobile = Mobile
             Me.Email = Email

@@ -73,7 +73,9 @@ Public Class frm_User
     End Sub
 
     Private Sub frm_User_Load(sender As Object, e As System.EventArgs) Handles Me.Load
-        cmb_UserType.Properties.Items.AddRange([Enum].GetValues(GetType(Enums.UserType)))
+        For i As Integer = 0 To 2
+            cmb_UserType.Properties.Items.Add([Enum].GetName(GetType(Enums.UserType), i))
+        Next
         cmb_UserType.SelectedIndex = 0
         dgv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
         If Mode = Enums.DialogMode.Edit AndAlso ID <> -1 Then
@@ -88,7 +90,7 @@ Public Class frm_User
             Photo.Image = User.Photo
             txt_Desktop.Text = User.Desktop
             txt_Home.Text = User.Home
-            cmb_UserType.SelectedIndex = Enums.StringToEnum(Of Enums.UserType)(User.UserType)
+            cmb_UserType.SelectedIndex = User.UserType
             For Each i As Enums.UserPermissions In [Enum].GetValues(GetType(Enums.UserPermissions))
                 If User.Permissions.HasFlag(i) Then
                     lst_Permissions.Items.Add(i)
@@ -146,7 +148,7 @@ Public Class frm_User
     Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
         If txt_ConfirmPassword.Text = txt_Password.Text Then
             If Mode = Enums.DialogMode.Add Then
-                Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedItem.ToString(), txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
+                Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedIndex, txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
                 If Result IsNot Nothing Then
                     Me.User = Result
                     MsgBox("User Successfully Added.", MsgBoxStyle.Information, "Done")
@@ -154,7 +156,7 @@ Public Class frm_User
                     Me.Close()
                 End If
             ElseIf Mode = Enums.DialogMode.Edit Then
-                Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedItem.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
+                Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
                 If Result Then
                     MsgBox("User Successfully Updated.", MsgBoxStyle.Information, "Done")
                     Me.DialogResult = Windows.Forms.DialogResult.OK
