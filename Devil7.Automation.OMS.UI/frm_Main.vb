@@ -177,8 +177,10 @@ Public Class frm_Main
                 If row.UserType >= User.UserType Then
                     MsgBox("You cannot remove an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
                 Else
-                    If Database.Users.Remove(row.ID) Then
-                        CType(gc_Users.DataSource, List(Of Objects.User)).Remove(row)
+                    If MsgBox("Are you sure? Do you want to remove selected user(s)..? " & vbNewLine & vbNewLine & "Note: This cannot be undone!", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, "Sure?") = MsgBoxResult.Yes Then
+                        If Database.Users.Remove(row.ID) Then
+                            CType(gc_Users.DataSource, List(Of Objects.User)).Remove(row)
+                        End If
                     End If
                 End If
             Next
