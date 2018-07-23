@@ -28,7 +28,7 @@ Namespace Objects
             Me.ID = ID
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Specialized.StringCollection = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
+        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
             Me.ID = ID
             Me.Username = Username
             Me.UserType = UserType
@@ -37,10 +37,7 @@ Namespace Objects
             Me.Email = Email
             Me.Desktop = Desktop
             Me.Home = Home
-            Me.Permissions = New Specialized.StringCollection
-            If Permissions IsNot Nothing Then
-                Me.Permissions = Permissions
-            End If
+            Me.Permissions = Permissions
             Me.Status = Status
             Me.img = Photo
             If Credentials Is Nothing Then
@@ -56,7 +53,7 @@ Namespace Objects
         Property Address As String = ""
         Property Mobile As String = ""
         Property Email As String = ""
-        Property Permissions As New Specialized.StringCollection
+        Property Permissions As Enums.UserPermissions
         Property Status As String = ""
         Property Desktop As String = ""
         Property Home As String = ""

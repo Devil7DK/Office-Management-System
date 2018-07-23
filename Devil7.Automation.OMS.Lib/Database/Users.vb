@@ -64,7 +64,10 @@ Namespace Database
                         Dim Address As String = Reader.Item("Address").ToString
                         Dim Mobile As String = Reader.Item("Mobile").ToString
                         Dim Email As String = Reader.Item("Email").ToString
-                        Dim Permissions As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Reader.Item("Permissions").ToString)
+                        Dim Permissions As Enums.UserPermissions
+                        If Reader.Item("Permissions").ToString <> "" Then
+                            Permissions = [Enum].Parse(GetType(Enums.UserPermissions), Reader.Item("Permissions").ToString)
+                        End If
                         Dim Status As String = Reader.Item("Status").ToString
                         Dim Photo As Drawing.Image = My.Resources.User_Default
                         Try
@@ -137,7 +140,7 @@ Namespace Database
             Return R
         End Function
 
-        Function AddNew(Username As String, UserType As String, Password As String, Address As String, Mobile As String, Email As String, Permissions As Specialized.StringCollection, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As User
+        Function AddNew(Username As String, UserType As String, Password As String, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As User
             Dim R As User = Nothing
 
             Dim CommandString As String = "INSERT INTO [Users] ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo],[Credentials]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo,@credentials);SELECT SCOPE_IDENTITY();"
@@ -154,7 +157,7 @@ Namespace Database
                 AddParameter(Command, "@address", Address)
                 AddParameter(Command, "@mobile", Mobile)
                 AddParameter(Command, "@email", Email)
-                AddParameter(Command, "@permissions", ObjectSerilizer.ToXML(Permissions))
+                AddParameter(Command, "@permissions", Permissions.ToString)
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", ms.ToArray)
                 AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
@@ -170,7 +173,7 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, Username As String, UserType As String, Address As String, Mobile As String, Email As String, Permissions As Specialized.StringCollection, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As Boolean
+        Function Update(ByVal ID As Integer, Username As String, UserType As String, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Credentials As ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As Boolean
             Dim R As Boolean = False
 
             Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Credentials]=@credentials,[Desktop]=@desktop,[Home]=@home WHERE [ID]=@ID;"
@@ -187,7 +190,7 @@ Namespace Database
                 AddParameter(Command, "@address", Address)
                 AddParameter(Command, "@mobile", Mobile)
                 AddParameter(Command, "@email", Email)
-                AddParameter(Command, "@permissions", ObjectSerilizer.ToXML(Permissions))
+                AddParameter(Command, "@permissions", Permissions.ToString)
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", ms.ToArray)
                 AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
@@ -245,7 +248,10 @@ Namespace Database
                         Dim Address As String = Reader.Item("Address").ToString
                         Dim Mobile As String = Reader.Item("Mobile").ToString
                         Dim Email As String = Reader.Item("Email").ToString
-                        Dim Permissions As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Reader.Item("Permissions").ToString)
+                        Dim Permissions As Enums.UserPermissions
+                        If Reader.Item("Permissions").ToString <> "" Then
+                            Permissions = [Enum].Parse(GetType(Enums.UserPermissions), Reader.Item("Permissions").ToString)
+                        End If
                         Dim Status As String = Reader.Item("Status").ToString
                         Dim Photo As Drawing.Image = My.Resources.User_Default
                         Try
@@ -283,7 +289,10 @@ Namespace Database
                         Dim Address As String = Reader.Item("Address").ToString
                         Dim Mobile As String = Reader.Item("Mobile").ToString
                         Dim Email As String = Reader.Item("Email").ToString
-                        Dim Permissions As Specialized.StringCollection = ObjectSerilizer.FromXML(Of Specialized.StringCollection)(Reader.Item("Permissions").ToString)
+                        Dim Permissions As Enums.UserPermissions
+                        If Reader.Item("Permissions").ToString <> "" Then
+                            Permissions = [Enum].Parse(GetType(Enums.UserPermissions), Reader.Item("Permissions").ToString)
+                        End If
                         Dim Status As String = Reader.Item("Status").ToString
                         Dim Photo As Drawing.Image = My.Resources.User_Default
                         Try

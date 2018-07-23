@@ -23,7 +23,7 @@ Imports Devil7.Automation.OMS.Lib
 
 Public Class frm_Permission
 
-    Sub New(ByVal Mode As Enums.DialogMode, Optional ByVal Permission As Enums.UserPermissions = Enums.UserPermissions.System)
+    Sub New(ByVal Mode As Enums.DialogMode, Optional ByVal Permission As Enums.UserPermissions = Enums.UserPermissions.Basic)
         InitializeComponent()
         Me.Mode = Mode
         If Mode = Enums.DialogMode.Edit Then
@@ -34,7 +34,9 @@ Public Class frm_Permission
     Dim Mode As Enums.DialogMode = Enums.DialogMode.Add
 
     Private Sub frm_Permission_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        cmb_Permission.Properties.Items.AddRange([Enum].GetValues(GetType(Enums.UserPermissions)))
+        For Each i As Enums.UserPermissions In [Enum].GetValues(GetType(Enums.UserPermissions))
+            cmb_Permission.Properties.Items.Add(i)
+        Next
         cmb_Permission.SelectedIndex = 0
         If Mode = Enums.DialogMode.Edit Then
             cmb_Permission.SelectedItem = Permission

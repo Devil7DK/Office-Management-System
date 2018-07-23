@@ -20,21 +20,20 @@
 '=========================================================================='
 
 Namespace Enums
-    <FlagsAttribute()> _
+    <Flags()> _
     Public Enum UserPermissions
-        System
-        CreateUser
-        EditUser
-        ViewUser
-        AddJob
-        EditJob
-        ViewJob
-        AddWork
-        EditWork
-        ViewWork
-        AddClient
-        EditClient
-        ViewClient
-        ViewAllCredentials
+        Basic = 0
+        CreateUser = 1
+        EditUser = 2
+        ViewUser = 4
+        AddJob = 8
+        EditJob = 16
+        ViewJob = 32
+        AddWork = 64
+        EditWork = 128
+        ViewWork = 256
+        AddClient = 512
+        EditClient = 1024
+        ViewClient = 2048
     End Enum
 End Namespace

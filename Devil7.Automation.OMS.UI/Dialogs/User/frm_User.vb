@@ -89,8 +89,10 @@ Public Class frm_User
             txt_Desktop.Text = User.Desktop
             txt_Home.Text = User.Home
             cmb_UserType.SelectedIndex = Enums.StringToEnum(Of Enums.UserType)(User.UserType)
-            For Each i As String In User.Permissions
-                lst_Permissions.Items.Add(Enums.StringToEnum(Of Enums.UserPermissions)(i))
+            For Each i As Enums.UserPermissions In [Enum].GetValues(GetType(Enums.UserPermissions))
+                If User.Permissions.HasFlag(i) Then
+                    lst_Permissions.Items.Add(i)
+                End If
             Next
             dgv_Credentials.DataSource = User.Credentials
             txt_ConfirmPassword.Text = txt_Password.Text
@@ -133,12 +135,12 @@ Public Class frm_User
         Me.Close()
     End Sub
 
-    Function GetPermissions() As Specialized.StringCollection
-        Dim r As New Specialized.StringCollection
+    Function GetPermissions() As Enums.UserPermissions
+        Dim Values As Enums.UserPermissions
         For Each i As Enums.UserPermissions In lst_Permissions.Items
-            r.Add(i.ToString)
+            Values += i
         Next
-        Return r
+        Return Values
     End Function
 
     Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
