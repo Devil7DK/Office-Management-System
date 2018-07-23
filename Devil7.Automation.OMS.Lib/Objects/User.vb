@@ -31,7 +31,7 @@ Namespace Objects
         Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As String = "", Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
             Me.ID = ID
             Me.Username = Username
-            Me.UserType = UserType
+            Me.UserType = [Enum].Parse(GetType(Enums.UserType), UserType)
             Me.Address = Address
             Me.Mobile = Mobile
             Me.Email = Email
@@ -49,7 +49,7 @@ Namespace Objects
 
         Property ID As Integer = -1
         Property Username As String = ""
-        Property UserType As String = ""
+        Property UserType As Enums.UserType = Enums.UserType.User
         Property Address As String = ""
         Property Mobile As String = ""
         Property Email As String = ""
