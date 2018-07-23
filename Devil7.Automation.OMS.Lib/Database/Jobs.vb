@@ -134,7 +134,7 @@ Namespace Database
             Return R
         End Function
 
-        Function GetJobByID(ByVal JID As String, ByVal CloseConnection As Boolean) As Job
+        Function GetJobByJID(ByVal JID As String, ByVal CloseConnection As Boolean) As Job
             Dim R As Job = Nothing
 
             Dim CommandString As String = "SELECT * FROM [Jobs] WHERE [JID]=@JID;"
@@ -150,6 +150,36 @@ Namespace Database
                         Dim Name As String = Reader.Item("JobName").ToString
                         Dim Group As String = Reader.Item("Group").ToString
                         Dim SubGroup As String = Reader.Item("SubGroup").ToString
+                        Dim Type As Enums.JobType = DirectCast([Enum].Parse(GetType(Enums.JobType), Reader.Item("Type").ToString), Enums.JobType)
+                        Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
+                        Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
+                        R = New Job(ID_, JID, Name, Group, SubGroup, Type, Steps, Templates)
+                    End If
+                End Using
+            End Using
+
+            If CloseConnection Then Connection.Close()
+
+            Return R
+        End Function
+
+        Function GetJobByID(ByVal ID As Integer, ByVal CloseConnection As Boolean) As Job
+            Dim R As Job = Nothing
+
+            Dim CommandString As String = "SELECT * FROM [Jobs] WHERE [ID]=@ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    If Reader.Read() Then
+                        Dim ID_ As Integer = CInt(Reader.Item("ID").ToString)
+                        Dim Name As String = Reader.Item("JobName").ToString
+                        Dim Group As String = Reader.Item("Group").ToString
+                        Dim SubGroup As String = Reader.Item("SubGroup").ToString
+                        Dim JID As String = Reader.Item("JID").ToString
                         Dim Type As Enums.JobType = DirectCast([Enum].Parse(GetType(Enums.JobType), Reader.Item("Type").ToString), Enums.JobType)
                         Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
                         Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
