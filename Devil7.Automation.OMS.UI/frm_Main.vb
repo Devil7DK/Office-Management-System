@@ -19,6 +19,7 @@
 '                                                                          '
 '=========================================================================='
 
+Imports DevExpress.XtraGrid
 Imports Devil7.Automation.OMS.Lib
 
 Public Class frm_Main
@@ -52,6 +53,7 @@ Public Class frm_Main
         cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_WorkbookView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_BillingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
 
     Sub UsersPageLoad()
@@ -71,6 +73,11 @@ Public Class frm_Main
     Sub ClientsPageLoad()
         rpg_Clients.Visible = True
         grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        If gc_Clients.MainView Is gv_Clients Then
+            cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        Else
+            cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
         If gc_Clients.DataSource Is Nothing Then
             If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
         End If
@@ -305,6 +312,7 @@ Public Class frm_Main
             Me.Clients = Clients
             Me.Invoke(Sub()
                           gc_Clients.DataSource = Clients
+                          SortClients()
                       End Sub)
         Catch ex As Exception
 
@@ -586,7 +594,7 @@ Public Class frm_Main
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
                       End Sub)
-            SetupHomeColumns
+            SetupHomeColumns()
         Catch ex As Exception
 
         End Try
@@ -695,6 +703,7 @@ Public Class frm_Main
         cmb_HomeView.EditValue = My.Settings.ViewHome
         cmb_WorkbookView.EditValue = My.Settings.ViewWorkbook
         cmb_BillingView.EditValue = My.Settings.ViewBilling
+        cmb_ClientsSort.EditValue = My.Settings.SortClient
         ProcessPermissions()
     End Sub
 
@@ -926,4 +935,36 @@ Public Class frm_Main
         End If
     End Sub
 
+    Sub SortClients()
+        Dim Clients As List(Of Objects.Client) = gc_Clients.DataSource
+        If Clients IsNot Nothing Then
+            Select Case cmb_ClientsSort.EditValue
+                Case "FileNo"
+                    Clients.Sort(New Comparers.CompareByFileNo)
+                Case "ID"
+                    Clients.Sort(New Comparers.CompareByID)
+                Case "Name"
+                    Clients.Sort(New Comparers.CompareByName)
+                Case "PAN"
+                    Clients.Sort(New Comparers.CompareByPAN)
+            End Select
+        End If
+        gc_Clients.RefreshDataSource()
+    End Sub
+
+    Private Sub cmb_ClientsSort_EditValueChanged(sender As Object, e As EventArgs) Handles cmb_ClientsSort.EditValueChanged
+        If Loaded Then
+            SortClients()
+            My.Settings.SortClient = cmb_ClientsSort.EditValue
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub gc_Clients_FocusedViewChanged(sender As Object, e As ViewFocusEventArgs) Handles gc_Clients.FocusedViewChanged
+        If gc_Clients.MainView Is gv_Clients Then
+            cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        Else
+            cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
+    End Sub
 End Class

@@ -113,6 +113,18 @@ Namespace My
                 Me("ViewBilling") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("FileNo")>  _
+        Public Property SortClient() As String
+            Get
+                Return CType(Me("SortClient"),String)
+            End Get
+            Set
+                Me("SortClient") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

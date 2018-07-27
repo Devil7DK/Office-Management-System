@@ -17,5 +17,8 @@
     <Setting Name="ViewBilling" Type="System.String" Scope="User">
       <Value Profile="(Default)">Minimal</Value>
     </Setting>
+    <Setting Name="SortClient" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FileNo</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
