@@ -81,11 +81,19 @@ Public Class frm_FilersReport
         ElseIf e.Page Is page_Result Then
             MainWizard.SelectedPage = page_Export
         ElseIf e.Page Is page_Export Then
-            If txt_ExportPath.EditValue <> "" Then
-                gc_Result.ExportToXlsx(txt_ExportPath.EditValue)
+            Dim SupportedExtensions As String() = {"xlsx", "xls", "csv"}
+            Dim Ext As String = IO.Path.GetExtension(txt_ExportPath.EditValue)
+            If txt_ExportPath.EditValue <> "" AndAlso SupportedExtensions.Contains(Ext) Then
+                If Ext = "csv" Then
+                    gc_Result.ExportToCsv(txt_ExportPath.EditValue)
+                ElseIf Ext = "xls" Then
+                    gc_Result.ExportToXls(txt_ExportPath.EditValue)
+                Else
+                    gc_Result.ExportToXlsx(txt_ExportPath.EditValue)
+                End If
                 MainWizard.SelectedPage = page_Finish
             Else
-                MsgBox("Export path cannot be empty.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                MsgBox("Export path is not valid.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             End If
         End If
     End Sub
@@ -145,6 +153,17 @@ Public Class frm_FilersReport
     End Sub
 
     Private Sub txt_ExportPath_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txt_ExportPath.ButtonClick
+        Select Case rgrp_ExportType.EditValue
+            Case 0
+                SaveFileDialog_Export.Filter = "Microsoft Excel Spreadsheet (*.xlsx)|*.xlsx"
+                SaveFileDialog_Export.DefaultExt = "xlsx"
+            Case 1
+                SaveFileDialog_Export.Filter = "Microsoft Excel Spreadsheet (*.xls)|*.xls"
+                SaveFileDialog_Export.DefaultExt = "xls"
+            Case 2
+                SaveFileDialog_Export.Filter = "Comma Separated Values File (*.csv)|*.csv"
+                SaveFileDialog_Export.DefaultExt = "csv"
+        End Select
         If SaveFileDialog_Export.ShowDialog = DialogResult.OK Then
             txt_ExportPath.EditValue = SaveFileDialog_Export.FileName
         End If

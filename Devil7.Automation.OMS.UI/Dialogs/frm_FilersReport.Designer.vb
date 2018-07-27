@@ -274,11 +274,12 @@ Partial Class frm_FilersReport
         '
         'rgrp_ExportType
         '
+        Me.rgrp_ExportType.EditValue = 0
         Me.rgrp_ExportType.Location = New System.Drawing.Point(89, 22)
         Me.rgrp_ExportType.Name = "rgrp_ExportType"
         Me.rgrp_ExportType.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.rgrp_ExportType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Microsoft Excel Spreadsheet 2007 & Later (XLSX)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Microsoft Excel Spreadsheet 2003 (XLS)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Comma Separated Values (CSV)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Adobe Portable Document Format (PDF)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Microsoft Office Word Document (DOCX)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Webpage (HTML)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(Nothing, "Microsoft Webpage (MHTML)")})
-        Me.rgrp_ExportType.Size = New System.Drawing.Size(561, 96)
+        Me.rgrp_ExportType.Properties.Items.AddRange(New DevExpress.XtraEditors.Controls.RadioGroupItem() {New DevExpress.XtraEditors.Controls.RadioGroupItem(0, "Microsoft Excel Spreadsheet 2007 & Later (XLSX)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(1, "Microsoft Excel Spreadsheet 2003 (XLS)"), New DevExpress.XtraEditors.Controls.RadioGroupItem(2, "Comma Separated Values (CSV)")})
+        Me.rgrp_ExportType.Size = New System.Drawing.Size(497, 96)
         Me.rgrp_ExportType.TabIndex = 2
         '
         'LabelControl6
