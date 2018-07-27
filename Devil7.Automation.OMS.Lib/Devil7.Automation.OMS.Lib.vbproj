@@ -71,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comparers\CompareByID.vb" />
+    <Compile Include="Comparers\CompareByName.vb" />
+    <Compile Include="Comparers\CompareByPAN.vb" />
+    <Compile Include="Comparers\CompareByFileNo.vb" />
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
