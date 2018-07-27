@@ -29,12 +29,15 @@ Public Class frm_Main
     Dim Clients As List(Of Objects.Client)
     Dim Jobs As List(Of Objects.Job)
 
-    Dim RAMUsed As ULong 
+    Dim RAMUsed As ULong
     Dim Loaded As Boolean = False
 
-    Sub New(User As Objects.User)
+    Dim LoginInstance As frm_Login
+
+    Sub New(User As Objects.User, LoginInstance As frm_Login)
         InitializeComponent()
         Me.User = User
+        Me.LoginInstance = LoginInstance
     End Sub
 
 #Region "Functions"
@@ -599,6 +602,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub frm_Main_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
+        LoginInstance.BeginInvoke(Sub() LoginInstance.Close())
         Loaded = True
         If User.UserType = Enums.UserType.System Then
             If MsgBox("WARNING: You are logged in as and 'System' User." &
