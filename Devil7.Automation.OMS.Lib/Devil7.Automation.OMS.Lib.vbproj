@@ -71,13 +71,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comparers\CompareByID.vb" />
-    <Compile Include="Comparers\JobComparer.vb" />
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
     <Compile Include="Database\Workbook.vb" />
     <Compile Include="Database\Jobs.vb" />
     <Compile Include="Database\Users.vb" />
+    <Compile Include="Enums\PeriodType.vb" />
     <Compile Include="Enums\CenterType.vb" />
     <Compile Include="Enums\DialogMode.vb" />
     <Compile Include="Enums\Functions.vb" />
@@ -90,10 +90,18 @@
     <Compile Include="Objects\Job.vb" />
     <Compile Include="Objects\Partner.vb" />
     <Compile Include="Objects\WorkbookItem.vb" />
+    <Compile Include="Objects\YearMonth.vb" />
     <Compile Include="Utils\Encryption.vb" />
     <Compile Include="Utils\Misc.vb" />
     <Compile Include="Utils\ObjectSerilizer.vb" />
+    <Compile Include="Utils\Periods.vb" />
     <Compile Include="Utils\SettingsManager.vb" />
+    <Compile Include="Utils\YearMonthEdit.Designer.vb">
+      <DependentUpon>YearMonthEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\YearMonthEdit.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="XtraFormTemp.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -116,11 +124,15 @@
     <Compile Include="Objects\User.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\YearMonthEdit.resx">
+      <DependentUpon>YearMonthEdit.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
