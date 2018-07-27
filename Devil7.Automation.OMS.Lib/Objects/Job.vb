@@ -24,7 +24,6 @@ Namespace Objects
 
         Sub New()
             Me.ID_ = 0
-            Me.JID = ""
             Me.Name = ""
             Me.Group = ""
             Me.SubGroup = ""
@@ -33,19 +32,14 @@ Namespace Objects
             Me.Templates = New List(Of String)
         End Sub
 
-        Sub New(ByVal ID As String, ByVal JID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String))
+        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String))
             Me.ID_ = ID
-            Me.JID = JID
             Me.Name = Name
             Me.Group = Group
             Me.SubGroup = SubGroup
             Me.Type = Type
             Me.Steps = Steps
             Me.Templates = Templates
-        End Sub
-
-        Sub New(ByVal JID As String)
-            Me.JID = JID
         End Sub
 
         Dim ID_ As Integer = -1
@@ -64,7 +58,6 @@ Namespace Objects
         Property Type As Enums.JobType
         Property Steps As List(Of String)
         Property Templates As List(Of String)
-        Property JID As String
 
         Public Overrides Function ToString() As String
             Return Name.ToString()
