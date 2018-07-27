@@ -112,6 +112,12 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Control = New System.Windows.Forms.Panel()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_GSTNo = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_FileNo = New DevExpress.XtraEditors.TextEdit()
         Me.Panel_Main.SuspendLayout()
         Me.Panel_Details.SuspendLayout()
         Me.Panel_Controls_Layout.SuspendLayout()
@@ -149,6 +155,8 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Photo_Control.SuspendLayout()
         CType(Me.pic_Photo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel_Control.SuspendLayout()
+        CType(Me.txt_GSTNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_FileNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OFD_Image
@@ -224,31 +232,37 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Controls_Layout.Controls.Add(Me.Label28, 1, 13)
         Me.Panel_Controls_Layout.Controls.Add(Me.txt_TIN, 2, 12)
         Me.Panel_Controls_Layout.Controls.Add(Me.txt_CIN, 2, 13)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label29, 0, 14)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label30, 1, 14)
-        Me.Panel_Controls_Layout.Controls.Add(Me.cmb_TypeOfEngagement, 2, 14)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label31, 0, 15)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label32, 1, 15)
-        Me.Panel_Controls_Layout.Controls.Add(Me.txt_Description, 2, 15)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label33, 0, 16)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label34, 1, 16)
-        Me.Panel_Controls_Layout.Controls.Add(Me.txt_Status, 2, 16)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label35, 0, 17)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label36, 0, 18)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label37, 0, 19)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label38, 1, 17)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label39, 1, 18)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Label40, 1, 19)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Partners, 2, 17)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Jobs, 2, 18)
-        Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Credentials, 2, 19)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label29, 0, 16)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label30, 1, 16)
+        Me.Panel_Controls_Layout.Controls.Add(Me.cmb_TypeOfEngagement, 2, 16)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label31, 0, 17)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label32, 1, 17)
+        Me.Panel_Controls_Layout.Controls.Add(Me.txt_Description, 2, 17)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label33, 0, 18)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label34, 1, 18)
+        Me.Panel_Controls_Layout.Controls.Add(Me.txt_Status, 2, 18)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label35, 0, 19)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label36, 0, 20)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label37, 0, 21)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label38, 1, 19)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label39, 1, 20)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Label40, 1, 21)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Partners, 2, 19)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Jobs, 2, 20)
+        Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Credentials, 2, 21)
         Me.Panel_Controls_Layout.Controls.Add(Me.Label6, 0, 2)
         Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl1, 1, 2)
         Me.Panel_Controls_Layout.Controls.Add(Me.txt_DOB, 2, 4)
+        Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl2, 0, 14)
+        Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl3, 0, 15)
+        Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl4, 1, 14)
+        Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl5, 1, 15)
+        Me.Panel_Controls_Layout.Controls.Add(Me.txt_GSTNo, 2, 14)
+        Me.Panel_Controls_Layout.Controls.Add(Me.txt_FileNo, 2, 15)
         Me.Panel_Controls_Layout.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel_Controls_Layout.Location = New System.Drawing.Point(0, 175)
         Me.Panel_Controls_Layout.Name = "Panel_Controls_Layout"
-        Me.Panel_Controls_Layout.RowCount = 20
+        Me.Panel_Controls_Layout.RowCount = 22
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
@@ -263,13 +277,14 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 184.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 149.0!))
         Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
-        Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.Panel_Controls_Layout.Size = New System.Drawing.Size(762, 924)
         Me.Panel_Controls_Layout.TabIndex = 0
         '
@@ -633,7 +648,7 @@ Partial Class frm_ClientAddEdit
         'Label29
         '
         Me.Label29.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label29.Location = New System.Drawing.Point(3, 343)
+        Me.Label29.Location = New System.Drawing.Point(3, 393)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(244, 19)
         Me.Label29.TabIndex = 48
@@ -641,7 +656,7 @@ Partial Class frm_ClientAddEdit
         '
         'Label30
         '
-        Me.Label30.Location = New System.Drawing.Point(253, 343)
+        Me.Label30.Location = New System.Drawing.Point(253, 393)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(4, 13)
         Me.Label30.TabIndex = 49
@@ -651,7 +666,7 @@ Partial Class frm_ClientAddEdit
         '
         Me.cmb_TypeOfEngagement.Dock = System.Windows.Forms.DockStyle.Fill
         Me.cmb_TypeOfEngagement.EnterMoveNextControl = True
-        Me.cmb_TypeOfEngagement.Location = New System.Drawing.Point(264, 343)
+        Me.cmb_TypeOfEngagement.Location = New System.Drawing.Point(264, 393)
         Me.cmb_TypeOfEngagement.Name = "cmb_TypeOfEngagement"
         Me.cmb_TypeOfEngagement.Properties.Items.AddRange(New Object() {"N/A"})
         Me.cmb_TypeOfEngagement.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
@@ -661,7 +676,7 @@ Partial Class frm_ClientAddEdit
         'Label31
         '
         Me.Label31.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label31.Location = New System.Drawing.Point(3, 368)
+        Me.Label31.Location = New System.Drawing.Point(3, 418)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(244, 19)
         Me.Label31.TabIndex = 51
@@ -670,7 +685,7 @@ Partial Class frm_ClientAddEdit
         'Label32
         '
         Me.Label32.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label32.Location = New System.Drawing.Point(253, 368)
+        Me.Label32.Location = New System.Drawing.Point(253, 418)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(5, 19)
         Me.Label32.TabIndex = 52
@@ -680,7 +695,7 @@ Partial Class frm_ClientAddEdit
         '
         Me.txt_Description.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_Description.EnterMoveNextControl = True
-        Me.txt_Description.Location = New System.Drawing.Point(264, 368)
+        Me.txt_Description.Location = New System.Drawing.Point(264, 418)
         Me.txt_Description.Name = "txt_Description"
         Me.txt_Description.Size = New System.Drawing.Size(495, 20)
         Me.txt_Description.TabIndex = 15
@@ -688,7 +703,7 @@ Partial Class frm_ClientAddEdit
         'Label33
         '
         Me.Label33.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label33.Location = New System.Drawing.Point(3, 393)
+        Me.Label33.Location = New System.Drawing.Point(3, 443)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(244, 19)
         Me.Label33.TabIndex = 54
@@ -697,7 +712,7 @@ Partial Class frm_ClientAddEdit
         'Label34
         '
         Me.Label34.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label34.Location = New System.Drawing.Point(253, 393)
+        Me.Label34.Location = New System.Drawing.Point(253, 443)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(5, 19)
         Me.Label34.TabIndex = 55
@@ -707,7 +722,7 @@ Partial Class frm_ClientAddEdit
         '
         Me.txt_Status.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_Status.EnterMoveNextControl = True
-        Me.txt_Status.Location = New System.Drawing.Point(264, 393)
+        Me.txt_Status.Location = New System.Drawing.Point(264, 443)
         Me.txt_Status.Name = "txt_Status"
         Me.txt_Status.Size = New System.Drawing.Size(495, 20)
         Me.txt_Status.TabIndex = 16
@@ -715,7 +730,7 @@ Partial Class frm_ClientAddEdit
         'Label35
         '
         Me.Label35.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label35.Location = New System.Drawing.Point(3, 418)
+        Me.Label35.Location = New System.Drawing.Point(3, 468)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(244, 178)
         Me.Label35.TabIndex = 57
@@ -724,7 +739,7 @@ Partial Class frm_ClientAddEdit
         'Label36
         '
         Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label36.Location = New System.Drawing.Point(3, 602)
+        Me.Label36.Location = New System.Drawing.Point(3, 652)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(244, 143)
         Me.Label36.TabIndex = 58
@@ -733,16 +748,16 @@ Partial Class frm_ClientAddEdit
         'Label37
         '
         Me.Label37.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label37.Location = New System.Drawing.Point(3, 751)
+        Me.Label37.Location = New System.Drawing.Point(3, 801)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(244, 170)
+        Me.Label37.Size = New System.Drawing.Size(244, 120)
         Me.Label37.TabIndex = 59
         Me.Label37.Text = "Credentials"
         '
         'Label38
         '
         Me.Label38.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label38.Location = New System.Drawing.Point(253, 418)
+        Me.Label38.Location = New System.Drawing.Point(253, 468)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(5, 178)
         Me.Label38.TabIndex = 60
@@ -751,7 +766,7 @@ Partial Class frm_ClientAddEdit
         'Label39
         '
         Me.Label39.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label39.Location = New System.Drawing.Point(253, 602)
+        Me.Label39.Location = New System.Drawing.Point(253, 652)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(5, 143)
         Me.Label39.TabIndex = 61
@@ -760,9 +775,9 @@ Partial Class frm_ClientAddEdit
         'Label40
         '
         Me.Label40.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label40.Location = New System.Drawing.Point(253, 751)
+        Me.Label40.Location = New System.Drawing.Point(253, 801)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(5, 170)
+        Me.Label40.Size = New System.Drawing.Size(5, 120)
         Me.Label40.TabIndex = 62
         Me.Label40.Text = ":"
         '
@@ -771,7 +786,7 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Partners.Controls.Add(Me.gv_PartnersDirectors)
         Me.Panel_Partners.Controls.Add(Me.Panel_Partners_Control)
         Me.Panel_Partners.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel_Partners.Location = New System.Drawing.Point(264, 418)
+        Me.Panel_Partners.Location = New System.Drawing.Point(264, 468)
         Me.Panel_Partners.Name = "Panel_Partners"
         Me.Panel_Partners.Size = New System.Drawing.Size(495, 178)
         Me.Panel_Partners.TabIndex = 63
@@ -845,7 +860,7 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Jobs.Controls.Add(Me.gv_Jobs)
         Me.Panel_Jobs.Controls.Add(Me.Panel_Jobs_Control)
         Me.Panel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel_Jobs.Location = New System.Drawing.Point(264, 602)
+        Me.Panel_Jobs.Location = New System.Drawing.Point(264, 652)
         Me.Panel_Jobs.Name = "Panel_Jobs"
         Me.Panel_Jobs.Size = New System.Drawing.Size(495, 143)
         Me.Panel_Jobs.TabIndex = 64
@@ -919,9 +934,9 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Credentials.Controls.Add(Me.gv_Credentials)
         Me.Panel_Credentials.Controls.Add(Me.Panel_Credentials_Control)
         Me.Panel_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel_Credentials.Location = New System.Drawing.Point(264, 751)
+        Me.Panel_Credentials.Location = New System.Drawing.Point(264, 801)
         Me.Panel_Credentials.Name = "Panel_Credentials"
-        Me.Panel_Credentials.Size = New System.Drawing.Size(495, 170)
+        Me.Panel_Credentials.Size = New System.Drawing.Size(495, 120)
         Me.Panel_Credentials.TabIndex = 65
         '
         'gv_Credentials
@@ -930,7 +945,7 @@ Partial Class frm_ClientAddEdit
         Me.gv_Credentials.Location = New System.Drawing.Point(0, 0)
         Me.gv_Credentials.MainView = Me.GridView3
         Me.gv_Credentials.Name = "gv_Credentials"
-        Me.gv_Credentials.Size = New System.Drawing.Size(495, 136)
+        Me.gv_Credentials.Size = New System.Drawing.Size(495, 86)
         Me.gv_Credentials.TabIndex = 25
         Me.gv_Credentials.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -947,7 +962,7 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Edit)
         Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Remove)
         Me.Panel_Credentials_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 136)
+        Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 86)
         Me.Panel_Credentials_Control.Name = "Panel_Credentials_Control"
         Me.Panel_Credentials_Control.Size = New System.Drawing.Size(495, 34)
         Me.Panel_Credentials_Control.TabIndex = 3
@@ -1096,6 +1111,60 @@ Partial Class frm_ClientAddEdit
         Me.btn_Done.TabStop = False
         Me.btn_Done.Text = "Done"
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl2.Location = New System.Drawing.Point(3, 343)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(244, 19)
+        Me.LabelControl2.TabIndex = 66
+        Me.LabelControl2.Text = "GST Registration Number"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl3.Location = New System.Drawing.Point(3, 368)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(244, 19)
+        Me.LabelControl3.TabIndex = 67
+        Me.LabelControl3.Text = "Associated File Number"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl4.Location = New System.Drawing.Point(253, 343)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(5, 19)
+        Me.LabelControl4.TabIndex = 68
+        Me.LabelControl4.Text = ":"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl5.Location = New System.Drawing.Point(253, 368)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(5, 19)
+        Me.LabelControl5.TabIndex = 69
+        Me.LabelControl5.Text = ":"
+        '
+        'txt_GSTNo
+        '
+        Me.txt_GSTNo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_GSTNo.Location = New System.Drawing.Point(264, 343)
+        Me.txt_GSTNo.Name = "txt_GSTNo"
+        Me.txt_GSTNo.Properties.Mask.EditMask = "[0-9]{2}[A-Z]{3}[ABCFGHLJPTK][A-Z][0-9]{4}[A-Z][0-9]{1}[Z]{1}[A-Z0-9]{1}"
+        Me.txt_GSTNo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx
+        Me.txt_GSTNo.Size = New System.Drawing.Size(495, 20)
+        Me.txt_GSTNo.TabIndex = 70
+        '
+        'txt_FileNo
+        '
+        Me.txt_FileNo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_FileNo.Location = New System.Drawing.Point(264, 368)
+        Me.txt_FileNo.Name = "txt_FileNo"
+        Me.txt_FileNo.Size = New System.Drawing.Size(495, 20)
+        Me.txt_FileNo.TabIndex = 71
+        '
         'frm_ClientAddEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1144,6 +1213,8 @@ Partial Class frm_ClientAddEdit
         Me.Panel_Photo_Control.ResumeLayout(False)
         CType(Me.pic_Photo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel_Control.ResumeLayout(False)
+        CType(Me.txt_GSTNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_FileNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1236,4 +1307,10 @@ Partial Class frm_ClientAddEdit
     Friend WithEvents gv_Credentials As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents txt_DOB As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txt_GSTNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_FileNo As DevExpress.XtraEditors.TextEdit
 End Class
