@@ -25,7 +25,6 @@ Imports System.Data.SqlClient
 Public Class frm_Job
     Dim Mode As Enums.DialogMode
     Dim ID As Integer
-    Dim DJID As String = ""
     Property Job As Objects.Job = Nothing
     Sub New(ByVal Mode As Enums.DialogMode, ByVal Groups As String(), ByVal SubGroups As String(), Optional ByVal ID As Integer = -1)
         InitializeComponent()
@@ -57,14 +56,9 @@ Public Class frm_Job
         Dim lstSteps As New List(Of String)
         lstSteps.AddRange(txt_Steps.Lines)
         If Mode = Enums.DialogMode.Add Then
-            Dim JID As String = Database.GetJID(cmb_Group.Text, cmb_SubGroup.Text, False)
-            If MsgBox("A job will be created with the details given by you. The Job ID will be " & JID & ". Do you wan't to continue?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "?") = MsgBoxResult.Yes Then
-                Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, JID, True)
-            Else
-                Exit Sub
-            End If
+            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, True)
         ElseIf Mode = Enums.DialogMode.Edit Then
-            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, DJID, True)
+            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, True)
         End If
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
@@ -84,7 +78,6 @@ Public Class frm_Job
                 Next
                 txt_Steps.Text = Steps.Trim
                 lst_Templates.Items.AddRange(Job.Templates.ToArray)
-                DJID = Job.JID
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
