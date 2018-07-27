@@ -41,7 +41,7 @@ Public Class frm_Job_Lite
     Private Sub frm_Job_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Mode = Enums.DialogMode.Edit AndAlso Job IsNot Nothing Then
             For Each i As Objects.Job In cmb_Name.Properties.Items
-                If i.JID = Job.JID Then
+                If i.ID = Job.ID Then
                     cmb_Name.SelectedItem = i
                     Exit For
                 End If
