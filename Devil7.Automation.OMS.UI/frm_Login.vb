@@ -30,6 +30,7 @@ Public Class frm_Login
     End Function
 
     Private Sub frm_Login_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Devil7.Automation.OMS.Lib.Utils.SettingsManager.LoadSettings()
         If IsAdmin() Then
             btn_ServerSettings.Enabled = True
         Else
