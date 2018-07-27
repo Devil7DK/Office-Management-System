@@ -58,8 +58,8 @@ Public Class frm_WorkBook
             cmb_Priority.Enabled = False
             cmb_Steps.Enabled = False
             cmb_CurrentlyAssignedTo.Enabled = True
-            txt_FinancialYear.Enabled = False
-            txt_AssessmentYear.Enabled = False
+            txt_FinancialYearMonth.Enabled = False
+            txt_AssessmentYearMonth.Enabled = False
         End If
 
         If Mode = Enums.DialogMode.Edit AndAlso ID <> -1 Then
@@ -72,13 +72,13 @@ Public Class frm_WorkBook
             Dim CurrentStep As String = ""
             Dim Work = Database.Workbook.GetWorkbookItemByID(ID)
             OwnerID = Work.Owner.ID
-            JobId = Work.Job.JID
+            JobId = Work.Job.ID
             ClientID = Work.Client.ID
             txt_DueDate.DateTime = Work.DueDate
             txt_TargetDate.DateTime = Work.TargetDate
             Priority = Work.PriorityOfWork
-            txt_FinancialYear.Text = Work.FinancialDetail
-            txt_AssessmentYear.Text = Work.AssementDetail
+            txt_FinancialYearMonth.Value = Work.FinancialDetail
+            txt_AssessmentYearMonth.Value = Work.AssementDetail
             txt_Description.Text = Work.Description
             txt_Remarks.Text = Work.Remarks
             Status = Work.Status
@@ -96,7 +96,7 @@ Public Class frm_WorkBook
                 End If
             Next
             For Each i As Objects.Job In cmb_Job.Properties.Items
-                If i.JID = JobId Then
+                If i.ID = JobId Then
                     cmb_Job.SelectedItem = i
                     Exit For
                 End If
@@ -134,6 +134,9 @@ Public Class frm_WorkBook
             Dim item As Objects.Job = cmb_Job.SelectedItem
             cmb_Steps.Properties.Items.Clear()
             cmb_Steps.Properties.Items.AddRange(item.Steps)
+
+            txt_AssessmentYearMonth.PeriodType = item.Type
+            txt_FinancialYearMonth.PeriodType = item.Type
         Catch ex As Exception
 
         End Try
@@ -150,7 +153,7 @@ Public Class frm_WorkBook
         If Mode = Enums.DialogMode.Add Then
             Try
                 WorkItemSelected = Nothing
-                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, CType(cmb_Client.SelectedItem, Objects.Client), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYear.Text, txt_FinancialYear.Text, Utils.Misc.GetFolder(GetDefaultStorage, CType(cmb_Client.SelectedItem, Objects.Client), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYear.Text, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
+                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, CType(cmb_Client.SelectedItem, Objects.Client), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, CType(cmb_Client.SelectedItem, Objects.Client), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
                 If WorkItemSelected IsNot Nothing Then
                     MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                     Me.DialogResult = Windows.Forms.DialogResult.OK
