@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frm_Main
     Inherits DevExpress.XtraBars.Ribbon.RibbonForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class frm_Main
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
@@ -87,6 +87,13 @@ Partial Class frm_Main
         Me.RAMUsage = New DevExpress.XtraBars.BarEditItem()
         Me.RAMUsage_Progress = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.btn_FreeRAM = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_GenerateReport = New DevExpress.XtraBars.BarButtonItem()
+        Me.cmb_HomeView = New DevExpress.XtraBars.BarEditItem()
+        Me.cmb_HomeView_Editor = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.cmb_WorkbookView = New DevExpress.XtraBars.BarEditItem()
+        Me.cmb_WorkbookView_View = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.cmb_BillingView = New DevExpress.XtraBars.BarEditItem()
+        Me.cmb_BillingView_Edit = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Billing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -145,6 +152,9 @@ Partial Class frm_Main
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_HomeView_Editor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_WorkbookView_View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_BillingView_Edit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
@@ -269,12 +279,12 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 40
+        Me.RibbonControl.MaxItemId = 44
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
-        Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress})
+        Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress, Me.cmb_HomeView_Editor, Me.cmb_WorkbookView_View, Me.cmb_BillingView_Edit})
         Me.RibbonControl.ShowCategoryInCaption = False
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -475,6 +485,68 @@ Partial Class frm_Main
         Me.btn_FreeRAM.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.clean
         Me.btn_FreeRAM.Name = "btn_FreeRAM"
         '
+        'btn_GenerateReport
+        '
+        Me.btn_GenerateReport.Caption = "Non-Filers Report"
+        Me.btn_GenerateReport.Id = 40
+        Me.btn_GenerateReport.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.report
+        Me.btn_GenerateReport.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.report
+        Me.btn_GenerateReport.Name = "btn_GenerateReport"
+        '
+        'cmb_HomeView
+        '
+        Me.cmb_HomeView.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.cmb_HomeView.Caption = "View :"
+        Me.cmb_HomeView.Edit = Me.cmb_HomeView_Editor
+        Me.cmb_HomeView.EditValue = "Minimal"
+        Me.cmb_HomeView.EditWidth = 70
+        Me.cmb_HomeView.Id = 41
+        Me.cmb_HomeView.Name = "cmb_HomeView"
+        '
+        'cmb_HomeView_Editor
+        '
+        Me.cmb_HomeView_Editor.AutoHeight = False
+        Me.cmb_HomeView_Editor.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmb_HomeView_Editor.Items.AddRange(New Object() {"Minimal", "Full"})
+        Me.cmb_HomeView_Editor.Name = "cmb_HomeView_Editor"
+        Me.cmb_HomeView_Editor.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'cmb_WorkbookView
+        '
+        Me.cmb_WorkbookView.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.cmb_WorkbookView.Caption = "View :"
+        Me.cmb_WorkbookView.Edit = Me.cmb_WorkbookView_View
+        Me.cmb_WorkbookView.EditValue = "Minimal"
+        Me.cmb_WorkbookView.EditWidth = 70
+        Me.cmb_WorkbookView.Id = 42
+        Me.cmb_WorkbookView.Name = "cmb_WorkbookView"
+        '
+        'cmb_WorkbookView_View
+        '
+        Me.cmb_WorkbookView_View.AutoHeight = False
+        Me.cmb_WorkbookView_View.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmb_WorkbookView_View.Items.AddRange(New Object() {"Minimal", "Moderate", "Advanced"})
+        Me.cmb_WorkbookView_View.Name = "cmb_WorkbookView_View"
+        Me.cmb_WorkbookView_View.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'cmb_BillingView
+        '
+        Me.cmb_BillingView.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.cmb_BillingView.Caption = "View :"
+        Me.cmb_BillingView.Edit = Me.cmb_BillingView_Edit
+        Me.cmb_BillingView.EditValue = "Minimal"
+        Me.cmb_BillingView.EditWidth = 70
+        Me.cmb_BillingView.Id = 43
+        Me.cmb_BillingView.Name = "cmb_BillingView"
+        '
+        'cmb_BillingView_Edit
+        '
+        Me.cmb_BillingView_Edit.AutoHeight = False
+        Me.cmb_BillingView_Edit.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmb_BillingView_Edit.Items.AddRange(New Object() {"Minimal", "Full"})
+        Me.cmb_BillingView_Edit.Name = "cmb_BillingView_Edit"
+        Me.cmb_BillingView_Edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
         'rp_Edit
         '
         Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Skin})
@@ -511,6 +583,7 @@ Partial Class frm_Main
         Me.rpg_Clients.ItemLinks.Add(Me.btn_AddClient, True)
         Me.rpg_Clients.ItemLinks.Add(Me.btn_EditClient)
         Me.rpg_Clients.ItemLinks.Add(Me.btn_RemoveClient)
+        Me.rpg_Clients.ItemLinks.Add(Me.btn_GenerateReport, True)
         Me.rpg_Clients.Name = "rpg_Clients"
         Me.rpg_Clients.ShowCaptionButton = False
         Me.rpg_Clients.Text = "Actions"
@@ -610,6 +683,9 @@ Partial Class frm_Main
         Me.RibbonStatusBar.ItemLinks.Add(Me.grp_btn_Clients_View)
         Me.RibbonStatusBar.ItemLinks.Add(Me.RAMUsage)
         Me.RibbonStatusBar.ItemLinks.Add(Me.btn_FreeRAM)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_HomeView)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_WorkbookView)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_BillingView)
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
@@ -816,8 +892,8 @@ Partial Class frm_Main
         Me.tv_Clients.TileSpans.Add(TableSpan5)
         Me.tv_Clients.TileSpans.Add(TableSpan6)
         TileViewItemElement1.Column = Me.TVC_Client_Photo
-        TileViewItemElement1.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        TileViewItemElement1.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        TileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement1.RowIndex = 1
         TileViewItemElement1.Text = "TVC_Client_Photo"
         TileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
@@ -831,49 +907,49 @@ Partial Class frm_Main
         TileViewItemElement2.Appearance.Selected.Options.UseFont = True
         TileViewItemElement2.Column = Me.TVC_Client_Name
         TileViewItemElement2.ColumnIndex = 1
-        TileViewItemElement2.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement2.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement2.Text = "TVC_Client_Name"
         TileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         TileViewItemElement3.Column = Me.TVC_Client_PAN
         TileViewItemElement3.ColumnIndex = 1
-        TileViewItemElement3.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement3.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement3.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement3.RowIndex = 1
         TileViewItemElement3.Text = "TVC_Client_PAN"
         TileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         TileViewItemElement4.Column = Me.TVC_Client_Type
         TileViewItemElement4.ColumnIndex = 1
-        TileViewItemElement4.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement4.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement4.RowIndex = 2
         TileViewItemElement4.Text = "TVC_Client_Type"
         TileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         TileViewItemElement5.Column = Me.TVC_Client_AddressLine1
         TileViewItemElement5.ColumnIndex = 1
-        TileViewItemElement5.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement5.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement5.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement5.RowIndex = 3
         TileViewItemElement5.Text = "TVC_Client_AddressLine1"
         TileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         TileViewItemElement6.Column = Me.TVC_Client_AddressLine2
         TileViewItemElement6.ColumnIndex = 1
-        TileViewItemElement6.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement6.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement6.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement6.RowIndex = 4
         TileViewItemElement6.Text = "TVC_Client_AddressLine2"
         TileViewItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         TileViewItemElement7.Column = Me.TVC_Client_District
         TileViewItemElement7.ColumnIndex = 1
-        TileViewItemElement7.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement7.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement7.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement7.RowIndex = 5
         TileViewItemElement7.Text = "TVC_Client_District"
         TileViewItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         TileViewItemElement8.Column = Me.TVC_Client_Pincode
         TileViewItemElement8.ColumnIndex = 2
-        TileViewItemElement8.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
-        TileViewItemElement8.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement8.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
         TileViewItemElement8.RowIndex = 5
         TileViewItemElement8.Text = "TVC_Client_Pincode"
         TileViewItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
@@ -971,28 +1047,28 @@ Partial Class frm_Main
         TileViewItemElement9.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         TileViewItemElement9.Appearance.Normal.Options.UseFont = True
         TileViewItemElement9.Column = Me.TVC_Name
-        TileViewItemElement9.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement9.ImageLocation = New System.Drawing.Point(105, 0)
-        TileViewItemElement9.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
+        TileViewItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement9.ImageOptions.ImageLocation = New System.Drawing.Point(105, 0)
+        TileViewItemElement9.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
         TileViewItemElement9.Text = "TVC_Name"
         TileViewItemElement10.Column = Me.TVC_UserType
-        TileViewItemElement10.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement10.ImageLocation = New System.Drawing.Point(115, 20)
-        TileViewItemElement10.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top
+        TileViewItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement10.ImageOptions.ImageLocation = New System.Drawing.Point(115, 20)
+        TileViewItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top
         TileViewItemElement10.Text = "TVC_UserType"
         TileViewItemElement11.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         TileViewItemElement11.Appearance.Normal.Options.UseFont = True
         TileViewItemElement11.Column = Me.TVC_Mobile
-        TileViewItemElement11.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement11.ImageLocation = New System.Drawing.Point(105, 40)
-        TileViewItemElement11.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
+        TileViewItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement11.ImageOptions.ImageLocation = New System.Drawing.Point(105, 40)
+        TileViewItemElement11.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
         TileViewItemElement11.Text = "TVC_Mobile"
         TileViewItemElement12.Column = Me.TVC_Photo
-        TileViewItemElement12.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement12.ImageBorder = DevExpress.XtraEditors.TileItemElementImageBorderMode.SingleBorder
-        TileViewItemElement12.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside
-        TileViewItemElement12.ImageSize = New System.Drawing.Size(100, 100)
-        TileViewItemElement12.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
+        TileViewItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement12.ImageOptions.ImageBorder = DevExpress.XtraEditors.TileItemElementImageBorderMode.SingleBorder
+        TileViewItemElement12.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside
+        TileViewItemElement12.ImageOptions.ImageSize = New System.Drawing.Size(100, 100)
+        TileViewItemElement12.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
         TileViewItemElement12.Text = "TVC_Photo"
         Me.tv_Users.TileTemplate.Add(TileViewItemElement9)
         Me.tv_Users.TileTemplate.Add(TileViewItemElement10)
@@ -1085,6 +1161,9 @@ Partial Class frm_Main
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_HomeView_Editor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_WorkbookView_View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_BillingView_Edit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
@@ -1203,6 +1282,11 @@ Partial Class frm_Main
     Friend WithEvents RAMMonitor As System.Windows.Forms.Timer
     Friend WithEvents btn_FreeRAM As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents ToolTipManager As DevExpress.Utils.ToolTipController
-
-
+    Friend WithEvents btn_GenerateReport As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents cmb_HomeView As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents cmb_HomeView_Editor As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents cmb_WorkbookView As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents cmb_WorkbookView_View As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents cmb_BillingView As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents cmb_BillingView_Edit As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
 End Class

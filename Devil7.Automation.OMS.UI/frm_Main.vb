@@ -46,6 +46,9 @@ Public Class frm_Main
         rpg_Billing.Visible = False
         rpg_Home.Visible = False
         grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        cmb_WorkbookView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        cmb_BillingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
 
     Sub UsersPageLoad()
@@ -72,6 +75,7 @@ Public Class frm_Main
 
     Sub WorkbookPageLoad()
         rpg_Workbook.Visible = True
+        cmb_WorkbookView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         If gc_WorkBook.DataSource Is Nothing Then
             If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
         End If
@@ -79,6 +83,7 @@ Public Class frm_Main
 
     Sub HomePageLoad()
         rpg_Home.Visible = True
+        cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         If gc_Home.DataSource Is Nothing Then
             If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
         End If
@@ -92,6 +97,7 @@ Public Class frm_Main
 
     Sub BillingPageLoad()
         rpg_Billing.Visible = True
+        cmb_BillingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         If gc_Billing.DataSource Is Nothing Then
             If Not Loader_Billing.IsBusy Then Loader_Billing.RunWorkerAsync()
         End If
@@ -225,9 +231,11 @@ Public Class frm_Main
                   End Sub)
         Try
             Dim Jobs As List(Of Objects.Job) = Database.Jobs.GetAll(True)
+            Jobs.Sort(New Comparers.CompareByID)
             Me.Jobs = Jobs
             Me.Invoke(Sub()
                           gc_Jobs.DataSource = Jobs
+                          gc_Jobs.RefreshDataSource()
                       End Sub)
         Catch ex As Exception
 
@@ -407,6 +415,7 @@ Public Class frm_Main
             Me.Invoke(Sub()
                           gc_WorkBook.DataSource = Workbook
                       End Sub)
+            SetupWorkbookColumns()
         Catch ex As Exception
 
         End Try
@@ -450,6 +459,94 @@ Public Class frm_Main
         End If
     End Sub
 
+    Sub SetupHomeColumns()
+        Dim HiddenColumns As String() = {"Owner", "AssignedTo", "CompletedOn", "Folder", "Billed"}
+        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+            If HiddenColumns.Contains(i.FieldName) Then
+                Me.Invoke(Sub()
+                              i.Visible = False
+                          End Sub)
+            End If
+        Next
+
+        Dim AvailableColumns As String() = {"ID", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssementDetail", "FinancialDetail"}
+        Dim MinimalColumns As String() = {"ID", "Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssementDetail"}
+        If cmb_HomeView.EditValue = "Minimal" Then
+            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+                If AvailableColumns.Contains(i.FieldName) Then
+                    If MinimalColumns.Contains(i.FieldName) Then
+                        Me.Invoke(Sub()
+                                      i.Visible = True
+                                  End Sub)
+                    Else
+                        Me.Invoke(Sub()
+                                      i.Visible = False
+                                  End Sub)
+                    End If
+                End If
+            Next
+        Else
+            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+                If AvailableColumns.Contains(i.FieldName) Then
+                    Me.Invoke(Sub()
+                                  i.Visible = True
+                              End Sub)
+                End If
+            Next
+        End If
+    End Sub
+
+    Sub SetupWorkbookColumns()
+        Dim MinimalColumns As String() = {"ID", "AssignedTo", "Job", "Client", "CurrentStep", "TargetDate", "PriorityOfWork", "Status", "AssementDetail"}
+        Dim ModerateColumns As String() = {"ID", "Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssementDetail", "FinancialDetail"}
+        Dim AdvancedColumns As String() = {"ID", "Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssementDetail", "FinancialDetail"}
+
+        Dim AvailableColumns As String()
+        If cmb_WorkbookView.EditValue = "Minimal" Then
+            AvailableColumns = MinimalColumns
+        ElseIf cmb_WorkbookView.EditValue = "Moderate" Then
+            AvailableColumns = ModerateColumns
+        Else
+            AvailableColumns = AdvancedColumns
+        End If
+
+        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_WorkBook.Columns
+            If AvailableColumns.Contains(i.FieldName) Then
+                Me.Invoke(Sub()
+                              i.Visible = True
+                          End Sub)
+            Else
+                Me.Invoke(Sub()
+                              i.Visible = False
+                          End Sub)
+            End If
+        Next
+    End Sub
+
+    Sub SetupBillingColumns()
+        Dim MinimalColumns As String() = {"ID", "AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail", "Billed"}
+        Dim FullColumns As String() = {"ID", "Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "Billed"}
+
+        Dim AvailableColumns As String()
+        If cmb_BillingView.EditValue = "Minimal" Then
+            AvailableColumns = MinimalColumns
+        Else
+            AvailableColumns = FullColumns
+        End If
+
+        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Billing.Columns
+            If AvailableColumns.Contains(i.FieldName) Then
+                Me.Invoke(Sub()
+                              i.Visible = True
+                          End Sub)
+            Else
+                Me.Invoke(Sub()
+                              i.Visible = False
+                          End Sub)
+            End If
+        Next
+    End Sub
+
     Private Sub Loader_Home_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Home.DoWork
         While Loaded = False
             Threading.Thread.Sleep(1000)
@@ -486,6 +583,7 @@ Public Class frm_Main
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
                       End Sub)
+            SetupHomeColumns
         Catch ex As Exception
 
         End Try
@@ -590,6 +688,9 @@ Public Class frm_Main
 
     Private Sub frm_Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         MainPane.SelectedPageIndex = 0
+        cmb_HomeView.EditValue = My.Settings.ViewHome
+        cmb_WorkbookView.EditValue = My.Settings.ViewWorkbook
+        cmb_BillingView.EditValue = My.Settings.ViewBilling
         ProcessPermissions()
     End Sub
 
@@ -694,6 +795,7 @@ Public Class frm_Main
             Me.Invoke(Sub()
                           gc_Billing.DataSource = Billing
                       End Sub)
+            SetupBillingColumns()
         Catch ex As Exception
 
         End Try
@@ -786,4 +888,38 @@ Public Class frm_Main
                 End If
         End Select
     End Sub
+
+    Private Sub btn_GenerateReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_GenerateReport.ItemClick
+        If Clients IsNot Nothing Then
+            Dim d As New frm_FilersReport(Clients)
+            d.ShowDialog()
+        Else
+            MsgBox("Clients list is not fetched yet. Load/Refresh clients list and try again.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+        End If
+    End Sub
+
+    Private Sub cmb_HomeView_EditValueChanged(sender As Object, e As EventArgs) Handles cmb_HomeView.EditValueChanged
+        If Loaded Then
+            SetupHomeColumns()
+            My.Settings.ViewHome = cmb_HomeView.EditValue
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub cmb_WorkbookView_EditValueChanged(sender As Object, e As EventArgs) Handles cmb_WorkbookView.EditValueChanged
+        If Loaded Then
+            SetupWorkbookColumns()
+            My.Settings.ViewWorkbook = cmb_WorkbookView.EditValue
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub cmb_BillingView_EditValueChanged(sender As Object, e As EventArgs) Handles cmb_BillingView.EditValueChanged
+        If Loaded Then
+            SetupBillingColumns()
+            My.Settings.ViewBilling = cmb_BillingView.EditValue
+            My.Settings.Save()
+        End If
+    End Sub
+
 End Class

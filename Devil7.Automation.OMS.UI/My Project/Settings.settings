@@ -8,5 +8,14 @@
     <Setting Name="DefaultStorage" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ViewHome" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Minimal</Value>
+    </Setting>
+    <Setting Name="ViewWorkbook" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Minimal</Value>
+    </Setting>
+    <Setting Name="ViewBilling" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Minimal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
