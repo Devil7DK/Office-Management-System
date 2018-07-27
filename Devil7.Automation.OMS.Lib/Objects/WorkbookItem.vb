@@ -22,10 +22,10 @@
 Namespace Objects
     Public Class WorkbookItem
 
-        Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As Client, _
-             ByVal DueDate As Date, ByVal AddedOn As Date, ByVal CompletedOn As Date, _
-             ByVal UpdatedOn As Date, ByVal Description As String, ByVal Remarks As String, _
-             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal Billed As Boolean)
+        Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As Client,
+             ByVal DueDate As Date, ByVal AddedOn As Date, ByVal CompletedOn As Date,
+             ByVal UpdatedOn As Date, ByVal Description As String, ByVal Remarks As String,
+             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal Billed As Boolean, ByVal AssementDetail As YearMonth, ByVal FinancialDetail As YearMonth)
             Me.ID = ID
             Me.AssignedTo = AssignedToUser
             Me.Job = Job
@@ -43,6 +43,8 @@ Namespace Objects
             Me.Owner = Owner
             Me.History = New List(Of String)(History.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries))
             Me.Billed = Billed
+            Me.AssementDetail = AssementDetail
+            Me.FinancialDetail = FinancialDetail
         End Sub
 
         Property ID As Integer
@@ -62,8 +64,8 @@ Namespace Objects
         Property PriorityOfWork As Enums.Priority
         Property Status As Enums.WorkStatus
         Property Folder As String
-        Property AssementDetail As String
-        Property FinancialDetail As String
+        Property AssementDetail As YearMonth
+        Property FinancialDetail As YearMonth
         Property Billed As Boolean
 
         Sub AddHistory(ByVal Text As String)
