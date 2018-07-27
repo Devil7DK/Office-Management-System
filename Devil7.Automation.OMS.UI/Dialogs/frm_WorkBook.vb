@@ -134,6 +134,7 @@ Public Class frm_WorkBook
             Dim item As Objects.Job = cmb_Job.SelectedItem
             cmb_Steps.Properties.Items.Clear()
             cmb_Steps.Properties.Items.AddRange(item.Steps)
+            If cmb_Steps.Properties.Items.Count > 0 Then cmb_Steps.SelectedIndex = 0
 
             txt_AssessmentYearMonth.PeriodType = item.Type
             txt_FinancialYearMonth.PeriodType = item.Type

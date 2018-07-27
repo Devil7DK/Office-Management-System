@@ -529,7 +529,7 @@ Partial Class frm_WorkBook
         Me.txt_FinancialYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
         Me.txt_FinancialYearMonth.Size = New System.Drawing.Size(349, 21)
         Me.txt_FinancialYearMonth.TabIndex = 6
-        YearMonth1.Period = "Apr-Sep"
+        YearMonth1.Period = "April"
         YearMonth1.Year = "2018-2019"
         Me.txt_FinancialYearMonth.Value = YearMonth1
         '
