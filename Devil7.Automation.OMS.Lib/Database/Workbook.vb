@@ -26,9 +26,9 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Workbook
 
-        Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date, _
-                   ByVal Client As Client, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date, _
-                   ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As String, ByVal Financial As String, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
+        Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date,
+                   ByVal Client As Client, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
+                   ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
             Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
@@ -38,7 +38,7 @@ Namespace Database
 
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@User", User.ID)
-                AddParameter(Command, "@Job", Job.JID)
+                AddParameter(Command, "@Job", Job.ID)
                 AddParameter(Command, "@DueDate", DueDate)
                 AddParameter(Command, "@Client", Client.ID)
                 AddParameter(Command, "@DateAdded", Now)
@@ -46,20 +46,20 @@ Namespace Database
                 AddParameter(Command, "@Status", Status)
                 AddParameter(Command, "@Description", Description)
                 AddParameter(Command, "@Remarks", Remarks)
-                AddParameter(Command, "@Folder", GetFolder(DefaultStorage, Client, Job, Assessment, Now.Year))
+                AddParameter(Command, "@Folder", GetFolder(DefaultStorage, Client, Job, Assessment.ToString, Now.Year))
                 AddParameter(Command, "@TargetDate", TargetDate)
                 AddParameter(Command, "@Priority", Priority)
                 AddParameter(Command, "@DateUpdated", Now)
                 AddParameter(Command, "@CurrentStep", CurrentStep)
-                AddParameter(Command, "@AssessmentDetails", Assessment)
-                AddParameter(Command, "@FinancialDetails", Financial)
+                AddParameter(Command, "@AssessmentDetails", Assessment.ToString)
+                AddParameter(Command, "@FinancialDetails", Financial.ToString)
                 AddParameter(Command, "@Owner", Owner.ID)
                 AddParameter(Command, "@History", History)
                 AddParameter(Command, "@Billed", False)
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History, False)
+                    R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History, False, Assessment, Financial)
                 Else
                     MsgBox("Unknown error while inserting workbook item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
                 End If
@@ -185,10 +185,10 @@ Namespace Database
                 End Using
                 If Read Then
                     AssignedTo = GetUserByID(AssignedID)
-                    Job = GetJobByJID(JobID, False)
+                    Job = GetJobByID(JobID, False)
                     Client = GetClientByID(ClientID)
                     Owner = GetUserByID(OwnerID)
-                    R = New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed)
+                    R = New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail))
                 End If
             End Using
 
@@ -203,7 +203,7 @@ Namespace Database
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
-            Jobs.Sort(New Comparers.JobComparer)
+            Jobs.Sort(New Comparers.CompareByID)
             Clients.Sort(New Comparers.CompareByID)
             Users.Sort(New Comparers.CompareByID)
 
@@ -212,7 +212,7 @@ Namespace Database
                     While Reader.Read
                         Dim ID As Integer = Reader.Item("ID")
                         Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
-                        Dim Job As Job = Jobs(Jobs.BinarySearch(New Job(Reader.Item("Job").ToString), New Comparers.JobComparer))
+                        Dim Job As Job = Jobs.Find(Function(c) c.ID = Reader.Item("Job").ToString)
                         Dim Client As Client = Clients(Clients.BinarySearch(New Client(Reader.Item("Client")), New Comparers.CompareByID))
                         Dim DueDate As Date = Reader.Item("DueDate")
                         Dim AddedOn As Date = Reader.Item("DateAdded")
@@ -230,7 +230,7 @@ Namespace Database
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
                         Dim Billed As Boolean = Reader.Item("Billed")
-                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed))
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
                     End While
                 End Using
             End Using
@@ -246,7 +246,7 @@ Namespace Database
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
-            Jobs.Sort(New Comparers.JobComparer)
+            Jobs.Sort(New Comparers.CompareByID)
             Clients.Sort(New Comparers.CompareByID)
             Users.Sort(New Comparers.CompareByID)
 
@@ -255,7 +255,7 @@ Namespace Database
                     While Reader.Read
                         Dim ID As Integer = Reader.Item("ID")
                         Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
-                        Dim Job As Job = Jobs(Jobs.BinarySearch(New Job(Reader.Item("Job").ToString), New Comparers.JobComparer))
+                        Dim Job As Job = Jobs.Find(Function(c) c.ID = Reader.Item("Job").ToString)
                         Dim Client As Client = Clients(Clients.BinarySearch(New Client(Reader.Item("Client")), New Comparers.CompareByID))
                         Dim DueDate As Date = Reader.Item("DueDate")
                         Dim AddedOn As Date = Reader.Item("DateAdded")
@@ -273,7 +273,7 @@ Namespace Database
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
                         Dim Billed As Boolean = Reader.Item("Billed")
-                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed))
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
                     End While
                 End Using
             End Using
@@ -289,7 +289,7 @@ Namespace Database
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
-            Jobs.Sort(New Comparers.JobComparer)
+            Jobs.Sort(New Comparers.CompareByID)
             Clients.Sort(New Comparers.CompareByID)
             Users.Sort(New Comparers.CompareByID)
 
@@ -299,7 +299,7 @@ Namespace Database
                     While Reader.Read
                         Dim ID As Integer = Reader.Item("ID")
                         Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
-                        Dim Job As Job = Jobs(Jobs.BinarySearch(New Job(Reader.Item("Job").ToString), New Comparers.JobComparer))
+                        Dim Job As Job = Jobs.Find(Function(c) c.ID = Reader.Item("Job").ToString)
                         Dim Client As Client = Clients(Clients.BinarySearch(New Client(Reader.Item("Client")), New Comparers.CompareByID))
                         Dim DueDate As Date = Reader.Item("DueDate")
                         Dim AddedOn As Date = Reader.Item("DateAdded")
@@ -317,7 +317,7 @@ Namespace Database
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
                         Dim Billed As Boolean = Reader.Item("Billed")
-                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed))
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
                     End While
                 End Using
             End Using
@@ -425,6 +425,26 @@ Namespace Database
                 If Command.ExecuteNonQuery() = 1 Then
                     R = True
                 End If
+            End Using
+
+            Return R
+        End Function
+
+        Function GetWorkbookItemsCount(ByVal Client As Integer, ByVal Job As String, ByVal Period As String, ByVal PeriodType As Enums.PeriodType) As Integer
+            Dim R As Integer = 0
+
+            Dim CommandString As String = String.Format("SELECT COUNT(*) FROM [Workbook] WHERE [Client]=@Client AND [Job]=@Job AND [{0}]=@{0};", If(PeriodType = Enums.PeriodType.Assessment, "AssessmentDetails", "FinancialDetails"))
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@Client", Client)
+                AddParameter(Command, "@Job", Job)
+                AddParameter(Command, If(PeriodType = Enums.PeriodType.Assessment, "@AssessmentDetails", "@FinancialDetails"), Period)
+
+                R = Command.ExecuteScalar
             End Using
 
             Return R
