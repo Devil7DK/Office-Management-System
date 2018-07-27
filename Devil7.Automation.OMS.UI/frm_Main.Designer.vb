@@ -26,18 +26,21 @@ Partial Class frm_Main
         Dim TableColumnDefinition1 As DevExpress.XtraEditors.TableLayout.TableColumnDefinition = New DevExpress.XtraEditors.TableLayout.TableColumnDefinition()
         Dim TableColumnDefinition2 As DevExpress.XtraEditors.TableLayout.TableColumnDefinition = New DevExpress.XtraEditors.TableLayout.TableColumnDefinition()
         Dim TableColumnDefinition3 As DevExpress.XtraEditors.TableLayout.TableColumnDefinition = New DevExpress.XtraEditors.TableLayout.TableColumnDefinition()
+        Dim TableColumnDefinition4 As DevExpress.XtraEditors.TableLayout.TableColumnDefinition = New DevExpress.XtraEditors.TableLayout.TableColumnDefinition()
         Dim TableRowDefinition1 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
         Dim TableRowDefinition2 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
         Dim TableRowDefinition3 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
         Dim TableRowDefinition4 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
         Dim TableRowDefinition5 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
         Dim TableRowDefinition6 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
+        Dim TableRowDefinition7 As DevExpress.XtraEditors.TableLayout.TableRowDefinition = New DevExpress.XtraEditors.TableLayout.TableRowDefinition()
         Dim TableSpan1 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
         Dim TableSpan2 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
         Dim TableSpan3 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
         Dim TableSpan4 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
         Dim TableSpan5 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
         Dim TableSpan6 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
+        Dim TableSpan7 As DevExpress.XtraEditors.TableLayout.TableSpan = New DevExpress.XtraEditors.TableLayout.TableSpan()
         Dim TileViewItemElement1 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement2 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement3 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
@@ -50,6 +53,10 @@ Partial Class frm_Main
         Dim TileViewItemElement10 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement11 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement12 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
+        Dim TileViewItemElement13 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
+        Dim TileViewItemElement14 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
+        Dim TileViewItemElement15 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
+        Dim TileViewItemElement16 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.TVC_Client_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Client_Name = New DevExpress.XtraGrid.Columns.TileViewColumn()
@@ -151,6 +158,9 @@ Partial Class frm_Main
         Me.Loader_Billing = New System.ComponentModel.BackgroundWorker()
         Me.RAMMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTipManager = New DevExpress.Utils.ToolTipController(Me.components)
+        Me.TVC_Client_FileNo = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.TVC_Client_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.TVC_Client_Email = New DevExpress.XtraGrid.Columns.TileViewColumn()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -808,7 +818,7 @@ Partial Class frm_Main
         Me.np_Workbook.Controls.Add(Me.ProgressPanel_Workbook)
         Me.np_Workbook.Controls.Add(Me.gc_WorkBook)
         Me.np_Workbook.Name = "np_Workbook"
-        Me.np_Workbook.Size = New System.Drawing.Size(543, 229)
+        Me.np_Workbook.Size = New System.Drawing.Size(643, 229)
         '
         'ProgressPanel_Workbook
         '
@@ -819,7 +829,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Workbook.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Workbook.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Workbook.Name = "ProgressPanel_Workbook"
-        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(543, 229)
+        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(643, 229)
         Me.ProgressPanel_Workbook.TabIndex = 5
         '
         'gc_WorkBook
@@ -829,7 +839,7 @@ Partial Class frm_Main
         Me.gc_WorkBook.MainView = Me.gv_WorkBook
         Me.gc_WorkBook.MenuManager = Me.RibbonControl
         Me.gc_WorkBook.Name = "gc_WorkBook"
-        Me.gc_WorkBook.Size = New System.Drawing.Size(543, 229)
+        Me.gc_WorkBook.Size = New System.Drawing.Size(643, 229)
         Me.gc_WorkBook.TabIndex = 1
         Me.gc_WorkBook.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_WorkBook})
         '
@@ -846,7 +856,7 @@ Partial Class frm_Main
         Me.np_Clients.Controls.Add(Me.ProgressPanel_Clients)
         Me.np_Clients.Controls.Add(Me.gc_Clients)
         Me.np_Clients.Name = "np_Clients"
-        Me.np_Clients.Size = New System.Drawing.Size(543, 229)
+        Me.np_Clients.Size = New System.Drawing.Size(643, 229)
         '
         'ProgressPanel_Clients
         '
@@ -857,7 +867,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Clients.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Clients.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Clients.Name = "ProgressPanel_Clients"
-        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(543, 229)
+        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(643, 229)
         Me.ProgressPanel_Clients.TabIndex = 4
         '
         'gc_Clients
@@ -867,52 +877,66 @@ Partial Class frm_Main
         Me.gc_Clients.MainView = Me.tv_Clients
         Me.gc_Clients.MenuManager = Me.RibbonControl
         Me.gc_Clients.Name = "gc_Clients"
-        Me.gc_Clients.Size = New System.Drawing.Size(543, 229)
+        Me.gc_Clients.Size = New System.Drawing.Size(643, 229)
         Me.gc_Clients.TabIndex = 1
         Me.gc_Clients.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Clients, Me.gv_Clients})
         '
         'tv_Clients
         '
-        Me.tv_Clients.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.TVC_Client_Photo, Me.TVC_Client_Name, Me.TVC_Client_PAN, Me.TVC_Client_Type, Me.TVC_Client_AddressLine1, Me.TVC_Client_AddressLine2, Me.TVC_Client_District, Me.TVC_Client_Pincode})
+        Me.tv_Clients.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.TVC_Client_Photo, Me.TVC_Client_Name, Me.TVC_Client_PAN, Me.TVC_Client_Type, Me.TVC_Client_AddressLine1, Me.TVC_Client_AddressLine2, Me.TVC_Client_District, Me.TVC_Client_Pincode, Me.TVC_Client_FileNo, Me.TVC_Client_Mobile, Me.TVC_Client_Email})
         Me.tv_Clients.GridControl = Me.gc_Clients
         Me.tv_Clients.Name = "tv_Clients"
         Me.tv_Clients.OptionsBehavior.ReadOnly = True
-        Me.tv_Clients.OptionsTiles.ItemSize = New System.Drawing.Size(332, 134)
+        Me.tv_Clients.OptionsTiles.ItemSize = New System.Drawing.Size(390, 138)
         Me.tv_Clients.OptionsTiles.RowCount = 0
-        TableColumnDefinition1.Length.Value = 73.0R
-        TableColumnDefinition2.Length.Value = 160.0R
+        TableColumnDefinition1.Length.Value = 109.0R
+        TableColumnDefinition2.Length.Value = 162.0R
         TableColumnDefinition2.PaddingLeft = 10
-        TableColumnDefinition3.Length.Value = 75.0R
+        TableColumnDefinition3.Length.Value = 40.0R
+        TableColumnDefinition4.Length.Value = 55.0R
         Me.tv_Clients.TileColumns.Add(TableColumnDefinition1)
         Me.tv_Clients.TileColumns.Add(TableColumnDefinition2)
         Me.tv_Clients.TileColumns.Add(TableColumnDefinition3)
+        Me.tv_Clients.TileColumns.Add(TableColumnDefinition4)
+        TableRowDefinition1.Length.Value = 21.0R
+        TableRowDefinition2.Length.Value = 17.0R
+        TableRowDefinition3.Length.Value = 18.0R
+        TableRowDefinition4.Length.Value = 16.0R
+        TableRowDefinition5.Length.Value = 14.0R
+        TableRowDefinition6.Length.Value = 15.0R
+        TableRowDefinition7.Length.Value = 21.0R
         Me.tv_Clients.TileRows.Add(TableRowDefinition1)
         Me.tv_Clients.TileRows.Add(TableRowDefinition2)
         Me.tv_Clients.TileRows.Add(TableRowDefinition3)
         Me.tv_Clients.TileRows.Add(TableRowDefinition4)
         Me.tv_Clients.TileRows.Add(TableRowDefinition5)
         Me.tv_Clients.TileRows.Add(TableRowDefinition6)
-        TableSpan1.ColumnIndex = 1
+        Me.tv_Clients.TileRows.Add(TableRowDefinition7)
+        TableSpan1.ColumnIndex = 2
         TableSpan1.ColumnSpan = 2
-        TableSpan2.RowSpan = 6
+        TableSpan1.RowIndex = 5
+        TableSpan2.ColumnIndex = 1
+        TableSpan2.ColumnSpan = 3
+        TableSpan2.RowIndex = 4
         TableSpan3.ColumnIndex = 1
-        TableSpan3.ColumnSpan = 2
-        TableSpan3.RowIndex = 1
+        TableSpan3.ColumnSpan = 3
+        TableSpan3.RowIndex = 3
         TableSpan4.ColumnIndex = 1
-        TableSpan4.ColumnSpan = 2
+        TableSpan4.ColumnSpan = 3
         TableSpan4.RowIndex = 2
         TableSpan5.ColumnIndex = 1
-        TableSpan5.ColumnSpan = 2
-        TableSpan5.RowIndex = 3
-        TableSpan6.ColumnIndex = 1
-        TableSpan6.ColumnSpan = 2
-        TableSpan6.RowIndex = 4
+        TableSpan5.ColumnSpan = 3
+        TableSpan6.RowSpan = 7
+        TableSpan7.ColumnIndex = 2
+        TableSpan7.ColumnSpan = 2
+        TableSpan7.RowIndex = 6
         Me.tv_Clients.TileSpans.Add(TableSpan1)
         Me.tv_Clients.TileSpans.Add(TableSpan2)
         Me.tv_Clients.TileSpans.Add(TableSpan3)
         Me.tv_Clients.TileSpans.Add(TableSpan4)
         Me.tv_Clients.TileSpans.Add(TableSpan5)
         Me.tv_Clients.TileSpans.Add(TableSpan6)
+        Me.tv_Clients.TileSpans.Add(TableSpan7)
         TileViewItemElement1.Column = Me.TVC_Client_Photo
         TileViewItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
         TileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
@@ -947,6 +971,14 @@ Partial Class frm_Main
         TileViewItemElement4.RowIndex = 2
         TileViewItemElement4.Text = "TVC_Client_Type"
         TileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement5.Appearance.Hovered.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement5.Appearance.Hovered.Options.UseFont = True
+        TileViewItemElement5.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement5.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement5.Appearance.Pressed.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement5.Appearance.Pressed.Options.UseFont = True
+        TileViewItemElement5.Appearance.Selected.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement5.Appearance.Selected.Options.UseFont = True
         TileViewItemElement5.Column = Me.TVC_Client_AddressLine1
         TileViewItemElement5.ColumnIndex = 1
         TileViewItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
@@ -954,6 +986,14 @@ Partial Class frm_Main
         TileViewItemElement5.RowIndex = 3
         TileViewItemElement5.Text = "TVC_Client_AddressLine1"
         TileViewItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement6.Appearance.Hovered.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement6.Appearance.Hovered.Options.UseFont = True
+        TileViewItemElement6.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement6.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement6.Appearance.Pressed.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement6.Appearance.Pressed.Options.UseFont = True
+        TileViewItemElement6.Appearance.Selected.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement6.Appearance.Selected.Options.UseFont = True
         TileViewItemElement6.Column = Me.TVC_Client_AddressLine2
         TileViewItemElement6.ColumnIndex = 1
         TileViewItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
@@ -961,6 +1001,14 @@ Partial Class frm_Main
         TileViewItemElement6.RowIndex = 4
         TileViewItemElement6.Text = "TVC_Client_AddressLine2"
         TileViewItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement7.Appearance.Hovered.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement7.Appearance.Hovered.Options.UseFont = True
+        TileViewItemElement7.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement7.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement7.Appearance.Pressed.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement7.Appearance.Pressed.Options.UseFont = True
+        TileViewItemElement7.Appearance.Selected.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement7.Appearance.Selected.Options.UseFont = True
         TileViewItemElement7.Column = Me.TVC_Client_District
         TileViewItemElement7.ColumnIndex = 1
         TileViewItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
@@ -968,6 +1016,14 @@ Partial Class frm_Main
         TileViewItemElement7.RowIndex = 5
         TileViewItemElement7.Text = "TVC_Client_District"
         TileViewItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement8.Appearance.Hovered.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement8.Appearance.Hovered.Options.UseFont = True
+        TileViewItemElement8.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement8.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement8.Appearance.Pressed.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement8.Appearance.Pressed.Options.UseFont = True
+        TileViewItemElement8.Appearance.Selected.Font = New System.Drawing.Font("Tahoma", 7.5!)
+        TileViewItemElement8.Appearance.Selected.Options.UseFont = True
         TileViewItemElement8.Column = Me.TVC_Client_Pincode
         TileViewItemElement8.ColumnIndex = 2
         TileViewItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
@@ -975,6 +1031,34 @@ Partial Class frm_Main
         TileViewItemElement8.RowIndex = 5
         TileViewItemElement8.Text = "TVC_Client_Pincode"
         TileViewItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement9.Column = Me.TVC_Client_FileNo
+        TileViewItemElement9.ColumnIndex = 3
+        TileViewItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        TileViewItemElement9.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement9.RowIndex = 1
+        TileViewItemElement9.Text = "TVC_Client_FileNo"
+        TileViewItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement10.ColumnIndex = 2
+        TileViewItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        TileViewItemElement10.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement10.Name = "lbl_FileNo"
+        TileViewItemElement10.RowIndex = 1
+        TileViewItemElement10.Text = "File No :"
+        TileViewItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement11.Column = Me.TVC_Client_Mobile
+        TileViewItemElement11.ColumnIndex = 2
+        TileViewItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        TileViewItemElement11.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement11.RowIndex = 6
+        TileViewItemElement11.Text = "TVC_Client_Mobile"
+        TileViewItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
+        TileViewItemElement12.Column = Me.TVC_Client_Email
+        TileViewItemElement12.ColumnIndex = 1
+        TileViewItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        TileViewItemElement12.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside
+        TileViewItemElement12.RowIndex = 6
+        TileViewItemElement12.Text = "TVC_Client_Email"
+        TileViewItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft
         Me.tv_Clients.TileTemplate.Add(TileViewItemElement1)
         Me.tv_Clients.TileTemplate.Add(TileViewItemElement2)
         Me.tv_Clients.TileTemplate.Add(TileViewItemElement3)
@@ -983,6 +1067,10 @@ Partial Class frm_Main
         Me.tv_Clients.TileTemplate.Add(TileViewItemElement6)
         Me.tv_Clients.TileTemplate.Add(TileViewItemElement7)
         Me.tv_Clients.TileTemplate.Add(TileViewItemElement8)
+        Me.tv_Clients.TileTemplate.Add(TileViewItemElement9)
+        Me.tv_Clients.TileTemplate.Add(TileViewItemElement10)
+        Me.tv_Clients.TileTemplate.Add(TileViewItemElement11)
+        Me.tv_Clients.TileTemplate.Add(TileViewItemElement12)
         '
         'gv_Clients
         '
@@ -1066,36 +1154,36 @@ Partial Class frm_Main
         Me.tv_Users.GridControl = Me.gc_Users
         Me.tv_Users.Name = "tv_Users"
         Me.tv_Users.OptionsTiles.RowCount = 5
-        TileViewItemElement9.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        TileViewItemElement9.Appearance.Normal.Options.UseFont = True
-        TileViewItemElement9.Column = Me.TVC_Name
-        TileViewItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement9.ImageOptions.ImageLocation = New System.Drawing.Point(105, 0)
-        TileViewItemElement9.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
-        TileViewItemElement9.Text = "TVC_Name"
-        TileViewItemElement10.Column = Me.TVC_UserType
-        TileViewItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement10.ImageOptions.ImageLocation = New System.Drawing.Point(115, 20)
-        TileViewItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top
-        TileViewItemElement10.Text = "TVC_UserType"
-        TileViewItemElement11.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        TileViewItemElement11.Appearance.Normal.Options.UseFont = True
-        TileViewItemElement11.Column = Me.TVC_Mobile
-        TileViewItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement11.ImageOptions.ImageLocation = New System.Drawing.Point(105, 40)
-        TileViewItemElement11.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
-        TileViewItemElement11.Text = "TVC_Mobile"
-        TileViewItemElement12.Column = Me.TVC_Photo
-        TileViewItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
-        TileViewItemElement12.ImageOptions.ImageBorder = DevExpress.XtraEditors.TileItemElementImageBorderMode.SingleBorder
-        TileViewItemElement12.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside
-        TileViewItemElement12.ImageOptions.ImageSize = New System.Drawing.Size(100, 100)
-        TileViewItemElement12.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
-        TileViewItemElement12.Text = "TVC_Photo"
-        Me.tv_Users.TileTemplate.Add(TileViewItemElement9)
-        Me.tv_Users.TileTemplate.Add(TileViewItemElement10)
-        Me.tv_Users.TileTemplate.Add(TileViewItemElement11)
-        Me.tv_Users.TileTemplate.Add(TileViewItemElement12)
+        TileViewItemElement13.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        TileViewItemElement13.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement13.Column = Me.TVC_Name
+        TileViewItemElement13.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement13.ImageOptions.ImageLocation = New System.Drawing.Point(105, 0)
+        TileViewItemElement13.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
+        TileViewItemElement13.Text = "TVC_Name"
+        TileViewItemElement14.Column = Me.TVC_UserType
+        TileViewItemElement14.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement14.ImageOptions.ImageLocation = New System.Drawing.Point(115, 20)
+        TileViewItemElement14.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top
+        TileViewItemElement14.Text = "TVC_UserType"
+        TileViewItemElement15.Appearance.Normal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        TileViewItemElement15.Appearance.Normal.Options.UseFont = True
+        TileViewItemElement15.Column = Me.TVC_Mobile
+        TileViewItemElement15.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement15.ImageOptions.ImageLocation = New System.Drawing.Point(105, 40)
+        TileViewItemElement15.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
+        TileViewItemElement15.Text = "TVC_Mobile"
+        TileViewItemElement16.Column = Me.TVC_Photo
+        TileViewItemElement16.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.Manual
+        TileViewItemElement16.ImageOptions.ImageBorder = DevExpress.XtraEditors.TileItemElementImageBorderMode.SingleBorder
+        TileViewItemElement16.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomOutside
+        TileViewItemElement16.ImageOptions.ImageSize = New System.Drawing.Size(100, 100)
+        TileViewItemElement16.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Bottom
+        TileViewItemElement16.Text = "TVC_Photo"
+        Me.tv_Users.TileTemplate.Add(TileViewItemElement13)
+        Me.tv_Users.TileTemplate.Add(TileViewItemElement14)
+        Me.tv_Users.TileTemplate.Add(TileViewItemElement15)
+        Me.tv_Users.TileTemplate.Add(TileViewItemElement16)
         '
         'np_Billing
         '
@@ -1165,6 +1253,30 @@ Partial Class frm_Main
         'ToolTipManager
         '
         Me.ToolTipManager.AutoPopDelay = 2000
+        '
+        'TVC_Client_FileNo
+        '
+        Me.TVC_Client_FileNo.Caption = "File Number"
+        Me.TVC_Client_FileNo.FieldName = "FileNo"
+        Me.TVC_Client_FileNo.Name = "TVC_Client_FileNo"
+        Me.TVC_Client_FileNo.Visible = True
+        Me.TVC_Client_FileNo.VisibleIndex = 8
+        '
+        'TVC_Client_Mobile
+        '
+        Me.TVC_Client_Mobile.Caption = "Mobile"
+        Me.TVC_Client_Mobile.FieldName = "Mobile"
+        Me.TVC_Client_Mobile.Name = "TVC_Client_Mobile"
+        Me.TVC_Client_Mobile.Visible = True
+        Me.TVC_Client_Mobile.VisibleIndex = 9
+        '
+        'TVC_Client_Email
+        '
+        Me.TVC_Client_Email.Caption = "Email"
+        Me.TVC_Client_Email.FieldName = "Email"
+        Me.TVC_Client_Email.Name = "TVC_Client_Email"
+        Me.TVC_Client_Email.Visible = True
+        Me.TVC_Client_Email.VisibleIndex = 10
         '
         'frm_Main
         '
@@ -1314,4 +1426,7 @@ Partial Class frm_Main
     Friend WithEvents cmb_BillingView_Edit As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents cmb_ClientsSort As DevExpress.XtraBars.BarEditItem
     Friend WithEvents cmb_ClientsSort_Edit As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents TVC_Client_FileNo As DevExpress.XtraGrid.Columns.TileViewColumn
+    Friend WithEvents TVC_Client_Mobile As DevExpress.XtraGrid.Columns.TileViewColumn
+    Friend WithEvents TVC_Client_Email As DevExpress.XtraGrid.Columns.TileViewColumn
 End Class

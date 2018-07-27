@@ -115,6 +115,7 @@ Public Class frm_Main
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
+        Utils.Misc.CleanRAM()
         HideOptions()
         If MainPane.SelectedPage Is np_Users Then
             UsersPageLoad()
