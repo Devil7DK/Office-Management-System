@@ -66,7 +66,7 @@ Public Class frm_ClientAddEdit
         Else
             Me.gv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
             Me.gv_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
-            Me.gv_Jobs.DataSource = New System.ComponentModel.BindingList(Of Objects.Job)
+            Me.gv_Jobs.DataSource = New List(Of Objects.Job)
         End If
         Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
     End Sub
@@ -150,6 +150,7 @@ Public Class frm_ClientAddEdit
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             If gv_PartnersDirectors.DataSource Is Nothing Then gv_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
             CType(gv_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Add(d.Partner)
+            gv_PartnersDirectors.RefreshDataSource()
         End If
     End Sub
 
@@ -176,6 +177,7 @@ Public Class frm_ClientAddEdit
             For Each inte As Integer In GridView1.GetSelectedRows
                 Dim obj As Objects.Partner = TryCast(GridView1.GetRow(inte), Objects.Partner)
                 CType(gv_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Remove(obj)
+                gv_PartnersDirectors.RefreshDataSource()
             Next
         End If
     End Sub
@@ -183,8 +185,9 @@ Public Class frm_ClientAddEdit
     Private Sub btn_Jobs_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Add.Click
         Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
-            If gv_Jobs.DataSource Is Nothing Then gv_Jobs.DataSource = New System.ComponentModel.BindingList(Of Objects.Job)
-            CType(gv_Jobs.DataSource, System.ComponentModel.BindingList(Of Objects.Job)).Add(d.Job)
+            If gv_Jobs.DataSource Is Nothing Then gv_Jobs.DataSource = New List(Of Objects.Job)
+            CType(gv_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
+            gv_Jobs.RefreshDataSource()
         End If
     End Sub
 
@@ -198,7 +201,6 @@ Public Class frm_ClientAddEdit
             Dim d As New frm_Job_Lite(Enums.DialogMode.Edit, obj)
             If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 obj.ID = d.Job.ID
-                obj.JID = d.Job.JID
                 obj.Name = d.Job.Name
                 obj.Group = d.Job.Group
                 obj.Steps = d.Job.Steps
@@ -215,8 +217,9 @@ Public Class frm_ClientAddEdit
             For Each i As Integer In GridView2.GetSelectedRows
                 Dim row As Integer = (i)
                 Dim obj As Objects.Job = TryCast(GridView2.GetRow(row), Objects.Job)
-                CType(gv_Jobs.DataSource, System.ComponentModel.BindingList(Of Objects.Job)).Remove(obj)
+                CType(gv_Jobs.DataSource, List(Of Objects.Job)).Remove(obj)
             Next
+            gv_Jobs.RefreshDataSource()
         End If
     End Sub
 
@@ -225,6 +228,7 @@ Public Class frm_ClientAddEdit
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             If gv_Credentials.DataSource Is Nothing Then gv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
             gv_Credentials.DataSource.Add(d.Credential)
+            gv_Credentials.RefreshDataSource()
         End If
     End Sub
 
@@ -255,6 +259,7 @@ Public Class frm_ClientAddEdit
                 Dim obj As Objects.Credential = TryCast(GridView3.GetRow(row), Objects.Credential)
                 CType(gv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)).Remove(obj)
             Next
+            gv_Credentials.RefreshDataSource()
         End If
     End Sub
 End Class
