@@ -80,6 +80,7 @@
     <Compile Include="Database\Workbook.vb" />
     <Compile Include="Database\Jobs.vb" />
     <Compile Include="Database\Users.vb" />
+    <Compile Include="Enums\BillingStatus.vb" />
     <Compile Include="Enums\PeriodType.vb" />
     <Compile Include="Enums\CenterType.vb" />
     <Compile Include="Enums\DialogMode.vb" />

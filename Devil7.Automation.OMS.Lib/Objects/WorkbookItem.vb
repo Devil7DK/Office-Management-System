@@ -25,7 +25,7 @@ Namespace Objects
         Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As Client,
              ByVal DueDate As Date, ByVal AddedOn As Date, ByVal CompletedOn As Date,
              ByVal UpdatedOn As Date, ByVal Description As String, ByVal Remarks As String,
-             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal Billed As Boolean, ByVal AssementDetail As YearMonth, ByVal FinancialDetail As YearMonth)
+             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal BillingStatus As Enums.BillingStatus, ByVal AssementDetail As YearMonth, ByVal FinancialDetail As YearMonth)
             Me.ID = ID
             Me.AssignedTo = AssignedToUser
             Me.Job = Job
@@ -42,7 +42,7 @@ Namespace Objects
             Me.CurrentStep = CurrentStep
             Me.Owner = Owner
             Me.History = New List(Of String)(History.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries))
-            Me.Billed = Billed
+            Me.BillingStatus = BillingStatus
             Me.AssementDetail = AssementDetail
             Me.FinancialDetail = FinancialDetail
         End Sub
@@ -66,7 +66,7 @@ Namespace Objects
         Property Folder As String
         Property AssementDetail As YearMonth
         Property FinancialDetail As YearMonth
-        Property Billed As Boolean
+        Property BillingStatus As Enums.BillingStatus
 
         Sub AddHistory(ByVal Text As String)
             If Text <> "" Then

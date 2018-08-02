@@ -55,7 +55,7 @@ Namespace Database
                 AddParameter(Command, "@FinancialDetails", Financial.ToString)
                 AddParameter(Command, "@Owner", Owner.ID)
                 AddParameter(Command, "@History", History)
-                AddParameter(Command, "@Billed", False)
+                AddParameter(Command, "@Billed", Enums.BillingStatus.NotBilled)
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
@@ -156,7 +156,7 @@ Namespace Database
                 Dim Owner As User
                 Dim OwnerID As Integer
                 Dim History As String
-                Dim Billed As Boolean
+                Dim Billed As Enums.BillingStatus
                 Dim Read As Boolean = False
 
                 Using Reader As SqlDataReader = Command.ExecuteReader
@@ -229,7 +229,7 @@ Namespace Database
                         Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
-                        Dim Billed As Boolean = Reader.Item("Billed")
+                        Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
                         R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
                     End While
                 End Using
@@ -272,7 +272,50 @@ Namespace Database
                         Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
-                        Dim Billed As Boolean = Reader.Item("Billed")
+                        Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
+                        R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetPending(ByVal CloseConnection As Boolean, ByVal Clients As List(Of Client), ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=2;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Jobs.Sort(New Comparers.CompareByID)
+            Clients.Sort(New Comparers.CompareByID)
+            Users.Sort(New Comparers.CompareByID)
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        Dim ID As Integer = Reader.Item("ID")
+                        Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
+                        Dim Job As Job = Jobs.Find(Function(c) c.ID = Reader.Item("Job").ToString)
+                        Dim Client As Client = Clients(Clients.BinarySearch(New Client(Reader.Item("Client")), New Comparers.CompareByID))
+                        Dim DueDate As Date = Reader.Item("DueDate")
+                        Dim AddedOn As Date = Reader.Item("DateAdded")
+                        Dim CompletedOn As Date = Reader.Item("DateCompleted")
+                        Dim UpdatedOn As Date = Reader.Item("DateUpdated")
+                        Dim Description As String = Reader.Item("Description").ToString
+                        Dim Remarks As String = Reader.Item("Remarks").ToString
+                        Dim TargetDate As Date = Reader.Item("TargetDate")
+                        Dim PriorityOfWork As Enums.Priority = DirectCast([Enum].Parse(GetType(Enums.Priority), Reader.Item("Priority").ToString), Enums.Priority)
+                        Dim Status As Enums.WorkStatus = DirectCast([Enum].Parse(GetType(Enums.WorkStatus), Reader.Item("Status").ToString), Enums.WorkStatus)
+                        Dim Folder As String = Reader.Item("Folder").ToString
+                        Dim AssementDetail As String = Reader.Item("AssessmentDetails").ToString
+                        Dim FinancialDetail As String = Reader.Item("FinancialDetails").ToString
+                        Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
+                        Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
+                        Dim History As String = Reader.Item("History").ToString.Trim
+                        Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
                         R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
                     End While
                 End Using
@@ -316,7 +359,7 @@ Namespace Database
                         Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
                         Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
                         Dim History As String = Reader.Item("History").ToString.Trim
-                        Dim Billed As Boolean = Reader.Item("Billed")
+                        Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
                         R.Add(New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail)))
                     End While
                 End Using
@@ -409,7 +452,7 @@ Namespace Database
             Return R
         End Function
 
-        Function UpdateBilledStatus(ByVal ID As Integer, ByVal BilledStatus As Boolean, ByVal History As String)
+        Function UpdateBilledStatus(ByVal ID As Integer, ByVal BilledStatus As Enums.BillingStatus, ByVal History As String)
             Dim R As Boolean = False
 
             Dim CommandString As String = "UPDATE Workbook SET [Billed]=@Billed,[History]=@History WHERE [ID]=@ID;"
