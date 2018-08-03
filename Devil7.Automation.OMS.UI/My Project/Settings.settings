@@ -20,5 +20,8 @@
     <Setting Name="SortClient" Type="System.String" Scope="User">
       <Value Profile="(Default)">FileNo</Value>
     </Setting>
+    <Setting Name="ViewPending" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Minimal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

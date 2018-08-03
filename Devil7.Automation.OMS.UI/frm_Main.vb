@@ -49,10 +49,12 @@ Public Class frm_Main
         rpg_Workbook.Visible = False
         rpg_Billing.Visible = False
         rpg_Home.Visible = False
+        rpg_Pending.Visible = False
         grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_WorkbookView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_BillingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        cmb_PendingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
 
@@ -112,6 +114,14 @@ Public Class frm_Main
             If Not Loader_Billing.IsBusy Then Loader_Billing.RunWorkerAsync()
         End If
     End Sub
+
+    Sub PendingPageLoad()
+        rpg_Pending.Visible = True
+        cmb_PendingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        If gc_Pending.DataSource Is Nothing Then
+            If Not Loader_Pending.IsBusy Then Loader_Pending.RunWorkerAsync()
+        End If
+    End Sub
 #End Region
 
     Private Sub MainPane_SelectedPageChanged(sender As Object, e As DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs) Handles MainPane.SelectedPageChanged
@@ -131,6 +141,8 @@ Public Class frm_Main
             UtilitiesPageLoad()
         ElseIf MainPane.SelectedPage Is np_Billing Then
             BillingPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Pending Then
+            PendingPageLoad()
         End If
     End Sub
 
@@ -472,7 +484,7 @@ Public Class frm_Main
     End Sub
 
     Sub SetupHomeColumns()
-        Dim HiddenColumns As String() = {"ID", "Owner", "AssignedTo", "CompletedOn", "Folder", "Billed"}
+        Dim HiddenColumns As String() = {"ID", "Owner", "AssignedTo", "CompletedOn", "Folder", "BillingStatus"}
         For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
             If HiddenColumns.Contains(i.FieldName) Then
                 Me.Invoke(Sub()
@@ -536,8 +548,8 @@ Public Class frm_Main
     End Sub
 
     Sub SetupBillingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail", "Billed"}
-        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "Billed"}
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail", "BillingStatus"}
+        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "BillingStatus"}
 
         Dim AvailableColumns As String()
         If cmb_BillingView.EditValue = "Minimal" Then
@@ -547,6 +559,30 @@ Public Class frm_Main
         End If
 
         For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Billing.Columns
+            If AvailableColumns.Contains(i.FieldName) Then
+                Me.Invoke(Sub()
+                              i.Visible = True
+                          End Sub)
+            Else
+                Me.Invoke(Sub()
+                              i.Visible = False
+                          End Sub)
+            End If
+        Next
+    End Sub
+
+    Sub SetupPendingColumns()
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail", "BillingStatus"}
+        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "BillingStatus"}
+
+        Dim AvailableColumns As String()
+        If cmb_PendingView.EditValue = "Minimal" Then
+            AvailableColumns = MinimalColumns
+        Else
+            AvailableColumns = FullColumns
+        End If
+
+        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Pending.Columns
             If AvailableColumns.Contains(i.FieldName) Then
                 Me.Invoke(Sub()
                               i.Visible = True
@@ -704,6 +740,7 @@ Public Class frm_Main
         cmb_HomeView.EditValue = My.Settings.ViewHome
         cmb_WorkbookView.EditValue = My.Settings.ViewWorkbook
         cmb_BillingView.EditValue = My.Settings.ViewBilling
+        cmb_PendingView.EditValue = My.Settings.ViewPending
         cmb_ClientsSort.EditValue = My.Settings.SortClient
         ProcessPermissions()
     End Sub
@@ -829,13 +866,14 @@ Public Class frm_Main
             If gv_Billing.SelectedRowsCount > 0 Then
                 For Each i As Integer In gv_Billing.GetSelectedRows
                     Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
-                    If Database.Workbook.UpdateBilledStatus(row.ID, True, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Billed, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                         MsgBox("Successfully marked selected items as 'Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        If Not Loader_Billing.IsBusy Then Loader_Billing.RunWorkerAsync()
+                        gc_Billing.DataSource.Remove(row)
                     Else
                         MsgBox("Unknown error while marking item " & row.ID & " as billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
                     End If
                 Next
+                gc_Billing.RefreshDataSource()
             End If
         Catch ex As Exception
             MsgBox(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
@@ -967,5 +1005,157 @@ Public Class frm_Main
         Else
             cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
+    End Sub
+
+    Private Sub Loader_Pending_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Pending.DoWork
+        Me.Invoke(Sub()
+                      rpg_Pending.Enabled = False
+                      ProgressPanel_Pending.Visible = True
+                  End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Pending.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Pending.Description = "Loading Jobs..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+        If Clients Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Pending.Description = "Loading Clients..."
+                      End Sub)
+            Loader_Clients_DoWork(Me, Nothing)
+        End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_Pending.Description = "Loading Pending Bills..."
+                  End Sub)
+        Try
+            Dim Pending As List(Of Objects.WorkbookItem) = Database.Workbook.GetPending(True, Clients, Jobs, Users)
+            Me.Invoke(Sub()
+                          gc_Pending.DataSource = Pending
+                      End Sub)
+            SetupPendingColumns()
+        Catch ex As Exception
+
+        End Try
+        Me.Invoke(Sub()
+                      rpg_Pending.Enabled = True
+                      ProgressPanel_Pending.Visible = False
+                  End Sub)
+        Utils.Misc.CleanRAM()
+    End Sub
+
+    Private Sub cmb_PendingView_EditValueChanged(sender As Object, e As EventArgs) Handles cmb_PendingView.EditValueChanged
+        If Loaded Then
+            SetupPendingColumns()
+            My.Settings.ViewPending = cmb_PendingView.EditValue
+            My.Settings.Save()
+        End If
+    End Sub
+
+    Private Sub btn_RefreshPending_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshPending.ItemClick
+        If Not Loader_Pending.IsBusy Then Loader_Pending.RunWorkerAsync()
+    End Sub
+
+    Private Sub btn_MarkPending_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_MarkPending.ItemClick
+        Try
+            If gv_Billing.SelectedRowsCount > 0 Then
+                For Each i As Integer In gv_Billing.GetSelectedRows
+                    Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
+                    If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Pending, (row.GetHistory & vbNewLine & "Marked as 'Pending' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                        MsgBox("Successfully marked selected items as 'Pending'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        gc_Billing.DataSource.Remove(row)
+                    Else
+                        MsgBox("Unknown error while marking item " & row.ID & " as pending.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    End If
+                Next
+                gc_Billing.RefreshDataSource()
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on marking selected items as pending.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub btn_MarkBilled_2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_MarkBilled_2.ItemClick
+        Try
+            If gv_Pending.SelectedRowsCount > 0 Then
+                For Each i As Integer In gv_Pending.GetSelectedRows
+                    Dim row As Objects.WorkbookItem = gv_Pending.GetRow(i)
+                    If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Billed, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                        MsgBox("Successfully marked selected items as 'Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        gc_Pending.DataSource.Remove(row)
+                    Else
+                        MsgBox("Unknown error while marking item " & row.ID & " as billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    End If
+                Next
+                gc_Pending.RefreshDataSource()
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub btn_MarkNotPaid_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_MarkNotPaid.ItemClick
+        Try
+            If gv_Pending.SelectedRowsCount > 0 Then
+                For Each i As Integer In gv_Pending.GetSelectedRows
+                    Dim row As Objects.WorkbookItem = gv_Pending.GetRow(i)
+                    If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.NotBilled, (row.GetHistory & vbNewLine & "Marked as 'Not Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                        MsgBox("Successfully marked selected items as 'Not Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        gc_Pending.DataSource.Remove(row)
+                    Else
+                        MsgBox("Unknown error while marking item " & row.ID & " as not billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    End If
+                Next
+                gc_Pending.RefreshDataSource()
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on marking selected items as not billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub btn_MarkIncomplete_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_MarkIncomplete.ItemClick
+        Try
+            Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
+            If gv_Billing.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Billing.GetRow(gv_Billing.GetSelectedRows()(0))
+                If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    row.Status = s
+                    MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                Else
+                    MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
+    Private Sub btn_MarkIncomplete_2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_MarkIncomplete_2.ItemClick
+        Try
+            Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
+            If gv_Pending.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Pending.GetRow(gv_Pending.GetSelectedRows()(0))
+                If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                    row.Status = s
+                    MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                Else
+                    MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
     End Sub
 End Class

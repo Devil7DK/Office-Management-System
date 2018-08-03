@@ -66,6 +66,9 @@ Partial Class frm_Main
         Me.TVC_Client_AddressLine2 = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Client_District = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Client_Pincode = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.TVC_Client_FileNo = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.TVC_Client_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.TVC_Client_Email = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Name = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_UserType = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
@@ -103,6 +106,14 @@ Partial Class frm_Main
         Me.cmb_BillingView_Edit = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.cmb_ClientsSort = New DevExpress.XtraBars.BarEditItem()
         Me.cmb_ClientsSort_Edit = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.cmb_PendingView = New DevExpress.XtraBars.BarEditItem()
+        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.btn_RefreshPending = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_MarkPending = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_MarkBilled_2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_MarkNotPaid = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_MarkIncomplete = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_MarkIncomplete_2 = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Billing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -117,6 +128,7 @@ Partial Class frm_Main
         Me.btn_EditUser = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_RemoveUser = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ResetPassword = New DevExpress.XtraBars.BarButtonItem()
+        Me.rpg_Pending = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Skin = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.SkinSelector = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
@@ -149,6 +161,10 @@ Partial Class frm_Main
         Me.ProgressPanel_Billing = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Billing = New DevExpress.XtraGrid.GridControl()
         Me.gv_Billing = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.np_Pending = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Pending = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.gc_Pending = New DevExpress.XtraGrid.GridControl()
+        Me.gv_Pending = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Jobs = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
@@ -158,9 +174,7 @@ Partial Class frm_Main
         Me.Loader_Billing = New System.ComponentModel.BackgroundWorker()
         Me.RAMMonitor = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTipManager = New DevExpress.Utils.ToolTipController(Me.components)
-        Me.TVC_Client_FileNo = New DevExpress.XtraGrid.Columns.TileViewColumn()
-        Me.TVC_Client_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
-        Me.TVC_Client_Email = New DevExpress.XtraGrid.Columns.TileViewColumn()
+        Me.Loader_Pending = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -168,6 +182,7 @@ Partial Class frm_Main
         CType(Me.cmb_WorkbookView_View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_BillingView_Edit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_ClientsSort_Edit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
@@ -190,6 +205,9 @@ Partial Class frm_Main
         Me.np_Billing.SuspendLayout()
         CType(Me.gc_Billing, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Billing, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.np_Pending.SuspendLayout()
+        CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TVC_Client_Photo
@@ -256,6 +274,30 @@ Partial Class frm_Main
         Me.TVC_Client_Pincode.Visible = True
         Me.TVC_Client_Pincode.VisibleIndex = 6
         '
+        'TVC_Client_FileNo
+        '
+        Me.TVC_Client_FileNo.Caption = "File Number"
+        Me.TVC_Client_FileNo.FieldName = "FileNo"
+        Me.TVC_Client_FileNo.Name = "TVC_Client_FileNo"
+        Me.TVC_Client_FileNo.Visible = True
+        Me.TVC_Client_FileNo.VisibleIndex = 8
+        '
+        'TVC_Client_Mobile
+        '
+        Me.TVC_Client_Mobile.Caption = "Mobile"
+        Me.TVC_Client_Mobile.FieldName = "Mobile"
+        Me.TVC_Client_Mobile.Name = "TVC_Client_Mobile"
+        Me.TVC_Client_Mobile.Visible = True
+        Me.TVC_Client_Mobile.VisibleIndex = 9
+        '
+        'TVC_Client_Email
+        '
+        Me.TVC_Client_Email.Caption = "Email"
+        Me.TVC_Client_Email.FieldName = "Email"
+        Me.TVC_Client_Email.Name = "TVC_Client_Email"
+        Me.TVC_Client_Email.Visible = True
+        Me.TVC_Client_Email.VisibleIndex = 10
+        '
         'TVC_Name
         '
         Me.TVC_Name.Caption = "Name"
@@ -292,12 +334,12 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 45
+        Me.RibbonControl.MaxItemId = 52
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
-        Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress, Me.cmb_HomeView_Editor, Me.cmb_WorkbookView_View, Me.cmb_BillingView_Edit, Me.cmb_ClientsSort_Edit})
+        Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress, Me.cmb_HomeView_Editor, Me.cmb_WorkbookView_View, Me.cmb_BillingView_Edit, Me.cmb_ClientsSort_Edit, Me.RepositoryItemComboBox1})
         Me.RibbonControl.ShowCategoryInCaption = False
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -578,9 +620,76 @@ Partial Class frm_Main
         Me.cmb_ClientsSort_Edit.Name = "cmb_ClientsSort_Edit"
         Me.cmb_ClientsSort_Edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         '
+        'cmb_PendingView
+        '
+        Me.cmb_PendingView.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.cmb_PendingView.Caption = "View :"
+        Me.cmb_PendingView.Edit = Me.RepositoryItemComboBox1
+        Me.cmb_PendingView.EditValue = "Minimal"
+        Me.cmb_PendingView.EditWidth = 70
+        Me.cmb_PendingView.Id = 45
+        Me.cmb_PendingView.Name = "cmb_PendingView"
+        '
+        'RepositoryItemComboBox1
+        '
+        Me.RepositoryItemComboBox1.AutoHeight = False
+        Me.RepositoryItemComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemComboBox1.Items.AddRange(New Object() {"Minimal", "Advanced"})
+        Me.RepositoryItemComboBox1.Name = "RepositoryItemComboBox1"
+        Me.RepositoryItemComboBox1.ReadOnly = True
+        Me.RepositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'btn_RefreshPending
+        '
+        Me.btn_RefreshPending.Caption = "Refresh Pending"
+        Me.btn_RefreshPending.Id = 46
+        Me.btn_RefreshPending.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshPending.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshPending.Name = "btn_RefreshPending"
+        '
+        'btn_MarkPending
+        '
+        Me.btn_MarkPending.Caption = "Mark as Pending"
+        Me.btn_MarkPending.Id = 47
+        Me.btn_MarkPending.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.pending
+        Me.btn_MarkPending.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.pending
+        Me.btn_MarkPending.Name = "btn_MarkPending"
+        '
+        'btn_MarkBilled_2
+        '
+        Me.btn_MarkBilled_2.Caption = "Mark as Billed"
+        Me.btn_MarkBilled_2.Id = 48
+        Me.btn_MarkBilled_2.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
+        Me.btn_MarkBilled_2.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
+        Me.btn_MarkBilled_2.Name = "btn_MarkBilled_2"
+        '
+        'btn_MarkNotPaid
+        '
+        Me.btn_MarkNotPaid.Caption = "Mark as Not Paid"
+        Me.btn_MarkNotPaid.Id = 49
+        Me.btn_MarkNotPaid.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.not_paid
+        Me.btn_MarkNotPaid.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.not_paid
+        Me.btn_MarkNotPaid.Name = "btn_MarkNotPaid"
+        '
+        'btn_MarkIncomplete
+        '
+        Me.btn_MarkIncomplete.Caption = "Mark as Incomplete"
+        Me.btn_MarkIncomplete.Id = 50
+        Me.btn_MarkIncomplete.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete.Name = "btn_MarkIncomplete"
+        '
+        'btn_MarkIncomplete_2
+        '
+        Me.btn_MarkIncomplete_2.Caption = "Mark as Incomplete"
+        Me.btn_MarkIncomplete_2.Id = 51
+        Me.btn_MarkIncomplete_2.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete_2.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete_2.Name = "btn_MarkIncomplete_2"
+        '
         'rp_Edit
         '
-        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Skin})
+        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Pending, Me.rpg_Skin})
         Me.rp_Edit.Name = "rp_Edit"
         Me.rp_Edit.Text = "Edit"
         '
@@ -595,6 +704,8 @@ Partial Class frm_Main
         '
         Me.rpg_Billing.ItemLinks.Add(Me.btn_RefreshBilling)
         Me.rpg_Billing.ItemLinks.Add(Me.btn_MarkBilled, True)
+        Me.rpg_Billing.ItemLinks.Add(Me.btn_MarkPending)
+        Me.rpg_Billing.ItemLinks.Add(Me.btn_MarkIncomplete)
         Me.rpg_Billing.Name = "rpg_Billing"
         Me.rpg_Billing.Text = "Actions"
         '
@@ -696,6 +807,16 @@ Partial Class frm_Main
         Me.btn_ResetPassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_reset_password
         Me.btn_ResetPassword.Name = "btn_ResetPassword"
         '
+        'rpg_Pending
+        '
+        Me.rpg_Pending.ItemLinks.Add(Me.btn_RefreshPending)
+        Me.rpg_Pending.ItemLinks.Add(Me.btn_MarkBilled_2, True)
+        Me.rpg_Pending.ItemLinks.Add(Me.btn_MarkNotPaid)
+        Me.rpg_Pending.ItemLinks.Add(Me.btn_MarkIncomplete_2)
+        Me.rpg_Pending.Name = "rpg_Pending"
+        Me.rpg_Pending.ShowCaptionButton = False
+        Me.rpg_Pending.Text = "Actions"
+        '
         'rpg_Skin
         '
         Me.rpg_Skin.ItemLinks.Add(Me.SkinSelector)
@@ -718,6 +839,7 @@ Partial Class frm_Main
         Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_WorkbookView)
         Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_BillingView)
         Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_ClientsSort, True)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_PendingView)
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
@@ -732,12 +854,13 @@ Partial Class frm_Main
         Me.MainPane.Controls.Add(Me.np_Jobs)
         Me.MainPane.Controls.Add(Me.np_Users)
         Me.MainPane.Controls.Add(Me.np_Billing)
+        Me.MainPane.Controls.Add(Me.np_Pending)
         Me.MainPane.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainPane.Location = New System.Drawing.Point(0, 143)
         Me.MainPane.Name = "MainPane"
         Me.MainPane.PageProperties.ShowCollapseButton = False
         Me.MainPane.PageProperties.ShowExpandButton = False
-        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Billing, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
+        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Billing, Me.np_Pending, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
         Me.MainPane.RegularSize = New System.Drawing.Size(725, 275)
         Me.MainPane.SelectedPage = Me.np_Home
         Me.MainPane.Size = New System.Drawing.Size(725, 275)
@@ -788,7 +911,7 @@ Partial Class frm_Main
         Me.np_Utilities.Controls.Add(Me.ProgressPanel_Utilites)
         Me.np_Utilities.Controls.Add(Me.Panel_Utilities)
         Me.np_Utilities.Name = "np_Utilities"
-        Me.np_Utilities.Size = New System.Drawing.Size(543, 229)
+        Me.np_Utilities.Size = New System.Drawing.Size(725, 275)
         '
         'ProgressPanel_Utilites
         '
@@ -799,7 +922,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Utilites.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Utilites.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Utilites.Name = "ProgressPanel_Utilites"
-        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(543, 229)
+        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(725, 275)
         Me.ProgressPanel_Utilites.TabIndex = 3
         '
         'Panel_Utilities
@@ -808,7 +931,7 @@ Partial Class frm_Main
         Me.Panel_Utilities.Location = New System.Drawing.Point(0, 0)
         Me.Panel_Utilities.MaxId = 5
         Me.Panel_Utilities.Name = "Panel_Utilities"
-        Me.Panel_Utilities.Size = New System.Drawing.Size(543, 229)
+        Me.Panel_Utilities.Size = New System.Drawing.Size(725, 275)
         Me.Panel_Utilities.TabIndex = 1
         Me.Panel_Utilities.Text = "Utilities"
         '
@@ -1085,7 +1208,7 @@ Partial Class frm_Main
         Me.np_Jobs.Controls.Add(Me.ProgressPanel_Jobs)
         Me.np_Jobs.Controls.Add(Me.gc_Jobs)
         Me.np_Jobs.Name = "np_Jobs"
-        Me.np_Jobs.Size = New System.Drawing.Size(543, 229)
+        Me.np_Jobs.Size = New System.Drawing.Size(643, 229)
         '
         'ProgressPanel_Jobs
         '
@@ -1096,7 +1219,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Jobs.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Jobs.Name = "ProgressPanel_Jobs"
-        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(543, 229)
+        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(643, 229)
         Me.ProgressPanel_Jobs.TabIndex = 3
         '
         'gc_Jobs
@@ -1106,7 +1229,7 @@ Partial Class frm_Main
         Me.gc_Jobs.MainView = Me.gv_Jobs
         Me.gc_Jobs.MenuManager = Me.RibbonControl
         Me.gc_Jobs.Name = "gc_Jobs"
-        Me.gc_Jobs.Size = New System.Drawing.Size(543, 229)
+        Me.gc_Jobs.Size = New System.Drawing.Size(643, 229)
         Me.gc_Jobs.TabIndex = 1
         Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
         '
@@ -1123,7 +1246,7 @@ Partial Class frm_Main
         Me.np_Users.Controls.Add(Me.ProgressPanel_Users)
         Me.np_Users.Controls.Add(Me.gc_Users)
         Me.np_Users.Name = "np_Users"
-        Me.np_Users.Size = New System.Drawing.Size(543, 229)
+        Me.np_Users.Size = New System.Drawing.Size(725, 275)
         '
         'ProgressPanel_Users
         '
@@ -1134,7 +1257,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Users.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Users.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Users.Name = "ProgressPanel_Users"
-        Me.ProgressPanel_Users.Size = New System.Drawing.Size(543, 229)
+        Me.ProgressPanel_Users.Size = New System.Drawing.Size(725, 275)
         Me.ProgressPanel_Users.TabIndex = 2
         '
         'gc_Users
@@ -1144,7 +1267,7 @@ Partial Class frm_Main
         Me.gc_Users.MainView = Me.tv_Users
         Me.gc_Users.MenuManager = Me.RibbonControl
         Me.gc_Users.Name = "gc_Users"
-        Me.gc_Users.Size = New System.Drawing.Size(543, 229)
+        Me.gc_Users.Size = New System.Drawing.Size(725, 275)
         Me.gc_Users.TabIndex = 1
         Me.gc_Users.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Users})
         '
@@ -1191,7 +1314,7 @@ Partial Class frm_Main
         Me.np_Billing.Controls.Add(Me.ProgressPanel_Billing)
         Me.np_Billing.Controls.Add(Me.gc_Billing)
         Me.np_Billing.Name = "np_Billing"
-        Me.np_Billing.Size = New System.Drawing.Size(543, 229)
+        Me.np_Billing.Size = New System.Drawing.Size(643, 229)
         '
         'ProgressPanel_Billing
         '
@@ -1202,7 +1325,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Billing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Billing.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Billing.Name = "ProgressPanel_Billing"
-        Me.ProgressPanel_Billing.Size = New System.Drawing.Size(543, 229)
+        Me.ProgressPanel_Billing.Size = New System.Drawing.Size(643, 229)
         Me.ProgressPanel_Billing.TabIndex = 7
         '
         'gc_Billing
@@ -1212,7 +1335,7 @@ Partial Class frm_Main
         Me.gc_Billing.MainView = Me.gv_Billing
         Me.gc_Billing.MenuManager = Me.RibbonControl
         Me.gc_Billing.Name = "gc_Billing"
-        Me.gc_Billing.Size = New System.Drawing.Size(543, 229)
+        Me.gc_Billing.Size = New System.Drawing.Size(643, 229)
         Me.gc_Billing.TabIndex = 2
         Me.gc_Billing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Billing})
         '
@@ -1223,6 +1346,45 @@ Partial Class frm_Main
         Me.gv_Billing.OptionsBehavior.Editable = False
         Me.gv_Billing.OptionsBehavior.ReadOnly = True
         Me.gv_Billing.OptionsSelection.MultiSelect = True
+        '
+        'np_Pending
+        '
+        Me.np_Pending.Caption = "Pending"
+        Me.np_Pending.Controls.Add(Me.ProgressPanel_Pending)
+        Me.np_Pending.Controls.Add(Me.gc_Pending)
+        Me.np_Pending.Name = "np_Pending"
+        Me.np_Pending.Size = New System.Drawing.Size(643, 229)
+        '
+        'ProgressPanel_Pending
+        '
+        Me.ProgressPanel_Pending.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Pending.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Pending.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Pending.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Pending.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Pending.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Pending.Name = "ProgressPanel_Pending"
+        Me.ProgressPanel_Pending.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Pending.TabIndex = 8
+        '
+        'gc_Pending
+        '
+        Me.gc_Pending.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_Pending.Location = New System.Drawing.Point(0, 0)
+        Me.gc_Pending.MainView = Me.gv_Pending
+        Me.gc_Pending.MenuManager = Me.RibbonControl
+        Me.gc_Pending.Name = "gc_Pending"
+        Me.gc_Pending.Size = New System.Drawing.Size(643, 229)
+        Me.gc_Pending.TabIndex = 3
+        Me.gc_Pending.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Pending})
+        '
+        'gv_Pending
+        '
+        Me.gv_Pending.GridControl = Me.gc_Pending
+        Me.gv_Pending.Name = "gv_Pending"
+        Me.gv_Pending.OptionsBehavior.Editable = False
+        Me.gv_Pending.OptionsBehavior.ReadOnly = True
+        Me.gv_Pending.OptionsSelection.MultiSelect = True
         '
         'Loader_Users
         '
@@ -1254,29 +1416,8 @@ Partial Class frm_Main
         '
         Me.ToolTipManager.AutoPopDelay = 2000
         '
-        'TVC_Client_FileNo
+        'Loader_Pending
         '
-        Me.TVC_Client_FileNo.Caption = "File Number"
-        Me.TVC_Client_FileNo.FieldName = "FileNo"
-        Me.TVC_Client_FileNo.Name = "TVC_Client_FileNo"
-        Me.TVC_Client_FileNo.Visible = True
-        Me.TVC_Client_FileNo.VisibleIndex = 8
-        '
-        'TVC_Client_Mobile
-        '
-        Me.TVC_Client_Mobile.Caption = "Mobile"
-        Me.TVC_Client_Mobile.FieldName = "Mobile"
-        Me.TVC_Client_Mobile.Name = "TVC_Client_Mobile"
-        Me.TVC_Client_Mobile.Visible = True
-        Me.TVC_Client_Mobile.VisibleIndex = 9
-        '
-        'TVC_Client_Email
-        '
-        Me.TVC_Client_Email.Caption = "Email"
-        Me.TVC_Client_Email.FieldName = "Email"
-        Me.TVC_Client_Email.Name = "TVC_Client_Email"
-        Me.TVC_Client_Email.Visible = True
-        Me.TVC_Client_Email.VisibleIndex = 10
         '
         'frm_Main
         '
@@ -1299,6 +1440,7 @@ Partial Class frm_Main
         CType(Me.cmb_WorkbookView_View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_BillingView_Edit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_ClientsSort_Edit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
@@ -1321,6 +1463,9 @@ Partial Class frm_Main
         Me.np_Billing.ResumeLayout(False)
         CType(Me.gc_Billing, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Billing, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.np_Pending.ResumeLayout(False)
+        CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1429,4 +1574,18 @@ Partial Class frm_Main
     Friend WithEvents TVC_Client_FileNo As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_Mobile As DevExpress.XtraGrid.Columns.TileViewColumn
     Friend WithEvents TVC_Client_Email As DevExpress.XtraGrid.Columns.TileViewColumn
+    Friend WithEvents np_Pending As DevExpress.XtraBars.Navigation.NavigationPage
+    Friend WithEvents ProgressPanel_Pending As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents gc_Pending As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_Pending As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents Loader_Pending As System.ComponentModel.BackgroundWorker
+    Friend WithEvents rpg_Pending As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents cmb_PendingView As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents RepositoryItemComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents btn_RefreshPending As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_MarkPending As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_MarkBilled_2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_MarkNotPaid As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_MarkIncomplete As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_MarkIncomplete_2 As DevExpress.XtraBars.BarButtonItem
 End Class

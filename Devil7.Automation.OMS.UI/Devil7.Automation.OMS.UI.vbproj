@@ -273,6 +273,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\incomplete.png" />
+    <None Include="Resources\not_paid.png" />
+    <None Include="Resources\pending.png" />
     <None Include="Resources\report.png" />
     <None Include="Resources\ram.png" />
     <None Include="Resources\clean.png" />
