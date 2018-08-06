@@ -105,6 +105,12 @@
     <Compile Include="Dialogs\Client\frm_Partner.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_DetailedWorkbookItem.Designer.vb">
+      <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_DetailedWorkbookItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_FilersReport.Designer.vb">
       <DependentUpon>frm_FilersReport.vb</DependentUpon>
     </Compile>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Client\frm_Partner.resx">
       <DependentUpon>frm_Partner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_DetailedWorkbookItem.resx">
+      <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_FilersReport.resx">
       <DependentUpon>frm_FilersReport.vb</DependentUpon>

@@ -57,7 +57,6 @@ Partial Class frm_Main
         Dim TileViewItemElement14 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement15 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
         Dim TileViewItemElement16 As DevExpress.XtraGrid.Views.Tile.TileViewItemElement = New DevExpress.XtraGrid.Views.Tile.TileViewItemElement()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.TVC_Client_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Client_Name = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Client_PAN = New DevExpress.XtraGrid.Columns.TileViewColumn()
@@ -134,9 +133,9 @@ Partial Class frm_Main
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.MainPane = New DevExpress.XtraBars.Navigation.NavigationPane()
         Me.np_Home = New DevExpress.XtraBars.Navigation.NavigationPage()
-        Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Home = New DevExpress.XtraGrid.GridControl()
         Me.gv_Home = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.np_Utilities = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.ProgressPanel_Utilites = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Panel_Utilities = New DevExpress.XtraEditors.TileControl()
@@ -875,18 +874,6 @@ Partial Class frm_Main
         Me.np_Home.Name = "np_Home"
         Me.np_Home.Size = New System.Drawing.Size(643, 229)
         '
-        'ProgressPanel_Home
-        '
-        Me.ProgressPanel_Home.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.ProgressPanel_Home.Appearance.Options.UseBackColor = True
-        Me.ProgressPanel_Home.BarAnimationElementThickness = 2
-        Me.ProgressPanel_Home.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
-        Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
-        Me.ProgressPanel_Home.Size = New System.Drawing.Size(643, 229)
-        Me.ProgressPanel_Home.TabIndex = 6
-        '
         'gc_Home
         '
         Me.gc_Home.Dock = System.Windows.Forms.DockStyle.Fill
@@ -904,6 +891,18 @@ Partial Class frm_Main
         Me.gv_Home.Name = "gv_Home"
         Me.gv_Home.OptionsBehavior.Editable = False
         Me.gv_Home.OptionsBehavior.ReadOnly = True
+        '
+        'ProgressPanel_Home
+        '
+        Me.ProgressPanel_Home.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Home.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Home.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Home.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
+        Me.ProgressPanel_Home.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Home.TabIndex = 6
         '
         'np_Utilities
         '
@@ -1427,49 +1426,48 @@ Partial Class frm_Main
         Me.Controls.Add(Me.MainPane)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_Main"
         Me.Ribbon = Me.RibbonControl
         Me.StatusBar = Me.RibbonStatusBar
         Me.Text = "Devil7 - Office Management System"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_HomeView_Editor, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_WorkbookView_View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_BillingView_Edit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_ClientsSort_Edit, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MainPane, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.MainPane.ResumeLayout(False)
-        Me.np_Home.ResumeLayout(False)
-        CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Utilities.ResumeLayout(False)
-        Me.np_Workbook.ResumeLayout(False)
-        CType(Me.gc_WorkBook, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_WorkBook, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Clients.ResumeLayout(False)
-        CType(Me.gc_Clients, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tv_Clients, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Clients, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Jobs.ResumeLayout(False)
-        CType(Me.gc_Jobs, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Jobs, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Users.ResumeLayout(False)
-        CType(Me.gc_Users, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tv_Users, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Billing.ResumeLayout(False)
-        CType(Me.gc_Billing, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Billing, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.np_Pending.ResumeLayout(False)
-        CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        CType(Me.RibbonControl,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.RibbonMenu,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.RAMUsage_Progress,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.cmb_HomeView_Editor,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.cmb_WorkbookView_View,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.cmb_BillingView_Edit,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.cmb_ClientsSort_Edit,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.RepositoryItemComboBox1,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.MainPane,System.ComponentModel.ISupportInitialize).EndInit
+        Me.MainPane.ResumeLayout(false)
+        Me.np_Home.ResumeLayout(false)
+        CType(Me.gc_Home,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.gv_Home,System.ComponentModel.ISupportInitialize).EndInit
+        Me.np_Utilities.ResumeLayout(false)
+        Me.np_Workbook.ResumeLayout(false)
+        CType(Me.gc_WorkBook,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.gv_WorkBook,System.ComponentModel.ISupportInitialize).EndInit
+        Me.np_Clients.ResumeLayout(false)
+        CType(Me.gc_Clients,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.tv_Clients,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.gv_Clients,System.ComponentModel.ISupportInitialize).EndInit
+        Me.np_Jobs.ResumeLayout(false)
+        CType(Me.gc_Jobs,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.gv_Jobs,System.ComponentModel.ISupportInitialize).EndInit
+        Me.np_Users.ResumeLayout(false)
+        CType(Me.gc_Users,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.tv_Users,System.ComponentModel.ISupportInitialize).EndInit
+        Me.np_Billing.ResumeLayout(false)
+        CType(Me.gc_Billing,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.gv_Billing,System.ComponentModel.ISupportInitialize).EndInit
+        Me.np_Pending.ResumeLayout(false)
+        CType(Me.gc_Pending,System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.gv_Pending,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
 
     Friend WithEvents RibbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
     Friend WithEvents rp_Edit As DevExpress.XtraBars.Ribbon.RibbonPage

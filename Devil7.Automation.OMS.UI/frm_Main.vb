@@ -548,7 +548,7 @@ Public Class frm_Main
     End Sub
 
     Sub SetupBillingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail", "BillingStatus"}
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail"}
         Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "BillingStatus"}
 
         Dim AvailableColumns As String()
@@ -572,7 +572,7 @@ Public Class frm_Main
     End Sub
 
     Sub SetupPendingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail", "BillingStatus"}
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail"}
         Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "BillingStatus"}
 
         Dim AvailableColumns As String()
@@ -1158,4 +1158,12 @@ Public Class frm_Main
                    , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
         End Try
     End Sub
+
+    Private Sub gv_Home_DoubleClick(sender As Object, e As EventArgs) Handles gv_Home.DoubleClick
+        If gv_Home.SelectedRowsCount = 1 Then
+            Dim f As New frm_DetailedWorkbookItem(MousePosition, gv_Home.GetRow(gv_Home.GetSelectedRows(0)))
+            f.Show(Me)
+        End If
+    End Sub
+
 End Class
