@@ -25,16 +25,16 @@ Imports System.Data.SqlClient
 Public Class frm_WorkBook
     Dim Mode As Enums.DialogMode = Enums.DialogMode.Add
     Dim Jobs As List(Of Objects.Job)
-    Dim Clients As List(Of Objects.Client)
+    Dim ClientsMinimal As List(Of Objects.ClientMinimal)
     Dim Users As List(Of Objects.User)
     Dim ID As Integer = -1
     Dim UserData As Objects.User
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal UserData As Objects.User, ByVal Jobs As List(Of Objects.Job), _
-            ByVal Clients As List(Of Objects.Client), ByVal Users As List(Of Objects.User), Optional ByVal ID As Integer = -1)
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal UserData As Objects.User, ByVal Jobs As List(Of Objects.Job),
+            ByVal MinimalClients As List(Of Objects.ClientMinimal), ByVal Users As List(Of Objects.User), Optional ByVal ID As Integer = -1)
         InitializeComponent()
         Me.Mode = Mode
         Me.Jobs = Jobs
-        Me.Clients = Clients
+        Me.ClientsMinimal = ClientsMinimal
         Me.Users = Users
         Me.ID = ID
         Me.UserData = UserData
@@ -46,14 +46,19 @@ Public Class frm_WorkBook
         For i As Integer = -2 To 2
             cmb_Priority.Properties.Items.Add([Enum].GetName(GetType(Enums.Priority), i))
         Next
-        cmb_Client.Properties.Items.AddRange(Clients.ToArray)
+
+        LookUpEdit1.Properties.DataSource = ClientsMinimal
+        LookUpEdit1.Properties.DisplayMember = "ClientName"
+        LookUpEdit1.Properties.ValueMember = "ID"
+        LookUpEdit1.Properties.Columns.Item("ID").Visible = False
+
         cmb_Job.Properties.Items.AddRange(Jobs.ToArray)
         cmb_User.Properties.Items.AddRange(Users.ToArray)
         cmb_CurrentlyAssignedTo.Properties.Items.AddRange(Users.ToArray)
         If Mode = Enums.DialogMode.Edit Then
             cmb_User.Enabled = False
             cmb_Job.Enabled = False
-            cmb_Client.Enabled = False
+            LookUpEdit1.Enabled = False
             cmb_Status.Enabled = False
             cmb_Priority.Enabled = False
             cmb_Steps.Enabled = False
@@ -89,9 +94,9 @@ Public Class frm_WorkBook
                 History &= i & vbNewLine
             Next
             txt_History.Text = History.Trim
-            For Each i As Objects.Client In cmb_Client.Properties.Items
+            For Each i As Objects.ClientMinimal In LookUpEdit1.Properties.DataSource
                 If i.ID = ClientID Then
-                    cmb_Client.SelectedItem = i
+                    LookUpEdit1.EditValue = i.ID
                     Exit For
                 End If
             Next
@@ -120,7 +125,7 @@ Public Class frm_WorkBook
             On Error Resume Next
             cmb_User.SelectedIndex = 0
             cmb_Job.SelectedIndex = 0
-            cmb_Client.SelectedIndex = 0
+            If ClientsMinimal.Count > 0 Then LookUpEdit1.EditValue = ClientsMinimal(0).ID
             txt_DueDate.DateTime = Now.AddDays(10)
             txt_TargetDate.DateTime = Now.AddDays(8)
             cmb_Priority.SelectedIndex = 2
@@ -154,7 +159,7 @@ Public Class frm_WorkBook
         If Mode = Enums.DialogMode.Add Then
             Try
                 WorkItemSelected = Nothing
-                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, CType(cmb_Client.SelectedItem, Objects.Client), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, CType(cmb_Client.SelectedItem, Objects.Client), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
+                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, Database.Clients.GetClientByID(LookUpEdit1.EditValue), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, Database.Clients.GetClientByID(LookUpEdit1.EditValue), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
                 If WorkItemSelected IsNot Nothing Then
                     MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                     Me.DialogResult = Windows.Forms.DialogResult.OK

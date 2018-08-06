@@ -52,7 +52,6 @@ Partial Class frm_WorkBook
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.cmb_User = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cmb_Job = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.cmb_Client = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txt_DueDate = New DevExpress.XtraEditors.DateEdit()
         Me.txt_TargetDate = New DevExpress.XtraEditors.DateEdit()
         Me.cmb_Priority = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -70,12 +69,12 @@ Partial Class frm_WorkBook
         Me.txt_History = New DevExpress.XtraEditors.MemoEdit()
         Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
         Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.cmb_CurrentlyAssignedTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_User.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Job.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmb_Client.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_TargetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +85,7 @@ Partial Class frm_WorkBook
         CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Remarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_History.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -151,7 +151,6 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl20, 1, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_User, 2, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Job, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.cmb_Client, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_DueDate, 2, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_TargetDate, 2, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Priority, 2, 5)
@@ -169,6 +168,7 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1.Controls.Add(Me.txt_History, 2, 13)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_FinancialYearMonth, 2, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_AssessmentYearMonth, 2, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LookUpEdit1, 2, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -378,15 +378,6 @@ Partial Class frm_WorkBook
         Me.cmb_Job.Size = New System.Drawing.Size(349, 20)
         Me.cmb_Job.TabIndex = 1
         '
-        'cmb_Client
-        '
-        Me.cmb_Client.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cmb_Client.Location = New System.Drawing.Point(136, 53)
-        Me.cmb_Client.Name = "cmb_Client"
-        Me.cmb_Client.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmb_Client.Size = New System.Drawing.Size(349, 20)
-        Me.cmb_Client.TabIndex = 2
-        '
         'txt_DueDate
         '
         Me.txt_DueDate.Dock = System.Windows.Forms.DockStyle.Fill
@@ -548,6 +539,16 @@ Partial Class frm_WorkBook
         YearMonth2.Year = "2018-2019"
         Me.txt_AssessmentYearMonth.Value = YearMonth2
         '
+        'LookUpEdit1
+        '
+        Me.LookUpEdit1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LookUpEdit1.Location = New System.Drawing.Point(136, 53)
+        Me.LookUpEdit1.Name = "LookUpEdit1"
+        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit1.Properties.ReadOnly = True
+        Me.LookUpEdit1.Size = New System.Drawing.Size(349, 20)
+        Me.LookUpEdit1.TabIndex = 2
+        '
         'frm_WorkBook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -567,7 +568,6 @@ Partial Class frm_WorkBook
         CType(Me.cmb_CurrentlyAssignedTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_User.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Job.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_Client.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_TargetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -578,6 +578,7 @@ Partial Class frm_WorkBook
         CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Remarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_History.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -605,7 +606,6 @@ Partial Class frm_WorkBook
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cmb_User As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cmb_Job As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents cmb_Client As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txt_DueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents txt_TargetDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents cmb_Priority As DevExpress.XtraEditors.ComboBoxEdit
@@ -626,4 +626,5 @@ Partial Class frm_WorkBook
     Friend WithEvents txt_History As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents txt_FinancialYearMonth As [Lib].Utils.YearMonthEdit
     Friend WithEvents txt_AssessmentYearMonth As [Lib].Utils.YearMonthEdit
+    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
 End Class

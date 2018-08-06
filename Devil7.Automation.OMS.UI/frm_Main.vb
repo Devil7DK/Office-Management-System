@@ -29,6 +29,7 @@ Public Class frm_Main
     Dim Users As List(Of Objects.User)
     Dim Clients As List(Of Objects.Client)
     Dim Jobs As List(Of Objects.Job)
+    Dim ClientsMinimal As List(Of Objects.ClientMinimal)
 
     Dim RAMUsed As ULong
     Dim Loaded As Boolean = False
@@ -426,9 +427,17 @@ Public Class frm_Main
             Loader_Jobs_DoWork(Me, Nothing)
         End If
 
+        If ClientsMinimal Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Workbook.Description = "Loading Clients..."
+                      End Sub)
+            ClientsMinimal = Database.Clients.GetMinimal()
+        End If
+
         Me.Invoke(Sub()
                       ProgressPanel_Workbook.Description = "Loading Workbook..."
                   End Sub)
+
         Try
             Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Jobs, Users)
             Me.Invoke(Sub()
@@ -450,7 +459,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_AddWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddWork.ItemClick
-        Dim d As New frm_WorkBook(Enums.DialogMode.Add, User, Jobs, Clients, Users)
+        Dim d As New frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
             gc_WorkBook.RefreshDataSource()
@@ -460,7 +469,7 @@ Public Class frm_Main
     Private Sub btn_EditWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditWork.ItemClick
         If gv_WorkBook.SelectedRowsCount = 1 Then
             Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(gv_WorkBook.GetSelectedRows()(0))
-            Dim d As New frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, Clients, Users, row.ID)
+            Dim d As New frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, ClientsMinimal, Users, row.ID)
             If d.ShowDialog = Windows.Forms.DialogResult.OK Then
                 If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
             End If
