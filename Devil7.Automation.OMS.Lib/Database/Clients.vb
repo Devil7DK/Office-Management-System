@@ -174,6 +174,13 @@ Namespace Database
             Return New Client(ID, Name, PAN, FatherName, Mobile, Email, DOB, AddressLine1, AddressLine2, District, PinCode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, Credentials, Jobs, Status, Photo, GST, FileNo)
         End Function
 
+        Private Function ReadMinimal(ByVal Reader As SqlDataReader) As ClientMinimal
+            Dim ID As Integer = CInt(Reader.Item("ID").ToString.Trim)
+            Dim Name As String = Reader.Item("ClientName").ToString.Trim
+            Dim PAN As String = Reader.Item("PAN").ToString.Trim
+            Return New ClientMinimal(ID, Name, PAN)
+        End Function
+
         Function GetClientByID(ByVal ID As Integer) As Client
             Dim R As Client = Nothing
 
@@ -189,6 +196,26 @@ Namespace Database
                     If Reader.Read Then
                         R = Read(Reader)
                     End If
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetMinimal() As IEnumerable(Of ClientMinimal)
+            Dim R As New List(Of ClientMinimal)
+
+            Dim CommandString As String = "SELECT [ClientName],[PAN] FROM [Clients]"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(ReadMinimal(Reader))
+                    End While
                 End Using
             End Using
 
