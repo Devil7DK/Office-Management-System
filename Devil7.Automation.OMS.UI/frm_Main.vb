@@ -418,24 +418,19 @@ Public Class frm_Main
                       End Sub)
             Loader_Users_DoWork(Me, Nothing)
         End If
+
         If Jobs Is Nothing Then
             Me.Invoke(Sub()
                           ProgressPanel_Workbook.Description = "Loading Jobs..."
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
-        If Clients Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Workbook.Description = "Loading Clients..."
-                      End Sub)
-            Loader_Clients_DoWork(Me, Nothing)
-        End If
 
         Me.Invoke(Sub()
                       ProgressPanel_Workbook.Description = "Loading Workbook..."
                   End Sub)
         Try
-            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Clients, Jobs, Users)
+            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Jobs, Users)
             Me.Invoke(Sub()
                           gc_WorkBook.DataSource = Workbook
                       End Sub)
@@ -616,18 +611,12 @@ Public Class frm_Main
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
-        If Clients Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Home.Description = "Loading Clients..."
-                      End Sub)
-            Loader_Clients_DoWork(Me, Nothing)
-        End If
 
         Me.Invoke(Sub()
                       ProgressPanel_Home.Description = "Loading Home..."
                   End Sub)
         Try
-            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Clients, Jobs, Users, User.ID)
+            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID)
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
                       End Sub)
@@ -831,18 +820,12 @@ Public Class frm_Main
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
-        If Clients Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Billing.Description = "Loading Clients..."
-                      End Sub)
-            Loader_Clients_DoWork(Me, Nothing)
-        End If
 
         Me.Invoke(Sub()
                       ProgressPanel_Billing.Description = "Loading Billing..."
                   End Sub)
         Try
-            Dim Billing As List(Of Objects.WorkbookItem) = Database.Workbook.GetCompleted(True, Clients, Jobs, Users)
+            Dim Billing As List(Of Objects.WorkbookItem) = Database.Workbook.GetCompleted(True, Jobs, Users)
             Me.Invoke(Sub()
                           gc_Billing.DataSource = Billing
                       End Sub)
@@ -1025,18 +1008,12 @@ Public Class frm_Main
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
-        If Clients Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Pending.Description = "Loading Clients..."
-                      End Sub)
-            Loader_Clients_DoWork(Me, Nothing)
-        End If
 
         Me.Invoke(Sub()
                       ProgressPanel_Pending.Description = "Loading Pending Bills..."
                   End Sub)
         Try
-            Dim Pending As List(Of Objects.WorkbookItem) = Database.Workbook.GetPending(True, Clients, Jobs, Users)
+            Dim Pending As List(Of Objects.WorkbookItem) = Database.Workbook.GetPending(True, Jobs, Users)
             Me.Invoke(Sub()
                           gc_Pending.DataSource = Pending
                       End Sub)
