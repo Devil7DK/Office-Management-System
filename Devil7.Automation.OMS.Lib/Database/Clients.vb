@@ -205,7 +205,7 @@ Namespace Database
         Function GetMinimal() As IEnumerable(Of ClientMinimal)
             Dim R As New List(Of ClientMinimal)
 
-            Dim CommandString As String = "SELECT [ClientName],[PAN] FROM [Clients]"
+            Dim CommandString As String = "SELECT [ID],[ClientName],[PAN] FROM [Clients]"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
