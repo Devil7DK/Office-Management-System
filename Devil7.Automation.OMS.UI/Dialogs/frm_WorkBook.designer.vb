@@ -69,7 +69,7 @@ Partial Class frm_WorkBook
         Me.txt_History = New DevExpress.XtraEditors.MemoEdit()
         Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
         Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cmb_Client = New DevExpress.XtraEditors.LookUpEdit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.cmb_CurrentlyAssignedTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +85,7 @@ Partial Class frm_WorkBook
         CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Remarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_History.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_Client.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -168,7 +168,7 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1.Controls.Add(Me.txt_History, 2, 13)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_FinancialYearMonth, 2, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_AssessmentYearMonth, 2, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.LookUpEdit1, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.cmb_Client, 2, 2)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -539,15 +539,14 @@ Partial Class frm_WorkBook
         YearMonth2.Year = "2018-2019"
         Me.txt_AssessmentYearMonth.Value = YearMonth2
         '
-        'LookUpEdit1
+        'cmb_Client
         '
-        Me.LookUpEdit1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LookUpEdit1.Location = New System.Drawing.Point(136, 53)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.ReadOnly = True
-        Me.LookUpEdit1.Size = New System.Drawing.Size(349, 20)
-        Me.LookUpEdit1.TabIndex = 2
+        Me.cmb_Client.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmb_Client.Location = New System.Drawing.Point(136, 53)
+        Me.cmb_Client.Name = "cmb_Client"
+        Me.cmb_Client.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmb_Client.Size = New System.Drawing.Size(349, 20)
+        Me.cmb_Client.TabIndex = 2
         '
         'frm_WorkBook
         '
@@ -578,7 +577,7 @@ Partial Class frm_WorkBook
         CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Remarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_History.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_Client.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -626,5 +625,5 @@ Partial Class frm_WorkBook
     Friend WithEvents txt_History As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents txt_FinancialYearMonth As [Lib].Utils.YearMonthEdit
     Friend WithEvents txt_AssessmentYearMonth As [Lib].Utils.YearMonthEdit
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cmb_Client As DevExpress.XtraEditors.LookUpEdit
 End Class

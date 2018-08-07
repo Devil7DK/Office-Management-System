@@ -34,7 +34,7 @@ Public Class frm_WorkBook
         InitializeComponent()
         Me.Mode = Mode
         Me.Jobs = Jobs
-        Me.ClientsMinimal = ClientsMinimal
+        Me.ClientsMinimal = MinimalClients
         Me.Users = Users
         Me.ID = ID
         Me.UserData = UserData
@@ -47,10 +47,10 @@ Public Class frm_WorkBook
             cmb_Priority.Properties.Items.Add([Enum].GetName(GetType(Enums.Priority), i))
         Next
 
-        LookUpEdit1.Properties.DataSource = ClientsMinimal
-        LookUpEdit1.Properties.DisplayMember = "ClientName"
-        LookUpEdit1.Properties.ValueMember = "ID"
-        LookUpEdit1.Properties.Columns.Item("ID").Visible = False
+        cmb_Client.Properties.DataSource = ClientsMinimal
+        cmb_Client.Properties.DisplayMember = "Name"
+        cmb_Client.Properties.ValueMember = "ID"
+        If ClientsMinimal IsNot Nothing AndAlso ClientsMinimal.Count > 0 Then cmb_Client.EditValue = ClientsMinimal(0).ID
 
         cmb_Job.Properties.Items.AddRange(Jobs.ToArray)
         cmb_User.Properties.Items.AddRange(Users.ToArray)
@@ -58,7 +58,7 @@ Public Class frm_WorkBook
         If Mode = Enums.DialogMode.Edit Then
             cmb_User.Enabled = False
             cmb_Job.Enabled = False
-            LookUpEdit1.Enabled = False
+            cmb_Client.Enabled = False
             cmb_Status.Enabled = False
             cmb_Priority.Enabled = False
             cmb_Steps.Enabled = False
@@ -94,9 +94,9 @@ Public Class frm_WorkBook
                 History &= i & vbNewLine
             Next
             txt_History.Text = History.Trim
-            For Each i As Objects.ClientMinimal In LookUpEdit1.Properties.DataSource
+            For Each i As Objects.ClientMinimal In cmb_Client.Properties.DataSource
                 If i.ID = ClientID Then
-                    LookUpEdit1.EditValue = i.ID
+                    cmb_Client.EditValue = i.ID
                     Exit For
                 End If
             Next
@@ -125,7 +125,7 @@ Public Class frm_WorkBook
             On Error Resume Next
             cmb_User.SelectedIndex = 0
             cmb_Job.SelectedIndex = 0
-            If ClientsMinimal.Count > 0 Then LookUpEdit1.EditValue = ClientsMinimal(0).ID
+            If ClientsMinimal.Count > 0 Then cmb_Client.EditValue = ClientsMinimal(0).ID
             txt_DueDate.DateTime = Now.AddDays(10)
             txt_TargetDate.DateTime = Now.AddDays(8)
             cmb_Priority.SelectedIndex = 2
@@ -159,7 +159,7 @@ Public Class frm_WorkBook
         If Mode = Enums.DialogMode.Add Then
             Try
                 WorkItemSelected = Nothing
-                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, ClientsMinimal.Find(Function(c) c.ID = LookUpEdit1.EditValue), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, Database.Clients.GetClientByID(LookUpEdit1.EditValue), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
+                WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, ClientsMinimal.Find(Function(c) c.ID = cmb_Client.EditValue), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, Database.Clients.GetClientByID(cmb_Client.EditValue), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
                 If WorkItemSelected IsNot Nothing Then
                     MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                     Me.DialogResult = Windows.Forms.DialogResult.OK
