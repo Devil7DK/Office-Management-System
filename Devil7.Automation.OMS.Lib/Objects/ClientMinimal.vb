@@ -23,6 +23,7 @@ Namespace Objects
     Public Class ClientMinimal
 
         Dim ID_ As Integer = -1
+        <ComponentModel.Browsable(False)>
         ReadOnly Property ID As Integer
             Get
                 Return ID_
