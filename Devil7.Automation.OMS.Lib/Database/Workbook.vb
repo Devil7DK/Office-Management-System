@@ -43,6 +43,7 @@ Namespace Database
                 AddParameter(Command, "@Job", Job.ID)
                 AddParameter(Command, "@DueDate", DueDate)
                 AddParameter(Command, "@Client", Utils.ToXML(Of Objects.ClientMinimal)(Client))
+                AddParameter(Command, "@ClientID", Client.ID)
                 AddParameter(Command, "@DateAdded", Now)
                 AddParameter(Command, "@DateCompleted", Now)
                 AddParameter(Command, "@Status", Status)
@@ -392,7 +393,7 @@ Namespace Database
         Function GetWorkbookItemsCount(ByVal Client As Integer, ByVal Job As String, ByVal Period As String, ByVal PeriodType As Enums.PeriodType) As Integer
             Dim R As Integer = 0
 
-            Dim CommandString As String = String.Format("SELECT COUNT(*) FROM [Workbook] WHERE [Client]=@Client AND [Job]=@Job AND [{0}]=@{0};", If(PeriodType = Enums.PeriodType.Assessment, "AssessmentDetails", "FinancialDetails"))
+            Dim CommandString As String = String.Format("SELECT COUNT(*) FROM [Workbook] WHERE [ClientID]=@Client AND [Job]=@Job AND [{0}]=@{0};", If(PeriodType = Enums.PeriodType.Assessment, "AssessmentDetails", "FinancialDetails"))
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
