@@ -30,8 +30,8 @@ Namespace Objects
             End Get
         End Property
 
-        Property PAN As String = ""
         Property Name As String = ""
+        Property PAN As String = ""
 
         Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String)
             Me.ID_ = ID
