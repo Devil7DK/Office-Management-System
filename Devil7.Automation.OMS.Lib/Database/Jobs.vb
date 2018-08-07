@@ -107,6 +107,17 @@ Namespace Database
             Return R
         End Function
 
+        Private Function Read(ByVal Reader As SqlDataReader) As Job
+            Dim ID_ As Integer = CInt(Reader.Item("ID").ToString)
+            Dim Name As String = Reader.Item("JobName").ToString
+            Dim Group As String = Reader.Item("Group").ToString
+            Dim SubGroup As String = Reader.Item("SubGroup").ToString
+            Dim Type As Enums.JobType = DirectCast([Enum].Parse(GetType(Enums.JobType), Reader.Item("Type").ToString), Enums.JobType)
+            Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
+            Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
+            Return New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates)
+        End Function
+
         Function GetJobByID(ByVal ID As Integer, ByVal CloseConnection As Boolean) As Job
             Dim R As Job = Nothing
 
@@ -119,14 +130,7 @@ Namespace Database
                 AddParameter(Command, "@ID", ID)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     If Reader.Read() Then
-                        Dim ID_ As Integer = CInt(Reader.Item("ID").ToString)
-                        Dim Name As String = Reader.Item("JobName").ToString
-                        Dim Group As String = Reader.Item("Group").ToString
-                        Dim SubGroup As String = Reader.Item("SubGroup").ToString
-                        Dim Type As Enums.JobType = DirectCast([Enum].Parse(GetType(Enums.JobType), Reader.Item("Type").ToString), Enums.JobType)
-                        Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
-                        Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
-                        R = New Job(ID_,  Name, Group, SubGroup, Type, Steps, Templates)
+                        R = Read(Reader)
                     End If
                 End Using
             End Using
@@ -147,14 +151,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read()
-                        Dim ID_ As Integer = CInt(Reader.Item("ID").ToString)
-                        Dim Name As String = Reader.Item("JobName").ToString
-                        Dim Group As String = Reader.Item("Group").ToString
-                        Dim SubGroup As String = Reader.Item("SubGroup").ToString
-                        Dim Type As Enums.JobType = DirectCast([Enum].Parse(GetType(Enums.JobType), Reader.Item("Type").ToString), Enums.JobType)
-                        Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
-                        Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
-                        R.Add(New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates))
+                        R.Add(Read(Reader))
                     End While
                 End Using
             End Using
@@ -175,14 +172,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read()
-                        Dim ID_ As Integer = CInt(Reader.Item("ID").ToString)
-                        Dim Name As String = Reader.Item("JobName").ToString
-                        Dim Group As String = Reader.Item("Group").ToString
-                        Dim SubGroup As String = Reader.Item("SubGroup").ToString
-                        Dim Type As Enums.JobType = DirectCast([Enum].Parse(GetType(Enums.JobType), Reader.Item("Type").ToString), Enums.JobType)
-                        Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
-                        Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
-                        R.Add(New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates))
+                        R.Add(Read(Reader))
                     End While
                 End Using
             End Using
