@@ -27,12 +27,14 @@ Namespace Database
     Public Module Workbook
 
         Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date,
-                   ByVal Client As Client, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
+                   ByVal Client As ClientMinimal, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
                    ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
             Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
+
+            Dim FullClient As Client = GetClientByID(Client.ID)
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
@@ -40,13 +42,13 @@ Namespace Database
                 AddParameter(Command, "@User", User.ID)
                 AddParameter(Command, "@Job", Job.ID)
                 AddParameter(Command, "@DueDate", DueDate)
-                AddParameter(Command, "@Client", Utils.ToXML(Of Objects.Client)(Client))
+                AddParameter(Command, "@Client", Utils.ToXML(Of Objects.ClientMinimal)(Client))
                 AddParameter(Command, "@DateAdded", Now)
                 AddParameter(Command, "@DateCompleted", Now)
                 AddParameter(Command, "@Status", Status)
                 AddParameter(Command, "@Description", Description)
                 AddParameter(Command, "@Remarks", Remarks)
-                AddParameter(Command, "@Folder", GetFolder(DefaultStorage, Client, Job, Assessment.ToString, Now.Year))
+                AddParameter(Command, "@Folder", GetFolder(DefaultStorage, FullClient, Job, Assessment.ToString, Now.Year))
                 AddParameter(Command, "@TargetDate", TargetDate)
                 AddParameter(Command, "@Priority", Priority)
                 AddParameter(Command, "@DateUpdated", Now)
@@ -138,7 +140,7 @@ Namespace Database
                 Dim AssignedID As Integer
                 Dim Job As Job
                 Dim JobID As String
-                Dim Client As Client
+                Dim Client As ClientMinimal
                 Dim DueDate As Date
                 Dim AddedOn As Date
                 Dim CompletedOn As Date
@@ -162,7 +164,7 @@ Namespace Database
                     If Reader.Read Then
                         AssignedID = Reader.Item("User")
                         JobID = Reader.Item("Job").ToString
-                        Client = Utils.ObjectSerilizer.FromXML(Of Client)(Reader.Item("Client").ToString)
+                        Client = Utils.ObjectSerilizer.FromXML(Of ClientMinimal)(Reader.Item("Client").ToString)
                         DueDate = Reader.Item("DueDate")
                         AddedOn = Reader.Item("DateAdded")
                         CompletedOn = Reader.Item("DateCompleted")
@@ -411,7 +413,7 @@ Namespace Database
             Dim ID As Integer = Reader.Item("ID")
             Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
             Dim Job As Job = Jobs.Find(Function(c) c.ID = Reader.Item("Job").ToString)
-            Dim Client As Client = Utils.ObjectSerilizer.FromFile(Of Client)(Reader.Item("Client").ToString)
+            Dim Client As ClientMinimal = Utils.ObjectSerilizer.FromFile(Of ClientMinimal)(Reader.Item("Client").ToString)
             Dim DueDate As Date = Reader.Item("DueDate")
             Dim AddedOn As Date = Reader.Item("DateAdded")
             Dim CompletedOn As Date = Reader.Item("DateCompleted")

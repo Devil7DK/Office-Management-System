@@ -22,7 +22,7 @@
 Namespace Objects
     Public Class WorkbookItem
 
-        Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As Client,
+        Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As ClientMinimal,
              ByVal DueDate As Date, ByVal AddedOn As Date, ByVal CompletedOn As Date,
              ByVal UpdatedOn As Date, ByVal Description As String, ByVal Remarks As String,
              ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal BillingStatus As Enums.BillingStatus, ByVal AssementDetail As YearMonth, ByVal FinancialDetail As YearMonth)
@@ -52,7 +52,7 @@ Namespace Objects
         Property Owner As User
         Property AssignedTo As User
         Property Job As Job
-        Property Client As Client
+        Property Client As ClientMinimal
         Property CurrentStep As String
         Property DueDate As Date
         Property AddedOn As Date
