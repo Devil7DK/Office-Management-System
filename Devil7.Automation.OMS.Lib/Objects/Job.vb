@@ -30,9 +30,10 @@ Namespace Objects
             Me.Type = Enums.JobType.Once
             Me.Steps = New List(Of String)
             Me.Templates = New List(Of String)
+            Me.FollowUps = New List(Of Job)
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String))
+        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job))
             Me.ID_ = ID
             Me.Name = Name
             Me.Group = Group
@@ -40,6 +41,7 @@ Namespace Objects
             Me.Type = Type
             Me.Steps = Steps
             Me.Templates = Templates
+            Me.FollowUps = FollowUps
         End Sub
 
         Dim ID_ As Integer = -1
@@ -58,6 +60,7 @@ Namespace Objects
         Property Type As Enums.JobType
         Property Steps As List(Of String)
         Property Templates As List(Of String)
+        Property FollowUps As List(Of Job)
 
         Public Overrides Function ToString() As String
             Return Name.ToString()
