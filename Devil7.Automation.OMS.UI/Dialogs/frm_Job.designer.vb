@@ -25,6 +25,8 @@ Partial Class frm_Job
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Job))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.Label1 = New DevExpress.XtraEditors.LabelControl()
         Me.Label2 = New DevExpress.XtraEditors.LabelControl()
         Me.Label3 = New DevExpress.XtraEditors.LabelControl()
@@ -47,6 +49,12 @@ Partial Class frm_Job
         Me.cmb_Type = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cmb_SubGroup = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cmb_Group = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.gc_FollowUps = New DevExpress.XtraGrid.GridControl()
+        Me.gv_FollowUps = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.btn_FollowUps_Remove = New DevExpress.XtraEditors.SimpleButton()
+        Me.btn_FollowUps_Add = New DevExpress.XtraEditors.SimpleButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
@@ -60,17 +68,21 @@ Partial Class frm_Job
         CType(Me.cmb_Type.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_SubGroup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Group.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel5.SuspendLayout()
+        CType(Me.gc_FollowUps, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_FollowUps, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel6.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
         '
+        Me.Panel1.AutoScroll = True
         Me.Panel1.Controls.Add(Me.TableLayoutPanel1)
-        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(571, 408)
+        Me.Panel1.Size = New System.Drawing.Size(571, 375)
         Me.Panel1.TabIndex = 0
         '
         'TableLayoutPanel1
@@ -79,6 +91,8 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 1, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label2, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 0)
@@ -97,18 +111,38 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Type, 2, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_SubGroup, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Group, 2, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 2, 6)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 6
+        Me.TableLayoutPanel1.RowCount = 7
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(571, 371)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 449)
         Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl2.Location = New System.Drawing.Point(103, 345)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(9, 101)
+        Me.LabelControl2.TabIndex = 8
+        Me.LabelControl2.Text = ":"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl1.Location = New System.Drawing.Point(3, 345)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(94, 101)
+        Me.LabelControl1.TabIndex = 18
+        Me.LabelControl1.Text = "Follow Up Jobs"
         '
         'Label1
         '
@@ -178,7 +212,7 @@ Partial Class frm_Job
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label8.Location = New System.Drawing.Point(103, 240)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(9, 128)
+        Me.Label8.Size = New System.Drawing.Size(9, 99)
         Me.Label8.TabIndex = 7
         Me.Label8.Text = ":"
         '
@@ -214,7 +248,7 @@ Partial Class frm_Job
         Me.Label12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label12.Location = New System.Drawing.Point(3, 240)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(94, 128)
+        Me.Label12.Size = New System.Drawing.Size(94, 99)
         Me.Label12.TabIndex = 11
         Me.Label12.Text = "Templates"
         '
@@ -241,7 +275,7 @@ Partial Class frm_Job
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(118, 240)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(450, 128)
+        Me.Panel3.Size = New System.Drawing.Size(450, 99)
         Me.Panel3.TabIndex = 17
         '
         'lst_Templates
@@ -251,7 +285,7 @@ Partial Class frm_Job
         Me.lst_Templates.HorizontalScrollbar = True
         Me.lst_Templates.Location = New System.Drawing.Point(0, 0)
         Me.lst_Templates.Name = "lst_Templates"
-        Me.lst_Templates.Size = New System.Drawing.Size(384, 128)
+        Me.lst_Templates.Size = New System.Drawing.Size(384, 99)
         Me.lst_Templates.TabIndex = 1
         Me.lst_Templates.TabStop = False
         '
@@ -262,7 +296,7 @@ Partial Class frm_Job
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel4.Location = New System.Drawing.Point(384, 0)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(66, 128)
+        Me.Panel4.Size = New System.Drawing.Size(66, 99)
         Me.Panel4.TabIndex = 0
         '
         'btn_Template_Remove
@@ -320,6 +354,69 @@ Partial Class frm_Job
         Me.cmb_Group.Size = New System.Drawing.Size(450, 20)
         Me.cmb_Group.TabIndex = 1
         '
+        'Panel5
+        '
+        Me.Panel5.Controls.Add(Me.gc_FollowUps)
+        Me.Panel5.Controls.Add(Me.Panel6)
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel5.Location = New System.Drawing.Point(118, 345)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(450, 101)
+        Me.Panel5.TabIndex = 19
+        '
+        'gc_FollowUps
+        '
+        Me.gc_FollowUps.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_FollowUps.Location = New System.Drawing.Point(0, 0)
+        Me.gc_FollowUps.MainView = Me.gv_FollowUps
+        Me.gc_FollowUps.Name = "gc_FollowUps"
+        Me.gc_FollowUps.Size = New System.Drawing.Size(384, 101)
+        Me.gc_FollowUps.TabIndex = 1
+        Me.gc_FollowUps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_FollowUps})
+        '
+        'gv_FollowUps
+        '
+        Me.gv_FollowUps.GridControl = Me.gc_FollowUps
+        Me.gv_FollowUps.Name = "gv_FollowUps"
+        Me.gv_FollowUps.OptionsBehavior.ReadOnly = True
+        Me.gv_FollowUps.OptionsView.ShowGroupPanel = False
+        '
+        'Panel6
+        '
+        Me.Panel6.Controls.Add(Me.btn_FollowUps_Remove)
+        Me.Panel6.Controls.Add(Me.btn_FollowUps_Add)
+        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel6.Location = New System.Drawing.Point(384, 0)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(66, 101)
+        Me.Panel6.TabIndex = 0
+        '
+        'btn_FollowUps_Remove
+        '
+        Me.btn_FollowUps_Remove.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.btn_FollowUps_Remove.Appearance.Options.UseFont = True
+        Me.btn_FollowUps_Remove.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_FollowUps_Remove.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btn_FollowUps_Remove.Location = New System.Drawing.Point(0, 31)
+        Me.btn_FollowUps_Remove.Name = "btn_FollowUps_Remove"
+        Me.btn_FollowUps_Remove.Size = New System.Drawing.Size(66, 32)
+        Me.btn_FollowUps_Remove.TabIndex = 3
+        Me.btn_FollowUps_Remove.TabStop = False
+        Me.btn_FollowUps_Remove.Text = "Remove"
+        '
+        'btn_FollowUps_Add
+        '
+        Me.btn_FollowUps_Add.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.btn_FollowUps_Add.Appearance.Options.UseFont = True
+        Me.btn_FollowUps_Add.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_FollowUps_Add.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btn_FollowUps_Add.Location = New System.Drawing.Point(0, 0)
+        Me.btn_FollowUps_Add.Name = "btn_FollowUps_Add"
+        Me.btn_FollowUps_Add.Size = New System.Drawing.Size(66, 31)
+        Me.btn_FollowUps_Add.TabIndex = 2
+        Me.btn_FollowUps_Add.TabStop = False
+        Me.btn_FollowUps_Add.Text = "Add"
+        '
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -370,6 +467,7 @@ Partial Class frm_Job
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(571, 408)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_Job"
@@ -385,6 +483,10 @@ Partial Class frm_Job
         CType(Me.cmb_Type.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_SubGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Group.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel5.ResumeLayout(False)
+        CType(Me.gc_FollowUps, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_FollowUps, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel6.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -417,4 +519,12 @@ Partial Class frm_Job
     Friend WithEvents cmb_Type As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cmb_SubGroup As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cmb_Group As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents gc_FollowUps As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_FollowUps As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents btn_FollowUps_Remove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btn_FollowUps_Add As DevExpress.XtraEditors.SimpleButton
 End Class

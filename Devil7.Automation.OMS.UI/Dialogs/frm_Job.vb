@@ -56,9 +56,9 @@ Public Class frm_Job
         Dim lstSteps As New List(Of String)
         lstSteps.AddRange(txt_Steps.Lines)
         If Mode = Enums.DialogMode.Add Then
-            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, True)
+            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), True)
         ElseIf Mode = Enums.DialogMode.Edit Then
-            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, True)
+            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), True)
         End If
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
@@ -78,6 +78,7 @@ Public Class frm_Job
                 Next
                 txt_Steps.Text = Steps.Trim
                 lst_Templates.Items.AddRange(Job.Templates.ToArray)
+                gc_FollowUps.DataSource = Job.FollowUps
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
@@ -85,4 +86,23 @@ Public Class frm_Job
         txt_Name.Focus()
     End Sub
 
+    Private Sub btn_FollowUps_Add_Click(sender As Object, e As EventArgs) Handles btn_FollowUps_Add.Click
+        Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
+        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Objects.Job)
+            CType(gc_FollowUps.DataSource, List(Of Objects.Job)).Add(d.Job)
+            gc_FollowUps.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub btn_FollowUps_Remove_Click(sender As Object, e As EventArgs) Handles btn_FollowUps_Remove.Click
+        If gv_FollowUps.SelectedRowsCount > 0 Then
+            For Each i As Integer In gv_FollowUps.GetSelectedRows
+                Dim row As Integer = (i)
+                Dim obj As Objects.Job = TryCast(gv_FollowUps.GetRow(row), Objects.Job)
+                CType(gc_FollowUps.DataSource, List(Of Objects.Job)).Remove(obj)
+            Next
+            gc_FollowUps.RefreshDataSource()
+        End If
+    End Sub
 End Class
