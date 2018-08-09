@@ -664,6 +664,16 @@ Public Class frm_Main
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.Status = s
+                    If s = Enums.WorkStatus.Completed Then
+                        If row.Job.FollowUps.Count > 0 Then
+                            For Each i As Objects.Job In row.Job.FollowUps
+                                Dim w = Database.Workbook.AddNew(row.AssignedTo, i, row.DueDate, row.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & row.ID, row.Remarks, row.TargetDate, Enums.Priority.Normal, i.Steps(0), row.AssementDetail, row.FinancialDetail, row.Folder, row.Owner, "Followup Job Added")
+                                If w IsNot Nothing Then
+                                    gv_Home.DataSource.Add(w)
+                                End If
+                            Next
+                        End If
+                    End If
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
                     MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
