@@ -90,8 +90,14 @@ Public Class frm_Job
         Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Objects.Job)
-            CType(gc_FollowUps.DataSource, List(Of Objects.Job)).Add(d.Job)
-            gc_FollowUps.RefreshDataSource()
+            If d.Job.ID = ID Then
+                MsgBox("You can't add the job itself to its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            ElseIf d.Job.FollowUps.Find(Function(c) c.ID = ID) IsNot Nothing Then
+                MsgBox("You can't add a job which has the current job as its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            Else
+                CType(gc_FollowUps.DataSource, List(Of Objects.Job)).Add(d.Job)
+                gc_FollowUps.RefreshDataSource()
+            End If
         End If
     End Sub
 
