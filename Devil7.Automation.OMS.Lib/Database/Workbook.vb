@@ -27,8 +27,8 @@ Namespace Database
     Public Module Workbook
 
         Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date,
-                   ByVal Client As ClientMinimal, ByVal Status As String, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
-                   ByVal Priority As String, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
+                   ByVal Client As ClientMinimal, ByVal Status As Enums.WorkStatus, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
+                   ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
             Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
@@ -49,7 +49,7 @@ Namespace Database
                 AddParameter(Command, "@Status", Status)
                 AddParameter(Command, "@Description", Description)
                 AddParameter(Command, "@Remarks", Remarks)
-                AddParameter(Command, "@Folder", GetFolder(DefaultStorage, FullClient, Job, Assessment.ToString, Now.Year))
+                AddParameter(Command, "@Folder", If(DefaultStorage Is Nothing, "", DefaultStorage))
                 AddParameter(Command, "@TargetDate", TargetDate)
                 AddParameter(Command, "@Priority", Priority)
                 AddParameter(Command, "@DateUpdated", Now)
@@ -136,61 +136,11 @@ Namespace Database
 
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@ID", ID)
-
-                Dim AssignedTo As User
-                Dim AssignedID As Integer
-                Dim Job As Job
-                Dim JobID As String
-                Dim Client As ClientMinimal
-                Dim DueDate As Date
-                Dim AddedOn As Date
-                Dim CompletedOn As Date
-                Dim UpdatedOn As Date
-                Dim Description As String
-                Dim Remarks As String
-                Dim TargetDate As Date
-                Dim PriorityOfWork As Enums.Priority
-                Dim Status As Enums.WorkStatus
-                Dim Folder As String
-                Dim AssementDetail As String
-                Dim FinancialDetail As String
-                Dim CurrentStep As String
-                Dim Owner As User
-                Dim OwnerID As Integer
-                Dim History As String
-                Dim Billed As Enums.BillingStatus
-                Dim Read As Boolean = False
-
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     If Reader.Read Then
-                        AssignedID = Reader.Item("User")
-                        JobID = Reader.Item("Job").ToString
-                        Client = Utils.ObjectSerilizer.FromXML(Of ClientMinimal)(Reader.Item("Client").ToString)
-                        DueDate = Reader.Item("DueDate")
-                        AddedOn = Reader.Item("DateAdded")
-                        CompletedOn = Reader.Item("DateCompleted")
-                        UpdatedOn = Reader.Item("DateUpdated")
-                        Description = Reader.Item("Description").ToString
-                        Remarks = Reader.Item("Remarks").ToString
-                        TargetDate = Reader.Item("TargetDate")
-                        PriorityOfWork = Reader.Item("Priority")
-                        Status = DirectCast([Enum].Parse(GetType(Enums.WorkStatus), Reader.Item("Status").ToString), Enums.WorkStatus)
-                        Folder = Reader.Item("Folder").ToString
-                        AssementDetail = Reader.Item("AssessmentDetails").ToString
-                        FinancialDetail = Reader.Item("FinancialDetails").ToString
-                        CurrentStep = Reader.Item("CurrentStep").ToString
-                        OwnerID = Reader.Item("Owner").ToString
-                        History = Reader.Item("History").ToString.Trim
-                        Billed = Reader.Item("Billed")
-                        Read = True
+                        R = Read(Reader)
                     End If
                 End Using
-                If Read Then
-                    AssignedTo = GetUserByID(AssignedID)
-                    Job = GetJobByID(JobID, False)
-                    Owner = GetUserByID(OwnerID)
-                    R = New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail))
-                End If
             End Using
 
             Return R
@@ -414,7 +364,7 @@ Namespace Database
             Dim ID As Integer = Reader.Item("ID")
             Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
             Dim Job As Job = Jobs.Find(Function(c) c.ID = Reader.Item("Job").ToString)
-            Dim Client As ClientMinimal = Utils.ObjectSerilizer.FromFile(Of ClientMinimal)(Reader.Item("Client").ToString)
+            Dim Client As ClientMinimal = Utils.ObjectSerilizer.FromXML(Of ClientMinimal)(Reader.Item("Client").ToString)
             Dim DueDate As Date = Reader.Item("DueDate")
             Dim AddedOn As Date = Reader.Item("DateAdded")
             Dim CompletedOn As Date = Reader.Item("DateCompleted")
@@ -422,13 +372,37 @@ Namespace Database
             Dim Description As String = Reader.Item("Description").ToString
             Dim Remarks As String = Reader.Item("Remarks").ToString
             Dim TargetDate As Date = Reader.Item("TargetDate")
-            Dim PriorityOfWork As Enums.Priority = DirectCast([Enum].Parse(GetType(Enums.Priority), Reader.Item("Priority").ToString), Enums.Priority)
-            Dim Status As Enums.WorkStatus = DirectCast([Enum].Parse(GetType(Enums.WorkStatus), Reader.Item("Status").ToString), Enums.WorkStatus)
+            Dim PriorityOfWork As Enums.Priority = Reader.Item("Priority")
+            Dim Status As Enums.WorkStatus = Reader.Item("Status")
             Dim Folder As String = Reader.Item("Folder").ToString
             Dim AssementDetail As String = Reader.Item("AssessmentDetails").ToString
             Dim FinancialDetail As String = Reader.Item("FinancialDetails").ToString
             Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
             Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
+            Dim History As String = Reader.Item("History").ToString.Trim
+            Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
+            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail))
+        End Function
+
+        Private Function Read(ByVal Reader As SqlDataReader) As WorkbookItem
+            Dim ID As Integer = Reader.Item("ID")
+            Dim AssignedTo As User = Users.GetUserByID(Reader.Item("User"))
+            Dim Job As Job = Jobs.GetJobByID(Reader.Item("Job"), False)
+            Dim Client As ClientMinimal = Utils.ObjectSerilizer.FromXML(Of ClientMinimal)(Reader.Item("Client").ToString)
+            Dim DueDate As Date = Reader.Item("DueDate")
+            Dim AddedOn As Date = Reader.Item("DateAdded")
+            Dim CompletedOn As Date = Reader.Item("DateCompleted")
+            Dim UpdatedOn As Date = Reader.Item("DateUpdated")
+            Dim Description As String = Reader.Item("Description").ToString
+            Dim Remarks As String = Reader.Item("Remarks").ToString
+            Dim TargetDate As Date = Reader.Item("TargetDate")
+            Dim PriorityOfWork As Enums.Priority = Reader.Item("Priority")
+            Dim Status As Enums.WorkStatus = Reader.Item("Status")
+            Dim Folder As String = Reader.Item("Folder").ToString
+            Dim AssementDetail As String = Reader.Item("AssessmentDetails").ToString
+            Dim FinancialDetail As String = Reader.Item("FinancialDetails").ToString
+            Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
+            Dim Owner As User = Users.GetUserByID(Reader.Item("Owner"))
             Dim History As String = Reader.Item("History").ToString.Trim
             Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
             Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail))
