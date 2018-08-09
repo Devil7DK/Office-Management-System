@@ -33,6 +33,12 @@ Namespace Objects
         Property Name As String = ""
         Property PAN As String = ""
 
+        Sub New()
+            Me.ID_ = 0
+            Me.Name = ""
+            Me.PAN = ""
+        End Sub
+
         Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String)
             Me.ID_ = ID
             Me.Name = Name
