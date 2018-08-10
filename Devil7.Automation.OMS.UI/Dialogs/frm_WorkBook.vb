@@ -193,4 +193,32 @@ Public Class frm_WorkBook
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
         Me.Close()
     End Sub
+
+    Private Sub txt_FinancialYearMonth_OnValueChanged(sender As Object, e As EventArgs) Handles txt_FinancialYearMonth.OnValueChanged
+        Try
+            If Me.ActiveControl Is txt_FinancialYearMonth Then
+
+                Dim Job As Objects.Job = cmb_Job.SelectedItem
+                If Job IsNot Nothing Then
+                    txt_DueDate.EditValue = Utils.Periods.GetDueDate(Job.DueInterval, txt_FinancialYearMonth.Value, Job.Type)
+                    txt_AssessmentYearMonth.Value = Utils.Periods.FinancialPeriod2AssessmentPeriod(txt_FinancialYearMonth.Value, Job.Type)
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub txt_AssessmentYearMonth_OnValueChanged(sender As Object, e As EventArgs) Handles txt_AssessmentYearMonth.OnValueChanged
+        Try
+            If Me.ActiveControl Is txt_AssessmentYearMonth Then
+                Dim Job As Objects.Job = cmb_Job.SelectedItem
+                If Job IsNot Nothing Then
+                    txt_FinancialYearMonth.Value = Utils.Periods.AssessmentPeriod2FinancialPeriod(txt_AssessmentYearMonth.Value, Job.Type)
+                End If
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

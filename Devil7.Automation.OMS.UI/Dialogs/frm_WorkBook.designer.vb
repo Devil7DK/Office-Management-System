@@ -31,29 +31,25 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.cmb_CurrentlyAssignedTo = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_TargetDate = New DevExpress.XtraEditors.DateEdit()
+        Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.cmb_User = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cmb_Job = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.txt_DueDate = New DevExpress.XtraEditors.DateEdit()
-        Me.txt_TargetDate = New DevExpress.XtraEditors.DateEdit()
         Me.cmb_Priority = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
@@ -67,18 +63,20 @@ Partial Class frm_WorkBook
         Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.txt_History = New DevExpress.XtraEditors.MemoEdit()
-        Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
-        Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
         Me.cmb_Client = New DevExpress.XtraEditors.LookUpEdit()
+        Me.txt_DueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.cmb_CurrentlyAssignedTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmb_User.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmb_Job.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_TargetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_TargetDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_User.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_Job.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Priority.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Status.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Steps.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +84,8 @@ Partial Class frm_WorkBook
         CType(Me.txt_Remarks.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_History.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Client.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -130,29 +130,25 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_CurrentlyAssignedTo, 2, 12)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_TargetDate, 2, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_FinancialYearMonth, 2, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl15, 1, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl17, 1, 3)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl7, 0, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 0, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 0, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl7, 0, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 0, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl9, 0, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl10, 0, 9)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl11, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl12, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl13, 1, 2)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl14, 1, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl15, 1, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl16, 1, 5)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl17, 1, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl18, 1, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl19, 1, 9)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl20, 1, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_User, 2, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Job, 2, 1)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueDate, 2, 3)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_TargetDate, 2, 4)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Priority, 2, 5)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl21, 0, 10)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl22, 1, 10)
@@ -166,9 +162,13 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl26, 1, 12)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl27, 0, 13)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_History, 2, 13)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_FinancialYearMonth, 2, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_AssessmentYearMonth, 2, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Client, 2, 2)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueDate, 2, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl14, 1, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 0, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_AssessmentYearMonth, 2, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 0, 4)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl18, 1, 4)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -208,6 +208,64 @@ Partial Class frm_WorkBook
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Owner User"
         '
+        'txt_TargetDate
+        '
+        Me.txt_TargetDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_TargetDate.EditValue = Nothing
+        Me.txt_TargetDate.Location = New System.Drawing.Point(136, 178)
+        Me.txt_TargetDate.Name = "txt_TargetDate"
+        Me.txt_TargetDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_TargetDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_TargetDate.Size = New System.Drawing.Size(349, 20)
+        Me.txt_TargetDate.TabIndex = 7
+        '
+        'txt_FinancialYearMonth
+        '
+        Me.txt_FinancialYearMonth.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.txt_FinancialYearMonth.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_FinancialYearMonth.Location = New System.Drawing.Point(136, 78)
+        Me.txt_FinancialYearMonth.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.txt_FinancialYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
+        Me.txt_FinancialYearMonth.Name = "txt_FinancialYearMonth"
+        Me.txt_FinancialYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
+        Me.txt_FinancialYearMonth.Size = New System.Drawing.Size(349, 21)
+        Me.txt_FinancialYearMonth.TabIndex = 3
+        YearMonth1.Period = "April"
+        YearMonth1.Year = "2018-2019"
+        Me.txt_FinancialYearMonth.Value = YearMonth1
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Location = New System.Drawing.Point(128, 178)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl15.TabIndex = 10
+        Me.LabelControl15.Text = ":"
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(128, 78)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl17.TabIndex = 10
+        Me.LabelControl17.Text = ":"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(3, 178)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl5.TabIndex = 4
+        Me.LabelControl5.Text = "Target Date"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(3, 78)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(74, 13)
+        Me.LabelControl7.TabIndex = 6
+        Me.LabelControl7.Text = "Financial Period"
+        '
         'LabelControl2
         '
         Me.LabelControl2.Location = New System.Drawing.Point(3, 28)
@@ -224,22 +282,6 @@ Partial Class frm_WorkBook
         Me.LabelControl3.TabIndex = 2
         Me.LabelControl3.Text = "Client"
         '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(3, 78)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl4.TabIndex = 3
-        Me.LabelControl4.Text = "Due Date"
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(3, 103)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl5.TabIndex = 4
-        Me.LabelControl5.Text = "Target Date"
-        '
         'LabelControl6
         '
         Me.LabelControl6.Location = New System.Drawing.Point(3, 128)
@@ -247,22 +289,6 @@ Partial Class frm_WorkBook
         Me.LabelControl6.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl6.TabIndex = 5
         Me.LabelControl6.Text = "Priority"
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Location = New System.Drawing.Point(3, 153)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(74, 13)
-        Me.LabelControl7.TabIndex = 6
-        Me.LabelControl7.Text = "Financial Period"
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(3, 178)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(90, 13)
-        Me.LabelControl8.TabIndex = 7
-        Me.LabelControl8.Text = "Assessment Period"
         '
         'LabelControl9
         '
@@ -304,22 +330,6 @@ Partial Class frm_WorkBook
         Me.LabelControl13.TabIndex = 10
         Me.LabelControl13.Text = ":"
         '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(128, 78)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl14.TabIndex = 10
-        Me.LabelControl14.Text = ":"
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(128, 103)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl15.TabIndex = 10
-        Me.LabelControl15.Text = ":"
-        '
         'LabelControl16
         '
         Me.LabelControl16.Location = New System.Drawing.Point(128, 128)
@@ -327,22 +337,6 @@ Partial Class frm_WorkBook
         Me.LabelControl16.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl16.TabIndex = 10
         Me.LabelControl16.Text = ":"
-        '
-        'LabelControl17
-        '
-        Me.LabelControl17.Location = New System.Drawing.Point(128, 153)
-        Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl17.TabIndex = 10
-        Me.LabelControl17.Text = ":"
-        '
-        'LabelControl18
-        '
-        Me.LabelControl18.Location = New System.Drawing.Point(128, 178)
-        Me.LabelControl18.Name = "LabelControl18"
-        Me.LabelControl18.Size = New System.Drawing.Size(4, 13)
-        Me.LabelControl18.TabIndex = 10
-        Me.LabelControl18.Text = ":"
         '
         'LabelControl19
         '
@@ -377,28 +371,6 @@ Partial Class frm_WorkBook
         Me.cmb_Job.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Job.Size = New System.Drawing.Size(349, 20)
         Me.cmb_Job.TabIndex = 1
-        '
-        'txt_DueDate
-        '
-        Me.txt_DueDate.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_DueDate.EditValue = Nothing
-        Me.txt_DueDate.Location = New System.Drawing.Point(136, 78)
-        Me.txt_DueDate.Name = "txt_DueDate"
-        Me.txt_DueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_DueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_DueDate.Size = New System.Drawing.Size(349, 20)
-        Me.txt_DueDate.TabIndex = 3
-        '
-        'txt_TargetDate
-        '
-        Me.txt_TargetDate.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_TargetDate.EditValue = Nothing
-        Me.txt_TargetDate.Location = New System.Drawing.Point(136, 103)
-        Me.txt_TargetDate.Name = "txt_TargetDate"
-        Me.txt_TargetDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_TargetDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_TargetDate.Size = New System.Drawing.Size(349, 20)
-        Me.txt_TargetDate.TabIndex = 4
         '
         'cmb_Priority
         '
@@ -509,36 +481,6 @@ Partial Class frm_WorkBook
         Me.txt_History.Size = New System.Drawing.Size(349, 83)
         Me.txt_History.TabIndex = 24
         '
-        'txt_FinancialYearMonth
-        '
-        Me.txt_FinancialYearMonth.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.txt_FinancialYearMonth.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_FinancialYearMonth.Location = New System.Drawing.Point(136, 153)
-        Me.txt_FinancialYearMonth.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.txt_FinancialYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
-        Me.txt_FinancialYearMonth.Name = "txt_FinancialYearMonth"
-        Me.txt_FinancialYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
-        Me.txt_FinancialYearMonth.Size = New System.Drawing.Size(349, 21)
-        Me.txt_FinancialYearMonth.TabIndex = 6
-        YearMonth1.Period = "April"
-        YearMonth1.Year = "2018-2019"
-        Me.txt_FinancialYearMonth.Value = YearMonth1
-        '
-        'txt_AssessmentYearMonth
-        '
-        Me.txt_AssessmentYearMonth.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.txt_AssessmentYearMonth.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_AssessmentYearMonth.Location = New System.Drawing.Point(136, 178)
-        Me.txt_AssessmentYearMonth.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.txt_AssessmentYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
-        Me.txt_AssessmentYearMonth.Name = "txt_AssessmentYearMonth"
-        Me.txt_AssessmentYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
-        Me.txt_AssessmentYearMonth.Size = New System.Drawing.Size(349, 21)
-        Me.txt_AssessmentYearMonth.TabIndex = 7
-        YearMonth2.Period = "April"
-        YearMonth2.Year = "2018-2019"
-        Me.txt_AssessmentYearMonth.Value = YearMonth2
-        '
         'cmb_Client
         '
         Me.cmb_Client.Dock = System.Windows.Forms.DockStyle.Fill
@@ -547,6 +489,64 @@ Partial Class frm_WorkBook
         Me.cmb_Client.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Client.Size = New System.Drawing.Size(349, 20)
         Me.cmb_Client.TabIndex = 2
+        '
+        'txt_DueDate
+        '
+        Me.txt_DueDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_DueDate.EditValue = Nothing
+        Me.txt_DueDate.Location = New System.Drawing.Point(136, 153)
+        Me.txt_DueDate.Name = "txt_DueDate"
+        Me.txt_DueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_DueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_DueDate.Size = New System.Drawing.Size(349, 20)
+        Me.txt_DueDate.TabIndex = 6
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(128, 153)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl14.TabIndex = 10
+        Me.LabelControl14.Text = ":"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(3, 153)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl4.TabIndex = 3
+        Me.LabelControl4.Text = "Due Date"
+        '
+        'txt_AssessmentYearMonth
+        '
+        Me.txt_AssessmentYearMonth.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.txt_AssessmentYearMonth.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_AssessmentYearMonth.Location = New System.Drawing.Point(136, 103)
+        Me.txt_AssessmentYearMonth.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.txt_AssessmentYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
+        Me.txt_AssessmentYearMonth.Name = "txt_AssessmentYearMonth"
+        Me.txt_AssessmentYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
+        Me.txt_AssessmentYearMonth.Size = New System.Drawing.Size(349, 21)
+        Me.txt_AssessmentYearMonth.TabIndex = 4
+        YearMonth2.Period = "April"
+        YearMonth2.Year = "2018-2019"
+        Me.txt_AssessmentYearMonth.Value = YearMonth2
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(3, 103)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(90, 13)
+        Me.LabelControl8.TabIndex = 7
+        Me.LabelControl8.Text = "Assessment Period"
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(128, 103)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl18.TabIndex = 10
+        Me.LabelControl18.Text = ":"
         '
         'frm_WorkBook
         '
@@ -565,12 +565,10 @@ Partial Class frm_WorkBook
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         CType(Me.cmb_CurrentlyAssignedTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_User.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmb_Job.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_TargetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_TargetDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_User.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_Job.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Priority.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Status.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Steps.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -578,6 +576,8 @@ Partial Class frm_WorkBook
         CType(Me.txt_Remarks.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_History.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Client.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
