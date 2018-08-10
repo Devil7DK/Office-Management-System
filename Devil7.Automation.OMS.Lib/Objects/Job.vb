@@ -31,9 +31,11 @@ Namespace Objects
             Me.Steps = New List(Of String)
             Me.Templates = New List(Of String)
             Me.FollowUps = New List(Of Job)
+            Me.NotifyInterval = 10
+            Me.DueInterval = 10
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job))
+        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer)
             Me.ID_ = ID
             Me.Name = Name
             Me.Group = Group
@@ -42,6 +44,8 @@ Namespace Objects
             Me.Steps = Steps
             Me.Templates = Templates
             Me.FollowUps = FollowUps
+            Me.NotifyInterval = NotifyInterval
+            Me.DueInterval = DueInterval
         End Sub
 
         Dim ID_ As Integer = -1
@@ -61,6 +65,24 @@ Namespace Objects
         Property Steps As List(Of String)
         Property Templates As List(Of String)
         Property FollowUps As List(Of Job)
+
+        Dim NotifyDate_ As String
+        ReadOnly Property NotifyDate As String
+            Get
+                Select Case Type
+                    Case Enums.JobType.Once
+                        Return "N/A"
+                    Case Else
+                        If NotifyDate_ = "" Then NotifyDate_ = Utils.Periods.GetNotifyDate(NotifyInterval, Type, Now)
+                        Return NotifyDate_
+                End Select
+            End Get
+        End Property
+        <ComponentModel.Browsable(False)>
+        Property NotifyInterval As Integer
+
+        <ComponentModel.Browsable(False)>
+        Property DueInterval As Integer
 
         Public Overrides Function ToString() As String
             Return Name.ToString()

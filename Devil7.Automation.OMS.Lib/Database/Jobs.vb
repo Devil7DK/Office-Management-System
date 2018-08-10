@@ -26,10 +26,10 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Jobs
 
-        Function AddNew(ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal CloseConnection As Boolean) As Job
+        Function AddNew(ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal CloseConnection As Boolean) As Job
             Dim R As New Job
 
-            Dim CommandString As String = "INSERT INTO Jobs ([JobName],[Group],[Type],[Steps],[SubGroup],[Templates],[FollowUps]) VALUES (@jobname,@group,@type,@steps,@subgroup,@templates,@followups); SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Jobs ([JobName],[Group],[Type],[Steps],[SubGroup],[Templates],[FollowUps],[NotifyInterval],[DueInterval]) VALUES (@jobname,@group,@type,@steps,@subgroup,@templates,@followups,@notifyinterval,@dueinterval); SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -41,6 +41,8 @@ Namespace Database
                 AddParameter(Command, "@steps", ObjectSerilizer.ToXML(Steps))
                 AddParameter(Command, "@subgroup", SubGroup)
                 AddParameter(Command, "@templates", ObjectSerilizer.ToXML(Templates))
+                AddParameter(Command, "@notifyinterval", NotifyInterval)
+                AddParameter(Command, "@dueinterval", DueInterval)
 
                 Dim IDs As New List(Of Integer)
                 For Each i As Job In FollowUps
@@ -51,7 +53,7 @@ Namespace Database
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New Job(ID, Name, Group, SubGroup, Type, Steps, Templates, FollowUps)
+                    R = New Job(ID, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, NotifyInterval, DueInterval)
                 Else
                     MsgBox("Unknown error while inserting job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
                 End If
@@ -62,10 +64,10 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal CloseConnection As Boolean) As Boolean
+        Function Update(ByVal ID As Integer, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal CloseConnection As Boolean) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Jobs SET [JobName]=@jobname,[Group]=@group,[Type]=@type,[Steps]=@steps,[SubGroup]=@subgroup,[Templates]=@templates,[FollowUps]=@followups WHERE [ID]=@id;"
+            Dim CommandString As String = "UPDATE Jobs SET [JobName]=@jobname,[Group]=@group,[Type]=@type,[Steps]=@steps,[SubGroup]=@subgroup,[Templates]=@templates,[FollowUps]=@followups,[NotifyInterval]=@notifyinterval,[DueInterval]=@dueinterval WHERE [ID]=@id;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -78,6 +80,8 @@ Namespace Database
                 AddParameter(Command, "@steps", ObjectSerilizer.ToXML(Steps))
                 AddParameter(Command, "@subgroup", SubGroup)
                 AddParameter(Command, "@templates", ObjectSerilizer.ToXML(Templates))
+                AddParameter(Command, "@notifyinterval", NotifyInterval)
+                AddParameter(Command, "@dueinterval", DueInterval)
 
                 Dim IDs As New List(Of Integer)
                 For Each i As Job In FollowUps
@@ -130,7 +134,9 @@ Namespace Database
             Dim Steps As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Steps").ToString)
             Dim Templates As List(Of String) = ObjectSerilizer.FromXML(Of List(Of String))(Reader.Item("Templates").ToString)
             Dim FollowUps As List(Of Job) = GetJobsByIDs(Reader.Item("FollowUps").ToString)
-            Return New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates, FollowUps)
+            Dim NotifyInterval As Integer = Reader.Item("NotifyInterval")
+            Dim DueInterval As Integer = Reader.Item("DueInterval")
+            Return New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, NotifyInterval, DueInterval)
         End Function
 
         Function GetJobByID(ByVal ID As Integer, ByVal CloseConnection As Boolean) As Job
