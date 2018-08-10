@@ -26,10 +26,10 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Jobs
 
-        Function AddNew(ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal CloseConnection As Boolean) As Job
+        Function AddNew(ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal PrimaryPeriodType As Enums.PeriodType, ByVal CloseConnection As Boolean) As Job
             Dim R As New Job
 
-            Dim CommandString As String = "INSERT INTO Jobs ([JobName],[Group],[Type],[Steps],[SubGroup],[Templates],[FollowUps],[NotifyInterval],[DueInterval]) VALUES (@jobname,@group,@type,@steps,@subgroup,@templates,@followups,@notifyinterval,@dueinterval); SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Jobs ([JobName],[Group],[Type],[Steps],[SubGroup],[Templates],[FollowUps],[NotifyInterval],[DueInterval],[PrimaryPeriodType]) VALUES (@jobname,@group,@type,@steps,@subgroup,@templates,@followups,@notifyinterval,@dueinterval,@primaryperiodtype); SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -43,6 +43,7 @@ Namespace Database
                 AddParameter(Command, "@templates", ObjectSerilizer.ToXML(Templates))
                 AddParameter(Command, "@notifyinterval", NotifyInterval)
                 AddParameter(Command, "@dueinterval", DueInterval)
+                AddParameter(Command, "@primaryperiodtype", PrimaryPeriodType)
 
                 Dim IDs As New List(Of Integer)
                 For Each i As Job In FollowUps
@@ -53,7 +54,7 @@ Namespace Database
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New Job(ID, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, NotifyInterval, DueInterval)
+                    R = New Job(ID, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, NotifyInterval, DueInterval, PrimaryPeriodType)
                 Else
                     MsgBox("Unknown error while inserting job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
                 End If
@@ -64,10 +65,10 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal CloseConnection As Boolean) As Boolean
+        Function Update(ByVal ID As Integer, ByVal Name As String, ByVal Group As String, ByVal Type As String, ByVal Steps As List(Of String), ByVal SubGroup As String, ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal PrimaryPeriodType As Enums.PeriodType, ByVal CloseConnection As Boolean) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Jobs SET [JobName]=@jobname,[Group]=@group,[Type]=@type,[Steps]=@steps,[SubGroup]=@subgroup,[Templates]=@templates,[FollowUps]=@followups,[NotifyInterval]=@notifyinterval,[DueInterval]=@dueinterval WHERE [ID]=@id;"
+            Dim CommandString As String = "UPDATE Jobs SET [JobName]=@jobname,[Group]=@group,[Type]=@type,[Steps]=@steps,[SubGroup]=@subgroup,[Templates]=@templates,[FollowUps]=@followups,[NotifyInterval]=@notifyinterval,[DueInterval]=@dueinterval,[PrimaryPeriodType]=@primaryperiodtype WHERE [ID]=@id;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -82,6 +83,7 @@ Namespace Database
                 AddParameter(Command, "@templates", ObjectSerilizer.ToXML(Templates))
                 AddParameter(Command, "@notifyinterval", NotifyInterval)
                 AddParameter(Command, "@dueinterval", DueInterval)
+                AddParameter(Command, "@primaryperiodtype", PrimaryPeriodType)
 
                 Dim IDs As New List(Of Integer)
                 For Each i As Job In FollowUps
@@ -136,7 +138,8 @@ Namespace Database
             Dim FollowUps As List(Of Job) = GetJobsByIDs(Reader.Item("FollowUps").ToString)
             Dim NotifyInterval As Integer = Reader.Item("NotifyInterval")
             Dim DueInterval As Integer = Reader.Item("DueInterval")
-            Return New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, NotifyInterval, DueInterval)
+            Dim PrimaryPeriodType As Enums.PeriodType = Reader.Item("PrimaryPeriodType")
+            Return New Job(ID_, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, NotifyInterval, DueInterval, PrimaryPeriodType)
         End Function
 
         Function GetJobByID(ByVal ID As Integer, ByVal CloseConnection As Boolean) As Job

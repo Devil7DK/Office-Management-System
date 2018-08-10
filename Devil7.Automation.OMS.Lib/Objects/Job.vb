@@ -33,9 +33,10 @@ Namespace Objects
             Me.FollowUps = New List(Of Job)
             Me.NotifyInterval = 10
             Me.DueInterval = 10
+            Me.PrimaryPeriodType = Enums.PeriodType.Financial
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer)
+        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal PrimaryPeriodType As Enums.PeriodType)
             Me.ID_ = ID
             Me.Name = Name
             Me.Group = Group
@@ -46,6 +47,7 @@ Namespace Objects
             Me.FollowUps = FollowUps
             Me.NotifyInterval = NotifyInterval
             Me.DueInterval = DueInterval
+            Me.PrimaryPeriodType = PrimaryPeriodType
         End Sub
 
         Dim ID_ As Integer = -1
@@ -83,6 +85,9 @@ Namespace Objects
 
         <ComponentModel.Browsable(False)>
         Property DueInterval As Integer
+
+        <ComponentModel.Browsable(False)>
+        Property PrimaryPeriodType As Enums.PeriodType
 
         Public Overrides Function ToString() As String
             Return Name.ToString()
