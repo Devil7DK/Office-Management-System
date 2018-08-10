@@ -25,6 +25,10 @@ Partial Class frm_Job
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Job))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.txt_DueInterval = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.Label1 = New DevExpress.XtraEditors.LabelControl()
@@ -55,12 +59,15 @@ Partial Class frm_Job
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.btn_FollowUps_Remove = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_FollowUps_Add = New DevExpress.XtraEditors.SimpleButton()
+        Me.txt_NotifyInterval = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
+        CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Name.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Steps.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -72,6 +79,7 @@ Partial Class frm_Job
         CType(Me.gc_FollowUps, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_FollowUps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel6.SuspendLayout()
+        CType(Me.txt_NotifyInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -87,10 +95,15 @@ Partial Class frm_Job
         '
         'TableLayoutPanel1
         '
+        Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueInterval, 0, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 0, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 1, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 1, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 0)
@@ -112,35 +125,78 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_SubGroup, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Group, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 2, 6)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_NotifyInterval, 2, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 8)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 7
+        Me.TableLayoutPanel1.RowCount = 9
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 449)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 473)
         Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'txt_DueInterval
+        '
+        Me.txt_DueInterval.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_DueInterval.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txt_DueInterval.Location = New System.Drawing.Point(118, 451)
+        Me.txt_DueInterval.Name = "txt_DueInterval"
+        Me.txt_DueInterval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_DueInterval.Properties.MaxValue = New Decimal(New Integer() {364, 0, 0, 0})
+        Me.txt_DueInterval.Properties.MinValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txt_DueInterval.Size = New System.Drawing.Size(450, 20)
+        Me.txt_DueInterval.TabIndex = 24
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl6.Location = New System.Drawing.Point(103, 451)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(9, 19)
+        Me.LabelControl6.TabIndex = 23
+        Me.LabelControl6.Text = ":"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl4.Location = New System.Drawing.Point(103, 426)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(9, 19)
+        Me.LabelControl4.TabIndex = 21
+        Me.LabelControl4.Text = ":"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl3.Location = New System.Drawing.Point(3, 426)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(94, 19)
+        Me.LabelControl3.TabIndex = 20
+        Me.LabelControl3.Text = "Steps"
         '
         'LabelControl2
         '
         Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl2.Location = New System.Drawing.Point(103, 345)
+        Me.LabelControl2.Location = New System.Drawing.Point(103, 346)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(9, 101)
+        Me.LabelControl2.Size = New System.Drawing.Size(9, 74)
         Me.LabelControl2.TabIndex = 8
         Me.LabelControl2.Text = ":"
         '
         'LabelControl1
         '
         Me.LabelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl1.Location = New System.Drawing.Point(3, 345)
+        Me.LabelControl1.Location = New System.Drawing.Point(3, 346)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(94, 101)
+        Me.LabelControl1.Size = New System.Drawing.Size(94, 74)
         Me.LabelControl1.TabIndex = 18
         Me.LabelControl1.Text = "Follow Up Jobs"
         '
@@ -194,14 +250,14 @@ Partial Class frm_Job
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label6.Location = New System.Drawing.Point(103, 78)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(9, 18)
+        Me.Label6.Size = New System.Drawing.Size(9, 19)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = ":"
         '
         'Label7
         '
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label7.Location = New System.Drawing.Point(103, 102)
+        Me.Label7.Location = New System.Drawing.Point(103, 103)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(9, 132)
         Me.Label7.TabIndex = 6
@@ -210,7 +266,7 @@ Partial Class frm_Job
         'Label8
         '
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label8.Location = New System.Drawing.Point(103, 240)
+        Me.Label8.Location = New System.Drawing.Point(103, 241)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(9, 99)
         Me.Label8.TabIndex = 7
@@ -230,14 +286,14 @@ Partial Class frm_Job
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Location = New System.Drawing.Point(3, 78)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(94, 18)
+        Me.Label10.Size = New System.Drawing.Size(94, 19)
         Me.Label10.TabIndex = 9
         Me.Label10.Text = "Type"
         '
         'Label11
         '
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label11.Location = New System.Drawing.Point(3, 102)
+        Me.Label11.Location = New System.Drawing.Point(3, 103)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(94, 132)
         Me.Label11.TabIndex = 10
@@ -246,7 +302,7 @@ Partial Class frm_Job
         'Label12
         '
         Me.Label12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label12.Location = New System.Drawing.Point(3, 240)
+        Me.Label12.Location = New System.Drawing.Point(3, 241)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(94, 99)
         Me.Label12.TabIndex = 11
@@ -263,7 +319,7 @@ Partial Class frm_Job
         'txt_Steps
         '
         Me.txt_Steps.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_Steps.Location = New System.Drawing.Point(118, 102)
+        Me.txt_Steps.Location = New System.Drawing.Point(118, 103)
         Me.txt_Steps.Name = "txt_Steps"
         Me.txt_Steps.Size = New System.Drawing.Size(450, 132)
         Me.txt_Steps.TabIndex = 4
@@ -273,7 +329,7 @@ Partial Class frm_Job
         Me.Panel3.Controls.Add(Me.lst_Templates)
         Me.Panel3.Controls.Add(Me.Panel4)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(118, 240)
+        Me.Panel3.Location = New System.Drawing.Point(118, 241)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(450, 99)
         Me.Panel3.TabIndex = 17
@@ -359,9 +415,9 @@ Partial Class frm_Job
         Me.Panel5.Controls.Add(Me.gc_FollowUps)
         Me.Panel5.Controls.Add(Me.Panel6)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel5.Location = New System.Drawing.Point(118, 345)
+        Me.Panel5.Location = New System.Drawing.Point(118, 346)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(450, 101)
+        Me.Panel5.Size = New System.Drawing.Size(450, 74)
         Me.Panel5.TabIndex = 19
         '
         'gc_FollowUps
@@ -370,7 +426,7 @@ Partial Class frm_Job
         Me.gc_FollowUps.Location = New System.Drawing.Point(0, 0)
         Me.gc_FollowUps.MainView = Me.gv_FollowUps
         Me.gc_FollowUps.Name = "gc_FollowUps"
-        Me.gc_FollowUps.Size = New System.Drawing.Size(384, 101)
+        Me.gc_FollowUps.Size = New System.Drawing.Size(384, 74)
         Me.gc_FollowUps.TabIndex = 1
         Me.gc_FollowUps.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_FollowUps})
         '
@@ -388,7 +444,7 @@ Partial Class frm_Job
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
         Me.Panel6.Location = New System.Drawing.Point(384, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(66, 101)
+        Me.Panel6.Size = New System.Drawing.Size(66, 74)
         Me.Panel6.TabIndex = 0
         '
         'btn_FollowUps_Remove
@@ -416,6 +472,27 @@ Partial Class frm_Job
         Me.btn_FollowUps_Add.TabIndex = 2
         Me.btn_FollowUps_Add.TabStop = False
         Me.btn_FollowUps_Add.Text = "Add"
+        '
+        'txt_NotifyInterval
+        '
+        Me.txt_NotifyInterval.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_NotifyInterval.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txt_NotifyInterval.Location = New System.Drawing.Point(118, 426)
+        Me.txt_NotifyInterval.Name = "txt_NotifyInterval"
+        Me.txt_NotifyInterval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_NotifyInterval.Properties.MaxValue = New Decimal(New Integer() {364, 0, 0, 0})
+        Me.txt_NotifyInterval.Properties.MinValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txt_NotifyInterval.Size = New System.Drawing.Size(450, 20)
+        Me.txt_NotifyInterval.TabIndex = 7
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl5.Location = New System.Drawing.Point(3, 451)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(94, 19)
+        Me.LabelControl5.TabIndex = 22
+        Me.LabelControl5.Text = "Steps"
         '
         'Panel2
         '
@@ -474,8 +551,10 @@ Partial Class frm_Job
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Job"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Name.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Steps.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
@@ -487,6 +566,7 @@ Partial Class frm_Job
         CType(Me.gc_FollowUps, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_FollowUps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel6.ResumeLayout(False)
+        CType(Me.txt_NotifyInterval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -527,4 +607,10 @@ Partial Class frm_Job
     Friend WithEvents Panel6 As Panel
     Friend WithEvents btn_FollowUps_Remove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btn_FollowUps_Add As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txt_NotifyInterval As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents txt_DueInterval As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class
