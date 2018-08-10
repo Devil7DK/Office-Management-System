@@ -97,8 +97,8 @@ Partial Class frm_Job
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.ColumnCount = 3
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.txt_DueInterval, 0, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 0, 8)
@@ -158,18 +158,18 @@ Partial Class frm_Job
         'LabelControl6
         '
         Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl6.Location = New System.Drawing.Point(103, 451)
+        Me.LabelControl6.Location = New System.Drawing.Point(109, 451)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(9, 19)
+        Me.LabelControl6.Size = New System.Drawing.Size(3, 19)
         Me.LabelControl6.TabIndex = 23
         Me.LabelControl6.Text = ":"
         '
         'LabelControl4
         '
         Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl4.Location = New System.Drawing.Point(103, 426)
+        Me.LabelControl4.Location = New System.Drawing.Point(109, 426)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(9, 19)
+        Me.LabelControl4.Size = New System.Drawing.Size(3, 19)
         Me.LabelControl4.TabIndex = 21
         Me.LabelControl4.Text = ":"
         '
@@ -178,16 +178,16 @@ Partial Class frm_Job
         Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelControl3.Location = New System.Drawing.Point(3, 426)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(94, 19)
+        Me.LabelControl3.Size = New System.Drawing.Size(100, 19)
         Me.LabelControl3.TabIndex = 20
-        Me.LabelControl3.Text = "Steps"
+        Me.LabelControl3.Text = "Notification Interval"
         '
         'LabelControl2
         '
         Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl2.Location = New System.Drawing.Point(103, 346)
+        Me.LabelControl2.Location = New System.Drawing.Point(109, 346)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(9, 74)
+        Me.LabelControl2.Size = New System.Drawing.Size(3, 74)
         Me.LabelControl2.TabIndex = 8
         Me.LabelControl2.Text = ":"
         '
@@ -196,7 +196,7 @@ Partial Class frm_Job
         Me.LabelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelControl1.Location = New System.Drawing.Point(3, 346)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(94, 74)
+        Me.LabelControl1.Size = New System.Drawing.Size(100, 74)
         Me.LabelControl1.TabIndex = 18
         Me.LabelControl1.Text = "Follow Up Jobs"
         '
@@ -205,7 +205,7 @@ Partial Class frm_Job
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label1.Location = New System.Drawing.Point(3, 3)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(94, 19)
+        Me.Label1.Size = New System.Drawing.Size(100, 19)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Name"
         '
@@ -214,61 +214,61 @@ Partial Class frm_Job
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label2.Location = New System.Drawing.Point(3, 28)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(94, 19)
+        Me.Label2.Size = New System.Drawing.Size(100, 19)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Group"
         '
         'Label3
         '
         Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label3.Location = New System.Drawing.Point(103, 3)
+        Me.Label3.Location = New System.Drawing.Point(109, 3)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(9, 19)
+        Me.Label3.Size = New System.Drawing.Size(3, 19)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = ":"
         '
         'Label4
         '
         Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label4.Location = New System.Drawing.Point(103, 28)
+        Me.Label4.Location = New System.Drawing.Point(109, 28)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(9, 19)
+        Me.Label4.Size = New System.Drawing.Size(3, 19)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = ":"
         '
         'Label5
         '
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label5.Location = New System.Drawing.Point(103, 53)
+        Me.Label5.Location = New System.Drawing.Point(109, 53)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(9, 19)
+        Me.Label5.Size = New System.Drawing.Size(3, 19)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = ":"
         '
         'Label6
         '
         Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label6.Location = New System.Drawing.Point(103, 78)
+        Me.Label6.Location = New System.Drawing.Point(109, 78)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(9, 19)
+        Me.Label6.Size = New System.Drawing.Size(3, 19)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = ":"
         '
         'Label7
         '
         Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label7.Location = New System.Drawing.Point(103, 103)
+        Me.Label7.Location = New System.Drawing.Point(109, 103)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(9, 132)
+        Me.Label7.Size = New System.Drawing.Size(3, 132)
         Me.Label7.TabIndex = 6
         Me.Label7.Text = ":"
         '
         'Label8
         '
         Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Label8.Location = New System.Drawing.Point(103, 241)
+        Me.Label8.Location = New System.Drawing.Point(109, 241)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(9, 99)
+        Me.Label8.Size = New System.Drawing.Size(3, 99)
         Me.Label8.TabIndex = 7
         Me.Label8.Text = ":"
         '
@@ -277,7 +277,7 @@ Partial Class frm_Job
         Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label9.Location = New System.Drawing.Point(3, 53)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(94, 19)
+        Me.Label9.Size = New System.Drawing.Size(100, 19)
         Me.Label9.TabIndex = 8
         Me.Label9.Text = "Sub Group"
         '
@@ -286,7 +286,7 @@ Partial Class frm_Job
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label10.Location = New System.Drawing.Point(3, 78)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(94, 19)
+        Me.Label10.Size = New System.Drawing.Size(100, 19)
         Me.Label10.TabIndex = 9
         Me.Label10.Text = "Type"
         '
@@ -295,7 +295,7 @@ Partial Class frm_Job
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Location = New System.Drawing.Point(3, 103)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(94, 132)
+        Me.Label11.Size = New System.Drawing.Size(100, 132)
         Me.Label11.TabIndex = 10
         Me.Label11.Text = "Steps"
         '
@@ -304,7 +304,7 @@ Partial Class frm_Job
         Me.Label12.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label12.Location = New System.Drawing.Point(3, 241)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(94, 99)
+        Me.Label12.Size = New System.Drawing.Size(100, 99)
         Me.Label12.TabIndex = 11
         Me.Label12.Text = "Templates"
         '
@@ -490,9 +490,9 @@ Partial Class frm_Job
         Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelControl5.Location = New System.Drawing.Point(3, 451)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(94, 19)
+        Me.LabelControl5.Size = New System.Drawing.Size(100, 19)
         Me.LabelControl5.TabIndex = 22
-        Me.LabelControl5.Text = "Steps"
+        Me.LabelControl5.Text = "Due Date Interval"
         '
         'Panel2
         '
