@@ -56,9 +56,9 @@ Public Class frm_Job
         Dim lstSteps As New List(Of String)
         lstSteps.AddRange(txt_Steps.Lines)
         If Mode = Enums.DialogMode.Add Then
-            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), txt_NotifyInterval.Value, txt_DueInterval.Value, True)
+            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
         ElseIf Mode = Enums.DialogMode.Edit Then
-            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), txt_NotifyInterval.Value, txt_DueInterval.Value, True)
+            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
         End If
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
@@ -81,9 +81,12 @@ Public Class frm_Job
                 gc_FollowUps.DataSource = Job.FollowUps
                 txt_NotifyInterval.Value = Job.NotifyInterval
                 txt_DueInterval.Value = Job.DueInterval
+                txt_PrimaryPeriod.SelectedIndex = Job.PrimaryPeriodType
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
+        Else
+            txt_PrimaryPeriod.SelectedIndex = 0
         End If
         txt_Name.Focus()
     End Sub

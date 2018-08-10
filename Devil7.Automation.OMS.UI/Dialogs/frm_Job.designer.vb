@@ -65,6 +65,9 @@ Partial Class frm_Job
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_PrimaryPeriod = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +84,7 @@ Partial Class frm_Job
         Me.Panel6.SuspendLayout()
         CType(Me.txt_NotifyInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
+        CType(Me.txt_PrimaryPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -100,8 +104,9 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueInterval, 0, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 0, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 1, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl7, 0, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 1, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 7)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 1, 6)
@@ -126,11 +131,13 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Group, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 2, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_NotifyInterval, 2, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueInterval, 2, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 1, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_PrimaryPeriod, 2, 9)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 9
+        Me.TableLayoutPanel1.RowCount = 10
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
@@ -140,7 +147,8 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 473)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 498)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'txt_DueInterval
@@ -538,6 +546,35 @@ Partial Class frm_Job
         Me.OpenFileDialog1.Multiselect = True
         Me.OpenFileDialog1.Title = "Select files to add to templates list"
         '
+        'LabelControl7
+        '
+        Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl7.Location = New System.Drawing.Point(3, 476)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(100, 19)
+        Me.LabelControl7.TabIndex = 23
+        Me.LabelControl7.Text = "Due Date Interval"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl8.Location = New System.Drawing.Point(109, 476)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(3, 19)
+        Me.LabelControl8.TabIndex = 24
+        Me.LabelControl8.Text = ":"
+        '
+        'txt_PrimaryPeriod
+        '
+        Me.txt_PrimaryPeriod.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_PrimaryPeriod.Location = New System.Drawing.Point(118, 476)
+        Me.txt_PrimaryPeriod.Name = "txt_PrimaryPeriod"
+        Me.txt_PrimaryPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_PrimaryPeriod.Properties.Items.AddRange(New Object() {"Assessment Period", "Financial Period"})
+        Me.txt_PrimaryPeriod.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txt_PrimaryPeriod.Size = New System.Drawing.Size(450, 20)
+        Me.txt_PrimaryPeriod.TabIndex = 25
+        '
         'frm_Job
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -568,6 +605,7 @@ Partial Class frm_Job
         Me.Panel6.ResumeLayout(False)
         CType(Me.txt_NotifyInterval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.txt_PrimaryPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -613,4 +651,7 @@ Partial Class frm_Job
     Friend WithEvents txt_DueInterval As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents txt_PrimaryPeriod As DevExpress.XtraEditors.ComboBoxEdit
 End Class

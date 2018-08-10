@@ -143,6 +143,18 @@ Public Class frm_WorkBook
 
             txt_AssessmentYearMonth.PeriodType = item.Type
             txt_FinancialYearMonth.PeriodType = item.Type
+
+            If item.PrimaryPeriodType = Enums.PeriodType.Assessment Then
+                txt_AssessmentYearMonth.Enabled = True
+                txt_AssessmentYearMonth.TabStop = True
+                txt_FinancialYearMonth.Enabled = False
+                txt_FinancialYearMonth.TabStop = False
+            Else
+                txt_AssessmentYearMonth.Enabled = False
+                txt_AssessmentYearMonth.TabStop = False
+                txt_FinancialYearMonth.Enabled = True
+                txt_FinancialYearMonth.TabStop = True
+            End If
         Catch ex As Exception
 
         End Try
