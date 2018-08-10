@@ -20,8 +20,8 @@
 '=========================================================================='
 
 Namespace Enums
-    Public Enum PeriodType
-        Assessment
-        Financial
+    Public Enum PeriodType As Integer
+        Assessment = 0
+        Financial = 1
     End Enum
 End Namespace
