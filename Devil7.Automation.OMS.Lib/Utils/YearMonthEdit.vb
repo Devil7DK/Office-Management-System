@@ -74,10 +74,20 @@ Namespace Utils
                 Return New Objects.YearMonth(cmb_Year.SelectedItem, cmb_Period.SelectedItem)
             End Get
             Set(value As Objects.YearMonth)
+                RaiseEvent OnValueChanged(Me, New EventArgs)
                 cmb_Year.SelectedItem = value.Year
                 cmb_Period.SelectedItem = value.Period
             End Set
         End Property
 
+        Public Event OnValueChanged(ByVal sender As Object, ByVal e As System.EventArgs)
+
+        Private Sub cmb_Year_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Year.SelectedIndexChanged
+            RaiseEvent OnValueChanged(Me, New EventArgs)
+        End Sub
+
+        Private Sub cmb_Period_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Period.SelectedIndexChanged
+            RaiseEvent OnValueChanged(Me, New EventArgs)
+        End Sub
     End Class
 End Namespace
