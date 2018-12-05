@@ -31,7 +31,7 @@ Namespace Database
                    ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
-            Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@ClientID,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             Dim FullClient As Client = GetClientByID(Client.ID)
@@ -42,8 +42,8 @@ Namespace Database
                 AddParameter(Command, "@User", User.ID)
                 AddParameter(Command, "@Job", Job.ID)
                 AddParameter(Command, "@DueDate", DueDate)
-                AddParameter(Command, "@Client", Utils.ToXML(Of Objects.ClientMinimal)(Client))
                 AddParameter(Command, "@ClientID", Client.ID)
+                AddParameter(Command, "@Client", Utils.ToXML(Of Objects.ClientMinimal)(Client))
                 AddParameter(Command, "@DateAdded", Now)
                 AddParameter(Command, "@DateCompleted", Now)
                 AddParameter(Command, "@Status", Status)

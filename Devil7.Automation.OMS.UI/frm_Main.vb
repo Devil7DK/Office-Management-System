@@ -1162,4 +1162,13 @@ Public Class frm_Main
         End If
     End Sub
 
+    Private Sub btn_ClientJobsReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_ClientJobsReport.ItemClick
+        If Clients IsNot Nothing Then
+            Dim d As New frm_ClientJobsReport(Clients)
+            d.ShowDialog()
+        Else
+            MsgBox("Clients list is not fetched yet. Load/Refresh clients list and try again.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+        End If
+    End Sub
+
 End Class
