@@ -29,6 +29,11 @@ Partial Class frm_ClientJobsReport
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.gc_Clients_All = New DevExpress.XtraGrid.GridControl()
         Me.gv_Clients_All = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.txt_To = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_From = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.page_Finish = New DevExpress.XtraWizard.CompletionWizardPage()
         Me.cb_OpenExportedFile = New DevExpress.XtraEditors.CheckEdit()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -36,7 +41,6 @@ Partial Class frm_ClientJobsReport
         Me.ProgressPanel_GeneratingReport = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.page_Result = New DevExpress.XtraWizard.WizardPage()
         Me.gc_Result = New DevExpress.XtraGrid.GridControl()
-        Me.gv_Result = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.page_Export = New DevExpress.XtraWizard.WizardPage()
         Me.txt_ExportPath = New DevExpress.XtraEditors.ButtonEdit()
         Me.rgrp_ExportType = New DevExpress.XtraEditors.RadioGroup()
@@ -45,11 +49,32 @@ Partial Class frm_ClientJobsReport
         Me.Loader_Details = New System.ComponentModel.BackgroundWorker()
         Me.Loader_GenerateReport = New System.ComponentModel.BackgroundWorker()
         Me.SaveFileDialog_Export = New System.Windows.Forms.SaveFileDialog()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.CardView1 = New DevExpress.XtraGrid.Views.Card.CardView()
+        Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPhoto = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPAN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFatherName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colMobile = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colEmail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colAddressLine1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colAddressLine2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colDistrict = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPinCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colDOB = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colAadharNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colTIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colCIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colGST = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFileNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colDescription1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colTypeOfEngagement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gv_Result = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colJob = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colClient = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.MainWizard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainWizard.SuspendLayout()
         Me.page_Clients.SuspendLayout()
@@ -61,20 +86,21 @@ Partial Class frm_ClientJobsReport
         Me.GroupControl1.SuspendLayout()
         CType(Me.gc_Clients_All, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Clients_All, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
+        CType(Me.txt_To.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_To.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_From.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_From.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.page_Finish.SuspendLayout()
         CType(Me.cb_OpenExportedFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.page_Generating.SuspendLayout()
         Me.page_Result.SuspendLayout()
         CType(Me.gc_Result, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gv_Result, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.page_Export.SuspendLayout()
         CType(Me.txt_ExportPath.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.rgrp_ExportType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CardView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_Result, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainWizard
@@ -176,6 +202,64 @@ Partial Class frm_ClientJobsReport
         Me.gv_Clients_All.OptionsBehavior.ReadOnly = True
         Me.gv_Clients_All.OptionsSelection.MultiSelect = True
         '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.txt_To)
+        Me.Panel2.Controls.Add(Me.LabelControl3)
+        Me.Panel2.Controls.Add(Me.txt_From)
+        Me.Panel2.Controls.Add(Me.LabelControl2)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel2.Location = New System.Drawing.Point(0, 230)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(617, 34)
+        Me.Panel2.TabIndex = 2
+        '
+        'txt_To
+        '
+        Me.txt_To.EditValue = Nothing
+        Me.txt_To.Location = New System.Drawing.Point(381, 7)
+        Me.txt_To.Name = "txt_To"
+        Me.txt_To.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_To.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_To.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.txt_To.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txt_To.Properties.EditFormat.FormatString = "dd/MM/yyyy"
+        Me.txt_To.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txt_To.Properties.Mask.EditMask = "dd/MM/yyyy"
+        Me.txt_To.Size = New System.Drawing.Size(234, 20)
+        Me.txt_To.TabIndex = 3
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(365, 10)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(10, 13)
+        Me.LabelControl3.TabIndex = 2
+        Me.LabelControl3.Text = "to"
+        '
+        'txt_From
+        '
+        Me.txt_From.EditValue = Nothing
+        Me.txt_From.Location = New System.Drawing.Point(122, 7)
+        Me.txt_From.Name = "txt_From"
+        Me.txt_From.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_From.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_From.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.txt_From.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txt_From.Properties.EditFormat.FormatString = "dd/MM/yyyy"
+        Me.txt_From.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.txt_From.Properties.Mask.EditMask = "dd/MM/yyyy"
+        Me.txt_From.Size = New System.Drawing.Size(237, 20)
+        Me.txt_From.TabIndex = 1
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(20, 10)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(96, 13)
+        Me.LabelControl2.TabIndex = 0
+        Me.LabelControl2.Text = "Select Date Range :"
+        '
         'page_Finish
         '
         Me.page_Finish.AllowBack = False
@@ -242,12 +326,7 @@ Partial Class frm_ClientJobsReport
         Me.gc_Result.Name = "gc_Result"
         Me.gc_Result.Size = New System.Drawing.Size(617, 264)
         Me.gc_Result.TabIndex = 0
-        Me.gc_Result.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Result})
-        '
-        'gv_Result
-        '
-        Me.gv_Result.GridControl = Me.gc_Result
-        Me.gv_Result.Name = "gv_Result"
+        Me.gc_Result.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.CardView1, Me.gv_Result})
         '
         'page_Export
         '
@@ -296,67 +375,150 @@ Partial Class frm_ClientJobsReport
         'Loader_Details
         '
         '
+        'Loader_GenerateReport
+        '
+        '
         'SaveFileDialog_Export
         '
         Me.SaveFileDialog_Export.Filter = "Microsoft Excel Spreadsheet (*.xlsx)|*.xlsx"
         '
-        'Panel2
+        'CardView1
         '
-        Me.Panel2.Controls.Add(Me.DateEdit2)
-        Me.Panel2.Controls.Add(Me.LabelControl3)
-        Me.Panel2.Controls.Add(Me.DateEdit1)
-        Me.Panel2.Controls.Add(Me.LabelControl2)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 230)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(617, 34)
-        Me.Panel2.TabIndex = 2
+        Me.CardView1.FocusedCardTopFieldIndex = 0
+        Me.CardView1.GridControl = Me.gc_Result
+        Me.CardView1.Name = "CardView1"
         '
-        'DateEdit2
+        'colID1
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(381, 7)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Properties.EditFormat.FormatString = "dd/MM/yyyy"
-        Me.DateEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Properties.Mask.EditMask = "dd/MM/yyyy"
-        Me.DateEdit2.Size = New System.Drawing.Size(234, 20)
-        Me.DateEdit2.TabIndex = 3
+        Me.colID1.FieldName = "ID"
+        Me.colID1.Name = "colID1"
+        Me.colID1.OptionsColumn.ReadOnly = True
         '
-        'LabelControl3
+        'colPhoto
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(365, 10)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(10, 13)
-        Me.LabelControl3.TabIndex = 2
-        Me.LabelControl3.Text = "to"
+        Me.colPhoto.FieldName = "Photo"
+        Me.colPhoto.Name = "colPhoto"
         '
-        'DateEdit1
+        'colPAN
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(122, 7)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.EditFormat.FormatString = "dd/MM/yyyy"
-        Me.DateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.Mask.EditMask = "dd/MM/yyyy"
-        Me.DateEdit1.Size = New System.Drawing.Size(237, 20)
-        Me.DateEdit1.TabIndex = 1
+        Me.colPAN.FieldName = "PAN"
+        Me.colPAN.Name = "colPAN"
         '
-        'LabelControl2
+        'colName
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(20, 10)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(96, 13)
-        Me.LabelControl2.TabIndex = 0
-        Me.LabelControl2.Text = "Select Date Range :"
+        Me.colName.FieldName = "Name"
+        Me.colName.Name = "colName"
+        '
+        'colFatherName
+        '
+        Me.colFatherName.FieldName = "FatherName"
+        Me.colFatherName.Name = "colFatherName"
+        '
+        'colMobile
+        '
+        Me.colMobile.FieldName = "Mobile"
+        Me.colMobile.Name = "colMobile"
+        '
+        'colEmail
+        '
+        Me.colEmail.FieldName = "Email"
+        Me.colEmail.Name = "colEmail"
+        '
+        'colAddressLine1
+        '
+        Me.colAddressLine1.FieldName = "AddressLine1"
+        Me.colAddressLine1.Name = "colAddressLine1"
+        '
+        'colAddressLine2
+        '
+        Me.colAddressLine2.FieldName = "AddressLine2"
+        Me.colAddressLine2.Name = "colAddressLine2"
+        '
+        'colDistrict
+        '
+        Me.colDistrict.FieldName = "District"
+        Me.colDistrict.Name = "colDistrict"
+        '
+        'colPinCode
+        '
+        Me.colPinCode.FieldName = "PinCode"
+        Me.colPinCode.Name = "colPinCode"
+        '
+        'colDOB
+        '
+        Me.colDOB.FieldName = "DOB"
+        Me.colDOB.Name = "colDOB"
+        '
+        'colAadharNo
+        '
+        Me.colAadharNo.FieldName = "AadharNo"
+        Me.colAadharNo.Name = "colAadharNo"
+        '
+        'colTIN
+        '
+        Me.colTIN.FieldName = "TIN"
+        Me.colTIN.Name = "colTIN"
+        '
+        'colCIN
+        '
+        Me.colCIN.FieldName = "CIN"
+        Me.colCIN.Name = "colCIN"
+        '
+        'colGST
+        '
+        Me.colGST.FieldName = "GST"
+        Me.colGST.Name = "colGST"
+        '
+        'colFileNo
+        '
+        Me.colFileNo.FieldName = "FileNo"
+        Me.colFileNo.Name = "colFileNo"
+        '
+        'colType
+        '
+        Me.colType.FieldName = "Type"
+        Me.colType.Name = "colType"
+        '
+        'colDescription1
+        '
+        Me.colDescription1.FieldName = "Description"
+        Me.colDescription1.Name = "colDescription1"
+        '
+        'colTypeOfEngagement
+        '
+        Me.colTypeOfEngagement.FieldName = "TypeOfEngagement"
+        Me.colTypeOfEngagement.Name = "colTypeOfEngagement"
+        '
+        'colStatus
+        '
+        Me.colStatus.FieldName = "Status"
+        Me.colStatus.Name = "colStatus"
+        '
+        'gv_Result
+        '
+        Me.gv_Result.GridControl = Me.gc_Result
+        Me.gv_Result.Name = "gv_Result"
+        '
+        'colID
+        '
+        Me.colID.FieldName = "ID"
+        Me.colID.Name = "colID"
+        Me.colID.Visible = True
+        Me.colID.VisibleIndex = 0
+        '
+        'colJob
+        '
+        Me.colJob.FieldName = "Job"
+        Me.colJob.Name = "colJob"
+        Me.colJob.Visible = True
+        Me.colJob.VisibleIndex = 1
+        '
+        'colClient
+        '
+        Me.colClient.FieldName = "Client"
+        Me.colClient.Name = "colClient"
+        Me.colClient.Visible = True
+        Me.colClient.VisibleIndex = 2
         '
         'frm_ClientJobsReport
         '
@@ -381,23 +543,24 @@ Partial Class frm_ClientJobsReport
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.gc_Clients_All, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Clients_All, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.txt_To.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_To.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_From.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_From.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.page_Finish.ResumeLayout(False)
         Me.page_Finish.PerformLayout()
         CType(Me.cb_OpenExportedFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.page_Generating.ResumeLayout(False)
         Me.page_Result.ResumeLayout(False)
         CType(Me.gc_Result, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_Result, System.ComponentModel.ISupportInitialize).EndInit()
         Me.page_Export.ResumeLayout(False)
         Me.page_Export.PerformLayout()
         CType(Me.txt_ExportPath.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.rgrp_ExportType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CardView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_Result, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -409,7 +572,6 @@ Partial Class frm_ClientJobsReport
     Friend WithEvents ProgressPanel_GeneratingReport As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents page_Result As DevExpress.XtraWizard.WizardPage
     Friend WithEvents gc_Result As DevExpress.XtraGrid.GridControl
-    Friend WithEvents gv_Result As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents page_Export As DevExpress.XtraWizard.WizardPage
     Friend WithEvents txt_ExportPath As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents rgrp_ExportType As DevExpress.XtraEditors.RadioGroup
@@ -429,8 +591,34 @@ Partial Class frm_ClientJobsReport
     Friend WithEvents btn_UnselectClient As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents btn_SelectClient As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents txt_To As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents txt_From As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents gv_Result As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents CardView1 As DevExpress.XtraGrid.Views.Card.CardView
+    Friend WithEvents colID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPhoto As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPAN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFatherName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colMobile As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colEmail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colAddressLine1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colAddressLine2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDistrict As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPinCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDOB As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colAadharNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colTIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colGST As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFileNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDescription1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colTypeOfEngagement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colJob As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colClient As DevExpress.XtraGrid.Columns.GridColumn
 End Class

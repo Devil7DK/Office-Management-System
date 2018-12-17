@@ -31,7 +31,6 @@ Public Class frm_ClientJobsReport
         Me.Clients = Clients
     End Sub
 
-    Dim Jobs As New List(Of Objects.Job)
     Dim Clients As List(Of Objects.Client)
 
     Sub SetupClientColumns()
@@ -81,7 +80,7 @@ Public Class frm_ClientJobsReport
         ElseIf e.Page Is page_Result Then
             MainWizard.SelectedPage = page_Export
         ElseIf e.Page Is page_Export Then
-            Dim SupportedExtensions As String() = {"xlsx", "xls", "csv"}
+            Dim SupportedExtensions As String() = {".xlsx", ".xls", ".csv"}
             Dim Ext As String = IO.Path.GetExtension(txt_ExportPath.EditValue)
             If txt_ExportPath.EditValue <> "" AndAlso SupportedExtensions.Contains(Ext) Then
                 If Ext = "csv" Then
@@ -99,7 +98,7 @@ Public Class frm_ClientJobsReport
     End Sub
 
     Sub SetupColumns()
-        Dim AvailableColumns As String() = {"PAN", "Name", "FatherName", "Mobile", "Email", "Status", "ID"}
+        Dim AvailableColumns As String() = {"ID", "Job", "Client", "CurrentStep", "AddedOn", "CompletedOn", "Description", "Remarks", "Status", "AssementDetail", "FinancialDetail", "BillingStatus"}
 
         For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Result.Columns
             If AvailableColumns.Contains(i.FieldName) Then
@@ -179,7 +178,23 @@ Public Class frm_ClientJobsReport
     End Sub
 
     Private Sub Loader_GenerateReport_DoWork(sender As Object, e As DoWorkEventArgs) Handles Loader_GenerateReport.DoWork
+        Me.Invoke(Sub() ProgressPanel_GeneratingReport.Description = "Filtering list...")
 
+
+        Dim SelectedClients As List(Of Objects.Client) = gc_Clients_Selected.DataSource
+        Dim SelectedClientIDs As New List(Of Integer)
+        For Each i As Objects.Client In SelectedClients
+            SelectedClientIDs.Add(i.ID)
+        Next
+
+        Dim Result As List(Of Objects.WorkbookItem) = Database.Workbook.GetForClientsBetweenDates(True, SelectedClientIDs, txt_From.DateTime, txt_To.DateTime)
+
+        Me.Invoke(Sub()
+                      gc_Result.DataSource = Result
+                      gc_Result.RefreshDataSource()
+                      SetupColumns()
+                      MainWizard.SelectedPage = page_Result
+                  End Sub)
     End Sub
 
 End Class

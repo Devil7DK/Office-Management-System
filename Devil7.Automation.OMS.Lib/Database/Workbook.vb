@@ -235,6 +235,28 @@ Namespace Database
             Return R
         End Function
 
+        Function GetForClientsBetweenDates(ByVal CloseConnection As Boolean, ByVal ClientIDs As List(Of Integer), ByVal FromDate As Date, ByVal ToDate As Date) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE charindex(',' + CAST([ClientID] as nvarchar(5)) + ',', @ClientIDs) > 0 AND (([DateAdded] between @FromDate and @ToDate) OR ([DateCompleted] between @FromDate and @ToDate));"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ClientIDs", "," & String.Join(",", ClientIDs) & ",")
+                AddParameter(Command, "@FromDate", FromDate)
+                AddParameter(Command, "@ToDate", ToDate)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(Read(Reader))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
         Function UpdateStep(ByVal ID As Integer, ByVal Step_ As String, ByVal History As String) As Boolean
             Dim R As Boolean = False
 
