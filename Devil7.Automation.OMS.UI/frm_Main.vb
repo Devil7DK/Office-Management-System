@@ -163,7 +163,7 @@ Public Class frm_Main
                           gc_Users.DataSource = Users
                       End Sub)
         Catch ex As Exception
-
+            MsgBox("Error on loading Users: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       rpg_Users.Enabled = True
@@ -253,6 +253,14 @@ Public Class frm_Main
                       rpg_Jobs.Enabled = False
                       ProgressPanel_Jobs.Visible = True
                   End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Jobs.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+
         Try
             Dim Jobs As List(Of Objects.Job) = Database.Jobs.GetAll(True)
             Jobs.Sort(New Comparers.CompareByID)
@@ -262,7 +270,7 @@ Public Class frm_Main
                           gc_Jobs.RefreshDataSource()
                       End Sub)
         Catch ex As Exception
-
+            MsgBox("Error on loading Jobs: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       rpg_Jobs.Enabled = True
@@ -281,7 +289,7 @@ Public Class frm_Main
             If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
             If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
         Next
-        Dim d As New frm_Job(Enums.DialogMode.Add, group.ToArray, subgroup.ToArray)
+        Dim d As New frm_Job(Enums.DialogMode.Add, group.ToArray, subgroup.ToArray, Users)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             If d.Job IsNot Nothing Then
                 CType(gc_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
@@ -298,7 +306,7 @@ Public Class frm_Main
                 If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
                 If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
             Next
-            Dim d As New frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, row.ID)
+            Dim d As New frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, Users, row.ID)
             If d.ShowDialog = Windows.Forms.DialogResult.OK Then
                 If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
             End If
@@ -329,7 +337,7 @@ Public Class frm_Main
                           SortClients()
                       End Sub)
         Catch ex As Exception
-
+            MsgBox("Error on loading Clients: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       rpg_Clients.Enabled = True
@@ -445,7 +453,7 @@ Public Class frm_Main
                       End Sub)
             SetupWorkbookColumns()
         Catch ex As Exception
-
+            MsgBox("Error on loading Workbook: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       rpg_Workbook.Enabled = True
@@ -631,7 +639,7 @@ Public Class frm_Main
                       End Sub)
             SetupHomeColumns()
         Catch ex As Exception
-
+            MsgBox("Error on loading Home: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       ProgressPanel_Home.Visible = False
@@ -641,7 +649,11 @@ Public Class frm_Main
     End Sub
 
     Private Sub frm_Main_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-        End
+        Try
+            End
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub frm_Main_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
@@ -659,12 +671,14 @@ Public Class frm_Main
 
     Private Sub UpdateStatus(sender As System.Object, e As EventArgs)
         Try
-            Dim s As Enums.WorkStatus = sender.Tag
+            Dim s As Enums.WorkStatus = sender.Tag.ToString.Split(":")(0)
+            Dim cs As String = sender.Tag.ToString.Split(":")(1)
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row.ID, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, row.Job) Then
                     row.Status = s
-                    If s = Enums.WorkStatus.Completed Then
+                    Dim Forward As Objects.AutoForward = row.Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(row.CurrentStep.ToUpper))
+                    If s = Enums.WorkStatus.Completed AndAlso Forward IsNot Nothing Then
                         If row.Job.FollowUps.Count > 0 Then
                             For Each i As Objects.Job In row.Job.FollowUps
                                 Dim w = Database.Workbook.AddNew(row.AssignedTo, i, row.DueDate, row.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & row.ID, row.Remarks, row.TargetDate, Enums.Priority.Normal, i.Steps(0), row.AssementDetail, row.FinancialDetail, row.Folder, row.Owner, "Followup Job Added")
@@ -782,7 +796,7 @@ Public Class frm_Main
                           Next
                       End Sub)
         Catch ex As Exception
-
+            MsgBox("Error on loading Utilities: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       ProgressPanel_Utilites.Visible = False
@@ -802,7 +816,7 @@ Public Class frm_Main
             Dim AssignToMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Assign To", .BeginGroup = True}
 
             For i As Integer = 0 To 3
-                UpdateStatusMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem([Enum].GetName(GetType(Enums.WorkStatus), i), AddressOf UpdateStatus) With {.Tag = i})
+                UpdateStatusMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem([Enum].GetName(GetType(Enums.WorkStatus), i), AddressOf UpdateStatus) With {.Tag = i & ":" & item.CurrentStep})
             Next
             For i As Integer = -2 To 2
                 UpdatePriorityMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem([Enum].GetName(GetType(Enums.Priority), i), AddressOf UpdatePriority) With {.Tag = i})
@@ -850,7 +864,7 @@ Public Class frm_Main
                       End Sub)
             SetupBillingColumns()
         Catch ex As Exception
-
+            MsgBox("Error on loading Billing: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       rpg_Billing.Enabled = True
@@ -1038,7 +1052,7 @@ Public Class frm_Main
                       End Sub)
             SetupPendingColumns()
         Catch ex As Exception
-
+            MsgBox("Error on loading Pending: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
         Me.Invoke(Sub()
                       rpg_Pending.Enabled = True
@@ -1124,7 +1138,7 @@ Public Class frm_Main
             Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
             If gv_Billing.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Billing.GetRow(gv_Billing.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row.ID, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
@@ -1142,7 +1156,7 @@ Public Class frm_Main
             Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
             If gv_Pending.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Pending.GetRow(gv_Pending.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row.ID, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else

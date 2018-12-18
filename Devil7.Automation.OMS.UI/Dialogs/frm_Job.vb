@@ -20,19 +20,21 @@
 '=========================================================================='
 
 Imports Devil7.Automation.OMS.Lib
-Imports System.Data.SqlClient
+Imports Devil7.Automation.OMS.Lib.Objects
 
 Public Class frm_Job
     Dim Mode As Enums.DialogMode
     Dim ID As Integer
-    Property Job As Objects.Job = Nothing
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal Groups As String(), ByVal SubGroups As String(), Optional ByVal ID As Integer = -1)
+    Property Job As Job = Nothing
+    Dim Users As New List(Of User)
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal Groups As String(), ByVal SubGroups As String(), ByVal Users As List(Of User), Optional ByVal ID As Integer = -1)
         InitializeComponent()
         Me.Mode = Mode
         Me.ID = ID
         On Error Resume Next
         cmb_Group.Properties.Items.AddRange(Groups)
         cmb_SubGroup.Properties.Items.AddRange(SubGroups)
+        Me.Users = Users
     End Sub
     Private Sub btn_Template_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Template_Add.Click
         If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -56,9 +58,9 @@ Public Class frm_Job
         Dim lstSteps As New List(Of String)
         lstSteps.AddRange(txt_Steps.Lines)
         If Mode = Enums.DialogMode.Add Then
-            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
+            Job = Database.Jobs.AddNew(txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Job)), CType(gc_AutoForwards.DataSource, List(Of AutoForward)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
         ElseIf Mode = Enums.DialogMode.Edit Then
-            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Objects.Job)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
+            Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Job)), CType(gc_AutoForwards.DataSource, List(Of AutoForward)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
         End If
         Me.DialogResult = Windows.Forms.DialogResult.OK
         Me.Close()
@@ -67,7 +69,7 @@ Public Class frm_Job
     Private Sub frm_Job_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Mode = Enums.DialogMode.Edit Then
             Try
-                Dim Job As Objects.Job = Database.Jobs.GetJobByID(ID, True)
+                Dim Job As Job = Database.Jobs.GetJobByID(ID, True)
                 txt_Name.Text = Job.Name
                 cmb_Group.Text = Job.Group
                 cmb_SubGroup.Text = Job.SubGroup
@@ -94,13 +96,13 @@ Public Class frm_Job
     Private Sub btn_FollowUps_Add_Click(sender As Object, e As EventArgs) Handles btn_FollowUps_Add.Click
         Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
-            If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Objects.Job)
+            If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Job)
             If d.Job.ID = ID Then
                 MsgBox("You can't add the job itself to its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             ElseIf d.Job.FollowUps.Find(Function(c) c.ID = ID) IsNot Nothing Then
                 MsgBox("You can't add a job which has the current job as its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             Else
-                CType(gc_FollowUps.DataSource, List(Of Objects.Job)).Add(d.Job)
+                CType(gc_FollowUps.DataSource, List(Of Job)).Add(d.Job)
                 gc_FollowUps.RefreshDataSource()
             End If
         End If
@@ -110,10 +112,30 @@ Public Class frm_Job
         If gv_FollowUps.SelectedRowsCount > 0 Then
             For Each i As Integer In gv_FollowUps.GetSelectedRows
                 Dim row As Integer = (i)
-                Dim obj As Objects.Job = TryCast(gv_FollowUps.GetRow(row), Objects.Job)
-                CType(gc_FollowUps.DataSource, List(Of Objects.Job)).Remove(obj)
+                Dim obj As Job = TryCast(gv_FollowUps.GetRow(row), Job)
+                CType(gc_FollowUps.DataSource, List(Of Job)).Remove(obj)
             Next
             gc_FollowUps.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub btn_AutoForwards_Add_Click(sender As Object, e As EventArgs) Handles btn_AutoForwards_Add.Click
+        Dim d As New frm_AutoForwards(New List(Of String)(txt_Steps.Lines), Users)
+        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If gc_AutoForwards.DataSource Is Nothing Then gc_AutoForwards.DataSource = New List(Of AutoForward)
+            CType(gc_AutoForwards.DataSource, List(Of AutoForward)).Add(d.AutoForward)
+            gc_AutoForwards.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub btn_AutoForwards_Remove_Click(sender As Object, e As EventArgs) Handles btn_AutoForwards_Remove.Click
+        If gv_AutoForwards.SelectedRowsCount > 0 Then
+            For Each i As Integer In gv_AutoForwards.GetSelectedRows
+                Dim row As Integer = (i)
+                Dim obj As AutoForward = TryCast(gv_AutoForwards.GetRow(row), AutoForward)
+                CType(gc_AutoForwards.DataSource, List(Of AutoForward)).Remove(obj)
+            Next
+            gc_AutoForwards.RefreshDataSource()
         End If
     End Sub
 End Class

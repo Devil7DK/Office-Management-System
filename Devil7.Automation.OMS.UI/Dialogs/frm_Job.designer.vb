@@ -25,8 +25,15 @@ Partial Class frm_Job
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Job))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.txt_DueInterval = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.gc_AutoForwards = New DevExpress.XtraGrid.GridControl()
+        Me.gv_AutoForwards = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.btn_AutoForwards_Remove = New DevExpress.XtraEditors.SimpleButton()
+        Me.btn_AutoForwards_Add = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -60,17 +67,21 @@ Partial Class frm_Job
         Me.btn_FollowUps_Remove = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_FollowUps_Add = New DevExpress.XtraEditors.SimpleButton()
         Me.txt_NotifyInterval = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_DueInterval = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.txt_PrimaryPeriod = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.txt_PrimaryPeriod = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel7.SuspendLayout()
+        CType(Me.gc_AutoForwards, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_AutoForwards, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel8.SuspendLayout()
         CType(Me.txt_Name.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Steps.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
@@ -83,8 +94,9 @@ Partial Class frm_Job
         CType(Me.gv_FollowUps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel6.SuspendLayout()
         CType(Me.txt_NotifyInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
+        CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_PrimaryPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -104,11 +116,12 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456.0!))
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 1, 9)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl7, 0, 9)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 1, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel7, 2, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 1, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl7, 0, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl5, 0, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 1, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 8)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 1, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 6)
         Me.TableLayoutPanel1.Controls.Add(Me.Label1, 0, 0)
@@ -130,14 +143,16 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_SubGroup, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Group, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel5, 2, 6)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_NotifyInterval, 2, 7)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueInterval, 2, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 1, 8)
-        Me.TableLayoutPanel1.Controls.Add(Me.txt_PrimaryPeriod, 2, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_NotifyInterval, 2, 8)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_DueInterval, 2, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 1, 9)
+        Me.TableLayoutPanel1.Controls.Add(Me.txt_PrimaryPeriod, 2, 10)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl9, 0, 7)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl10, 1, 7)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 10
+        Me.TableLayoutPanel1.RowCount = 11
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
@@ -145,37 +160,107 @@ Partial Class frm_Job
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 498)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(554, 598)
         Me.TableLayoutPanel1.TabIndex = 1
         '
-        'txt_DueInterval
+        'Panel7
         '
-        Me.txt_DueInterval.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_DueInterval.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.txt_DueInterval.Location = New System.Drawing.Point(118, 451)
-        Me.txt_DueInterval.Name = "txt_DueInterval"
-        Me.txt_DueInterval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_DueInterval.Properties.MaxValue = New Decimal(New Integer() {364, 0, 0, 0})
-        Me.txt_DueInterval.Properties.MinValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.txt_DueInterval.Size = New System.Drawing.Size(450, 20)
-        Me.txt_DueInterval.TabIndex = 24
+        Me.Panel7.Controls.Add(Me.gc_AutoForwards)
+        Me.Panel7.Controls.Add(Me.Panel8)
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel7.Location = New System.Drawing.Point(118, 426)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(450, 94)
+        Me.Panel7.TabIndex = 28
         '
-        'LabelControl6
+        'gc_AutoForwards
         '
-        Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl6.Location = New System.Drawing.Point(109, 451)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(3, 19)
-        Me.LabelControl6.TabIndex = 23
-        Me.LabelControl6.Text = ":"
+        Me.gc_AutoForwards.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_AutoForwards.Location = New System.Drawing.Point(0, 0)
+        Me.gc_AutoForwards.MainView = Me.gv_AutoForwards
+        Me.gc_AutoForwards.Name = "gc_AutoForwards"
+        Me.gc_AutoForwards.Size = New System.Drawing.Size(384, 94)
+        Me.gc_AutoForwards.TabIndex = 1
+        Me.gc_AutoForwards.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_AutoForwards})
+        '
+        'gv_AutoForwards
+        '
+        Me.gv_AutoForwards.GridControl = Me.gc_AutoForwards
+        Me.gv_AutoForwards.Name = "gv_AutoForwards"
+        Me.gv_AutoForwards.OptionsBehavior.ReadOnly = True
+        Me.gv_AutoForwards.OptionsView.ShowGroupPanel = False
+        '
+        'Panel8
+        '
+        Me.Panel8.Controls.Add(Me.btn_AutoForwards_Remove)
+        Me.Panel8.Controls.Add(Me.btn_AutoForwards_Add)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel8.Location = New System.Drawing.Point(384, 0)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(66, 94)
+        Me.Panel8.TabIndex = 0
+        '
+        'btn_AutoForwards_Remove
+        '
+        Me.btn_AutoForwards_Remove.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.btn_AutoForwards_Remove.Appearance.Options.UseFont = True
+        Me.btn_AutoForwards_Remove.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_AutoForwards_Remove.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btn_AutoForwards_Remove.Location = New System.Drawing.Point(0, 31)
+        Me.btn_AutoForwards_Remove.Name = "btn_AutoForwards_Remove"
+        Me.btn_AutoForwards_Remove.Size = New System.Drawing.Size(66, 32)
+        Me.btn_AutoForwards_Remove.TabIndex = 3
+        Me.btn_AutoForwards_Remove.TabStop = False
+        Me.btn_AutoForwards_Remove.Text = "Remove"
+        '
+        'btn_AutoForwards_Add
+        '
+        Me.btn_AutoForwards_Add.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.btn_AutoForwards_Add.Appearance.Options.UseFont = True
+        Me.btn_AutoForwards_Add.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_AutoForwards_Add.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btn_AutoForwards_Add.Location = New System.Drawing.Point(0, 0)
+        Me.btn_AutoForwards_Add.Name = "btn_AutoForwards_Add"
+        Me.btn_AutoForwards_Add.Size = New System.Drawing.Size(66, 31)
+        Me.btn_AutoForwards_Add.TabIndex = 2
+        Me.btn_AutoForwards_Add.TabStop = False
+        Me.btn_AutoForwards_Add.Text = "Add"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl8.Location = New System.Drawing.Point(109, 576)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(3, 19)
+        Me.LabelControl8.TabIndex = 24
+        Me.LabelControl8.Text = ":"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl7.Location = New System.Drawing.Point(3, 576)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(100, 19)
+        Me.LabelControl7.TabIndex = 23
+        Me.LabelControl7.Text = "Due Date Interval"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl5.Location = New System.Drawing.Point(3, 551)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(100, 19)
+        Me.LabelControl5.TabIndex = 22
+        Me.LabelControl5.Text = "Due Date Interval"
         '
         'LabelControl4
         '
         Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl4.Location = New System.Drawing.Point(109, 426)
+        Me.LabelControl4.Location = New System.Drawing.Point(109, 526)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(3, 19)
         Me.LabelControl4.TabIndex = 21
@@ -184,7 +269,7 @@ Partial Class frm_Job
         'LabelControl3
         '
         Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl3.Location = New System.Drawing.Point(3, 426)
+        Me.LabelControl3.Location = New System.Drawing.Point(3, 526)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(100, 19)
         Me.LabelControl3.TabIndex = 20
@@ -485,7 +570,7 @@ Partial Class frm_Job
         '
         Me.txt_NotifyInterval.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_NotifyInterval.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.txt_NotifyInterval.Location = New System.Drawing.Point(118, 426)
+        Me.txt_NotifyInterval.Location = New System.Drawing.Point(118, 526)
         Me.txt_NotifyInterval.Name = "txt_NotifyInterval"
         Me.txt_NotifyInterval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_NotifyInterval.Properties.MaxValue = New Decimal(New Integer() {364, 0, 0, 0})
@@ -493,14 +578,61 @@ Partial Class frm_Job
         Me.txt_NotifyInterval.Size = New System.Drawing.Size(450, 20)
         Me.txt_NotifyInterval.TabIndex = 7
         '
-        'LabelControl5
+        'txt_DueInterval
         '
-        Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl5.Location = New System.Drawing.Point(3, 451)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(100, 19)
-        Me.LabelControl5.TabIndex = 22
-        Me.LabelControl5.Text = "Due Date Interval"
+        Me.txt_DueInterval.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_DueInterval.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txt_DueInterval.Location = New System.Drawing.Point(118, 551)
+        Me.txt_DueInterval.Name = "txt_DueInterval"
+        Me.txt_DueInterval.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_DueInterval.Properties.MaxValue = New Decimal(New Integer() {364, 0, 0, 0})
+        Me.txt_DueInterval.Properties.MinValue = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.txt_DueInterval.Size = New System.Drawing.Size(450, 20)
+        Me.txt_DueInterval.TabIndex = 24
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl6.Location = New System.Drawing.Point(109, 551)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(3, 19)
+        Me.LabelControl6.TabIndex = 23
+        Me.LabelControl6.Text = ":"
+        '
+        'txt_PrimaryPeriod
+        '
+        Me.txt_PrimaryPeriod.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_PrimaryPeriod.Location = New System.Drawing.Point(118, 576)
+        Me.txt_PrimaryPeriod.Name = "txt_PrimaryPeriod"
+        Me.txt_PrimaryPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_PrimaryPeriod.Properties.Items.AddRange(New Object() {"Assessment Period", "Financial Period"})
+        Me.txt_PrimaryPeriod.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txt_PrimaryPeriod.Size = New System.Drawing.Size(450, 20)
+        Me.txt_PrimaryPeriod.TabIndex = 25
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Options.UseTextOptions = True
+        Me.LabelControl9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LabelControl9.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.LabelControl9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl9.Location = New System.Drawing.Point(3, 426)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(100, 94)
+        Me.LabelControl9.TabIndex = 26
+        Me.LabelControl9.Text = "Auto Forwards"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Options.UseTextOptions = True
+        Me.LabelControl10.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LabelControl10.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
+        Me.LabelControl10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl10.Location = New System.Drawing.Point(109, 426)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(3, 94)
+        Me.LabelControl10.TabIndex = 27
+        Me.LabelControl10.Text = ":"
         '
         'Panel2
         '
@@ -546,35 +678,6 @@ Partial Class frm_Job
         Me.OpenFileDialog1.Multiselect = True
         Me.OpenFileDialog1.Title = "Select files to add to templates list"
         '
-        'LabelControl7
-        '
-        Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl7.Location = New System.Drawing.Point(3, 476)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(100, 19)
-        Me.LabelControl7.TabIndex = 23
-        Me.LabelControl7.Text = "Due Date Interval"
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl8.Location = New System.Drawing.Point(109, 476)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(3, 19)
-        Me.LabelControl8.TabIndex = 24
-        Me.LabelControl8.Text = ":"
-        '
-        'txt_PrimaryPeriod
-        '
-        Me.txt_PrimaryPeriod.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt_PrimaryPeriod.Location = New System.Drawing.Point(118, 476)
-        Me.txt_PrimaryPeriod.Name = "txt_PrimaryPeriod"
-        Me.txt_PrimaryPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txt_PrimaryPeriod.Properties.Items.AddRange(New Object() {"Assessment Period", "Financial Period"})
-        Me.txt_PrimaryPeriod.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txt_PrimaryPeriod.Size = New System.Drawing.Size(450, 20)
-        Me.txt_PrimaryPeriod.TabIndex = 25
-        '
         'frm_Job
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -591,7 +694,10 @@ Partial Class frm_Job
         Me.Panel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel7.ResumeLayout(False)
+        CType(Me.gc_AutoForwards, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_AutoForwards, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel8.ResumeLayout(False)
         CType(Me.txt_Name.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Steps.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
@@ -604,8 +710,9 @@ Partial Class frm_Job
         CType(Me.gv_FollowUps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel6.ResumeLayout(False)
         CType(Me.txt_NotifyInterval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
+        CType(Me.txt_DueInterval.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_PrimaryPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -654,4 +761,12 @@ Partial Class frm_Job
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txt_PrimaryPeriod As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents gc_AutoForwards As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_AutoForwards As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents Panel8 As Panel
+    Friend WithEvents btn_AutoForwards_Remove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btn_AutoForwards_Add As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class
