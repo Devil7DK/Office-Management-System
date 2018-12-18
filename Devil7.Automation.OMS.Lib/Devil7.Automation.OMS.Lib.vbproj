@@ -90,6 +90,7 @@
     <Compile Include="Enums\UserPermissions.vb" />
     <Compile Include="Enums\UserType.vb" />
     <Compile Include="Enums\WorkStatus.vb" />
+    <Compile Include="Objects\AutoForward.vb" />
     <Compile Include="Objects\ClientMinimal.vb" />
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\Job.vb" />

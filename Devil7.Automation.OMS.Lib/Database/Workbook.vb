@@ -278,10 +278,18 @@ Namespace Database
             Return R
         End Function
 
-        Function UpdateStatus(ByVal ID As Integer, ByVal Status As Integer, ByVal History As String)
+        Function UpdateStatus(ByVal ID As Integer, ByVal CurrentStep As String, ByVal Status As Integer, ByVal History As String, ByVal Optional Job As Job = Nothing)
             Dim R As Boolean = False
 
+            If Job IsNot Nothing AndAlso Status = Enums.WorkStatus.Completed Then
+                Dim Forward As AutoForward = Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(CurrentStep.ToUpper))
+                If Forward IsNot Nothing Then
+                    Return AssignTo(ID, Forward.UserID, (History & vbNewLine & "AutoForward: Work transferred to User with ID " & Forward.UserID & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim)
+                End If
+            End If
+
             Dim CommandString As String = "UPDATE Workbook SET [Status]=@Status,[History]=@History WHERE [ID]=@ID;"
+
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()

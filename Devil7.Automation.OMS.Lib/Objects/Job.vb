@@ -31,12 +31,13 @@ Namespace Objects
             Me.Steps = New List(Of String)
             Me.Templates = New List(Of String)
             Me.FollowUps = New List(Of Job)
+            Me.AutoForwards = New List(Of AutoForward)
             Me.NotifyInterval = 10
             Me.DueInterval = 10
             Me.PrimaryPeriodType = Enums.PeriodType.Financial
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal PrimaryPeriodType As Enums.PeriodType)
+        Sub New(ByVal ID As String, ByVal Name As String, ByVal Group As String, ByVal SubGroup As String, ByVal Type As Enums.JobType, ByVal Steps As List(Of String), ByVal Templates As List(Of String), ByVal FollowUps As List(Of Job), ByVal AutoForwards As List(Of AutoForward), ByVal NotifyInterval As Integer, ByVal DueInterval As Integer, ByVal PrimaryPeriodType As Enums.PeriodType)
             Me.ID_ = ID
             Me.Name = Name
             Me.Group = Group
@@ -45,6 +46,7 @@ Namespace Objects
             Me.Steps = Steps
             Me.Templates = Templates
             Me.FollowUps = FollowUps
+            Me.AutoForwards = AutoForwards
             Me.NotifyInterval = NotifyInterval
             Me.DueInterval = DueInterval
             Me.PrimaryPeriodType = PrimaryPeriodType
@@ -67,6 +69,7 @@ Namespace Objects
         Property Steps As List(Of String)
         Property Templates As List(Of String)
         Property FollowUps As List(Of Job)
+        Property AutoForwards As List(Of AutoForward)
 
         Dim NotifyDate_ As String
         ReadOnly Property NotifyDate As String
