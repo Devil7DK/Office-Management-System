@@ -46,7 +46,7 @@ Public Class frm_Login
     End Sub
 
     Private Sub btn_ServerSettings_Click(sender As System.Object, e As System.EventArgs) Handles btn_ServerSettings.Click
-        Dim D As New frm_ServerSettings
+        Dim D As New [Lib].Dialogs.frm_ServerSettings
         D.ShowDialog()
     End Sub
 

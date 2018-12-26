@@ -69,7 +69,7 @@ Namespace Database
                             Permissions = [Enum].Parse(GetType(Enums.UserPermissions), Reader.Item("Permissions").ToString)
                         End If
                         Dim Status As String = Reader.Item("Status").ToString
-                        Dim Photo As Drawing.Image = My.Resources.User_Default
+                        Dim Photo As Drawing.Image = Res.My.Resources.User_Default
                         Try
                             Photo = Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte())))
                         Catch ex As Exception
@@ -253,7 +253,7 @@ Namespace Database
                             Permissions = [Enum].Parse(GetType(Enums.UserPermissions), Reader.Item("Permissions").ToString)
                         End If
                         Dim Status As String = Reader.Item("Status").ToString
-                        Dim Photo As Drawing.Image = My.Resources.User_Default
+                        Dim Photo As Drawing.Image = Res.My.Resources.User_Default
                         Try
                             Photo = Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte())))
                         Catch ex As Exception
@@ -294,7 +294,7 @@ Namespace Database
                             Permissions = [Enum].Parse(GetType(Enums.UserPermissions), Reader.Item("Permissions").ToString)
                         End If
                         Dim Status As String = Reader.Item("Status").ToString
-                        Dim Photo As Drawing.Image = My.Resources.User_Default
+                        Dim Photo As Drawing.Image = Res.My.Resources.User_Default
                         Try
                             Photo = Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte())))
                         Catch ex As Exception

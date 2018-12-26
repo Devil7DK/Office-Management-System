@@ -119,10 +119,6 @@
       <Project>{8f9c9bfc-aeb9-4e2b-8a20-cf6a88a1023f}</Project>
       <Name>Devil7.Automation.OMS.Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Devil7.Automation.OMS.UI\Devil7.Automation.OMS.UI.vbproj">
-      <Project>{06f95eb1-59b5-4a7b-b6ae-954762f8fffa}</Project>
-      <Name>Devil7.Automation.OMS.UI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

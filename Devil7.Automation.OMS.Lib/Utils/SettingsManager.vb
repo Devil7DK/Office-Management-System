@@ -54,6 +54,7 @@ Namespace Utils
             Property UserName As String = ""
             Property Password As String = ""
             Property Pooling As Boolean = False
+            Property DefaultStorage As String = ""
         End Class
 
     End Module

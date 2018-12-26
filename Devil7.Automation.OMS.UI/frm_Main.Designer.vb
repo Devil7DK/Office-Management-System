@@ -362,8 +362,8 @@ Partial Class frm_Main
         Me.btn_EditProfile.Caption = "Edit Profile"
         Me.btn_EditProfile.Description = "Edit your user details."
         Me.btn_EditProfile.Id = 19
-        Me.btn_EditProfile.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_profile
-        Me.btn_EditProfile.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_profile
+        Me.btn_EditProfile.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.edit_profile
+        Me.btn_EditProfile.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.edit_profile
         Me.btn_EditProfile.Name = "btn_EditProfile"
         '
         'btn_ChangePassword
@@ -371,8 +371,8 @@ Partial Class frm_Main
         Me.btn_ChangePassword.Caption = "Change Password"
         Me.btn_ChangePassword.Description = "Change your login password of this application"
         Me.btn_ChangePassword.Id = 20
-        Me.btn_ChangePassword.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_password
-        Me.btn_ChangePassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.edit_password
+        Me.btn_ChangePassword.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.edit_password
+        Me.btn_ChangePassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.edit_password
         Me.btn_ChangePassword.Name = "btn_ChangePassword"
         '
         'btn_Exit
@@ -380,88 +380,88 @@ Partial Class frm_Main
         Me.btn_Exit.Caption = "Exit"
         Me.btn_Exit.Description = "Logout & Close Application"
         Me.btn_Exit.Id = 21
-        Me.btn_Exit.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
-        Me.btn_Exit.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources._exit
+        Me.btn_Exit.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources._exit
+        Me.btn_Exit.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources._exit
         Me.btn_Exit.Name = "btn_Exit"
         '
         'btn_AddClient
         '
         Me.btn_AddClient.Caption = "Add New Client"
         Me.btn_AddClient.Id = 9
-        Me.btn_AddClient.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.client_add
-        Me.btn_AddClient.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.client_add
+        Me.btn_AddClient.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.client_add
+        Me.btn_AddClient.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.client_add
         Me.btn_AddClient.Name = "btn_AddClient"
         '
         'btn_EditClient
         '
         Me.btn_EditClient.Caption = "Edit Client"
         Me.btn_EditClient.Id = 10
-        Me.btn_EditClient.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.client_edit
-        Me.btn_EditClient.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.client_edit
+        Me.btn_EditClient.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.client_edit
+        Me.btn_EditClient.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.client_edit
         Me.btn_EditClient.Name = "btn_EditClient"
         '
         'btn_RemoveClient
         '
         Me.btn_RemoveClient.Caption = "Remove Client"
         Me.btn_RemoveClient.Id = 11
-        Me.btn_RemoveClient.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.client_remove
-        Me.btn_RemoveClient.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.client_remove
+        Me.btn_RemoveClient.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.client_remove
+        Me.btn_RemoveClient.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.client_remove
         Me.btn_RemoveClient.Name = "btn_RemoveClient"
         '
         'btn_AddWork
         '
         Me.btn_AddWork.Caption = "Add New Work"
         Me.btn_AddWork.Id = 12
-        Me.btn_AddWork.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.calendar_new
-        Me.btn_AddWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.calendar_new
+        Me.btn_AddWork.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.calendar_new
+        Me.btn_AddWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.calendar_new
         Me.btn_AddWork.Name = "btn_AddWork"
         '
         'btn_EditWork
         '
         Me.btn_EditWork.Caption = "Edit Work"
         Me.btn_EditWork.Id = 13
-        Me.btn_EditWork.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.calendar_edit
-        Me.btn_EditWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.calendar_edit
+        Me.btn_EditWork.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.calendar_edit
+        Me.btn_EditWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.calendar_edit
         Me.btn_EditWork.Name = "btn_EditWork"
         '
         'btn_RemoveWork
         '
         Me.btn_RemoveWork.Caption = "Remove Work"
         Me.btn_RemoveWork.Id = 14
-        Me.btn_RemoveWork.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.calendar_remove
-        Me.btn_RemoveWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.calendar_remove
+        Me.btn_RemoveWork.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.calendar_remove
+        Me.btn_RemoveWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.calendar_remove
         Me.btn_RemoveWork.Name = "btn_RemoveWork"
         '
         'btn_RefreshWork
         '
         Me.btn_RefreshWork.Caption = "Refresh Workbook"
         Me.btn_RefreshWork.Id = 15
-        Me.btn_RefreshWork.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshWork.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshWork.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshWork.Name = "btn_RefreshWork"
         '
         'btn_RefreshClients
         '
         Me.btn_RefreshClients.Caption = "Refresh Clients"
         Me.btn_RefreshClients.Id = 16
-        Me.btn_RefreshClients.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshClients.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshClients.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshClients.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshClients.Name = "btn_RefreshClients"
         '
         'btn_RefreshJobs
         '
         Me.btn_RefreshJobs.Caption = "Refresh Jobs"
         Me.btn_RefreshJobs.Id = 17
-        Me.btn_RefreshJobs.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshJobs.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshJobs.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshJobs.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshJobs.Name = "btn_RefreshJobs"
         '
         'btn_RefreshUsers
         '
         Me.btn_RefreshUsers.Caption = "Refresh Users"
         Me.btn_RefreshUsers.Id = 18
-        Me.btn_RefreshUsers.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshUsers.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshUsers.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshUsers.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshUsers.Name = "btn_RefreshUsers"
         '
         'btn_Clients_CardView
@@ -469,7 +469,7 @@ Partial Class frm_Main
         Me.btn_Clients_CardView.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
         Me.btn_Clients_CardView.Caption = "Card View"
         Me.btn_Clients_CardView.Id = 23
-        Me.btn_Clients_CardView.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.card_view
+        Me.btn_Clients_CardView.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.card_view
         Me.btn_Clients_CardView.Name = "btn_Clients_CardView"
         '
         'btn_Clients_DetailsView
@@ -477,7 +477,7 @@ Partial Class frm_Main
         Me.btn_Clients_DetailsView.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
         Me.btn_Clients_DetailsView.Caption = "Details View"
         Me.btn_Clients_DetailsView.Id = 24
-        Me.btn_Clients_DetailsView.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.details_view
+        Me.btn_Clients_DetailsView.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.details_view
         Me.btn_Clients_DetailsView.Name = "btn_Clients_DetailsView"
         '
         'grp_btn_Clients_View
@@ -492,24 +492,24 @@ Partial Class frm_Main
         '
         Me.btn_RefreshHome.Caption = "Refresh Home"
         Me.btn_RefreshHome.Id = 28
-        Me.btn_RefreshHome.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshHome.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshHome.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshHome.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshHome.Name = "btn_RefreshHome"
         '
         'btn_RefreshBilling
         '
         Me.btn_RefreshBilling.Caption = "Refresh Billing"
         Me.btn_RefreshBilling.Id = 33
-        Me.btn_RefreshBilling.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshBilling.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshBilling.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshBilling.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshBilling.Name = "btn_RefreshBilling"
         '
         'btn_MarkBilled
         '
         Me.btn_MarkBilled.Caption = "Mark as Billed"
         Me.btn_MarkBilled.Id = 34
-        Me.btn_MarkBilled.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
-        Me.btn_MarkBilled.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
+        Me.btn_MarkBilled.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.paid
+        Me.btn_MarkBilled.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.paid
         Me.btn_MarkBilled.Name = "btn_MarkBilled"
         '
         'RAMUsage
@@ -520,7 +520,7 @@ Partial Class frm_Main
         Me.RAMUsage.EditWidth = 100
         Me.RAMUsage.Id = 37
         Me.RAMUsage.Name = "RAMUsage"
-        ToolTipTitleItem1.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.ram
+        ToolTipTitleItem1.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.ram
         ToolTipTitleItem1.Text = "RAM Usage"
         ToolTipItem1.LeftIndent = 6
         ToolTipItem1.Text = "Shows RAM used by this application." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Current RAM Usage :"
@@ -537,16 +537,16 @@ Partial Class frm_Main
         '
         Me.btn_FreeRAM.Description = "Clean unused memory used by application"
         Me.btn_FreeRAM.Id = 39
-        Me.btn_FreeRAM.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.clean
-        Me.btn_FreeRAM.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.clean
+        Me.btn_FreeRAM.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.clean
+        Me.btn_FreeRAM.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.clean
         Me.btn_FreeRAM.Name = "btn_FreeRAM"
         '
         'btn_GenerateReport
         '
         Me.btn_GenerateReport.Caption = "Non-Filers Report"
         Me.btn_GenerateReport.Id = 40
-        Me.btn_GenerateReport.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.report
-        Me.btn_GenerateReport.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.report
+        Me.btn_GenerateReport.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.report
+        Me.btn_GenerateReport.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.report
         Me.btn_GenerateReport.Name = "btn_GenerateReport"
         '
         'cmb_HomeView
@@ -644,56 +644,56 @@ Partial Class frm_Main
         '
         Me.btn_RefreshPending.Caption = "Refresh Pending"
         Me.btn_RefreshPending.Id = 46
-        Me.btn_RefreshPending.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
-        Me.btn_RefreshPending.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.refresh
+        Me.btn_RefreshPending.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
+        Me.btn_RefreshPending.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.refresh
         Me.btn_RefreshPending.Name = "btn_RefreshPending"
         '
         'btn_MarkPending
         '
         Me.btn_MarkPending.Caption = "Mark as Pending"
         Me.btn_MarkPending.Id = 47
-        Me.btn_MarkPending.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.pending
-        Me.btn_MarkPending.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.pending
+        Me.btn_MarkPending.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.pending
+        Me.btn_MarkPending.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.pending
         Me.btn_MarkPending.Name = "btn_MarkPending"
         '
         'btn_MarkBilled_2
         '
         Me.btn_MarkBilled_2.Caption = "Mark as Billed"
         Me.btn_MarkBilled_2.Id = 48
-        Me.btn_MarkBilled_2.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
-        Me.btn_MarkBilled_2.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.paid
+        Me.btn_MarkBilled_2.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.paid
+        Me.btn_MarkBilled_2.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.paid
         Me.btn_MarkBilled_2.Name = "btn_MarkBilled_2"
         '
         'btn_MarkNotPaid
         '
         Me.btn_MarkNotPaid.Caption = "Mark as Not Paid"
         Me.btn_MarkNotPaid.Id = 49
-        Me.btn_MarkNotPaid.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.not_paid
-        Me.btn_MarkNotPaid.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.not_paid
+        Me.btn_MarkNotPaid.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.not_paid
+        Me.btn_MarkNotPaid.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.not_paid
         Me.btn_MarkNotPaid.Name = "btn_MarkNotPaid"
         '
         'btn_MarkIncomplete
         '
         Me.btn_MarkIncomplete.Caption = "Mark as Incomplete"
         Me.btn_MarkIncomplete.Id = 50
-        Me.btn_MarkIncomplete.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
-        Me.btn_MarkIncomplete.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.incomplete
         Me.btn_MarkIncomplete.Name = "btn_MarkIncomplete"
         '
         'btn_MarkIncomplete_2
         '
         Me.btn_MarkIncomplete_2.Caption = "Mark as Incomplete"
         Me.btn_MarkIncomplete_2.Id = 51
-        Me.btn_MarkIncomplete_2.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
-        Me.btn_MarkIncomplete_2.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete_2.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.incomplete
+        Me.btn_MarkIncomplete_2.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.incomplete
         Me.btn_MarkIncomplete_2.Name = "btn_MarkIncomplete_2"
         '
         'btn_ClientJobsReport
         '
         Me.btn_ClientJobsReport.Caption = "Clients && Works Report"
         Me.btn_ClientJobsReport.Id = 52
-        Me.btn_ClientJobsReport.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.report
-        Me.btn_ClientJobsReport.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.report
+        Me.btn_ClientJobsReport.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.report
+        Me.btn_ClientJobsReport.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.report
         Me.btn_ClientJobsReport.Name = "btn_ClientJobsReport"
         '
         'rp_Edit
@@ -754,24 +754,24 @@ Partial Class frm_Main
         '
         Me.btn_NewJob.Caption = "Define New Job"
         Me.btn_NewJob.Id = 2
-        Me.btn_NewJob.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.form_new
-        Me.btn_NewJob.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.form_new
+        Me.btn_NewJob.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.form_new
+        Me.btn_NewJob.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.form_new
         Me.btn_NewJob.Name = "btn_NewJob"
         '
         'btn_EditJob
         '
         Me.btn_EditJob.Caption = "Edit Job"
         Me.btn_EditJob.Id = 3
-        Me.btn_EditJob.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.form_edit
-        Me.btn_EditJob.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.form_edit
+        Me.btn_EditJob.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.form_edit
+        Me.btn_EditJob.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.form_edit
         Me.btn_EditJob.Name = "btn_EditJob"
         '
         'btn_RemoveJob
         '
         Me.btn_RemoveJob.Caption = "Remove Job"
         Me.btn_RemoveJob.Id = 4
-        Me.btn_RemoveJob.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.form_delete
-        Me.btn_RemoveJob.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.form_delete
+        Me.btn_RemoveJob.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.form_delete
+        Me.btn_RemoveJob.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.form_delete
         Me.btn_RemoveJob.Name = "btn_RemoveJob"
         '
         'rpg_Users
@@ -789,32 +789,32 @@ Partial Class frm_Main
         '
         Me.btn_AddUser.Caption = "Add New User"
         Me.btn_AddUser.Id = 5
-        Me.btn_AddUser.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_add
-        Me.btn_AddUser.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_add
+        Me.btn_AddUser.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_add
+        Me.btn_AddUser.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_add
         Me.btn_AddUser.Name = "btn_AddUser"
         '
         'btn_EditUser
         '
         Me.btn_EditUser.Caption = "Edit User"
         Me.btn_EditUser.Id = 6
-        Me.btn_EditUser.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_edit
-        Me.btn_EditUser.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_edit
+        Me.btn_EditUser.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_edit
+        Me.btn_EditUser.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_edit
         Me.btn_EditUser.Name = "btn_EditUser"
         '
         'btn_RemoveUser
         '
         Me.btn_RemoveUser.Caption = "Remove User"
         Me.btn_RemoveUser.Id = 7
-        Me.btn_RemoveUser.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_remove
-        Me.btn_RemoveUser.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_remove
+        Me.btn_RemoveUser.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_remove
+        Me.btn_RemoveUser.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_remove
         Me.btn_RemoveUser.Name = "btn_RemoveUser"
         '
         'btn_ResetPassword
         '
         Me.btn_ResetPassword.Caption = "Reset Password"
         Me.btn_ResetPassword.Id = 8
-        Me.btn_ResetPassword.ImageOptions.Image = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_reset_password
-        Me.btn_ResetPassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.UI.My.Resources.Resources.user_reset_password
+        Me.btn_ResetPassword.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_reset_password
+        Me.btn_ResetPassword.ImageOptions.LargeImage = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.user_reset_password
         Me.btn_ResetPassword.Name = "btn_ResetPassword"
         '
         'rpg_Pending

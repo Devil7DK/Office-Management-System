@@ -50,6 +50,10 @@
     <Reference Include="DevExpress.Printing.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -80,6 +84,102 @@
     <Compile Include="Database\Workbook.vb" />
     <Compile Include="Database\Jobs.vb" />
     <Compile Include="Database\Users.vb" />
+    <Compile Include="Dialogs\Client\frm_ClientAddEdit.designer.vb">
+      <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_ClientAddEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Job_Lite.designer.vb">
+      <DependentUpon>frm_Job_Lite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Job_Lite.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Partner.designer.vb">
+      <DependentUpon>frm_Partner.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\frm_Partner.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\WizardForm1.Designer.vb">
+      <DependentUpon>WizardForm1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\WizardForm1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Client\XtraUserControl1.Designer.vb">
+      <DependentUpon>XtraUserControl1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Client\XtraUserControl1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Credential.designer.vb">
+      <DependentUpon>frm_Credential.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Credential.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_DetailedWorkbookItem.Designer.vb">
+      <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_DetailedWorkbookItem.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Job.designer.vb">
+      <DependentUpon>frm_Job.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Job.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_WorkBook.designer.vb">
+      <DependentUpon>frm_WorkBook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_WorkBook.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Job\frm_AutoForwards.Designer.vb">
+      <DependentUpon>frm_AutoForwards.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Job\frm_AutoForwards.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Reports\frm_ClientJobsReport.Designer.vb">
+      <DependentUpon>frm_ClientJobsReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Reports\frm_ClientJobsReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Reports\frm_FilersReport.Designer.vb">
+      <DependentUpon>frm_FilersReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Reports\frm_FilersReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Settings\frm_ServerSettings.designer.vb">
+      <DependentUpon>frm_ServerSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Settings\frm_ServerSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_ChangePassword.Designer.vb">
+      <DependentUpon>frm_ChangePassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_ChangePassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_Permission.designer.vb">
+      <DependentUpon>frm_Permission.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_Permission.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_User.designer.vb">
+      <DependentUpon>frm_User.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\User\frm_User.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Enums\BillingStatus.vb" />
     <Compile Include="Enums\PeriodType.vb" />
     <Compile Include="Enums\CenterType.vb" />
@@ -130,6 +230,51 @@
     <Compile Include="Objects\User.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\Client\frm_ClientAddEdit.resx">
+      <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_Job_Lite.resx">
+      <DependentUpon>frm_Job_Lite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\frm_Partner.resx">
+      <DependentUpon>frm_Partner.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Client\XtraUserControl1.resx">
+      <DependentUpon>XtraUserControl1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Credential.resx">
+      <DependentUpon>frm_Credential.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_DetailedWorkbookItem.resx">
+      <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Job.resx">
+      <DependentUpon>frm_Job.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_WorkBook.resx">
+      <DependentUpon>frm_WorkBook.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Job\frm_AutoForwards.resx">
+      <DependentUpon>frm_AutoForwards.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Reports\frm_ClientJobsReport.resx">
+      <DependentUpon>frm_ClientJobsReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Reports\frm_FilersReport.resx">
+      <DependentUpon>frm_FilersReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\Settings\frm_ServerSettings.resx">
+      <DependentUpon>frm_ServerSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\User\frm_ChangePassword.resx">
+      <DependentUpon>frm_ChangePassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\User\frm_Permission.resx">
+      <DependentUpon>frm_Permission.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\User\frm_User.resx">
+      <DependentUpon>frm_User.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -157,6 +302,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\User_Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Devil7.Automation.OMS.Res\Devil7.Automation.OMS.Res.vbproj">
+      <Project>{1541b265-21eb-4700-83d5-5f3f49bc2a31}</Project>
+      <Name>Devil7.Automation.OMS.Res</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

@@ -168,7 +168,7 @@ Namespace Database
             Dim Credentials As System.ComponentModel.BindingList(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString.Trim)
             Dim Jobs As List(Of Job) = ObjectSerilizer.FromXML(Of List(Of Job))(Reader.Item("Jobs").ToString.Trim)
             Dim Status As String = Reader.Item("Status").ToString.Trim
-            Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
+            Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
             Dim GST As String = Reader.Item("GST").ToString.Trim
             Dim FileNo As String = Reader.Item("FileNo").ToString.Trim
             Return New Client(ID, Name, PAN, FatherName, Mobile, Email, DOB, AddressLine1, AddressLine2, District, PinCode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, Credentials, Jobs, Status, Photo, GST, FileNo)

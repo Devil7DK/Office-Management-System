@@ -177,7 +177,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_AddUser_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddUser.ItemClick
-        Dim d As New frm_User(Enums.DialogMode.Add)
+        Dim d As New Dialogs.frm_User(Enums.DialogMode.Add)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             CType(gc_Users.DataSource, List(Of Objects.User)).Add(d.User)
         End If
@@ -190,7 +190,7 @@ Public Class frm_Main
             If row.UserType >= User.UserType Then
                 MsgBox("You cannot edit an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             Else
-                Dim d As New frm_User(Enums.DialogMode.Edit, row.ID, If(User.ID = row.ID, If(User.UserType = Enums.UserType.System, False, True), False))
+                Dim d As New Dialogs.frm_User(Enums.DialogMode.Edit, row.ID, If(User.ID = row.ID, If(User.UserType = Enums.UserType.System, False, True), False))
                 If d.ShowDialog = Windows.Forms.DialogResult.OK Then
                     If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
                 End If
@@ -232,7 +232,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_EditProfile_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditProfile.ItemClick
-        Dim d As New frm_User(Enums.DialogMode.Edit, User.ID, True)
+        Dim d As New Dialogs.frm_User(Enums.DialogMode.Edit, User.ID, True)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             User = Database.Users.GetUserByID(User.ID)
             If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
@@ -240,7 +240,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_ChangePassword_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_ChangePassword.ItemClick
-        Dim d As New frm_ChangePassword(User)
+        Dim d As New Dialogs.frm_ChangePassword(User)
         d.ShowDialog()
     End Sub
 
@@ -289,7 +289,7 @@ Public Class frm_Main
             If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
             If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
         Next
-        Dim d As New frm_Job(Enums.DialogMode.Add, group.ToArray, subgroup.ToArray, Users)
+        Dim d As New Dialogs.frm_Job(Enums.DialogMode.Add, group.ToArray, subgroup.ToArray, Users)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             If d.Job IsNot Nothing Then
                 CType(gc_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
@@ -306,7 +306,7 @@ Public Class frm_Main
                 If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
                 If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
             Next
-            Dim d As New frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, Users, row.ID)
+            Dim d As New Dialogs.frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, Users, row.ID)
             If d.ShowDialog = Windows.Forms.DialogResult.OK Then
                 If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
             End If
@@ -363,7 +363,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_AddClient_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddClient.ItemClick
-        Dim d As New frm_ClientAddEdit(Enums.DialogMode.Add)
+        Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add)
         If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
             If d.Client IsNot Nothing Then
                 CType(gc_Clients.DataSource, List(Of Objects.Client)).Add(d.Client)
@@ -380,7 +380,7 @@ Public Class frm_Main
             Selected = tv_Clients.GetRow(tv_Clients.GetSelectedRows(0))
         End If
         If Selected IsNot Nothing Then
-            Dim d As New frm_ClientAddEdit(Enums.DialogMode.Edit, Selected.ID)
+            Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Edit, Selected.ID)
             If d.ShowDialog = Windows.Forms.DialogResult.OK Then
                 If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
             End If
@@ -467,7 +467,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_AddWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddWork.ItemClick
-        Dim d As New frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users)
+        Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users)
         If d.ShowDialog = Windows.Forms.DialogResult.OK Then
             CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
             gc_WorkBook.RefreshDataSource()
@@ -477,7 +477,7 @@ Public Class frm_Main
     Private Sub btn_EditWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditWork.ItemClick
         If gv_WorkBook.SelectedRowsCount = 1 Then
             Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(gv_WorkBook.GetSelectedRows()(0))
-            Dim d As New frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, ClientsMinimal, Users, row.ID)
+            Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, ClientsMinimal, Users, row.ID)
             If d.ShowDialog = Windows.Forms.DialogResult.OK Then
                 If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
             End If
@@ -902,7 +902,7 @@ Public Class frm_Main
         RAMUsage.EditValue = CInt((RAMUsed / My.Computer.Info.TotalPhysicalMemory) * 100)
         Dim TipItem As New DevExpress.Utils.SuperToolTipSetupArgs
         TipItem.Title.Text = "RAM Usage"
-        TipItem.Title.ImageOptions.Image = My.Resources.ram
+        TipItem.Title.ImageOptions.Image = Res.My.Resources.ram
         TipItem.Contents.Text = "Shows RAM used by this application." & vbNewLine & "Current RAM Usage : " & Utils.Misc.FormatSize(RAMUsed)
         RAMUsage.SuperTip.Setup(TipItem)
     End Sub
@@ -959,7 +959,7 @@ Public Class frm_Main
 
     Private Sub btn_GenerateReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_GenerateReport.ItemClick
         If Clients IsNot Nothing Then
-            Dim d As New frm_FilersReport(Clients)
+            Dim d As New Dialogs.frm_FilersReport(Clients)
             d.ShowDialog()
         Else
             MsgBox("Clients list is not fetched yet. Load/Refresh clients list and try again.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
@@ -1171,14 +1171,14 @@ Public Class frm_Main
 
     Private Sub gv_Home_DoubleClick(sender As Object, e As EventArgs) Handles gv_Home.DoubleClick
         If gv_Home.SelectedRowsCount = 1 Then
-            Dim f As New frm_DetailedWorkbookItem(MousePosition, gv_Home.GetRow(gv_Home.GetSelectedRows(0)))
+            Dim f As New Dialogs.frm_DetailedWorkbookItem(MousePosition, gv_Home.GetRow(gv_Home.GetSelectedRows(0)))
             f.Show(Me)
         End If
     End Sub
 
     Private Sub btn_ClientJobsReport_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_ClientJobsReport.ItemClick
         If Clients IsNot Nothing Then
-            Dim d As New frm_ClientJobsReport(Clients)
+            Dim d As New Dialogs.frm_ClientJobsReport(Clients)
             d.ShowDialog()
         Else
             MsgBox("Clients list is not fetched yet. Load/Refresh clients list and try again.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")

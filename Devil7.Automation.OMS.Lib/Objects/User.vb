@@ -61,7 +61,7 @@ Namespace Objects
         Property Photo As Drawing.Image
             Get
                 If img Is Nothing Then
-                    Return My.Resources.User_Default
+                    Return Res.My.Resources.User_Default
                 Else
                     Return img
                 End If
