@@ -52,6 +52,7 @@ Namespace Dialogs
                 txt_AddressLine2.Text = Client.AddressLine2
                 txt_District.Text = Client.District
                 txt_Pincode.Text = Client.PinCode
+
                 txt_Aadhar.Text = Client.AadharNo
                 txt_Description.Text = Client.Description
                 cmb_TypeOfEngagement.SelectedItem = Client.TypeOfEngagement
@@ -119,7 +120,7 @@ Namespace Dialogs
         Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
             If Mode = Enums.DialogMode.Add Then
                 Try
-                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If item IsNot Nothing Then
                         Me.Client = item
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
@@ -133,7 +134,7 @@ Namespace Dialogs
                 End Try
             ElseIf Mode = Enums.DialogMode.Edit Then
                 Try
-                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If result Then
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                         Me.DialogResult = Windows.Forms.DialogResult.OK
