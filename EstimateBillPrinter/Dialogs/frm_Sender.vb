@@ -67,8 +67,9 @@ Public Class frm_Sender
 
 #Region "Form Events"
     Private Sub frm_Sender_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        txt_State.SelectedIndex = 32
         Try
-            If Me.mode = Enums.DialogMode.Edit Then
+            If Me.Mode = Enums.DialogMode.Edit Then
                 ID = Item.ID
                 txt_Name.Text = Item.Name
                 txt_Education.Text = Item.Education
@@ -77,8 +78,7 @@ Public Class frm_Sender
                 txt_AddressLine2.Text = Item.AddressLine2
                 txt_City.Text = Item.City
                 txt_PINCode.Text = Item.PINCode
-                txt_State.Text = Item.State
-                txt_StateCode.Text = Item.StateCode
+                txt_State.SelectedIndex = Item.StateCode - 1
                 txt_PhoneNumber.Text = Item.PhoneNo
                 txt_MobileNumber.Text = Item.MobileNo
                 txt_EMail.Text = Item.Email
@@ -87,6 +87,12 @@ Public Class frm_Sender
             End If
         Catch ex As Exception
         End Try
+    End Sub
+#End Region
+
+#Region "Other Events"
+    Private Sub txt_State_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_State.SelectedIndexChanged
+        txt_StateCode.Text = txt_State.SelectedIndex + 1
     End Sub
 #End Region
 
