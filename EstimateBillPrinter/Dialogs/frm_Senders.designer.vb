@@ -22,11 +22,10 @@ Partial Class frm_Senders
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Senders))
         Me.GridControl_Senders = New DevExpress.XtraGrid.GridControl()
         Me.GridView_Senders = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager()
         Me.MainMenu = New DevExpress.XtraBars.Bar()
         Me.btn_Refresh = New DevExpress.XtraBars.BarLargeButtonItem()
         Me.btn_Add = New DevExpress.XtraBars.BarLargeButtonItem()
@@ -94,24 +93,28 @@ Partial Class frm_Senders
         '
         Me.btn_Refresh.Caption = "Refresh"
         Me.btn_Refresh.Id = 1
+        Me.btn_Refresh.ImageOptions.SvgImage = CType(resources.GetObject("btn_Refresh.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Refresh.Name = "btn_Refresh"
         '
         'btn_Add
         '
         Me.btn_Add.Caption = "Add"
         Me.btn_Add.Id = 0
+        Me.btn_Add.ImageOptions.SvgImage = CType(resources.GetObject("btn_Add.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Add.Name = "btn_Add"
         '
         'btn_Edit
         '
         Me.btn_Edit.Caption = "Edit"
         Me.btn_Edit.Id = 2
+        Me.btn_Edit.ImageOptions.SvgImage = CType(resources.GetObject("btn_Edit.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Edit.Name = "btn_Edit"
         '
         'btn_Remove
         '
         Me.btn_Remove.Caption = "Remove"
         Me.btn_Remove.Id = 3
+        Me.btn_Remove.ImageOptions.SvgImage = CType(resources.GetObject("btn_Remove.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Remove.Name = "btn_Remove"
         '
         'StatusBar
