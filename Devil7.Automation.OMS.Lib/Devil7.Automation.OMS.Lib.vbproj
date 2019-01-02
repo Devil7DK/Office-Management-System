@@ -195,6 +195,7 @@
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\Job.vb" />
     <Compile Include="Objects\Partner.vb" />
+    <Compile Include="Objects\Sender.vb" />
     <Compile Include="Objects\WorkbookItem.vb" />
     <Compile Include="Objects\YearMonth.vb" />
     <Compile Include="Utils\Encryption.vb" />
