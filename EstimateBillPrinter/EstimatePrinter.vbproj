@@ -78,10 +78,22 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\frm_Sender.designer.vb">
+      <DependentUpon>frm_Sender.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Sender.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_Main.Designer.vb">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </Compile>
     <Compile Include="frm_Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Senders.designer.vb">
+      <DependentUpon>frm_Senders.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Senders.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_Splash.designer.vb">
@@ -107,8 +119,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frm_Sender.resx">
+      <DependentUpon>frm_Sender.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Senders.resx">
+      <DependentUpon>frm_Senders.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Splash.resx">
       <DependentUpon>frm_Splash.vb</DependentUpon>
@@ -138,6 +156,10 @@
     <ProjectReference Include="..\Devil7.Automation.OMS.Lib\Devil7.Automation.OMS.Lib.vbproj">
       <Project>{8f9c9bfc-aeb9-4e2b-8a20-cf6a88a1023f}</Project>
       <Name>Devil7.Automation.OMS.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Devil7.Automation.OMS.Res\Devil7.Automation.OMS.Res.vbproj">
+      <Project>{1541b265-21eb-4700-83d5-5f3f49bc2a31}</Project>
+      <Name>Devil7.Automation.OMS.Res</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

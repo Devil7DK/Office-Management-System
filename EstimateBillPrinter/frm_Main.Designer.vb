@@ -21,15 +21,6 @@ Partial Class frm_Main
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
-        Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
-        Me.rpg_EstimateBills = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.gc_EstimateBills = New DevExpress.XtraGrid.GridControl()
-        Me.gv_EstimateBills = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ProgressPanel_Bills = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.btn_Refresh = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Add = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Edit = New DevExpress.XtraBars.BarButtonItem()
@@ -43,6 +34,15 @@ Partial Class frm_Main
         Me.btn_Settings = New DevExpress.XtraBars.BarButtonItem()
         Me.SkinRibbonGalleryBarItem1 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.btn_Export_Excel = New DevExpress.XtraBars.BarButtonItem()
+        Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.rpg_EstimateBills = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
+        Me.gc_EstimateBills = New DevExpress.XtraGrid.GridControl()
+        Me.gv_EstimateBills = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ProgressPanel_Bills = New DevExpress.XtraWaitForm.ProgressPanel()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,85 +63,6 @@ Partial Class frm_Main
         Me.RibbonControl.Size = New System.Drawing.Size(692, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
-        '
-        'rp_Home
-        '
-        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.RibbonPageGroup3, Me.RibbonPageGroup4, Me.RibbonPageGroup2})
-        Me.rp_Home.Name = "rp_Home"
-        Me.rp_Home.Text = "Home"
-        '
-        'rpg_EstimateBills
-        '
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Refresh)
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Add, True)
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Edit)
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Remove)
-        Me.rpg_EstimateBills.Name = "rpg_EstimateBills"
-        Me.rpg_EstimateBills.ShowCaptionButton = False
-        Me.rpg_EstimateBills.Text = "Estimate Bills"
-        '
-        'RibbonPageGroup3
-        '
-        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_Print)
-        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_PrintPreview)
-        Me.RibbonPageGroup3.Name = "RibbonPageGroup3"
-        Me.RibbonPageGroup3.ShowCaptionButton = False
-        Me.RibbonPageGroup3.Text = "Printing"
-        '
-        'RibbonPageGroup4
-        '
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_PDF)
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_Word)
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_Excel, True)
-        Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
-        Me.RibbonPageGroup4.ShowCaptionButton = False
-        Me.RibbonPageGroup4.Text = "Export"
-        '
-        'RibbonPageGroup2
-        '
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Sender)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Services)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Settings, True)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.SkinRibbonGalleryBarItem1)
-        Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
-        Me.RibbonPageGroup2.ShowCaptionButton = False
-        Me.RibbonPageGroup2.Text = "Others"
-        '
-        'RibbonStatusBar
-        '
-        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
-        Me.RibbonStatusBar.Name = "RibbonStatusBar"
-        Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(692, 31)
-        '
-        'gc_EstimateBills
-        '
-        Me.gc_EstimateBills.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gc_EstimateBills.Location = New System.Drawing.Point(0, 143)
-        Me.gc_EstimateBills.MainView = Me.gv_EstimateBills
-        Me.gc_EstimateBills.MenuManager = Me.RibbonControl
-        Me.gc_EstimateBills.Name = "gc_EstimateBills"
-        Me.gc_EstimateBills.Size = New System.Drawing.Size(692, 275)
-        Me.gc_EstimateBills.TabIndex = 2
-        Me.gc_EstimateBills.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_EstimateBills})
-        '
-        'gv_EstimateBills
-        '
-        Me.gv_EstimateBills.GridControl = Me.gc_EstimateBills
-        Me.gv_EstimateBills.Name = "gv_EstimateBills"
-        '
-        'ProgressPanel_Bills
-        '
-        Me.ProgressPanel_Bills.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.ProgressPanel_Bills.Appearance.Options.UseBackColor = True
-        Me.ProgressPanel_Bills.BarAnimationElementThickness = 2
-        Me.ProgressPanel_Bills.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ProgressPanel_Bills.Description = "Fetching Data from Server..."
-        Me.ProgressPanel_Bills.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProgressPanel_Bills.Location = New System.Drawing.Point(0, 143)
-        Me.ProgressPanel_Bills.Name = "ProgressPanel_Bills"
-        Me.ProgressPanel_Bills.Size = New System.Drawing.Size(692, 275)
-        Me.ProgressPanel_Bills.TabIndex = 6
         '
         'btn_Refresh
         '
@@ -232,6 +153,85 @@ Partial Class frm_Main
         Me.btn_Export_Excel.Id = 13
         Me.btn_Export_Excel.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Excel.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Export_Excel.Name = "btn_Export_Excel"
+        '
+        'rp_Home
+        '
+        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.RibbonPageGroup3, Me.RibbonPageGroup4, Me.RibbonPageGroup2})
+        Me.rp_Home.Name = "rp_Home"
+        Me.rp_Home.Text = "Home"
+        '
+        'rpg_EstimateBills
+        '
+        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Refresh)
+        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Add, True)
+        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Edit)
+        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Remove)
+        Me.rpg_EstimateBills.Name = "rpg_EstimateBills"
+        Me.rpg_EstimateBills.ShowCaptionButton = False
+        Me.rpg_EstimateBills.Text = "Estimate Bills"
+        '
+        'RibbonPageGroup3
+        '
+        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_Print)
+        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_PrintPreview)
+        Me.RibbonPageGroup3.Name = "RibbonPageGroup3"
+        Me.RibbonPageGroup3.ShowCaptionButton = False
+        Me.RibbonPageGroup3.Text = "Printing"
+        '
+        'RibbonPageGroup4
+        '
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_PDF)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_Word)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_Excel, True)
+        Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
+        Me.RibbonPageGroup4.ShowCaptionButton = False
+        Me.RibbonPageGroup4.Text = "Export"
+        '
+        'RibbonPageGroup2
+        '
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Sender)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Services)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Settings, True)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.SkinRibbonGalleryBarItem1)
+        Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
+        Me.RibbonPageGroup2.ShowCaptionButton = False
+        Me.RibbonPageGroup2.Text = "Others"
+        '
+        'RibbonStatusBar
+        '
+        Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
+        Me.RibbonStatusBar.Name = "RibbonStatusBar"
+        Me.RibbonStatusBar.Ribbon = Me.RibbonControl
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(692, 31)
+        '
+        'gc_EstimateBills
+        '
+        Me.gc_EstimateBills.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_EstimateBills.Location = New System.Drawing.Point(0, 143)
+        Me.gc_EstimateBills.MainView = Me.gv_EstimateBills
+        Me.gc_EstimateBills.MenuManager = Me.RibbonControl
+        Me.gc_EstimateBills.Name = "gc_EstimateBills"
+        Me.gc_EstimateBills.Size = New System.Drawing.Size(692, 275)
+        Me.gc_EstimateBills.TabIndex = 2
+        Me.gc_EstimateBills.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_EstimateBills})
+        '
+        'gv_EstimateBills
+        '
+        Me.gv_EstimateBills.GridControl = Me.gc_EstimateBills
+        Me.gv_EstimateBills.Name = "gv_EstimateBills"
+        '
+        'ProgressPanel_Bills
+        '
+        Me.ProgressPanel_Bills.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Bills.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Bills.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Bills.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Bills.Description = "Fetching Data from Server..."
+        Me.ProgressPanel_Bills.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Bills.Location = New System.Drawing.Point(0, 143)
+        Me.ProgressPanel_Bills.Name = "ProgressPanel_Bills"
+        Me.ProgressPanel_Bills.Size = New System.Drawing.Size(692, 275)
+        Me.ProgressPanel_Bills.TabIndex = 6
         '
         'frm_Main
         '
