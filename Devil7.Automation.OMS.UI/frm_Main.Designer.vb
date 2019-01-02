@@ -114,6 +114,7 @@ Partial Class frm_Main
         Me.btn_MarkIncomplete = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_MarkIncomplete_2 = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ClientJobsReport = New DevExpress.XtraBars.BarButtonItem()
+        Me.switch_PreviewPaneHome = New DevExpress.XtraBars.BarToggleSwitchItem()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Billing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -135,8 +136,10 @@ Partial Class frm_Main
         Me.MainPane = New DevExpress.XtraBars.Navigation.NavigationPane()
         Me.np_Home = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.container_Home = New DevExpress.XtraEditors.SplitContainerControl()
         Me.gc_Home = New DevExpress.XtraGrid.GridControl()
         Me.gv_Home = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.WorkBookItem_Preview = New Devil7.Automation.OMS.[Lib].Controls.WorkBookItem()
         Me.np_Utilities = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.ProgressPanel_Utilites = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Panel_Utilities = New DevExpress.XtraEditors.TileControl()
@@ -175,9 +178,6 @@ Partial Class frm_Main
         Me.RAMMonitor = New System.Windows.Forms.Timer()
         Me.ToolTipManager = New DevExpress.Utils.ToolTipController()
         Me.Loader_Pending = New System.ComponentModel.BackgroundWorker()
-        Me.container_Home = New DevExpress.XtraEditors.SplitContainerControl()
-        Me.WorkBookItem_Preview = New Devil7.Automation.OMS.[Lib].Controls.WorkBookItem()
-        Me.switch_PreviewPaneHome = New DevExpress.XtraBars.BarToggleSwitchItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,6 +189,8 @@ Partial Class frm_Main
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MainPane.SuspendLayout()
         Me.np_Home.SuspendLayout()
+        CType(Me.container_Home, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.container_Home.SuspendLayout()
         CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.np_Utilities.SuspendLayout()
@@ -211,8 +213,6 @@ Partial Class frm_Main
         Me.np_Pending.SuspendLayout()
         CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.container_Home, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.container_Home.SuspendLayout()
         Me.SuspendLayout()
         '
         'TVC_Client_Photo
@@ -700,6 +700,13 @@ Partial Class frm_Main
         Me.btn_ClientJobsReport.ImageOptions.LargeImage = CType(resources.GetObject("btn_ClientJobsReport.ImageOptions.LargeImage"), System.Drawing.Image)
         Me.btn_ClientJobsReport.Name = "btn_ClientJobsReport"
         '
+        'switch_PreviewPaneHome
+        '
+        Me.switch_PreviewPaneHome.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.switch_PreviewPaneHome.Caption = "Show Preview Pane :"
+        Me.switch_PreviewPaneHome.Id = 53
+        Me.switch_PreviewPaneHome.Name = "switch_PreviewPaneHome"
+        '
         'rp_Edit
         '
         Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Pending, Me.rpg_Skin})
@@ -902,6 +909,22 @@ Partial Class frm_Main
         Me.ProgressPanel_Home.Size = New System.Drawing.Size(1110, 229)
         Me.ProgressPanel_Home.TabIndex = 6
         '
+        'container_Home
+        '
+        Me.container_Home.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.container_Home.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2
+        Me.container_Home.Location = New System.Drawing.Point(0, 0)
+        Me.container_Home.Name = "container_Home"
+        Me.container_Home.Panel1.Controls.Add(Me.gc_Home)
+        Me.container_Home.Panel1.Text = "Panel1"
+        Me.container_Home.Panel2.Controls.Add(Me.WorkBookItem_Preview)
+        Me.container_Home.Panel2.Text = "Panel2"
+        Me.container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+        Me.container_Home.Size = New System.Drawing.Size(1110, 229)
+        Me.container_Home.SplitterPosition = 397
+        Me.container_Home.TabIndex = 7
+        Me.container_Home.Text = "SplitContainerControl1"
+        '
         'gc_Home
         '
         Me.gc_Home.Dock = System.Windows.Forms.DockStyle.Fill
@@ -909,7 +932,7 @@ Partial Class frm_Main
         Me.gc_Home.MainView = Me.gv_Home
         Me.gc_Home.MenuManager = Me.RibbonControl
         Me.gc_Home.Name = "gc_Home"
-        Me.gc_Home.Size = New System.Drawing.Size(708, 229)
+        Me.gc_Home.Size = New System.Drawing.Size(1110, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
         '
@@ -919,6 +942,15 @@ Partial Class frm_Main
         Me.gv_Home.Name = "gv_Home"
         Me.gv_Home.OptionsBehavior.Editable = False
         Me.gv_Home.OptionsBehavior.ReadOnly = True
+        '
+        'WorkBookItem_Preview
+        '
+        Me.WorkBookItem_Preview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WorkBookItem_Preview.Item = Nothing
+        Me.WorkBookItem_Preview.Location = New System.Drawing.Point(0, 0)
+        Me.WorkBookItem_Preview.Name = "WorkBookItem_Preview"
+        Me.WorkBookItem_Preview.Size = New System.Drawing.Size(0, 0)
+        Me.WorkBookItem_Preview.TabIndex = 0
         '
         'np_Utilities
         '
@@ -1434,37 +1466,6 @@ Partial Class frm_Main
         'Loader_Pending
         '
         '
-        'container_Home
-        '
-        Me.container_Home.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.container_Home.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2
-        Me.container_Home.Location = New System.Drawing.Point(0, 0)
-        Me.container_Home.Name = "container_Home"
-        Me.container_Home.Panel1.Controls.Add(Me.gc_Home)
-        Me.container_Home.Panel1.Text = "Panel1"
-        Me.container_Home.Panel2.Controls.Add(Me.WorkBookItem_Preview)
-        Me.container_Home.Panel2.Text = "Panel2"
-        Me.container_Home.Size = New System.Drawing.Size(1110, 229)
-        Me.container_Home.SplitterPosition = 397
-        Me.container_Home.TabIndex = 7
-        Me.container_Home.Text = "SplitContainerControl1"
-        '
-        'WorkBookItem_Preview
-        '
-        Me.WorkBookItem_Preview.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WorkBookItem_Preview.Item = Nothing
-        Me.WorkBookItem_Preview.Location = New System.Drawing.Point(0, 0)
-        Me.WorkBookItem_Preview.Name = "WorkBookItem_Preview"
-        Me.WorkBookItem_Preview.Size = New System.Drawing.Size(397, 229)
-        Me.WorkBookItem_Preview.TabIndex = 0
-        '
-        'switch_PreviewPaneHome
-        '
-        Me.switch_PreviewPaneHome.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
-        Me.switch_PreviewPaneHome.Caption = "Show Preview Pane :"
-        Me.switch_PreviewPaneHome.Id = 53
-        Me.switch_PreviewPaneHome.Name = "switch_PreviewPaneHome"
-        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1490,6 +1491,8 @@ Partial Class frm_Main
         CType(Me.MainPane, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MainPane.ResumeLayout(False)
         Me.np_Home.ResumeLayout(False)
+        CType(Me.container_Home, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.container_Home.ResumeLayout(False)
         CType(Me.gc_Home, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Home, System.ComponentModel.ISupportInitialize).EndInit()
         Me.np_Utilities.ResumeLayout(False)
@@ -1512,8 +1515,6 @@ Partial Class frm_Main
         Me.np_Pending.ResumeLayout(False)
         CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.container_Home, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.container_Home.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout
 
