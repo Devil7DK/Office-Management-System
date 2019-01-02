@@ -19,6 +19,8 @@
 '                                                                          '
 '=========================================================================='
 
+Imports DevExpress.Data
+Imports DevExpress.XtraBars
 Imports DevExpress.XtraGrid
 Imports Devil7.Automation.OMS.Lib
 
@@ -57,6 +59,7 @@ Public Class frm_Main
         cmb_BillingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_PendingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        switch_PreviewPaneHome.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
 
     Sub UsersPageLoad()
@@ -97,6 +100,7 @@ Public Class frm_Main
     Sub HomePageLoad()
         rpg_Home.Visible = True
         cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        switch_PreviewPaneHome.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         If gc_Home.DataSource Is Nothing Then
             If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
         End If
@@ -1159,7 +1163,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub gv_Home_DoubleClick(sender As Object, e As EventArgs) Handles gv_Home.DoubleClick
-        If gv_Home.SelectedRowsCount = 1 Then
+        If gv_Home.SelectedRowsCount = 1 AndAlso Not switch_PreviewPaneHome.Checked Then
             Dim f As New Dialogs.frm_DetailedWorkbookItem(MousePosition, gv_Home.GetRow(gv_Home.GetSelectedRows(0)))
             f.Show(Me)
         End If
@@ -1174,4 +1178,18 @@ Public Class frm_Main
         End If
     End Sub
 
+    Private Sub switch_PreviewPaneHome_CheckedChanged(sender As Object, e As ItemClickEventArgs) Handles switch_PreviewPaneHome.CheckedChanged
+        If switch_PreviewPaneHome.Checked Then
+            container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both
+        Else
+            container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+        End If
+    End Sub
+
+    Private Sub gv_Home_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles gv_Home.SelectionChanged
+        If gv_Home.SelectedRowsCount = 1 Then
+            Dim Row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows(0))
+            WorkBookItem_Preview.Item = Row
+        End If
+    End Sub
 End Class
