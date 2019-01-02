@@ -82,6 +82,7 @@ Namespace Dialogs
                     txt_Steps.Text = Steps.Trim
                     lst_Templates.Items.AddRange(Job.Templates.ToArray)
                     gc_FollowUps.DataSource = Job.FollowUps
+                    gc_AutoForwards.DataSource = Job.AutoForwards
                     txt_NotifyInterval.Value = Job.NotifyInterval
                     txt_DueInterval.Value = Job.DueInterval
                     txt_PrimaryPeriod.SelectedIndex = Job.PrimaryPeriodType
