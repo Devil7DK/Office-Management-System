@@ -81,6 +81,7 @@
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
+    <Compile Include="Database\Senders.vb" />
     <Compile Include="Database\Workbook.vb" />
     <Compile Include="Database\Jobs.vb" />
     <Compile Include="Database\Users.vb" />
