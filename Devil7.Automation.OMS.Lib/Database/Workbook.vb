@@ -278,13 +278,15 @@ Namespace Database
             Return R
         End Function
 
-        Function UpdateStatus(ByVal ID As Integer, ByVal CurrentStep As String, ByVal Status As Integer, ByVal History As String, ByVal Optional Job As Job = Nothing)
+        Function UpdateStatus(ByVal WorkbookItem As WorkbookItem, ByVal CurrentStep As String, ByVal Status As Integer, ByVal History As String)
             Dim R As Boolean = False
 
-            If Job IsNot Nothing AndAlso Status = Enums.WorkStatus.Completed Then
-                Dim Forward As AutoForward = Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(CurrentStep.ToUpper))
-                If Forward IsNot Nothing Then
-                    Return AssignTo(ID, Forward.UserID, (History & vbNewLine & "AutoForward: Work transferred to User with ID " & Forward.UserID & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim)
+            If WorkbookItem Is Nothing Then Return False
+
+            If Status = Enums.WorkStatus.Completed Then
+                Dim Forward As AutoForward = WorkbookItem.Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(CurrentStep.ToUpper))
+                If Forward IsNot Nothing AndAlso WorkbookItem.AssignedTo.ID <> Forward.UserID Then
+                    Return AssignTo(WorkbookItem.ID, Forward.UserID, (History & vbNewLine & "AutoForward: Work transferred to User with ID " & Forward.UserID & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim)
                 End If
             End If
 
@@ -295,7 +297,7 @@ Namespace Database
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
             Using Command As New SqlCommand(CommandString, Connection)
-                AddParameter(Command, "@ID", ID)
+                AddParameter(Command, "@ID", WorkbookItem.ID)
                 AddParameter(Command, "@DateUpdated", Now)
                 AddParameter(Command, "@Status", Status)
                 AddParameter(Command, "@History", History)
@@ -303,6 +305,17 @@ Namespace Database
                     R = True
                 End If
             End Using
+
+            If R Then
+                If WorkbookItem.Job.FollowUps.Count > 0 Then
+                    For Each i As Job In WorkbookItem.Job.FollowUps
+                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssementDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added")
+                        If w Is Nothing Then
+                            MsgBox("Unable to add followup job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                        End If
+                    Next
+                End If
+            End If
 
             Return R
         End Function
