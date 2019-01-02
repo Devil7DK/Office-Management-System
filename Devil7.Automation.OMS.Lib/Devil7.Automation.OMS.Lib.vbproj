@@ -78,6 +78,12 @@
     <Compile Include="Comparers\CompareByName.vb" />
     <Compile Include="Comparers\CompareByPAN.vb" />
     <Compile Include="Comparers\CompareByFileNo.vb" />
+    <Compile Include="Controls\WorkBookItem.Designer.vb">
+      <DependentUpon>WorkBookItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WorkBookItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
@@ -233,6 +239,9 @@
     <Compile Include="Objects\User.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\WorkBookItem.resx">
+      <DependentUpon>WorkBookItem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Client\frm_ClientAddEdit.resx">
       <DependentUpon>frm_ClientAddEdit.vb</DependentUpon>
     </EmbeddedResource>
