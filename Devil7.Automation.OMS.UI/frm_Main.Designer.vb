@@ -19,6 +19,7 @@ Partial Class frm_Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
@@ -73,7 +74,7 @@ Partial Class frm_Main
         Me.TVC_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
-        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu()
+        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
         Me.btn_EditProfile = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ChangePassword = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
@@ -175,8 +176,8 @@ Partial Class frm_Main
         Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Utilities = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Billing = New System.ComponentModel.BackgroundWorker()
-        Me.RAMMonitor = New System.Windows.Forms.Timer()
-        Me.ToolTipManager = New DevExpress.Utils.ToolTipController()
+        Me.RAMMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.ToolTipManager = New DevExpress.Utils.ToolTipController(Me.components)
         Me.Loader_Pending = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -942,6 +943,7 @@ Partial Class frm_Main
         Me.gv_Home.Name = "gv_Home"
         Me.gv_Home.OptionsBehavior.Editable = False
         Me.gv_Home.OptionsBehavior.ReadOnly = True
+        Me.gv_Home.OptionsSelection.MultiSelect = True
         '
         'WorkBookItem_Preview
         '
