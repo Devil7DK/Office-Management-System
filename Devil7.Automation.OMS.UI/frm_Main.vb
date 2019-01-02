@@ -652,14 +652,6 @@ Public Class frm_Main
         Utils.Misc.CleanRAM()
     End Sub
 
-    Private Sub frm_Main_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-        Try
-            End
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
     Private Sub frm_Main_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
         LoginInstance.BeginInvoke(Sub() LoginInstance.Close())
         Loaded = True
