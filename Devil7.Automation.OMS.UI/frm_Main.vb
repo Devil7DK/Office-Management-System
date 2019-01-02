@@ -675,19 +675,8 @@ Public Class frm_Main
             Dim cs As String = sender.Tag.ToString.Split(":")(1)
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, row.Job) Then
+                If Database.Workbook.UpdateStatus(row, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.Status = s
-                    Dim Forward As Objects.AutoForward = row.Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(row.CurrentStep.ToUpper))
-                    If s = Enums.WorkStatus.Completed AndAlso Forward IsNot Nothing Then
-                        If row.Job.FollowUps.Count > 0 Then
-                            For Each i As Objects.Job In row.Job.FollowUps
-                                Dim w = Database.Workbook.AddNew(row.AssignedTo, i, row.DueDate, row.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & row.ID, row.Remarks, row.TargetDate, Enums.Priority.Normal, i.Steps(0), row.AssementDetail, row.FinancialDetail, row.Folder, row.Owner, "Followup Job Added")
-                                If w IsNot Nothing Then
-                                    gv_Home.DataSource.Add(w)
-                                End If
-                            Next
-                        End If
-                    End If
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
                     MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
@@ -1138,7 +1127,7 @@ Public Class frm_Main
             Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
             If gv_Billing.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Billing.GetRow(gv_Billing.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
@@ -1156,7 +1145,7 @@ Public Class frm_Main
             Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
             If gv_Pending.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Pending.GetRow(gv_Pending.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row.ID, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
