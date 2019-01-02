@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\bin\Debug\Utilities\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DocumentationFile>Estimate Bill Printer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -30,7 +30,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release\Utilities\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DocumentationFile>Estimate Bill Printer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -165,7 +165,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>; Move all assemblies and related files to lib folder
-ROBOCOPY "$(TargetDir) " "$(TargetDir)..\libs\ " /XF *.exe *.config *.manifest /E /IS /MOVE
+ROBOCOPY "$(TargetDir) " "$(TargetDir)libs\ " /XF *.exe *.config *.manifest /XD libs /E /IS /MOVE
 if %25errorlevel%25 leq 4 exit 0 else exit %25errorlevel%25</PostBuildEvent>
   </PropertyGroup>
 </Project>
