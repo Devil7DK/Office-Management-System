@@ -35,7 +35,7 @@ Namespace Objects
 
         Property Sender As Sender
 
-        Property Receiver As Client
+        Property Receiver As ClientMinimal
 
         Property Services As List(Of Service)
 
@@ -66,7 +66,7 @@ Namespace Objects
 #End Region
 
 #Region "Constructors"
-        Sub New(ByVal ID As Integer, ByVal SerialNo As String, ByVal EstimateDate As Date, ByVal Sender As Sender, ByVal Receiver As Client, ByVal Services As List(Of Service))
+        Sub New(ByVal ID As Integer, ByVal SerialNo As String, ByVal EstimateDate As Date, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Services As List(Of Service))
             Me.ID = ID
             Me.SerialNo = SerialNo
             Me.EstimateDate = EstimateDate
