@@ -19,28 +19,24 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Xml.Serialization
+
 Namespace Objects
     Public Class ClientMinimal
 
-        Dim ID_ As Integer = -1
         <ComponentModel.Browsable(False)>
-        ReadOnly Property ID As Integer
-            Get
-                Return ID_
-            End Get
-        End Property
-
+        Property ID As Integer
         Property Name As String = ""
         Property PAN As String = ""
 
         Sub New()
-            Me.ID_ = 0
+            Me.ID = 0
             Me.Name = ""
             Me.PAN = ""
         End Sub
 
         Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String)
-            Me.ID_ = ID
+            Me.ID = ID
             Me.Name = Name
             Me.PAN = PAN
         End Sub
