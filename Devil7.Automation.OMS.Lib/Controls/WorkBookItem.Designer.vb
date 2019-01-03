@@ -155,6 +155,7 @@
             Me.txt_CurrentlyAssignedTo.Enabled = False
             Me.txt_CurrentlyAssignedTo.Location = New System.Drawing.Point(136, 305)
             Me.txt_CurrentlyAssignedTo.Name = "txt_CurrentlyAssignedTo"
+            Me.txt_CurrentlyAssignedTo.Properties.ReadOnly = True
             Me.txt_CurrentlyAssignedTo.Size = New System.Drawing.Size(472, 20)
             Me.txt_CurrentlyAssignedTo.TabIndex = 12
             '
@@ -174,6 +175,7 @@
             Me.txt_TargetDate.Name = "txt_TargetDate"
             Me.txt_TargetDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
             Me.txt_TargetDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+            Me.txt_TargetDate.Properties.ReadOnly = True
             Me.txt_TargetDate.Size = New System.Drawing.Size(472, 20)
             Me.txt_TargetDate.TabIndex = 7
             '
@@ -317,6 +319,7 @@
             Me.txt_User.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_User.Location = New System.Drawing.Point(136, 3)
             Me.txt_User.Name = "txt_User"
+            Me.txt_User.Properties.ReadOnly = True
             Me.txt_User.Size = New System.Drawing.Size(472, 20)
             Me.txt_User.TabIndex = 0
             '
@@ -325,6 +328,7 @@
             Me.txt_Job.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Job.Location = New System.Drawing.Point(136, 28)
             Me.txt_Job.Name = "txt_Job"
+            Me.txt_Job.Properties.ReadOnly = True
             Me.txt_Job.Size = New System.Drawing.Size(472, 20)
             Me.txt_Job.TabIndex = 1
             '
@@ -333,6 +337,7 @@
             Me.txt_Priority.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Priority.Location = New System.Drawing.Point(136, 128)
             Me.txt_Priority.Name = "txt_Priority"
+            Me.txt_Priority.Properties.ReadOnly = True
             Me.txt_Priority.Size = New System.Drawing.Size(472, 20)
             Me.txt_Priority.TabIndex = 5
             '
@@ -373,6 +378,7 @@
             Me.txt_Status.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Status.Location = New System.Drawing.Point(136, 253)
             Me.txt_Status.Name = "txt_Status"
+            Me.txt_Status.Properties.ReadOnly = True
             Me.txt_Status.Size = New System.Drawing.Size(472, 20)
             Me.txt_Status.TabIndex = 10
             '
@@ -381,6 +387,7 @@
             Me.txt_Steps.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Steps.Location = New System.Drawing.Point(136, 278)
             Me.txt_Steps.Name = "txt_Steps"
+            Me.txt_Steps.Properties.ReadOnly = True
             Me.txt_Steps.Size = New System.Drawing.Size(472, 20)
             Me.txt_Steps.TabIndex = 11
             '
@@ -389,6 +396,7 @@
             Me.txt_Description.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Description.Location = New System.Drawing.Point(136, 203)
             Me.txt_Description.Name = "txt_Description"
+            Me.txt_Description.Properties.ReadOnly = True
             Me.txt_Description.Size = New System.Drawing.Size(472, 20)
             Me.txt_Description.TabIndex = 8
             '
@@ -397,6 +405,7 @@
             Me.txt_Remarks.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Remarks.Location = New System.Drawing.Point(136, 228)
             Me.txt_Remarks.Name = "txt_Remarks"
+            Me.txt_Remarks.Properties.ReadOnly = True
             Me.txt_Remarks.Size = New System.Drawing.Size(472, 20)
             Me.txt_Remarks.TabIndex = 9
             '
@@ -439,6 +448,7 @@
             Me.txt_Client.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Client.Location = New System.Drawing.Point(136, 53)
             Me.txt_Client.Name = "txt_Client"
+            Me.txt_Client.Properties.ReadOnly = True
             Me.txt_Client.Size = New System.Drawing.Size(472, 20)
             Me.txt_Client.TabIndex = 2
             '
@@ -450,6 +460,7 @@
             Me.txt_DueDate.Name = "txt_DueDate"
             Me.txt_DueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
             Me.txt_DueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+            Me.txt_DueDate.Properties.ReadOnly = True
             Me.txt_DueDate.Size = New System.Drawing.Size(472, 20)
             Me.txt_DueDate.TabIndex = 6
             '
