@@ -43,6 +43,7 @@ Partial Class frm_Main
         Me.gc_EstimateBills = New DevExpress.XtraGrid.GridControl()
         Me.gv_EstimateBills = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ProgressPanel_Bills = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.Loader = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -233,6 +234,9 @@ Partial Class frm_Main
         Me.ProgressPanel_Bills.Size = New System.Drawing.Size(692, 275)
         Me.ProgressPanel_Bills.TabIndex = 6
         '
+        'Loader
+        '
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -278,4 +282,5 @@ Partial Class frm_Main
     Friend WithEvents btn_Settings As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents SkinRibbonGalleryBarItem1 As DevExpress.XtraBars.SkinRibbonGalleryBarItem
     Friend WithEvents btn_Export_Excel As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Loader As System.ComponentModel.BackgroundWorker
 End Class
