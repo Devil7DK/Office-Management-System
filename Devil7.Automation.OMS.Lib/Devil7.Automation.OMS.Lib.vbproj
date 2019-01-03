@@ -200,6 +200,7 @@
     <Compile Include="Objects\AutoForward.vb" />
     <Compile Include="Objects\ClientMinimal.vb" />
     <Compile Include="Objects\Client.vb" />
+    <Compile Include="Objects\EstimateBill.vb" />
     <Compile Include="Objects\Job.vb" />
     <Compile Include="Objects\Partner.vb" />
     <Compile Include="Objects\Sender.vb" />
