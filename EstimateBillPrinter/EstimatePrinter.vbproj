@@ -90,6 +90,12 @@
     <Compile Include="Dialogs\frm_Sender.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_Services.designer.vb">
+      <DependentUpon>frm_Services.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Services.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_Main.Designer.vb">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Sender.resx">
       <DependentUpon>frm_Sender.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Services.resx">
+      <DependentUpon>frm_Services.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.vb</DependentUpon>

@@ -151,6 +151,11 @@ Public Class frm_Main
                    ProgressPanel_Bills.Visible = False
                End Sub)
     End Sub
+
+    Private Sub btn_Services_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Services.ItemClick
+        Dim n As New frm_Services
+        If n.ShowDialog() = DialogResult.OK Then If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+    End Sub
 #End Region
 
 End Class
