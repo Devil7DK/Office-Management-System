@@ -53,6 +53,9 @@ Namespace Objects
         Property AssignedTo As User
         Property Job As Job
         Property Client As ClientMinimal
+        Property AssementDetail As YearMonth
+        Property FinancialDetail As YearMonth
+        Property Status As Enums.WorkStatus
         Property CurrentStep As String
         Property DueDate As Date
         Property AddedOn As Date
@@ -62,10 +65,7 @@ Namespace Objects
         Property Remarks As String
         Property TargetDate As Date
         Property PriorityOfWork As Enums.Priority
-        Property Status As Enums.WorkStatus
         Property Folder As String
-        Property AssementDetail As YearMonth
-        Property FinancialDetail As YearMonth
         Property BillingStatus As Enums.BillingStatus
 
         Sub AddHistory(ByVal Text As String)
