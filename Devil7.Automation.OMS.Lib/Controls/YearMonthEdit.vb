@@ -19,21 +19,26 @@
 '                                                                          '
 '=========================================================================='
 
-Imports System.Windows.Forms
-
-Namespace Utils
+Namespace Controls
     Public Class YearMonthEdit
 
-        Sub New()
-            InitializeComponent()
-
-            cmb_Year.Properties.Items.AddRange(GetYears.ToArray)
-            cmb_Period.Properties.Items.AddRange(GetMonths.ToArray)
-            cmb_Year.SelectedIndex = 0
-            cmb_Period.SelectedIndex = 0
-        End Sub
-
+#Region "Variables"
         Dim PeriodType_ As Enums.JobType = Enums.JobType.Yearly
+        Dim ReadOnly_ As Boolean = False
+#End Region
+
+#Region "Properties"
+        Property [ReadOnly] As Boolean
+            Get
+                Return ReadOnly_
+            End Get
+            Set(value As Boolean)
+                ReadOnly_ = value
+                cmb_Period.ReadOnly = value
+                cmb_Year.ReadOnly = value
+            End Set
+        End Property
+
         Property PeriodType As Enums.JobType
             Get
                 Return PeriodType_
@@ -79,7 +84,20 @@ Namespace Utils
                 cmb_Period.SelectedItem = value.Period
             End Set
         End Property
+#End Region
 
+#Region "Constructors"
+        Sub New()
+            InitializeComponent()
+
+            cmb_Year.Properties.Items.AddRange(Utils.GetYears.ToArray)
+            cmb_Period.Properties.Items.AddRange(Utils.GetMonths.ToArray)
+            cmb_Year.SelectedIndex = 0
+            cmb_Period.SelectedIndex = 0
+        End Sub
+#End Region
+
+#Region "Events"
         Public Event OnValueChanged(ByVal sender As Object, ByVal e As System.EventArgs)
 
         Private Sub cmb_Year_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Year.SelectedIndexChanged
@@ -89,5 +107,6 @@ Namespace Utils
         Private Sub cmb_Period_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Period.SelectedIndexChanged
             RaiseEvent OnValueChanged(Me, New EventArgs)
         End Sub
+#End Region
     End Class
 End Namespace

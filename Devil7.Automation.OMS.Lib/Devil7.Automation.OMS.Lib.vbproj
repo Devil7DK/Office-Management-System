@@ -211,10 +211,10 @@
     <Compile Include="Utils\ObjectSerilizer.vb" />
     <Compile Include="Utils\Periods.vb" />
     <Compile Include="Utils\SettingsManager.vb" />
-    <Compile Include="Utils\YearMonthEdit.Designer.vb">
+    <Compile Include="Controls\YearMonthEdit.Designer.vb">
       <DependentUpon>YearMonthEdit.vb</DependentUpon>
     </Compile>
-    <Compile Include="Utils\YearMonthEdit.vb">
+    <Compile Include="Controls\YearMonthEdit.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="XtraFormTemp.vb">
@@ -294,7 +294,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utils\YearMonthEdit.resx">
+    <EmbeddedResource Include="Controls\YearMonthEdit.resx">
       <DependentUpon>YearMonthEdit.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

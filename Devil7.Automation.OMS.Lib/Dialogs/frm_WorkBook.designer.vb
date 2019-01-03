@@ -33,7 +33,7 @@
             Me.cmb_CurrentlyAssignedTo = New DevExpress.XtraEditors.ComboBoxEdit()
             Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
             Me.txt_TargetDate = New DevExpress.XtraEditors.DateEdit()
-            Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+            Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Controls.YearMonthEdit()
             Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -68,7 +68,7 @@
             Me.txt_DueDate = New DevExpress.XtraEditors.DateEdit()
             Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-            Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+            Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Controls.YearMonthEdit()
             Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
             Me.Panel1.SuspendLayout()
@@ -624,8 +624,8 @@
         Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents txt_History As DevExpress.XtraEditors.MemoEdit
-        Friend WithEvents txt_FinancialYearMonth As [Lib].Utils.YearMonthEdit
-        Friend WithEvents txt_AssessmentYearMonth As [Lib].Utils.YearMonthEdit
+        Friend WithEvents txt_FinancialYearMonth As [Lib].Controls.YearMonthEdit
+        Friend WithEvents txt_AssessmentYearMonth As [Lib].Controls.YearMonthEdit
         Friend WithEvents cmb_Client As DevExpress.XtraEditors.LookUpEdit
     End Class
 End Namespace

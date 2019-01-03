@@ -1,4 +1,4 @@
-﻿Namespace Utils
+﻿Namespace Controls
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
     Partial Class YearMonthEdit
         Inherits DevExpress.XtraEditors.XtraUserControl

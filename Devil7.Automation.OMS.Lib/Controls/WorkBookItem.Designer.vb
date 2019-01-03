@@ -26,7 +26,7 @@
             Me.txt_CurrentlyAssignedTo = New DevExpress.XtraEditors.TextEdit()
             Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
             Me.txt_TargetDate = New DevExpress.XtraEditors.DateEdit()
-            Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+            Me.txt_FinancialYearMonth = New Devil7.Automation.OMS.[Lib].Controls.YearMonthEdit()
             Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
@@ -61,7 +61,7 @@
             Me.txt_DueDate = New DevExpress.XtraEditors.DateEdit()
             Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-            Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+            Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Controls.YearMonthEdit()
             Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
             Me.TableLayoutPanel1.SuspendLayout()
@@ -188,6 +188,7 @@
             Me.txt_FinancialYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
             Me.txt_FinancialYearMonth.Name = "txt_FinancialYearMonth"
             Me.txt_FinancialYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
+            Me.txt_FinancialYearMonth.ReadOnly = True
             Me.txt_FinancialYearMonth.Size = New System.Drawing.Size(472, 21)
             Me.txt_FinancialYearMonth.TabIndex = 3
             YearMonth1.Period = "April"
@@ -489,6 +490,7 @@
             Me.txt_AssessmentYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
             Me.txt_AssessmentYearMonth.Name = "txt_AssessmentYearMonth"
             Me.txt_AssessmentYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
+            Me.txt_AssessmentYearMonth.ReadOnly = True
             Me.txt_AssessmentYearMonth.Size = New System.Drawing.Size(472, 21)
             Me.txt_AssessmentYearMonth.TabIndex = 4
             YearMonth2.Period = "April"
@@ -542,7 +544,7 @@
         Friend WithEvents txt_CurrentlyAssignedTo As DevExpress.XtraEditors.TextEdit
         Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents txt_TargetDate As DevExpress.XtraEditors.DateEdit
-        Friend WithEvents txt_FinancialYearMonth As Utils.YearMonthEdit
+        Friend WithEvents txt_FinancialYearMonth As Controls.YearMonthEdit
         Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
@@ -577,7 +579,7 @@
         Friend WithEvents txt_DueDate As DevExpress.XtraEditors.DateEdit
         Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents txt_AssessmentYearMonth As Utils.YearMonthEdit
+        Friend WithEvents txt_AssessmentYearMonth As Controls.YearMonthEdit
         Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     End Class

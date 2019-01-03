@@ -26,7 +26,7 @@ Namespace Dialogs
             Me.MainWizard = New DevExpress.XtraWizard.WizardControl()
             Me.page_JobDetails = New DevExpress.XtraWizard.WizardPage()
             Me.ProgressPanel_JobDetails = New DevExpress.XtraWaitForm.ProgressPanel()
-            Me.YearMonthEdit1 = New Devil7.Automation.OMS.[Lib].Utils.YearMonthEdit()
+            Me.YearMonthEdit1 = New Devil7.Automation.OMS.[Lib].Controls.YearMonthEdit()
             Me.txt_Job = New DevExpress.XtraEditors.LookUpEdit()
             Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
             Me.rgrp_PeriodType = New DevExpress.XtraEditors.RadioGroup()
@@ -369,7 +369,7 @@ Namespace Dialogs
         Friend WithEvents ProgressPanel_JobDetails As DevExpress.XtraWaitForm.ProgressPanel
         Friend WithEvents Loader_Details As System.ComponentModel.BackgroundWorker
         Friend WithEvents txt_Job As DevExpress.XtraEditors.LookUpEdit
-        Friend WithEvents YearMonthEdit1 As [Lib].Utils.YearMonthEdit
+        Friend WithEvents YearMonthEdit1 As [Lib].Controls.YearMonthEdit
         Friend WithEvents Loader_GenerateReport As System.ComponentModel.BackgroundWorker
         Friend WithEvents SaveFileDialog_Export As SaveFileDialog
     End Class
