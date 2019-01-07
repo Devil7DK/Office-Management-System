@@ -86,9 +86,9 @@
 
         End Sub
 
-        Friend WithEvents Label1 As Windows.Forms.Label
+        Friend WithEvents Label1 As System.Windows.Forms.Label
         Friend WithEvents cmb_Year As DevExpress.XtraEditors.ComboBoxEdit
-        Friend WithEvents lbl_Period As Windows.Forms.Label
+        Friend WithEvents lbl_Period As System.Windows.Forms.Label
         Friend WithEvents cmb_Period As DevExpress.XtraEditors.ComboBoxEdit
     End Class
 End Namespace

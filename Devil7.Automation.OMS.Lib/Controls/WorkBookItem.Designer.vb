@@ -540,7 +540,7 @@
 
         End Sub
 
-        Friend WithEvents TableLayoutPanel1 As Windows.Forms.TableLayoutPanel
+        Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
         Friend WithEvents txt_CurrentlyAssignedTo As DevExpress.XtraEditors.TextEdit
         Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents txt_TargetDate As DevExpress.XtraEditors.DateEdit

@@ -51,12 +51,12 @@ Namespace Dialogs
 
         Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
             Me.Job = cmb_Name.SelectedItem
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
             Me.Close()
         End Sub
 
         Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
 

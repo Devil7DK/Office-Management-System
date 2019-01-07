@@ -38,7 +38,7 @@ Namespace Dialogs
             Me.Users = Users
         End Sub
         Private Sub btn_Template_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Template_Add.Click
-            If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If OpenFileDialog1.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 lst_Templates.Items.AddRange(OpenFileDialog1.FileNames)
             End If
         End Sub
@@ -48,7 +48,7 @@ Namespace Dialogs
         End Sub
 
         Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
         Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
@@ -63,7 +63,7 @@ Namespace Dialogs
             ElseIf Mode = Enums.DialogMode.Edit Then
                 Database.Jobs.Update(ID, txt_Name.Text, cmb_Group.Text, cmb_Type.SelectedIndex, lstSteps, cmb_SubGroup.Text, lstTMPL, CType(gc_FollowUps.DataSource, List(Of Job)), CType(gc_AutoForwards.DataSource, List(Of AutoForward)), txt_NotifyInterval.Value, txt_DueInterval.Value, txt_PrimaryPeriod.SelectedIndex, True)
             End If
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
             Me.Close()
         End Sub
 
@@ -97,7 +97,7 @@ Namespace Dialogs
 
         Private Sub btn_FollowUps_Add_Click(sender As Object, e As EventArgs) Handles btn_FollowUps_Add.Click
             Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Job)
                 If d.Job.ID = ID Then
                     MsgBox("You can't add the job itself to its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
@@ -123,7 +123,7 @@ Namespace Dialogs
 
         Private Sub btn_AutoForwards_Add_Click(sender As Object, e As EventArgs) Handles btn_AutoForwards_Add.Click
             Dim d As New frm_AutoForwards(New List(Of String)(txt_Steps.Lines), Users)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gc_AutoForwards.DataSource Is Nothing Then gc_AutoForwards.DataSource = New List(Of AutoForward)
                 CType(gc_AutoForwards.DataSource, List(Of AutoForward)).Add(d.AutoForward)
                 gc_AutoForwards.RefreshDataSource()

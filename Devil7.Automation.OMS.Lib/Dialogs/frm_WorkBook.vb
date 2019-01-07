@@ -170,7 +170,7 @@ Namespace Dialogs
                     WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, ClientsMinimal.Find(Function(c) c.ID = cmb_Client.EditValue), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, Database.Clients.GetClientByID(cmb_Client.EditValue), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"))
                     If WorkItemSelected IsNot Nothing Then
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 Catch ex As Exception
@@ -180,7 +180,7 @@ Namespace Dialogs
                 Try
                     If Database.Workbook.Update(ID, txt_DueDate.DateTime, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, CType(cmb_CurrentlyAssignedTo.SelectedItem, Objects.User), (txt_History.Text & vbNewLine & "Item editted at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).Trim & " by user " & UserData.Username) Then
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 Catch ex As Exception
@@ -190,7 +190,7 @@ Namespace Dialogs
         End Sub
 
         Private Sub btn_Cancel_Click(sender As System.Object, e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
 #End Region

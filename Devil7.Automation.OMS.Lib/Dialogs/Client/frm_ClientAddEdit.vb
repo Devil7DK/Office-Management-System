@@ -107,13 +107,13 @@ Namespace Dialogs
         End Sub
 
         Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
 
 
         Private Sub btn_BrowseImage_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_BrowseImage.Click
-            If OFD_Image.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If OFD_Image.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 pic_Photo.Image = Image.FromFile(OFD_Image.FileName)
             End If
         End Sub
@@ -124,7 +124,7 @@ Namespace Dialogs
                     If item IsNot Nothing Then
                         Me.Client = item
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     Else
                         MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
@@ -137,7 +137,7 @@ Namespace Dialogs
                     Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If result Then
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     Else
                         MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
@@ -150,7 +150,7 @@ Namespace Dialogs
 
         Private Sub btn_Client_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Add.Click
             Dim d As New frm_Partner(Enums.DialogMode.Add)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gv_PartnersDirectors.DataSource Is Nothing Then gv_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
                 CType(gv_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Add(d.Partner)
                 gv_PartnersDirectors.RefreshDataSource()
@@ -165,7 +165,7 @@ Namespace Dialogs
                     Exit Sub
                 End If
                 Dim d As New frm_Partner(Enums.DialogMode.Edit, obj)
-                If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                     obj.Name = d.Partner.Name
                     obj.PAN = d.Partner.PAN
                     obj.DOB = d.Partner.DOB
@@ -187,7 +187,7 @@ Namespace Dialogs
 
         Private Sub btn_Jobs_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Add.Click
             Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gv_Jobs.DataSource Is Nothing Then gv_Jobs.DataSource = New List(Of Objects.Job)
                 CType(gv_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
                 gv_Jobs.RefreshDataSource()
@@ -202,7 +202,7 @@ Namespace Dialogs
                     Exit Sub
                 End If
                 Dim d As New frm_Job_Lite(Enums.DialogMode.Edit, obj)
-                If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                     obj.ID = d.Job.ID
                     obj.Name = d.Job.Name
                     obj.Group = d.Job.Group
@@ -228,7 +228,7 @@ Namespace Dialogs
 
         Private Sub btn_Credential_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Add.Click
             Dim d As New frm_Credential(Enums.DialogMode.Add)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gv_Credentials.DataSource Is Nothing Then gv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
                 gv_Credentials.DataSource.Add(d.Credential)
                 gv_Credentials.RefreshDataSource()
@@ -243,7 +243,7 @@ Namespace Dialogs
                     Exit Sub
                 End If
                 Dim d As New frm_Credential(Enums.DialogMode.Edit, obj)
-                If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                     obj.Name = d.Credential.Name
                     obj.Password = d.Credential.Password
                     obj.Password2 = d.Credential.Password2

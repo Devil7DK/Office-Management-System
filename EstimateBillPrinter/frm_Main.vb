@@ -68,7 +68,7 @@ Public Class frm_Main
         End Try
 
         Dim d As New frm_EstimateBill(Enums.DialogMode.Add, ServicesList, ReceiversList, SendersList, Serial:=sa)
-        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             If d.ServicesEdited Then
                 Database.Services.Save(d.AllServices, True)
             End If
@@ -80,7 +80,7 @@ Public Class frm_Main
         If gv_EstimateBills.SelectedRowsCount = 1 Then
             Dim r = CType(gv_EstimateBills.GetRow(gv_EstimateBills.GetSelectedRows(0)), EstimateBill)
             Dim d As New frm_EstimateBill(Enums.DialogMode.Edit, ServicesList, ReceiversList, SendersList, r)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If d.ServicesEdited Then
                     Database.Services.Save(d.AllServices, True)
                 End If

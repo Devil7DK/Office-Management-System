@@ -41,14 +41,14 @@ Namespace Dialogs
         End Sub
 
         Private Sub btn_Browse_Click(sender As System.Object, e As System.EventArgs) Handles btn_Browse.Click
-            If OFD_Image.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If OFD_Image.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 Photo.Image = Image.FromFile(OFD_Image.FileName)
             End If
         End Sub
 
         Private Sub btn_Permission_Add_Click(sender As System.Object, e As System.EventArgs) Handles btn_Permission_Add.Click
             Dim d As New frm_Permission(Enums.DialogMode.Add)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 lst_Permissions.Items.Add(d.Permission)
             End If
         End Sub
@@ -56,7 +56,7 @@ Namespace Dialogs
         Private Sub btn_Permission_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Permission_Edit.Click
             If lst_Permissions.SelectedItems.Count = 1 Then
                 Dim d As New frm_Permission(Enums.DialogMode.Edit, DirectCast([Enum].Parse(GetType(Enums.UserPermissions), lst_Permissions.SelectedItem), Enums.UserPermissions))
-                If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                     Dim i As Integer = lst_Permissions.SelectedIndex
                     lst_Permissions.Items.RemoveAt(i)
                     lst_Permissions.Items.Insert(i, d.Permission)
@@ -103,7 +103,7 @@ Namespace Dialogs
 
         Private Sub btn_Credential_Add_Click(sender As System.Object, e As System.EventArgs) Handles btn_Credential_Add.Click
             Dim d As New frm_Credential(Enums.DialogMode.Add)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)).Add(d.Credential)
             End If
         End Sub
@@ -112,7 +112,7 @@ Namespace Dialogs
             If GridView1.SelectedRowsCount = 1 Then
                 Dim row As Objects.Credential = GridView1.GetRow(GridView1.GetSelectedRows()(0))
                 Dim d As New frm_Credential(Enums.DialogMode.Edit, row)
-                If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                     Dim bs = CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential))
                     bs.Remove(row)
                     bs.Add(d.Credential)
@@ -133,7 +133,7 @@ Namespace Dialogs
         End Sub
 
         Private Sub btn_Cancel_Click(sender As System.Object, e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
 
@@ -152,14 +152,14 @@ Namespace Dialogs
                     If Result IsNot Nothing Then
                         Me.User = Result
                         MsgBox("User Successfully Added.", MsgBoxStyle.Information, "Done")
-                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 ElseIf Mode = Enums.DialogMode.Edit Then
                     Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
                     If Result Then
                         MsgBox("User Successfully Updated.", MsgBoxStyle.Information, "Done")
-                        Me.DialogResult = Windows.Forms.DialogResult.OK
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 End If
@@ -168,14 +168,14 @@ Namespace Dialogs
 
         Private Sub txt_Home_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txt_Home.ButtonClick
             If txt_Home.Text <> "" Then FBD.SelectedPath = txt_Home.Text
-            If FBD.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If FBD.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 txt_Home.Text = FBD.SelectedPath
             End If
         End Sub
 
         Private Sub txt_Desktop_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txt_Desktop.ButtonClick
             If txt_Desktop.Text <> "" Then FBD.SelectedPath = txt_Desktop.Text
-            If FBD.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If FBD.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 txt_Desktop.Text = FBD.SelectedPath
             End If
         End Sub

@@ -44,12 +44,12 @@ Namespace Dialogs
 
         Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
             Me.Partner = New Objects.Partner(txt_Name.Text, txt_Address.Text, txt_PAN.Text, txt_Date.DateTime.ToString("dd/MM/yyyy"))
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
             Me.Close()
         End Sub
 
         Private Sub btn_Cancel_Click(sender As System.Object, e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
 

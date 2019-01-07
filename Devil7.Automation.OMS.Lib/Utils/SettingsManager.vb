@@ -22,7 +22,7 @@
 Namespace Utils
     Public Module SettingsManager
 
-        Dim ConfigFile As String = IO.Path.Combine(Windows.Forms.Application.StartupPath, "Settings.config")
+        Dim ConfigFile As String = IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Settings.config")
 
         Dim Settings_ As SettingsContainer
 

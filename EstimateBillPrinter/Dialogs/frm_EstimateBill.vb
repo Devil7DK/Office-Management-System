@@ -162,14 +162,14 @@ Public Class frm_EstimateBill
         If Me.Mode = Enums.DialogMode.Add Then
             Me.Item = Database.EstimateBills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
             If Me.Item IsNot Nothing Then
-                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             End If
         Else
             Dim Result As Boolean = Database.EstimateBills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
             If Result Then
                 Me.Item = New EstimateBill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource)
-                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             Else
                 MsgBox("Unable to edit estimate bill!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
@@ -178,7 +178,7 @@ Public Class frm_EstimateBill
     End Sub
 
     Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Close()
     End Sub
 #End Region

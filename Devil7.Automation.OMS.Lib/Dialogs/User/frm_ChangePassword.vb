@@ -39,7 +39,7 @@ Namespace Dialogs
             Else
                 If Database.Users.ChangePassword(User.Username, txt_OldPassword.Text, txt_NewPassword.Text, True) Then
                     MsgBox("Password successfully changed.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                    Me.DialogResult = Windows.Forms.DialogResult.OK
+                    Me.DialogResult = System.Windows.Forms.DialogResult.OK
                     Me.Close()
                 Else
                     MsgBox("Unable to change password.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")

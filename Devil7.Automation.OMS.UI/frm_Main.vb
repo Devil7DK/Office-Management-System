@@ -182,7 +182,7 @@ Public Class frm_Main
 
     Private Sub btn_AddUser_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddUser.ItemClick
         Dim d As New Dialogs.frm_User(Enums.DialogMode.Add)
-        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             CType(gc_Users.DataSource, List(Of Objects.User)).Add(d.User)
         End If
     End Sub
@@ -195,7 +195,7 @@ Public Class frm_Main
                 MsgBox("You cannot edit an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             Else
                 Dim d As New Dialogs.frm_User(Enums.DialogMode.Edit, row.ID, If(User.ID = row.ID, If(User.UserType = Enums.UserType.System, False, True), False))
-                If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                     If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
                 End If
             End If
@@ -237,7 +237,7 @@ Public Class frm_Main
 
     Private Sub btn_EditProfile_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_EditProfile.ItemClick
         Dim d As New Dialogs.frm_User(Enums.DialogMode.Edit, User.ID, True)
-        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             User = Database.Users.GetUserByID(User.ID)
             If Not Loader_Users.IsBusy Then Loader_Users.RunWorkerAsync()
         End If
@@ -294,7 +294,7 @@ Public Class frm_Main
             If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
         Next
         Dim d As New Dialogs.frm_Job(Enums.DialogMode.Add, group.ToArray, subgroup.ToArray, Users)
-        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             If d.Job IsNot Nothing Then
                 CType(gc_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
                 gc_Jobs.RefreshDataSource()
@@ -311,7 +311,7 @@ Public Class frm_Main
                 If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
             Next
             Dim d As New Dialogs.frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, Users, row.ID)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
             End If
         End If
@@ -368,7 +368,7 @@ Public Class frm_Main
 
     Private Sub btn_AddClient_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddClient.ItemClick
         Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add)
-        If d.ShowDialog() = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             If d.Client IsNot Nothing Then
                 CType(gc_Clients.DataSource, List(Of Objects.Client)).Add(d.Client)
                 gc_Clients.RefreshDataSource()
@@ -385,7 +385,7 @@ Public Class frm_Main
         End If
         If Selected IsNot Nothing Then
             Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Edit, Selected.ID)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
             End If
         End If
@@ -472,7 +472,7 @@ Public Class frm_Main
 
     Private Sub btn_AddWork_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddWork.ItemClick
         Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users)
-        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
             gc_WorkBook.RefreshDataSource()
         End If
@@ -482,7 +482,7 @@ Public Class frm_Main
         If gv_WorkBook.SelectedRowsCount = 1 Then
             Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(gv_WorkBook.GetSelectedRows()(0))
             Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, ClientsMinimal, Users, row.ID)
-            If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
             End If
         End If
@@ -1192,7 +1192,7 @@ Public Class frm_Main
 
     Private Sub btn_AddWork_Self_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_AddWork_Self.ItemClick
         Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users, SelfEdit:=True)
-        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
             CType(gc_Home.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
             gc_Home.RefreshDataSource()
         End If

@@ -46,12 +46,12 @@ Namespace Dialogs
 
         Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
             Me.Credential = New Objects.Credential(txt_Name.Text, txt_Template.Text, txt_UserName.Text, txt_Password1.Text, txt_Password2.Text, txt_Password3.Text)
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
             Me.Close()
         End Sub
 
         Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
             Me.Close()
         End Sub
 
