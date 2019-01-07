@@ -743,6 +743,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub frm_Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Text = String.Format("{0} [{1}]", My.Application.Info.ProductName, User.Username)
         MainPane.SelectedPageIndex = 0
         cmb_HomeView.EditValue = My.Settings.ViewHome
         cmb_WorkbookView.EditValue = My.Settings.ViewWorkbook
