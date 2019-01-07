@@ -306,7 +306,7 @@ Namespace Database
                 End If
             End Using
 
-            If R Then
+            If R AndAlso Status = Enums.WorkStatus.Completed Then
                 If WorkbookItem.Job.FollowUps.Count > 0 Then
                     For Each i As Job In WorkbookItem.Job.FollowUps
                         Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssementDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added")
