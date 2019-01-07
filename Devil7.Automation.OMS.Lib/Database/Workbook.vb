@@ -260,7 +260,7 @@ Namespace Database
         Function UpdateStep(ByVal ID As Integer, ByVal Step_ As String, ByVal History As String) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [CurrentStep]=@CurrentStep,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[CurrentStep]=@CurrentStep,[History]=@History WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -281,7 +281,7 @@ Namespace Database
         Function UpdateRemarks(ByVal ID As Integer, ByVal Remarks As String, ByVal History As String) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [Remarks]=@Remarks,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[Remarks]=@Remarks,[History]=@History WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -311,7 +311,7 @@ Namespace Database
                 End If
             End If
 
-            Dim CommandString As String = "UPDATE Workbook SET [Status]=@Status,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[Status]=@Status,[History]=@History WHERE [ID]=@ID;"
 
             Dim Connection As SqlConnection = GetConnection()
 
@@ -344,7 +344,7 @@ Namespace Database
         Function UpdatePriority(ByVal ID As Integer, ByVal Priority As Integer, ByVal History As String)
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [Priority]=@Priority,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[Priority]=@Priority,[History]=@History WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -365,7 +365,7 @@ Namespace Database
         Function AssignTo(ByVal ID As Integer, ByVal NewUser As Integer, ByVal History As String)
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [User]=@User,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[User]=@User,[History]=@History WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -386,7 +386,7 @@ Namespace Database
         Function UpdateBilledStatus(ByVal ID As Integer, ByVal BilledStatus As Enums.BillingStatus, ByVal History As String)
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [Billed]=@Billed,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[Billed]=@Billed,[History]=@History WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
