@@ -21,12 +21,21 @@
 
 Namespace Dialogs
     Public Class frm_WorkBook
+
+#Region "Variables"
         Dim Mode As Enums.DialogMode = Enums.DialogMode.Add
         Dim Jobs As List(Of Objects.Job)
         Dim ClientsMinimal As List(Of Objects.ClientMinimal)
         Dim Users As List(Of Objects.User)
         Dim ID As Integer = -1
         Dim UserData As Objects.User
+#End Region
+
+#Region "Properties"
+        Property WorkItemSelected As Objects.WorkbookItem
+#End Region
+
+#Region "Constructor"
         Sub New(ByVal Mode As Enums.DialogMode, ByVal UserData As Objects.User, ByVal Jobs As List(Of Objects.Job),
             ByVal MinimalClients As List(Of Objects.ClientMinimal), ByVal Users As List(Of Objects.User), Optional ByVal ID As Integer = -1)
             InitializeComponent()
@@ -37,6 +46,19 @@ Namespace Dialogs
             Me.ID = ID
             Me.UserData = UserData
         End Sub
+#End Region
+
+#Region "Subs & Functions"
+        Function GetDefaultStorage() As String
+            If Utils.SettingsManager.GetSettings Is Nothing OrElse Utils.SettingsManager.GetSettings.DefaultStorage = "" Then
+                Return My.Computer.FileSystem.SpecialDirectories.MyDocuments
+            Else
+                Return Utils.SettingsManager.GetSettings.DefaultStorage
+            End If
+        End Function
+#End Region
+
+#Region "Form Events"
         Private Sub frm_WorkBook_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
             For i As Integer = 0 To 3
                 cmb_Status.Properties.Items.Add([Enum].GetName(GetType(Enums.WorkStatus), i))
@@ -131,40 +153,9 @@ Namespace Dialogs
                 cmb_Steps.SelectedIndex = 0
             End If
         End Sub
+#End Region
 
-        Private Sub cmb_Job_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmb_Job.SelectedIndexChanged
-            Try
-                Dim item As Objects.Job = cmb_Job.SelectedItem
-                cmb_Steps.Properties.Items.Clear()
-                cmb_Steps.Properties.Items.AddRange(item.Steps)
-                If cmb_Steps.Properties.Items.Count > 0 Then cmb_Steps.SelectedIndex = 0
-
-                txt_AssessmentYearMonth.PeriodType = item.Type
-                txt_FinancialYearMonth.PeriodType = item.Type
-
-                If item.PrimaryPeriodType = Enums.PeriodType.Assessment Then
-                    txt_AssessmentYearMonth.Enabled = True
-                    txt_AssessmentYearMonth.TabStop = True
-                    txt_FinancialYearMonth.Enabled = False
-                    txt_FinancialYearMonth.TabStop = False
-                Else
-                    txt_AssessmentYearMonth.Enabled = False
-                    txt_AssessmentYearMonth.TabStop = False
-                    txt_FinancialYearMonth.Enabled = True
-                    txt_FinancialYearMonth.TabStop = True
-                End If
-            Catch ex As Exception
-
-            End Try
-        End Sub
-        Function GetDefaultStorage() As String
-            If Utils.SettingsManager.GetSettings Is Nothing OrElse Utils.SettingsManager.GetSettings.DefaultStorage = "" Then
-                Return My.Computer.FileSystem.SpecialDirectories.MyDocuments
-            Else
-                Return Utils.SettingsManager.GetSettings.DefaultStorage
-            End If
-        End Function
-        Property WorkItemSelected As Objects.WorkbookItem
+#Region "Button Events"
         Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
             If Mode = Enums.DialogMode.Add Then
                 Try
@@ -191,17 +182,45 @@ Namespace Dialogs
             End If
         End Sub
 
+        Private Sub btn_Cancel_Click(sender As System.Object, e As System.EventArgs) Handles btn_Cancel.Click
+            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+            Me.Close()
+        End Sub
+#End Region
+
+#Region "Other Events"
+        Private Sub cmb_Job_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmb_Job.SelectedIndexChanged
+            Try
+                Dim item As Objects.Job = cmb_Job.SelectedItem
+                cmb_Steps.Properties.Items.Clear()
+                cmb_Steps.Properties.Items.AddRange(item.Steps)
+                If cmb_Steps.Properties.Items.Count > 0 Then cmb_Steps.SelectedIndex = 0
+
+                txt_AssessmentYearMonth.PeriodType = item.Type
+                txt_FinancialYearMonth.PeriodType = item.Type
+
+                If item.PrimaryPeriodType = Enums.PeriodType.Assessment Then
+                    txt_AssessmentYearMonth.Enabled = True
+                    txt_AssessmentYearMonth.TabStop = True
+                    txt_FinancialYearMonth.Enabled = False
+                    txt_FinancialYearMonth.TabStop = False
+                Else
+                    txt_AssessmentYearMonth.Enabled = False
+                    txt_AssessmentYearMonth.TabStop = False
+                    txt_FinancialYearMonth.Enabled = True
+                    txt_FinancialYearMonth.TabStop = True
+                End If
+            Catch ex As Exception
+
+            End Try
+        End Sub
+
         Private Sub cmb_User_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmb_User.SelectedIndexChanged
             Try
                 cmb_CurrentlyAssignedTo.SelectedItem = CType(cmb_User.SelectedItem, Objects.User)
             Catch ex As Exception
 
             End Try
-        End Sub
-
-        Private Sub btn_Cancel_Click(sender As System.Object, e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = Windows.Forms.DialogResult.Cancel
-            Me.Close()
         End Sub
 
         Private Sub txt_FinancialYearMonth_OnValueChanged(sender As Object, e As EventArgs) Handles txt_FinancialYearMonth.OnValueChanged
@@ -232,4 +251,6 @@ Namespace Dialogs
             End Try
         End Sub
     End Class
+#End Region
+
 End Namespace

@@ -229,6 +229,7 @@
             Me.txt_FinancialYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
             Me.txt_FinancialYearMonth.Name = "txt_FinancialYearMonth"
             Me.txt_FinancialYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
+            Me.txt_FinancialYearMonth.ReadOnly = False
             Me.txt_FinancialYearMonth.Size = New System.Drawing.Size(349, 21)
             Me.txt_FinancialYearMonth.TabIndex = 3
             YearMonth1.Period = "April"
@@ -527,6 +528,7 @@
             Me.txt_AssessmentYearMonth.MinimumSize = New System.Drawing.Size(0, 21)
             Me.txt_AssessmentYearMonth.Name = "txt_AssessmentYearMonth"
             Me.txt_AssessmentYearMonth.PeriodType = Devil7.Automation.OMS.[Lib].Enums.JobType.Once
+            Me.txt_AssessmentYearMonth.ReadOnly = False
             Me.txt_AssessmentYearMonth.Size = New System.Drawing.Size(349, 21)
             Me.txt_AssessmentYearMonth.TabIndex = 4
             YearMonth2.Period = "April"
