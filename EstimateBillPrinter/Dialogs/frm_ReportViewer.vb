@@ -21,16 +21,14 @@
 
 Imports DevExpress.XtraReports.UI
 
-Namespace Forms.Dialogs.Reports
-    Public Class frm_ReportViewer
+Public Class frm_ReportViewer
 
 #Region "Constructors"
-        Sub New(ByVal Report As XtraReport)
-            InitializeComponent()
-            DocumentViewer.DocumentSource = Report
-            Report.CreateDocument()
-        End Sub
+    Sub New(ByVal Report As XtraReport)
+        InitializeComponent()
+        DocumentViewer.DocumentSource = Report
+        Report.CreateDocument()
+    End Sub
 #End Region
 
-    End Class
-End Namespace
+End Class
