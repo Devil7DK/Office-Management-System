@@ -29,6 +29,7 @@ Namespace Dialogs
         Dim Users As List(Of Objects.User)
         Dim ID As Integer = -1
         Dim UserData As Objects.User
+        Dim SelfEdit As Boolean = False
 #End Region
 
 #Region "Properties"
@@ -37,7 +38,7 @@ Namespace Dialogs
 
 #Region "Constructor"
         Sub New(ByVal Mode As Enums.DialogMode, ByVal UserData As Objects.User, ByVal Jobs As List(Of Objects.Job),
-            ByVal MinimalClients As List(Of Objects.ClientMinimal), ByVal Users As List(Of Objects.User), Optional ByVal ID As Integer = -1)
+            ByVal MinimalClients As List(Of Objects.ClientMinimal), ByVal Users As List(Of Objects.User), Optional ByVal ID As Integer = -1, Optional SelfEdit As Boolean = False)
             InitializeComponent()
             Me.Mode = Mode
             Me.Jobs = Jobs
@@ -45,6 +46,7 @@ Namespace Dialogs
             Me.Users = Users
             Me.ID = ID
             Me.UserData = UserData
+            Me.SelfEdit = SelfEdit
         End Sub
 #End Region
 
@@ -151,6 +153,11 @@ Namespace Dialogs
                 cmb_Priority.SelectedIndex = 2
                 cmb_Status.SelectedIndex = 0
                 cmb_Steps.SelectedIndex = 0
+            End If
+
+            If SelfEdit Then
+                cmb_User.Enabled = False
+                cmb_User.SelectedIndex = Users.FindIndex(Function(c) c.ID = UserData.ID)
             End If
         End Sub
 #End Region
