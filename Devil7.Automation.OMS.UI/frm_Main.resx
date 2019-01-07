@@ -2146,6 +2146,32 @@
         pYRS+AAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btn_AddWork_Self.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAa9JREFUaEPtlq1OQ0EQRq9AIhBIBKIPgEQgeAgEEomoQCARdQhEJQLBAyAQCEQF
+        EoFAIJAIBAJRiUDAd247yaYpJOyvYE5y0t6b+zOzOzt3O8dxHMdxHOf/sim/5Kg/+pkDyXW7/VFDCCT0
+        WBLYdXBumReS606Dc+aqrAZB5JZZrAYvvJWUAu7Pz10G55bJyHPdUXCOe5okwIuNDfkiCew39iTXbfdH
+        M1g3zRNIoVkCj5KXp3onmySQ2+oJXElemupYNkkg1xpoQs4EBpJ2ut4fVSJHAkP5LnmW+SxJpjipCdxI
+        nvEkTyRbiTNpCbE1KUpKArZvOpcrkhGnna5JyuhefsrwY5edlASmkpEneCB4nmddiN8PycawGLEJsGC5
+        l7KxkbcPGe3UZmIiX2UxYhMgaO6l5m3kF2UGeDb/i8HDYxKgxrmXBctIhx+ynfkxpfUgKbNixCYAtEq6
+        jfX9xTVgs8QiLwYv+OtmjrpndBlpugzdhqBtJqwjvUnqv+iHjQRipFzgUNJpkAXLbFI2XEPwJFkURixW
+        Y0uyISRgAqfmKZuqWwrHcRzHcRynOV33DbHuxJKAdz57AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btn_AddWork_Self.ImageOptions.LargeImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAa9JREFUaEPtlq1OQ0EQRq9AIhBIBKIPgEQgeAgEEomoQCARdQhEJQLBAyAQCEQF
+        EoFAIJAIBAJRiUDAd247yaYpJOyvYE5y0t6b+zOzOzt3O8dxHMdxHOf/sim/5Kg/+pkDyXW7/VFDCCT0
+        WBLYdXBumReS606Dc+aqrAZB5JZZrAYvvJWUAu7Pz10G55bJyHPdUXCOe5okwIuNDfkiCew39iTXbfdH
+        M1g3zRNIoVkCj5KXp3onmySQ2+oJXElemupYNkkg1xpoQs4EBpJ2ut4fVSJHAkP5LnmW+SxJpjipCdxI
+        nvEkTyRbiTNpCbE1KUpKArZvOpcrkhGnna5JyuhefsrwY5edlASmkpEneCB4nmddiN8PycawGLEJsGC5
+        l7KxkbcPGe3UZmIiX2UxYhMgaO6l5m3kF2UGeDb/i8HDYxKgxrmXBctIhx+ynfkxpfUgKbNixCYAtEq6
+        jfX9xTVgs8QiLwYv+OtmjrpndBlpugzdhqBtJqwjvUnqv+iHjQRipFzgUNJpkAXLbFI2XEPwJFkURixW
+        Y0uyISRgAqfmKZuqWwrHcRzHcRynOV33DbHuxJKAdz57AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="btn_NewJob.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH

@@ -1184,4 +1184,12 @@ Public Class frm_Main
             WorkBookItem_Preview.Item = Row
         End If
     End Sub
+
+    Private Sub btn_AddWork_Self_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_AddWork_Self.ItemClick
+        Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users, SelfEdit:=True)
+        If d.ShowDialog = Windows.Forms.DialogResult.OK Then
+            CType(gc_Home.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
+            gc_Home.RefreshDataSource()
+        End If
+    End Sub
 End Class

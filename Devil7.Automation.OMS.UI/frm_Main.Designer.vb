@@ -19,7 +19,6 @@ Partial Class frm_Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
@@ -74,7 +73,7 @@ Partial Class frm_Main
         Me.TVC_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
-        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
+        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu()
         Me.btn_EditProfile = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ChangePassword = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
@@ -116,6 +115,7 @@ Partial Class frm_Main
         Me.btn_MarkIncomplete_2 = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ClientJobsReport = New DevExpress.XtraBars.BarButtonItem()
         Me.switch_PreviewPaneHome = New DevExpress.XtraBars.BarToggleSwitchItem()
+        Me.btn_AddWork_Self = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Billing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -176,8 +176,8 @@ Partial Class frm_Main
         Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Utilities = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Billing = New System.ComponentModel.BackgroundWorker()
-        Me.RAMMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolTipManager = New DevExpress.Utils.ToolTipController(Me.components)
+        Me.RAMMonitor = New System.Windows.Forms.Timer()
+        Me.ToolTipManager = New DevExpress.Utils.ToolTipController()
         Me.Loader_Pending = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -340,9 +340,9 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2, Me.btn_ClientJobsReport, Me.switch_PreviewPaneHome})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2, Me.btn_ClientJobsReport, Me.switch_PreviewPaneHome, Me.btn_AddWork_Self})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 54
+        Me.RibbonControl.MaxItemId = 56
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
         Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress, Me.cmb_HomeView_Editor, Me.cmb_WorkbookView_View, Me.cmb_BillingView_Edit, Me.cmb_ClientsSort_Edit, Me.RepositoryItemComboBox1})
@@ -350,7 +350,7 @@ Partial Class frm_Main
         Me.RibbonControl.ShowDisplayOptionsMenuButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowToolbarCustomizeItem = False
-        Me.RibbonControl.Size = New System.Drawing.Size(1192, 143)
+        Me.RibbonControl.Size = New System.Drawing.Size(1360, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
         '
@@ -708,6 +708,14 @@ Partial Class frm_Main
         Me.switch_PreviewPaneHome.Id = 53
         Me.switch_PreviewPaneHome.Name = "switch_PreviewPaneHome"
         '
+        'btn_AddWork_Self
+        '
+        Me.btn_AddWork_Self.Caption = "Add New Work"
+        Me.btn_AddWork_Self.Id = 54
+        Me.btn_AddWork_Self.ImageOptions.Image = CType(resources.GetObject("btn_AddWork_Self.ImageOptions.Image"), System.Drawing.Image)
+        Me.btn_AddWork_Self.ImageOptions.LargeImage = CType(resources.GetObject("btn_AddWork_Self.ImageOptions.LargeImage"), System.Drawing.Image)
+        Me.btn_AddWork_Self.Name = "btn_AddWork_Self"
+        '
         'rp_Edit
         '
         Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Pending, Me.rpg_Skin})
@@ -717,6 +725,7 @@ Partial Class frm_Main
         'rpg_Home
         '
         Me.rpg_Home.ItemLinks.Add(Me.btn_RefreshHome)
+        Me.rpg_Home.ItemLinks.Add(Me.btn_AddWork_Self, True)
         Me.rpg_Home.Name = "rpg_Home"
         Me.rpg_Home.ShowCaptionButton = False
         Me.rpg_Home.Text = "Actions"
@@ -866,7 +875,7 @@ Partial Class frm_Main
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(1192, 31)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(1360, 31)
         '
         'MainPane
         '
@@ -884,9 +893,9 @@ Partial Class frm_Main
         Me.MainPane.PageProperties.ShowCollapseButton = False
         Me.MainPane.PageProperties.ShowExpandButton = False
         Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Billing, Me.np_Pending, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
-        Me.MainPane.RegularSize = New System.Drawing.Size(1192, 275)
+        Me.MainPane.RegularSize = New System.Drawing.Size(1360, 275)
         Me.MainPane.SelectedPage = Me.np_Home
-        Me.MainPane.Size = New System.Drawing.Size(1192, 275)
+        Me.MainPane.Size = New System.Drawing.Size(1360, 275)
         Me.MainPane.TabIndex = 2
         Me.MainPane.Text = "Main Pane"
         '
@@ -896,7 +905,7 @@ Partial Class frm_Main
         Me.np_Home.Controls.Add(Me.ProgressPanel_Home)
         Me.np_Home.Controls.Add(Me.container_Home)
         Me.np_Home.Name = "np_Home"
-        Me.np_Home.Size = New System.Drawing.Size(1110, 229)
+        Me.np_Home.Size = New System.Drawing.Size(1278, 229)
         '
         'ProgressPanel_Home
         '
@@ -907,7 +916,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
-        Me.ProgressPanel_Home.Size = New System.Drawing.Size(1110, 229)
+        Me.ProgressPanel_Home.Size = New System.Drawing.Size(1278, 229)
         Me.ProgressPanel_Home.TabIndex = 6
         '
         'container_Home
@@ -921,7 +930,7 @@ Partial Class frm_Main
         Me.container_Home.Panel2.Controls.Add(Me.WorkBookItem_Preview)
         Me.container_Home.Panel2.Text = "Panel2"
         Me.container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
-        Me.container_Home.Size = New System.Drawing.Size(1110, 229)
+        Me.container_Home.Size = New System.Drawing.Size(1278, 229)
         Me.container_Home.SplitterPosition = 397
         Me.container_Home.TabIndex = 7
         Me.container_Home.Text = "SplitContainerControl1"
@@ -933,7 +942,7 @@ Partial Class frm_Main
         Me.gc_Home.MainView = Me.gv_Home
         Me.gc_Home.MenuManager = Me.RibbonControl
         Me.gc_Home.Name = "gc_Home"
-        Me.gc_Home.Size = New System.Drawing.Size(1110, 229)
+        Me.gc_Home.Size = New System.Drawing.Size(1278, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
         '
@@ -1472,7 +1481,7 @@ Partial Class frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1192, 449)
+        Me.ClientSize = New System.Drawing.Size(1360, 449)
         Me.Controls.Add(Me.MainPane)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
@@ -1518,9 +1527,9 @@ Partial Class frm_Main
         CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout
+        Me.PerformLayout()
 
-End Sub
+    End Sub
 
     Friend WithEvents RibbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
     Friend WithEvents rp_Edit As DevExpress.XtraBars.Ribbon.RibbonPage
@@ -1643,4 +1652,5 @@ End Sub
     Friend WithEvents switch_PreviewPaneHome As DevExpress.XtraBars.BarToggleSwitchItem
     Friend WithEvents container_Home As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents WorkBookItem_Preview As [Lib].Controls.WorkBookItem
+    Friend WithEvents btn_AddWork_Self As DevExpress.XtraBars.BarButtonItem
 End Class
