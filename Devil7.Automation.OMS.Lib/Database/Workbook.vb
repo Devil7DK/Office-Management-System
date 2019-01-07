@@ -278,6 +278,27 @@ Namespace Database
             Return R
         End Function
 
+        Function UpdateRemarks(ByVal ID As Integer, ByVal Remarks As String, ByVal History As String) As Boolean
+            Dim R As Boolean = False
+
+            Dim CommandString As String = "UPDATE Workbook SET [Remarks]=@Remarks,[History]=@History WHERE [ID]=@ID;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                AddParameter(Command, "@DateUpdated", Now)
+                AddParameter(Command, "@Remarks", Remarks)
+                AddParameter(Command, "@History", History)
+                If Command.ExecuteNonQuery() = 1 Then
+                    R = True
+                End If
+            End Using
+
+            Return R
+        End Function
+
         Function UpdateStatus(ByVal WorkbookItem As WorkbookItem, ByVal CurrentStep As String, ByVal Status As Integer, ByVal History As String)
             Dim R As Boolean = False
 
