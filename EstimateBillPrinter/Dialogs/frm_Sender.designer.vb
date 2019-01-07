@@ -27,6 +27,7 @@ Partial Class frm_Sender
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_OK = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -69,6 +70,16 @@ Partial Class frm_Sender
         Me.txt_PhoneNumber = New DevExpress.XtraEditors.TextEdit()
         Me.txt_MobileNumber = New DevExpress.XtraEditors.TextEdit()
         Me.txt_EMail = New DevExpress.XtraEditors.TextEdit()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pic_Logo = New System.Windows.Forms.PictureBox()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btn_SelectImage = New DevExpress.XtraEditors.SimpleButton()
+        Me.btn_RemoveImage = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.dlg_SelectImage = New System.Windows.Forms.OpenFileDialog()
+        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
+        Me.switch_PrintLogo = New DevExpress.XtraEditors.ToggleSwitch()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
@@ -86,6 +97,10 @@ Partial Class frm_Sender
         CType(Me.txt_PhoneNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_MobileNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_EMail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        CType(Me.pic_Logo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.switch_PrintLogo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -93,9 +108,9 @@ Partial Class frm_Sender
         Me.PanelControl1.Controls.Add(Me.btn_Cancel)
         Me.PanelControl1.Controls.Add(Me.btn_OK)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 364)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 493)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(326, 35)
+        Me.PanelControl1.Size = New System.Drawing.Size(314, 35)
         Me.PanelControl1.TabIndex = 0
         '
         'btn_Cancel
@@ -110,7 +125,7 @@ Partial Class frm_Sender
         'btn_OK
         '
         Me.btn_OK.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btn_OK.Location = New System.Drawing.Point(249, 2)
+        Me.btn_OK.Location = New System.Drawing.Point(237, 2)
         Me.btn_OK.Name = "btn_OK"
         Me.btn_OK.Size = New System.Drawing.Size(75, 31)
         Me.btn_OK.TabIndex = 0
@@ -122,6 +137,7 @@ Partial Class frm_Sender
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl30, 0, 15)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 1, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 1, 2)
@@ -164,10 +180,15 @@ Partial Class frm_Sender
         Me.TableLayoutPanel1.Controls.Add(Me.txt_PhoneNumber, 2, 11)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_MobileNumber, 2, 12)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_EMail, 2, 13)
+        Me.TableLayoutPanel1.Controls.Add(Me.Panel1, 2, 15)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl19, 1, 15)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl31, 0, 14)
+        Me.TableLayoutPanel1.Controls.Add(Me.LabelControl32, 1, 14)
+        Me.TableLayoutPanel1.Controls.Add(Me.switch_PrintLogo, 2, 14)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 14
+        Me.TableLayoutPanel1.RowCount = 16
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -182,8 +203,22 @@ Partial Class frm_Sender
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(326, 364)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(314, 493)
         Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'LabelControl30
+        '
+        Me.LabelControl30.Appearance.Options.UseTextOptions = True
+        Me.LabelControl30.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelControl30.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+        Me.LabelControl30.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl30.Location = New System.Drawing.Point(3, 397)
+        Me.LabelControl30.Name = "LabelControl30"
+        Me.LabelControl30.Size = New System.Drawing.Size(100, 93)
+        Me.LabelControl30.TabIndex = 34
+        Me.LabelControl30.Text = "Logo"
         '
         'LabelControl1
         '
@@ -389,7 +424,7 @@ Partial Class frm_Sender
         Me.txt_Name.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_Name.Location = New System.Drawing.Point(117, 3)
         Me.txt_Name.Name = "txt_Name"
-        Me.txt_Name.Size = New System.Drawing.Size(206, 20)
+        Me.txt_Name.Size = New System.Drawing.Size(194, 20)
         Me.txt_Name.TabIndex = 1
         '
         'txt_Education
@@ -397,7 +432,7 @@ Partial Class frm_Sender
         Me.txt_Education.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_Education.Location = New System.Drawing.Point(117, 29)
         Me.txt_Education.Name = "txt_Education"
-        Me.txt_Education.Size = New System.Drawing.Size(206, 20)
+        Me.txt_Education.Size = New System.Drawing.Size(194, 20)
         Me.txt_Education.TabIndex = 2
         '
         'txt_Position
@@ -405,7 +440,7 @@ Partial Class frm_Sender
         Me.txt_Position.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_Position.Location = New System.Drawing.Point(117, 55)
         Me.txt_Position.Name = "txt_Position"
-        Me.txt_Position.Size = New System.Drawing.Size(206, 20)
+        Me.txt_Position.Size = New System.Drawing.Size(194, 20)
         Me.txt_Position.TabIndex = 3
         '
         'txt_GSTIN
@@ -413,7 +448,7 @@ Partial Class frm_Sender
         Me.txt_GSTIN.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_GSTIN.Location = New System.Drawing.Point(117, 81)
         Me.txt_GSTIN.Name = "txt_GSTIN"
-        Me.txt_GSTIN.Size = New System.Drawing.Size(206, 20)
+        Me.txt_GSTIN.Size = New System.Drawing.Size(194, 20)
         Me.txt_GSTIN.TabIndex = 4
         '
         'LabelControl20
@@ -533,7 +568,7 @@ Partial Class frm_Sender
         Me.txt_EstimateBillHeading.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_EstimateBillHeading.Location = New System.Drawing.Point(117, 107)
         Me.txt_EstimateBillHeading.Name = "txt_EstimateBillHeading"
-        Me.txt_EstimateBillHeading.Size = New System.Drawing.Size(206, 20)
+        Me.txt_EstimateBillHeading.Size = New System.Drawing.Size(194, 20)
         Me.txt_EstimateBillHeading.TabIndex = 5
         '
         'txt_AddressLine1
@@ -541,7 +576,7 @@ Partial Class frm_Sender
         Me.txt_AddressLine1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_AddressLine1.Location = New System.Drawing.Point(117, 133)
         Me.txt_AddressLine1.Name = "txt_AddressLine1"
-        Me.txt_AddressLine1.Size = New System.Drawing.Size(206, 20)
+        Me.txt_AddressLine1.Size = New System.Drawing.Size(194, 20)
         Me.txt_AddressLine1.TabIndex = 6
         '
         'txt_AddressLine2
@@ -549,7 +584,7 @@ Partial Class frm_Sender
         Me.txt_AddressLine2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_AddressLine2.Location = New System.Drawing.Point(117, 159)
         Me.txt_AddressLine2.Name = "txt_AddressLine2"
-        Me.txt_AddressLine2.Size = New System.Drawing.Size(206, 20)
+        Me.txt_AddressLine2.Size = New System.Drawing.Size(194, 20)
         Me.txt_AddressLine2.TabIndex = 7
         '
         'txt_City
@@ -557,7 +592,7 @@ Partial Class frm_Sender
         Me.txt_City.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_City.Location = New System.Drawing.Point(117, 185)
         Me.txt_City.Name = "txt_City"
-        Me.txt_City.Size = New System.Drawing.Size(206, 20)
+        Me.txt_City.Size = New System.Drawing.Size(194, 20)
         Me.txt_City.TabIndex = 8
         '
         'txt_PINCode
@@ -565,7 +600,7 @@ Partial Class frm_Sender
         Me.txt_PINCode.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_PINCode.Location = New System.Drawing.Point(117, 211)
         Me.txt_PINCode.Name = "txt_PINCode"
-        Me.txt_PINCode.Size = New System.Drawing.Size(206, 20)
+        Me.txt_PINCode.Size = New System.Drawing.Size(194, 20)
         Me.txt_PINCode.TabIndex = 9
         '
         'txt_State
@@ -576,7 +611,7 @@ Partial Class frm_Sender
         Me.txt_State.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_State.Properties.Items.AddRange(New Object() {"Jammu & Kashmir", "Himachal Pradesh", "Punjab", "Chandigarh", "Uttarakhand", "Haryana", "Delhi", "Rajasthan", "Uttar Pradesh", "Bihar", "Sikkim", "Arunachal Pradesh", "Nagaland", "Manipur", "Mizoram", "Tripura", "Meghalaya", "Assam", "West Bengal", "Jharkhand", "Orissa", "Chhattisgarh", "Madhya Pradesh", "Gujarat", "Daman & Diu", "Dadra & Nagar Haveli", "Maharashtra", "Andhra Pradesh", "Karnataka", "Goa", "Lakshadweep", "Kerala", "Tamil Nadu", "Puducherry", "Andaman & Nicobar Islands", "Telengana", "Andrapradesh(New)"})
         Me.txt_State.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txt_State.Size = New System.Drawing.Size(206, 20)
+        Me.txt_State.Size = New System.Drawing.Size(194, 20)
         Me.txt_State.TabIndex = 10
         '
         'txt_StateCode
@@ -585,7 +620,7 @@ Partial Class frm_Sender
         Me.txt_StateCode.Location = New System.Drawing.Point(117, 263)
         Me.txt_StateCode.Name = "txt_StateCode"
         Me.txt_StateCode.Properties.ReadOnly = True
-        Me.txt_StateCode.Size = New System.Drawing.Size(206, 20)
+        Me.txt_StateCode.Size = New System.Drawing.Size(194, 20)
         Me.txt_StateCode.TabIndex = 32
         '
         'txt_PhoneNumber
@@ -593,7 +628,7 @@ Partial Class frm_Sender
         Me.txt_PhoneNumber.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_PhoneNumber.Location = New System.Drawing.Point(117, 289)
         Me.txt_PhoneNumber.Name = "txt_PhoneNumber"
-        Me.txt_PhoneNumber.Size = New System.Drawing.Size(206, 20)
+        Me.txt_PhoneNumber.Size = New System.Drawing.Size(194, 20)
         Me.txt_PhoneNumber.TabIndex = 11
         '
         'txt_MobileNumber
@@ -601,7 +636,7 @@ Partial Class frm_Sender
         Me.txt_MobileNumber.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_MobileNumber.Location = New System.Drawing.Point(117, 315)
         Me.txt_MobileNumber.Name = "txt_MobileNumber"
-        Me.txt_MobileNumber.Size = New System.Drawing.Size(206, 20)
+        Me.txt_MobileNumber.Size = New System.Drawing.Size(194, 20)
         Me.txt_MobileNumber.TabIndex = 12
         '
         'txt_EMail
@@ -609,14 +644,114 @@ Partial Class frm_Sender
         Me.txt_EMail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_EMail.Location = New System.Drawing.Point(117, 341)
         Me.txt_EMail.Name = "txt_EMail"
-        Me.txt_EMail.Size = New System.Drawing.Size(206, 20)
+        Me.txt_EMail.Size = New System.Drawing.Size(194, 20)
         Me.txt_EMail.TabIndex = 13
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.pic_Logo)
+        Me.Panel1.Controls.Add(Me.TableLayoutPanel2)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(117, 397)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(194, 93)
+        Me.Panel1.TabIndex = 35
+        '
+        'pic_Logo
+        '
+        Me.pic_Logo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pic_Logo.Location = New System.Drawing.Point(0, 0)
+        Me.pic_Logo.Name = "pic_Logo"
+        Me.pic_Logo.Size = New System.Drawing.Size(194, 65)
+        Me.pic_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pic_Logo.TabIndex = 1
+        Me.pic_Logo.TabStop = False
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.ColumnCount = 2
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.btn_SelectImage, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.btn_RemoveImage, 1, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 65)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(194, 28)
+        Me.TableLayoutPanel2.TabIndex = 0
+        '
+        'btn_SelectImage
+        '
+        Me.btn_SelectImage.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btn_SelectImage.Location = New System.Drawing.Point(3, 3)
+        Me.btn_SelectImage.Name = "btn_SelectImage"
+        Me.btn_SelectImage.Size = New System.Drawing.Size(91, 22)
+        Me.btn_SelectImage.TabIndex = 0
+        Me.btn_SelectImage.Text = "Select Image"
+        '
+        'btn_RemoveImage
+        '
+        Me.btn_RemoveImage.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btn_RemoveImage.Location = New System.Drawing.Point(100, 3)
+        Me.btn_RemoveImage.Name = "btn_RemoveImage"
+        Me.btn_RemoveImage.Size = New System.Drawing.Size(91, 22)
+        Me.btn_RemoveImage.TabIndex = 1
+        Me.btn_RemoveImage.Text = "Remove Image"
+        '
+        'LabelControl19
+        '
+        Me.LabelControl19.Appearance.Options.UseTextOptions = True
+        Me.LabelControl19.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+        Me.LabelControl19.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl19.Location = New System.Drawing.Point(109, 397)
+        Me.LabelControl19.Name = "LabelControl19"
+        Me.LabelControl19.Size = New System.Drawing.Size(2, 93)
+        Me.LabelControl19.TabIndex = 36
+        Me.LabelControl19.Text = ":"
+        '
+        'dlg_SelectImage
+        '
+        Me.dlg_SelectImage.Filter = "Supported Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif"
+        '
+        'LabelControl31
+        '
+        Me.LabelControl31.Appearance.Options.UseTextOptions = True
+        Me.LabelControl31.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelControl31.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+        Me.LabelControl31.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControl31.Location = New System.Drawing.Point(3, 367)
+        Me.LabelControl31.Name = "LabelControl31"
+        Me.LabelControl31.Size = New System.Drawing.Size(100, 24)
+        Me.LabelControl31.TabIndex = 37
+        Me.LabelControl31.Text = "Print Logo"
+        '
+        'LabelControl32
+        '
+        Me.LabelControl32.Appearance.Options.UseTextOptions = True
+        Me.LabelControl32.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+        Me.LabelControl32.Location = New System.Drawing.Point(109, 367)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(4, 13)
+        Me.LabelControl32.TabIndex = 38
+        Me.LabelControl32.Text = ":"
+        '
+        'switch_PrintLogo
+        '
+        Me.switch_PrintLogo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.switch_PrintLogo.Location = New System.Drawing.Point(117, 367)
+        Me.switch_PrintLogo.Name = "switch_PrintLogo"
+        Me.switch_PrintLogo.Properties.OffText = "Off"
+        Me.switch_PrintLogo.Properties.OnText = "On"
+        Me.switch_PrintLogo.Size = New System.Drawing.Size(194, 24)
+        Me.switch_PrintLogo.TabIndex = 39
         '
         'frm_Sender
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(326, 399)
+        Me.ClientSize = New System.Drawing.Size(314, 528)
         Me.ControlBox = False
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.PanelControl1)
@@ -644,6 +779,10 @@ Partial Class frm_Sender
         CType(Me.txt_PhoneNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_MobileNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_EMail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        CType(Me.pic_Logo, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        CType(Me.switch_PrintLogo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -693,4 +832,15 @@ Partial Class frm_Sender
     Friend WithEvents txt_PhoneNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_MobileNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_EMail As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl30 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents pic_Logo As PictureBox
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents btn_SelectImage As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btn_RemoveImage As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents dlg_SelectImage As OpenFileDialog
+    Friend WithEvents LabelControl31 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl32 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents switch_PrintLogo As DevExpress.XtraEditors.ToggleSwitch
 End Class

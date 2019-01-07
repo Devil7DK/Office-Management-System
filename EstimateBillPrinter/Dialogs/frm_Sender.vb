@@ -47,21 +47,31 @@ Public Class frm_Sender
 
     Private Sub btn_OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_OK.Click
         If mode = Enums.DialogMode.Add Then
-            Me.Item = Database.Senders.AddNew(txt_Name.Text, txt_Education.Text, txt_Position.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_StateCode.Text, txt_PhoneNumber.Text, txt_MobileNumber.Text, txt_EMail.Text, txt_GSTIN.Text, txt_EstimateBillHeading.Text, False)
+            Me.Item = Database.Senders.AddNew(txt_Name.Text, txt_Education.Text, txt_Position.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_StateCode.Text, txt_PhoneNumber.Text, txt_MobileNumber.Text, txt_EMail.Text, txt_GSTIN.Text, txt_EstimateBillHeading.Text, pic_Logo.Image, switch_PrintLogo.IsOn, False)
             If Me.Item IsNot Nothing Then
                 Me.DialogResult = DialogResult.OK
                 Me.Close()
             End If
         Else
-            Dim Result As Boolean = Database.Senders.Update(ID, txt_Name.Text, txt_Education.Text, txt_Position.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_StateCode.Text, txt_PhoneNumber.Text, txt_MobileNumber.Text, txt_EMail.Text, txt_GSTIN.Text, txt_EstimateBillHeading.Text, False)
+            Dim Result As Boolean = Database.Senders.Update(ID, txt_Name.Text, txt_Education.Text, txt_Position.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_StateCode.Text, txt_PhoneNumber.Text, txt_MobileNumber.Text, txt_EMail.Text, txt_GSTIN.Text, txt_EstimateBillHeading.Text, pic_Logo.Image, switch_PrintLogo.IsOn, False)
             If Result Then
-                Me.Item = New Sender(ID, txt_Name.Text, txt_Education.Text, txt_Position.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_StateCode.Text, txt_PhoneNumber.Text, txt_MobileNumber.Text, txt_EMail.Text, txt_GSTIN.Text, txt_EstimateBillHeading.Text)
+                Me.Item = New Sender(ID, txt_Name.Text, txt_Education.Text, txt_Position.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_StateCode.Text, txt_PhoneNumber.Text, txt_MobileNumber.Text, txt_EMail.Text, txt_GSTIN.Text, txt_EstimateBillHeading.Text, pic_Logo.Image, switch_PrintLogo.IsOn)
                 Me.DialogResult = DialogResult.OK
                 Me.Close()
             Else
                 MsgBox("Unable to edit sender!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             End If
         End If
+    End Sub
+
+    Private Sub btn_SelectImage_Click(sender As Object, e As EventArgs) Handles btn_SelectImage.Click
+        If dlg_SelectImage.ShowDialog = DialogResult.OK Then
+            pic_Logo.Image = Image.FromFile(dlg_SelectImage.FileName)
+        End If
+    End Sub
+
+    Private Sub btn_RemoveImage_Click(sender As Object, e As EventArgs) Handles btn_RemoveImage.Click
+        pic_Logo.Image = Nothing
     End Sub
 #End Region
 
@@ -84,6 +94,7 @@ Public Class frm_Sender
                 txt_EMail.Text = Item.Email
                 txt_GSTIN.Text = Item.GSTIN
                 txt_EstimateBillHeading.Text = Item.EstimateBillHeading
+                pic_Logo.Image = Item.Logo
             End If
         Catch ex As Exception
         End Try
