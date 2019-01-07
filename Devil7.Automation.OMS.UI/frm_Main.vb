@@ -719,6 +719,27 @@ Public Class frm_Main
         End Try
     End Sub
 
+    Private Sub UpdateRemarks(sender As System.Object, e As EventArgs)
+        Try
+            If gv_Home.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+
+                Dim i As New InputBox("Update Remarks", "Edit Remarks :", row.Remarks)
+                If i.ShowDialog = DialogResult.OK Then
+                    If Database.Workbook.UpdateRemarks(row.ID, i.Result, (row.GetHistory & vbNewLine & "Remarks updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                        row.Remarks = i.Result
+                        MsgBox("Successfully updated remarks of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    Else
+                        MsgBox("Unknown error on updating remarks of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(String.Format("Error on updating remarks of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+        End Try
+    End Sub
+
     Private Sub AssignTo(sender As System.Object, e As EventArgs)
         Dim user As Objects.User = Me.User
         Try
@@ -800,6 +821,7 @@ Public Class frm_Main
             Dim UpdateStatusMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Update Status"}
             Dim UpdatePriorityMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Update Priority"}
             Dim AssignToMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Assign To", .BeginGroup = True}
+            Dim UpdateRemarksMenu As New DevExpress.Utils.Menu.DXMenuItem("Update Remarks", AddressOf UpdateRemarks) With {.BeginGroup = True}
 
             For i As Integer = 0 To 3
                 UpdateStatusMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem([Enum].GetName(GetType(Enums.WorkStatus), i), AddressOf UpdateStatus) With {.Tag = i & ":" & item.CurrentStep})
@@ -818,6 +840,7 @@ Public Class frm_Main
             e.Menu.Items.Add(UpdatePriorityMenu)
             e.Menu.Items.Add(UpdateStageMenu)
             e.Menu.Items.Add(AssignToMenu)
+            e.Menu.Items.Add(UpdateRemarksMenu)
         End If
     End Sub
 
