@@ -489,6 +489,7 @@
             Me.cmb_Client.Location = New System.Drawing.Point(136, 53)
             Me.cmb_Client.Name = "cmb_Client"
             Me.cmb_Client.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+            Me.cmb_Client.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
             Me.cmb_Client.Size = New System.Drawing.Size(349, 20)
             Me.cmb_Client.TabIndex = 2
             '

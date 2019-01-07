@@ -257,7 +257,17 @@ Namespace Dialogs
 
             End Try
         End Sub
-    End Class
-#End Region
 
+        Private Sub cmb_Client_Properties_PopupFilter(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.Controls.PopupFilterEventArgs) Handles cmb_Client.Properties.PopupFilter
+            If String.IsNullOrEmpty(e.SearchText) Then
+                Return
+            End If
+            Dim edit As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+            Dim propertyDescriptors As ComponentModel.PropertyDescriptorCollection = System.Windows.Forms.ListBindingHelper.GetListItemProperties(edit.Properties.DataSource)
+            Dim operators As IEnumerable(Of DevExpress.Data.Filtering.FunctionOperator) = propertyDescriptors.OfType(Of ComponentModel.PropertyDescriptor)().Select(Function(t) New DevExpress.Data.Filtering.FunctionOperator(DevExpress.Data.Filtering.FunctionOperatorType.Contains, New DevExpress.Data.Filtering.OperandProperty(t.Name), New DevExpress.Data.Filtering.OperandValue(e.SearchText)))
+            e.Criteria = New DevExpress.Data.Filtering.GroupOperator(DevExpress.Data.Filtering.GroupOperatorType.Or, operators)
+            e.SuppressSearchCriteria = True
+        End Sub
+#End Region
+    End Class
 End Namespace
