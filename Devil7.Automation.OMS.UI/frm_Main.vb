@@ -907,6 +907,11 @@ Public Class frm_Main
                 np_Billing.PageVisible = True
             Case Enums.UserType.User
                 np_Billing.PageVisible = False
+                If User.Permissions.HasFlag(Enums.UserPermissions.ViewPending) Then
+                    np_Pending.PageVisible = True
+                Else
+                    np_Pending.PageVisible = False
+                End If
                 If User.Permissions.HasFlag(Enums.UserPermissions.ViewWork) Then
                     np_Workbook.PageVisible = True
                     btn_AddWork.Visibility = Not User.Permissions.HasFlag(Enums.UserPermissions.AddWork)
