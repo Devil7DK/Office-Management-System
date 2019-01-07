@@ -65,6 +65,7 @@ Partial Class InputBox
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "InputBox"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Enter Text"
         CType(Me.txt_Input.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
