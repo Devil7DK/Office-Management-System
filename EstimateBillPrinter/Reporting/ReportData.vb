@@ -28,26 +28,101 @@ Public Class ReportData
     Property Sender As Sender
     Property Receiver As Client
     Property Services As List(Of Service)
-    Property Fees As Double
+    Property TotalFees As Double
     Property HasGSTIN As Boolean
     Property FeesInWords As String
     Property PrintTaxDetails As Boolean
     Property GSTPercentage As Double
+    Property Heading As String
+    Property SubHeading As String
+    ReadOnly Property Logo As Image
+        Get
+            If Sender IsNot Nothing AndAlso Sender.Logo IsNot Nothing Then
+                Return Sender.Logo
+            Else
+                Return GenerateLogo(Sender.Name)
+            End If
+        End Get
+    End Property
+
+
+    ReadOnly Property SenderAddress As String
+        Get
+            Dim Address As String = ""
+
+            If Sender IsNot Nothing Then
+                Address = String.Format("{1},{0}{2},{0}{3} - {4}", vbNewLine, Sender.AddressLine1.Trim.TrimEnd(","), Sender.AddressLine2.Trim.TrimEnd(","), Sender.City.Trim.TrimEnd(","), Sender.PINCode)
+            End If
+
+            Return Address
+        End Get
+    End Property
+
+    ReadOnly Property ReceiversAddress As String
+        Get
+            Dim Address As String = ""
+
+            If Sender IsNot Nothing Then
+                Address = String.Format("{1},{0}{2},{0}{3} - {4}{0}{5} ({6})", vbNewLine, Receiver.AddressLine1.Trim.TrimEnd(","), Receiver.AddressLine2.Trim.TrimEnd(","), Receiver.District.Trim.TrimEnd(","), Receiver.PinCode, Receiver.State, Receiver.StateCode)
+            End If
+
+            Return Address
+        End Get
+    End Property
+
+    ReadOnly Property GST As Double
+        Get
+            Return TotalFees * (GSTPercentage / 100)
+        End Get
+    End Property
+
+    ReadOnly Property GrandTotal As Double
+        Get
+            Return TotalFees + GST
+        End Get
+    End Property
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal SerialNumber As String, ByVal EstimateDate As Date, ByVal Sender As Sender, ByVal Receiver As Client, ByVal Services As List(Of Service), ByVal Fees As Double, ByVal HasGSTIN As Boolean, ByVal FeesInWords As String, ByVal PrintTaxDetails As Boolean, ByVal GSTPercentage As Double)
-        Me.SerialNumber = SerialNumber
-        Me.EstimateDate = EstimateDate
-        Me.Sender = Sender
+    Sub New(ByVal EstimateBill As EstimateBill, ByVal Receiver As Client, ByVal PrintTaxDetails As Boolean, ByVal GSTPercentage As Double)
+        Me.SerialNumber = EstimateBill.SerialNo
+        Me.EstimateDate = EstimateBill.EstimateDate
+        Me.Sender = EstimateBill.Sender
         Me.Receiver = Receiver
-        Me.Services = Services
-        Me.Fees = Fees
-        Me.HasGSTIN = HasGSTIN
-        Me.FeesInWords = FeesInWords
+        Me.Services = EstimateBill.Services
+        Me.TotalFees = EstimateBill.Fees
+        Me.HasGSTIN = EstimateBill.HasGSTIN
+        Me.FeesInWords = [Lib].Utils.Misc.AmountInWords(EstimateBill.Fees)
         Me.PrintTaxDetails = PrintTaxDetails
         Me.GSTPercentage = GSTPercentage
+
+        If EstimateBill.Sender.EstimateBillHeading.Contains("|") Then
+            Me.Heading = EstimateBill.Sender.EstimateBillHeading.Split("|")(0)
+            Me.SubHeading = EstimateBill.Sender.EstimateBillHeading.Split("|")(1)
+        Else
+            Me.Heading = EstimateBill.Sender.EstimateBillHeading
+            Me.SubHeading = ""
+        End If
     End Sub
+#End Region
+
+#Region "Functions"
+    Function GenerateLogo(ByVal Name As String) As Image
+        If String.IsNullOrEmpty(Name) Then
+            Name = "D"
+        End If
+
+        Dim Image As New Bitmap(100, 100)
+        Dim G As Graphics = Graphics.FromImage(Image)
+        Dim Rect As New Rectangle(10, 10, 80, 80)
+        G.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
+        G.FillEllipse(Brushes.LightGreen, Rect)
+        G.DrawEllipse(New Pen(Brushes.Black, 2), Rect)
+        G.DrawString(Name.Substring(0, 1), New Font("Century Gothic", 30, FontStyle.Bold), Brushes.White, Rect, New StringFormat With {.LineAlignment = StringAlignment.Center, .Alignment = StringAlignment.Center})
+        G.Dispose()
+
+        Return Image
+    End Function
 #End Region
 
 End Class
