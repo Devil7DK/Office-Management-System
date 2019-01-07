@@ -35,5 +35,6 @@ Namespace Enums
         AddClient = 512
         EditClient = 1024
         ViewClient = 2048
+        ViewPending = 4096
     End Enum
 End Namespace
