@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.ComponentModel
+Imports System.Xml.Serialization
 
 Namespace Objects
     Public Class Sender
@@ -58,11 +59,36 @@ Namespace Objects
 
         <DisplayName("E-Mail ID")>
         Property Email As String
+
+        <XmlIgnore>
+        Property Logo As Drawing.Image
+
+        <Browsable(False)>
+        Property PrintLogo As Boolean
+
+        <XmlElement("LogoData"), Browsable(False)>
+        Property LogoBytes As Byte()
+            Get
+                If Logo Is Nothing Then
+                    Return Nothing
+                Else
+                    Using MS As New IO.MemoryStream()
+                        Logo.Save(MS, Logo.RawFormat)
+                        Return MS.ToArray
+                    End Using
+                End If
+            End Get
+            Set(value As Byte())
+                Using MS As New IO.MemoryStream(value)
+                    Logo = Drawing.Image.FromStream(MS)
+                End Using
+            End Set
+        End Property
 #End Region
 
 #Region "Subs"
         Public Overrides Function ToString() As String
-            Return Me.Name
+            Return String.Format("{0} ({1})", Me.Name, If(Me.EstimateBillHeading.Contains("|"), Me.EstimateBillHeading.Split("|")(0), Me.EstimateBillHeading))
         End Function
 #End Region
 
@@ -83,9 +109,11 @@ Namespace Objects
             Me.Email = ""
             Me.GSTIN = ""
             Me.EstimateBillHeading = ""
+            Me.Logo = Nothing
+            Me.PrintLogo = False
         End Sub
 
-        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal EstimateBillHeading As String)
+        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal EstimateBillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean)
             Me.ID = ID
             Me.Name = Name
             Me.Education = Education
@@ -101,6 +129,8 @@ Namespace Objects
             Me.Email = Email
             Me.GSTIN = GSTIN
             Me.EstimateBillHeading = EstimateBillHeading
+            Me.Logo = Logo
+            Me.PrintLogo = PrintLogo
         End Sub
 #End Region
 
