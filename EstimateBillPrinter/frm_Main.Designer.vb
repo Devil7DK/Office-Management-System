@@ -26,9 +26,6 @@ Partial Class frm_Main
         Me.btn_Edit = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Remove = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Print = New DevExpress.XtraBars.BarButtonItem()
-        Me.btn_PrintPreview = New DevExpress.XtraBars.BarButtonItem()
-        Me.btn_Export_PDF = New DevExpress.XtraBars.BarButtonItem()
-        Me.btn_Export_Word = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Sender = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Services = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Settings = New DevExpress.XtraBars.BarButtonItem()
@@ -37,13 +34,13 @@ Partial Class frm_Main
         Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_EstimateBills = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.gc_EstimateBills = New DevExpress.XtraGrid.GridControl()
         Me.gv_EstimateBills = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ProgressPanel_Bills = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader = New System.ComponentModel.BackgroundWorker()
+        Me.btn_PrintPreview = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +49,7 @@ Partial Class frm_Main
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_PrintPreview, Me.btn_Export_PDF, Me.btn_Export_Word, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
         Me.RibbonControl.MaxItemId = 14
         Me.RibbonControl.Name = "RibbonControl"
@@ -100,27 +97,6 @@ Partial Class frm_Main
         Me.btn_Print.ImageOptions.SvgImage = CType(resources.GetObject("btn_Print.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Print.Name = "btn_Print"
         '
-        'btn_PrintPreview
-        '
-        Me.btn_PrintPreview.Caption = "Preview"
-        Me.btn_PrintPreview.Id = 6
-        Me.btn_PrintPreview.ImageOptions.SvgImage = CType(resources.GetObject("btn_PrintPreview.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btn_PrintPreview.Name = "btn_PrintPreview"
-        '
-        'btn_Export_PDF
-        '
-        Me.btn_Export_PDF.Caption = "PDF"
-        Me.btn_Export_PDF.Id = 7
-        Me.btn_Export_PDF.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_PDF.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btn_Export_PDF.Name = "btn_Export_PDF"
-        '
-        'btn_Export_Word
-        '
-        Me.btn_Export_Word.Caption = "Word"
-        Me.btn_Export_Word.Id = 8
-        Me.btn_Export_Word.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Word.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btn_Export_Word.Name = "btn_Export_Word"
-        '
         'btn_Sender
         '
         Me.btn_Sender.Caption = "Senders"
@@ -157,7 +133,7 @@ Partial Class frm_Main
         '
         'rp_Home
         '
-        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.RibbonPageGroup3, Me.RibbonPageGroup4, Me.RibbonPageGroup2})
+        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.RibbonPageGroup3, Me.RibbonPageGroup2})
         Me.rp_Home.Name = "rp_Home"
         Me.rp_Home.Text = "Home"
         '
@@ -174,19 +150,9 @@ Partial Class frm_Main
         'RibbonPageGroup3
         '
         Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_Print)
-        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_PrintPreview)
         Me.RibbonPageGroup3.Name = "RibbonPageGroup3"
         Me.RibbonPageGroup3.ShowCaptionButton = False
         Me.RibbonPageGroup3.Text = "Printing"
-        '
-        'RibbonPageGroup4
-        '
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_PDF)
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_Word)
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.btn_Export_Excel, True)
-        Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
-        Me.RibbonPageGroup4.ShowCaptionButton = False
-        Me.RibbonPageGroup4.Text = "Export"
         '
         'RibbonPageGroup2
         '
@@ -237,6 +203,13 @@ Partial Class frm_Main
         'Loader
         '
         '
+        'btn_PrintPreview
+        '
+        Me.btn_PrintPreview.Caption = "Preview"
+        Me.btn_PrintPreview.Id = 6
+        Me.btn_PrintPreview.ImageOptions.SvgImage = CType(resources.GetObject("btn_PrintPreview.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_PrintPreview.Name = "btn_PrintPreview"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -267,20 +240,17 @@ Partial Class frm_Main
     Friend WithEvents gv_EstimateBills As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ProgressPanel_Bills As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents RibbonPageGroup3 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
-    Friend WithEvents RibbonPageGroup4 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents btn_Refresh As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Add As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Edit As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Remove As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Print As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents btn_PrintPreview As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents btn_Export_PDF As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents btn_Export_Word As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Sender As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Services As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Settings As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents SkinRibbonGalleryBarItem1 As DevExpress.XtraBars.SkinRibbonGalleryBarItem
     Friend WithEvents btn_Export_Excel As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Loader As System.ComponentModel.BackgroundWorker
+    Friend WithEvents btn_PrintPreview As DevExpress.XtraBars.BarButtonItem
 End Class

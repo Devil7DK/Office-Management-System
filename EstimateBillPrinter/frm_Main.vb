@@ -156,6 +156,16 @@ Public Class frm_Main
         Dim n As New frm_Services
         If n.ShowDialog() = DialogResult.OK Then If Not Loader.IsBusy Then Loader.RunWorkerAsync()
     End Sub
+
+    Private Sub btn_Print_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Print.ItemClick
+        If gv_EstimateBills.SelectedRowsCount = 1 Then
+            Dim EstimateBill As EstimateBill = gv_EstimateBills.GetRow(gv_EstimateBills.GetSelectedRows(0))
+            Dim ReportData As New ReportData(EstimateBill, Database.Clients.GetClientByID(EstimateBill.Receiver.ID), My.Computer.Keyboard.CtrlKeyDown, 18)
+            Dim Report As New report_EstimateBill(ReportData)
+            Dim Viewer As New frm_ReportViewer(Report)
+            Viewer.ShowDialog()
+        End If
+    End Sub
 #End Region
 
 End Class
