@@ -500,115 +500,111 @@ Public Class frm_Main
     End Sub
 
     Sub SetupHomeColumns()
-        Dim HiddenColumns As String() = {"ID", "Owner", "AssignedTo", "CompletedOn", "Folder", "BillingStatus"}
-        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
-            If HiddenColumns.Contains(i.FieldName) Then
-                Me.Invoke(Sub()
-                              i.Visible = False
-                          End Sub)
-            End If
-        Next
-
-        Dim AvailableColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
-        Dim MinimalColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
-        If cmb_HomeView.EditValue = "Minimal" Then
-            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
-                If AvailableColumns.Contains(i.FieldName) Then
-                    If MinimalColumns.Contains(i.FieldName) Then
-                        Me.Invoke(Sub()
-                                      i.Visible = True
-                                  End Sub)
-                    Else
-                        Me.Invoke(Sub()
-                                      i.Visible = False
-                                  End Sub)
-                    End If
-                End If
-            Next
+        If InvokeRequired Then
+            Invoke(Sub() SetupHomeColumns())
         Else
+            Dim HiddenColumns As String() = {"ID", "Owner", "AssignedTo", "CompletedOn", "Folder", "BillingStatus", "WorkType"}
             For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
-                If AvailableColumns.Contains(i.FieldName) Then
-                    Me.Invoke(Sub()
-                                  i.Visible = True
-                              End Sub)
+                If HiddenColumns.Contains(i.FieldName) Then
+                    i.Visible = False
                 End If
             Next
+
+            Dim AvailableColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
+            Dim MinimalColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
+            If cmb_HomeView.EditValue = "Minimal" Then
+                For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+                    If AvailableColumns.Contains(i.FieldName) Then
+                        If MinimalColumns.Contains(i.FieldName) Then
+                            i.Visible = True
+                        Else
+                            i.Visible = False
+                        End If
+                    End If
+                Next
+            Else
+                For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+                    If AvailableColumns.Contains(i.FieldName) Then
+                        i.Visible = True
+                    End If
+                Next
+            End If
         End If
     End Sub
 
     Sub SetupWorkbookColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CurrentStep", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
-        Dim ModerateColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
-        Dim AdvancedColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
-
-        Dim AvailableColumns As String()
-        If cmb_WorkbookView.EditValue = "Minimal" Then
-            AvailableColumns = MinimalColumns
-        ElseIf cmb_WorkbookView.EditValue = "Moderate" Then
-            AvailableColumns = ModerateColumns
+        If InvokeRequired Then
+            Invoke(Sub() SetupWorkbookColumns())
         Else
-            AvailableColumns = AdvancedColumns
-        End If
+            Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CurrentStep", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
+            Dim ModerateColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
+            Dim AdvancedColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
 
-        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_WorkBook.Columns
-            If AvailableColumns.Contains(i.FieldName) Then
-                Me.Invoke(Sub()
-                              i.Visible = True
-                          End Sub)
+            Dim AvailableColumns As String()
+            If cmb_WorkbookView.EditValue = "Minimal" Then
+                AvailableColumns = MinimalColumns
+            ElseIf cmb_WorkbookView.EditValue = "Moderate" Then
+                AvailableColumns = ModerateColumns
             Else
-                Me.Invoke(Sub()
-                              i.Visible = False
-                          End Sub)
+                AvailableColumns = AdvancedColumns
             End If
-        Next
+
+            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_WorkBook.Columns
+                If AvailableColumns.Contains(i.FieldName) Then
+                    i.Visible = True
+                Else
+                    i.Visible = False
+                End If
+            Next
+        End If
     End Sub
 
     Sub SetupBillingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssessmentDetail"}
-        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
-
-        Dim AvailableColumns As String()
-        If cmb_BillingView.EditValue = "Minimal" Then
-            AvailableColumns = MinimalColumns
+        If InvokeRequired Then
+            Invoke(Sub() SetupBillingColumns())
         Else
-            AvailableColumns = FullColumns
-        End If
+            Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssessmentDetail"}
+            Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
 
-        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Billing.Columns
-            If AvailableColumns.Contains(i.FieldName) Then
-                Me.Invoke(Sub()
-                              i.Visible = True
-                          End Sub)
+            Dim AvailableColumns As String()
+            If cmb_BillingView.EditValue = "Minimal" Then
+                AvailableColumns = MinimalColumns
             Else
-                Me.Invoke(Sub()
-                              i.Visible = False
-                          End Sub)
+                AvailableColumns = FullColumns
             End If
-        Next
+
+            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Billing.Columns
+                If AvailableColumns.Contains(i.FieldName) Then
+                    i.Visible = True
+                Else
+                    i.Visible = False
+                End If
+            Next
+        End If
     End Sub
 
     Sub SetupPendingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssessmentDetail"}
-        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
-
-        Dim AvailableColumns As String()
-        If cmb_PendingView.EditValue = "Minimal" Then
-            AvailableColumns = MinimalColumns
+        If InvokeRequired Then
+            Invoke(Sub() SetupBillingColumns())
         Else
-            AvailableColumns = FullColumns
-        End If
+            Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssessmentDetail"}
+            Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
 
-        For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Pending.Columns
-            If AvailableColumns.Contains(i.FieldName) Then
-                Me.Invoke(Sub()
-                              i.Visible = True
-                          End Sub)
+            Dim AvailableColumns As String()
+            If cmb_PendingView.EditValue = "Minimal" Then
+                AvailableColumns = MinimalColumns
             Else
-                Me.Invoke(Sub()
-                              i.Visible = False
-                          End Sub)
+                AvailableColumns = FullColumns
             End If
-        Next
+
+            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Pending.Columns
+                If AvailableColumns.Contains(i.FieldName) Then
+                    i.Visible = True
+                Else
+                    i.Visible = False
+                End If
+            Next
+        End If
     End Sub
 
     Private Sub Loader_Home_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Home.DoWork
