@@ -105,7 +105,7 @@ Namespace Dialogs
                 txt_TargetDate.DateTime = Work.TargetDate
                 Priority = Work.PriorityOfWork
                 txt_FinancialYearMonth.Value = Work.FinancialDetail
-                txt_AssessmentYearMonth.Value = Work.AssementDetail
+                txt_AssessmentYearMonth.Value = Work.AssessmentDetail
                 txt_Description.Text = Work.Description
                 txt_Remarks.Text = Work.Remarks
                 Status = Work.Status

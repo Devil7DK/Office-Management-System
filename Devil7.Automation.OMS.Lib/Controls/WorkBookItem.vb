@@ -45,7 +45,7 @@ Namespace Controls
                 txt_TargetDate.DateTime = Item_.TargetDate
                 txt_Priority.Text = Item_.PriorityOfWork
                 txt_FinancialYearMonth.Value = Item_.FinancialDetail
-                txt_AssessmentYearMonth.Value = Item_.AssementDetail
+                txt_AssessmentYearMonth.Value = Item_.AssessmentDetail
                 txt_Description.Text = Item_.Description
                 txt_Remarks.Text = Item_.Remarks
                 txt_Status.Text = Item_.Status

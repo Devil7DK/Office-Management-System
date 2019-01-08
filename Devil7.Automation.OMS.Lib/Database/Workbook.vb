@@ -330,7 +330,7 @@ Namespace Database
             If R AndAlso Status = Enums.WorkStatus.Completed Then
                 If WorkbookItem.Job.FollowUps.Count > 0 Then
                     For Each i As Job In WorkbookItem.Job.FollowUps
-                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssementDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added")
+                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssessmentDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added")
                         If w Is Nothing Then
                             MsgBox("Unable to add followup job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
                         End If
@@ -439,13 +439,13 @@ Namespace Database
             Dim PriorityOfWork As Enums.Priority = Reader.Item("Priority")
             Dim Status As Enums.WorkStatus = Reader.Item("Status")
             Dim Folder As String = Reader.Item("Folder").ToString
-            Dim AssementDetail As String = Reader.Item("AssessmentDetails").ToString
+            Dim AssessmentDetail As String = Reader.Item("AssessmentDetails").ToString
             Dim FinancialDetail As String = Reader.Item("FinancialDetails").ToString
             Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
             Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
             Dim History As String = Reader.Item("History").ToString.Trim
             Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
-            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail))
+            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail))
         End Function
 
         Private Function Read(ByVal Reader As SqlDataReader) As WorkbookItem
@@ -463,13 +463,13 @@ Namespace Database
             Dim PriorityOfWork As Enums.Priority = Reader.Item("Priority")
             Dim Status As Enums.WorkStatus = Reader.Item("Status")
             Dim Folder As String = Reader.Item("Folder").ToString
-            Dim AssementDetail As String = Reader.Item("AssessmentDetails").ToString
+            Dim AssessmentDetail As String = Reader.Item("AssessmentDetails").ToString
             Dim FinancialDetail As String = Reader.Item("FinancialDetails").ToString
             Dim CurrentStep As String = Reader.Item("CurrentStep").ToString
             Dim Owner As User = Users.GetUserByID(Reader.Item("Owner"))
             Dim History As String = Reader.Item("History").ToString.Trim
             Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
-            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssementDetail), YearMonth.Parse(FinancialDetail))
+            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail))
         End Function
 
     End Module

@@ -98,7 +98,7 @@ Namespace Dialogs
         End Sub
 
         Sub SetupColumns()
-            Dim AvailableColumns As String() = {"ID", "Job", "Client", "CurrentStep", "AddedOn", "CompletedOn", "Description", "Remarks", "Status", "AssementDetail", "FinancialDetail", "BillingStatus"}
+            Dim AvailableColumns As String() = {"ID", "Job", "Client", "CurrentStep", "AddedOn", "CompletedOn", "Description", "Remarks", "Status", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
 
             For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Result.Columns
                 If AvailableColumns.Contains(i.FieldName) Then
