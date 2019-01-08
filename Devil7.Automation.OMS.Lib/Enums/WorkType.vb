@@ -22,9 +22,8 @@
 Namespace Enums
     Public Enum WorkType As Integer
         Normal = 0
-        SelfAdded = 1
-        Transfer = 2
-        Followup = 3
-        AutoForward = 4
+        Transfer = 1
+        Followup = 2
+        AutoForward = 3
     End Enum
 End Namespace
