@@ -509,8 +509,8 @@ Public Class frm_Main
             End If
         Next
 
-        Dim AvailableColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssementDetail", "FinancialDetail"}
-        Dim MinimalColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssementDetail"}
+        Dim AvailableColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
+        Dim MinimalColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
         If cmb_HomeView.EditValue = "Minimal" Then
             For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
                 If AvailableColumns.Contains(i.FieldName) Then
@@ -537,9 +537,9 @@ Public Class frm_Main
     End Sub
 
     Sub SetupWorkbookColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CurrentStep", "TargetDate", "PriorityOfWork", "Status", "AssementDetail"}
-        Dim ModerateColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssementDetail", "FinancialDetail"}
-        Dim AdvancedColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssementDetail", "FinancialDetail"}
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CurrentStep", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
+        Dim ModerateColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
+        Dim AdvancedColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
 
         Dim AvailableColumns As String()
         If cmb_WorkbookView.EditValue = "Minimal" Then
@@ -564,8 +564,8 @@ Public Class frm_Main
     End Sub
 
     Sub SetupBillingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail"}
-        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "BillingStatus"}
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssessmentDetail"}
+        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
 
         Dim AvailableColumns As String()
         If cmb_BillingView.EditValue = "Minimal" Then
@@ -588,8 +588,8 @@ Public Class frm_Main
     End Sub
 
     Sub SetupPendingColumns()
-        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssementDetail"}
-        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssementDetail", "FinancialDetail", "BillingStatus"}
+        Dim MinimalColumns As String() = {"AssignedTo", "Job", "Client", "CompletedOn", "Description", "Remarks", "AssessmentDetail"}
+        Dim FullColumns As String() = {"Owner", "AssignedTo", "Job", "Client", "CurrentStep", "DueDate", "AddedOn", "CompletedOn", "Description", "Remarks", "TargetDate", "AssessmentDetail", "FinancialDetail", "BillingStatus"}
 
         Dim AvailableColumns As String()
         If cmb_PendingView.EditValue = "Minimal" Then
