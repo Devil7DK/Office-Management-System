@@ -57,13 +57,15 @@ Namespace Objects
         Property Folder As String
         <DisplayName("Billing Status")>
         Property BillingStatus As Enums.BillingStatus
+        <DisplayName("Work Type")>
+        Property WorkType As Enums.WorkType
 #End Region
 
 #Region "Constructor"
         Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As ClientMinimal,
              ByVal DueDate As Date, ByVal AddedOn As Date, ByVal CompletedOn As Date,
              ByVal UpdatedOn As Date, ByVal Description As String, ByVal Remarks As String,
-             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal BillingStatus As Enums.BillingStatus, ByVal AssessmentDetail As YearMonth, ByVal FinancialDetail As YearMonth)
+             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal BillingStatus As Enums.BillingStatus, ByVal AssessmentDetail As YearMonth, ByVal FinancialDetail As YearMonth, ByVal WorkType As Enums.WorkType)
             Me.ID = ID
             Me.AssignedTo = AssignedToUser
             Me.Job = Job
@@ -83,6 +85,7 @@ Namespace Objects
             Me.BillingStatus = BillingStatus
             Me.AssessmentDetail = AssessmentDetail
             Me.FinancialDetail = FinancialDetail
+            Me.WorkType = WorkType
         End Sub
 #End Region
 

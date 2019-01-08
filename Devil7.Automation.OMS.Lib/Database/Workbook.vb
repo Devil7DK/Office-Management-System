@@ -28,7 +28,7 @@ Namespace Database
 
         Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date,
                    ByVal Client As ClientMinimal, ByVal Status As Enums.WorkStatus, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
-                   ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String) As WorkbookItem
+                   ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String, ByVal WorkType As Enums.WorkType) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
             Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed]) VALUES (@User,@Job,@DueDate,@ClientID,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed);SELECT SCOPE_IDENTITY();"
@@ -59,10 +59,11 @@ Namespace Database
                 AddParameter(Command, "@Owner", Owner.ID)
                 AddParameter(Command, "@History", History)
                 AddParameter(Command, "@Billed", Enums.BillingStatus.NotBilled)
+                AddParameter(Command, "@WorkType", WorkType)
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History, False, Assessment, Financial)
+                    R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History, False, Assessment, Financial, WorkType)
                 Else
                     MsgBox("Unknown error while inserting workbook item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
                 End If
@@ -307,7 +308,7 @@ Namespace Database
             If Status = Enums.WorkStatus.Completed Then
                 Dim Forward As AutoForward = WorkbookItem.Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(CurrentStep.ToUpper))
                 If Forward IsNot Nothing AndAlso WorkbookItem.AssignedTo.ID <> Forward.UserID Then
-                    Return AssignTo(WorkbookItem.ID, Forward.UserID, (History & vbNewLine & "AutoForward: Work transferred to User with ID " & Forward.UserID & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim)
+                    Return AssignTo(WorkbookItem.ID, Forward.UserID, (History & vbNewLine & "AutoForward: Work transferred to User with ID " & Forward.UserID & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Enums.WorkType.AutoForward)
                 End If
             End If
 
@@ -330,7 +331,7 @@ Namespace Database
             If R AndAlso Status = Enums.WorkStatus.Completed Then
                 If WorkbookItem.Job.FollowUps.Count > 0 Then
                     For Each i As Job In WorkbookItem.Job.FollowUps
-                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssessmentDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added")
+                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssessmentDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added", Enums.WorkType.Followup)
                         If w Is Nothing Then
                             MsgBox("Unable to add followup job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
                         End If
@@ -362,10 +363,10 @@ Namespace Database
             Return R
         End Function
 
-        Function AssignTo(ByVal ID As Integer, ByVal NewUser As Integer, ByVal History As String)
+        Function AssignTo(ByVal ID As Integer, ByVal NewUser As Integer, ByVal History As String, Optional WorkType As Enums.WorkType = Enums.WorkType.Transfer)
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[User]=@User,[History]=@History WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Workbook SET [DateUpdated]=@DateUpdated,[User]=@User,[History]=@History,[WorkType]=@WorkType WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -375,6 +376,8 @@ Namespace Database
                 AddParameter(Command, "@DateUpdated", Now)
                 AddParameter(Command, "@User", NewUser)
                 AddParameter(Command, "@History", History)
+                AddParameter(Command, "@WorkType", WorkType)
+
                 If Command.ExecuteNonQuery() = 1 Then
                     R = True
                 End If
@@ -445,7 +448,9 @@ Namespace Database
             Dim Owner As User = Users(Users.BinarySearch(New User(Reader.Item("Owner")), New Comparers.CompareByID))
             Dim History As String = Reader.Item("History").ToString.Trim
             Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
-            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail))
+            Dim WorkType As Enums.WorkType = Reader.Item("WorkType")
+
+            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail), WorkType)
         End Function
 
         Private Function Read(ByVal Reader As SqlDataReader) As WorkbookItem
@@ -469,7 +474,9 @@ Namespace Database
             Dim Owner As User = Users.GetUserByID(Reader.Item("Owner"))
             Dim History As String = Reader.Item("History").ToString.Trim
             Dim Billed As Enums.BillingStatus = Reader.Item("Billed")
-            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail))
+            Dim WorkType As Enums.WorkType = Reader.Item("WorkType")
+
+            Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail), WorkType)
         End Function
 
     End Module
