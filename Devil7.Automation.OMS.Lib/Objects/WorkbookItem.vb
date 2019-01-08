@@ -19,13 +19,51 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.ComponentModel
+
 Namespace Objects
     Public Class WorkbookItem
 
+#Region "Properties/Fields"
+        Property ID As Integer
+        Property History As List(Of String)
+        Property Owner As User
+        <DisplayName("Assigned To")>
+        Property AssignedTo As User
+        Property Job As Job
+        Property Client As ClientMinimal
+        <DisplayName("Assessment Detail")>
+        Property AssessmentDetail As YearMonth
+        <DisplayName("Financial Detail")>
+        Property FinancialDetail As YearMonth
+        Property Status As Enums.WorkStatus
+        <DisplayName("Current Step")>
+        Property CurrentStep As String
+        <DisplayName("Due Date")>
+        Property DueDate As Date
+        <DisplayName("Added On")>
+        Property AddedOn As Date
+        <DisplayName("Completed On")>
+        Property CompletedOn As Date
+        <DisplayName("Updated On")>
+        Property UpdatedOn As Date
+        Property Description As String
+        Property Remarks As String
+        <DisplayName("Target Date")>
+        Property TargetDate As Date
+        <DisplayName("Priority")>
+        Property PriorityOfWork As Enums.Priority
+        <Browsable(False)>
+        Property Folder As String
+        <DisplayName("Billing Status")>
+        Property BillingStatus As Enums.BillingStatus
+#End Region
+
+#Region "Constructor"
         Sub New(ByVal ID As Integer, ByVal AssignedToUser As User, ByVal Job As Job, ByVal Client As ClientMinimal,
              ByVal DueDate As Date, ByVal AddedOn As Date, ByVal CompletedOn As Date,
              ByVal UpdatedOn As Date, ByVal Description As String, ByVal Remarks As String,
-             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal BillingStatus As Enums.BillingStatus, ByVal AssementDetail As YearMonth, ByVal FinancialDetail As YearMonth)
+             ByVal TargetDate As Date, ByVal PriorityOfWork As Enums.Priority, ByVal Status As Enums.WorkStatus, ByVal CurrentStep As String, ByVal Owner As User, ByVal History As String, ByVal BillingStatus As Enums.BillingStatus, ByVal AssessmentDetail As YearMonth, ByVal FinancialDetail As YearMonth)
             Me.ID = ID
             Me.AssignedTo = AssignedToUser
             Me.Job = Job
@@ -43,37 +81,12 @@ Namespace Objects
             Me.Owner = Owner
             Me.History = New List(Of String)(History.Split(New String() {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries))
             Me.BillingStatus = BillingStatus
-            Me.AssementDetail = AssementDetail
+            Me.AssessmentDetail = AssessmentDetail
             Me.FinancialDetail = FinancialDetail
         End Sub
+#End Region
 
-        Property ID As Integer
-        Property History As List(Of String)
-        Property Owner As User
-        Property AssignedTo As User
-        Property Job As Job
-        Property Client As ClientMinimal
-        Property AssementDetail As YearMonth
-        Property FinancialDetail As YearMonth
-        Property Status As Enums.WorkStatus
-        Property CurrentStep As String
-        Property DueDate As Date
-        Property AddedOn As Date
-        Property CompletedOn As Date
-        Property UpdatedOn As Date
-        Property Description As String
-        Property Remarks As String
-        Property TargetDate As Date
-        Property PriorityOfWork As Enums.Priority
-        Property Folder As String
-        Property BillingStatus As Enums.BillingStatus
-
-        Sub AddHistory(ByVal Text As String)
-            If Text <> "" Then
-                History.Add(Text)
-            End If
-        End Sub
-
+#Region "Functions"
         Function GetHistory()
             Dim r As String = ""
             For Each i As String In History
@@ -81,6 +94,7 @@ Namespace Objects
             Next
             Return r.Trim
         End Function
+#End Region
 
     End Class
 End Namespace
