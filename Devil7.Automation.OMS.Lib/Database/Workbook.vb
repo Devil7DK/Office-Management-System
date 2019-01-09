@@ -26,6 +26,7 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Workbook
 
+#Region "Update Functions - Normal"
         Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date,
                    ByVal Client As ClientMinimal, ByVal Status As Enums.WorkStatus, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
                    ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String, ByVal WorkType As Enums.WorkType) As WorkbookItem
@@ -72,8 +73,8 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal DueDate As Date, _
-                  ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date, _
+        Function Update(ByVal ID As Integer, ByVal DueDate As Date,
+                  ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
                    ByVal AssignedTo As User, ByVal History As String) As Boolean
             Dim R As Boolean = False
 
@@ -125,139 +126,9 @@ Namespace Database
 
             Return R
         End Function
+#End Region
 
-        Function GetWorkbookItemByID(ByVal ID As Integer) As WorkbookItem
-            Dim R As WorkbookItem = Nothing
-
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [ID]=@ID"
-            Dim Connection As SqlConnection = GetConnection()
-
-            If Connection.State <> ConnectionState.Open Then Connection.Open()
-
-
-            Using Command As New SqlCommand(CommandString, Connection)
-                AddParameter(Command, "@ID", ID)
-                Using Reader As SqlDataReader = Command.ExecuteReader
-                    If Reader.Read Then
-                        R = Read(Reader)
-                    End If
-                End Using
-            End Using
-
-            Return R
-        End Function
-
-        Function GetIncomplete(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
-            Dim R As New List(Of WorkbookItem)
-
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]<3;"
-            Dim Connection As SqlConnection = GetConnection()
-
-            If Connection.State <> ConnectionState.Open Then Connection.Open()
-
-            Jobs.Sort(New Comparers.CompareByID)
-            Users.Sort(New Comparers.CompareByID)
-
-            Using Command As New SqlCommand(CommandString, Connection)
-                Using Reader As SqlDataReader = Command.ExecuteReader
-                    While Reader.Read
-                        R.Add(Read(Reader, Jobs, Users))
-                    End While
-                End Using
-            End Using
-
-            Return R
-        End Function
-
-        Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
-            Dim R As New List(Of WorkbookItem)
-
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=0;"
-            Dim Connection As SqlConnection = GetConnection()
-
-            If Connection.State <> ConnectionState.Open Then Connection.Open()
-
-            Jobs.Sort(New Comparers.CompareByID)
-            Users.Sort(New Comparers.CompareByID)
-
-            Using Command As New SqlCommand(CommandString, Connection)
-                Using Reader As SqlDataReader = Command.ExecuteReader
-                    While Reader.Read
-                        R.Add(Read(Reader, Jobs, Users))
-                    End While
-                End Using
-            End Using
-
-            Return R
-        End Function
-
-        Function GetPending(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
-            Dim R As New List(Of WorkbookItem)
-
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=2;"
-            Dim Connection As SqlConnection = GetConnection()
-
-            If Connection.State <> ConnectionState.Open Then Connection.Open()
-
-            Jobs.Sort(New Comparers.CompareByID)
-            Users.Sort(New Comparers.CompareByID)
-
-            Using Command As New SqlCommand(CommandString, Connection)
-                Using Reader As SqlDataReader = Command.ExecuteReader
-                    While Reader.Read
-                        R.Add(Read(Reader, Jobs, Users))
-                    End While
-                End Using
-            End Using
-
-            Return R
-        End Function
-
-        Function GetForUser(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal UserID As Integer) As IEnumerable(Of WorkbookItem)
-            Dim R As New List(Of WorkbookItem)
-
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [User] = @UID AND [Status]<3;"
-            Dim Connection As SqlConnection = GetConnection()
-
-            If Connection.State <> ConnectionState.Open Then Connection.Open()
-
-            Jobs.Sort(New Comparers.CompareByID)
-            Users.Sort(New Comparers.CompareByID)
-
-            Using Command As New SqlCommand(CommandString, Connection)
-                AddParameter(Command, "@UID", UserID)
-                Using Reader As SqlDataReader = Command.ExecuteReader
-                    While Reader.Read
-                        R.Add(Read(Reader, Jobs, Users))
-                    End While
-                End Using
-            End Using
-
-            Return R
-        End Function
-
-        Function GetForClientsBetweenDates(ByVal CloseConnection As Boolean, ByVal ClientIDs As List(Of Integer), ByVal FromDate As Date, ByVal ToDate As Date) As IEnumerable(Of WorkbookItem)
-            Dim R As New List(Of WorkbookItem)
-
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE charindex(',' + CAST([ClientID] as nvarchar(5)) + ',', @ClientIDs) > 0 AND (([DateAdded] between @FromDate and @ToDate) OR ([DateCompleted] between @FromDate and @ToDate));"
-            Dim Connection As SqlConnection = GetConnection()
-
-            If Connection.State <> ConnectionState.Open Then Connection.Open()
-
-            Using Command As New SqlCommand(CommandString, Connection)
-                AddParameter(Command, "@ClientIDs", "," & String.Join(",", ClientIDs) & ",")
-                AddParameter(Command, "@FromDate", FromDate)
-                AddParameter(Command, "@ToDate", ToDate)
-                Using Reader As SqlDataReader = Command.ExecuteReader
-                    While Reader.Read
-                        R.Add(Read(Reader))
-                    End While
-                End Using
-            End Using
-
-            Return R
-        End Function
-
+#Region "Update Functions - Special"
         Function UpdateStep(ByVal ID As Integer, ByVal Step_ As String, ByVal History As String) As Boolean
             Dim R As Boolean = False
 
@@ -307,7 +178,7 @@ Namespace Database
 
             If Status = Enums.WorkStatus.Completed Then
                 Dim Forward As AutoForward = WorkbookItem.Job.AutoForwards.Find(Function(c) c.RequiredStep.ToUpper.Equals(CurrentStep.ToUpper))
-                If Forward IsNot Nothing AndAlso WorkbookItem.AssignedTo.ID <> Forward.UserID Then
+                If Forward IsNot Nothing Then
                     Return AssignTo(WorkbookItem.ID, Forward.UserID, (History & vbNewLine & "AutoForward: Work transferred to User with ID " & Forward.UserID & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Enums.WorkType.AutoForward)
                 End If
             End If
@@ -406,6 +277,142 @@ Namespace Database
 
             Return R
         End Function
+#End Region
+
+#Region "Load Functions - Single"
+        Function GetWorkbookItemByID(ByVal ID As Integer) As WorkbookItem
+            Dim R As WorkbookItem = Nothing
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [ID]=@ID"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ID", ID)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    If Reader.Read Then
+                        R = Read(Reader)
+                    End If
+                End Using
+            End Using
+
+            Return R
+        End Function
+#End Region
+
+#Region "Load Functions - Multi"
+        Function GetIncomplete(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]<3;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Jobs.Sort(New Comparers.CompareByID)
+            Users.Sort(New Comparers.CompareByID)
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(Read(Reader, Jobs, Users))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=0;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Jobs.Sort(New Comparers.CompareByID)
+            Users.Sort(New Comparers.CompareByID)
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(Read(Reader, Jobs, Users))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetPending(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=2;"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Jobs.Sort(New Comparers.CompareByID)
+            Users.Sort(New Comparers.CompareByID)
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(Read(Reader, Jobs, Users))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetForUser(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal UserID As Integer, ByVal WorkTypes As Enums.WorkType(), ByVal MatchWithOwner As Boolean) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = String.Format("SELECT * FROM [Workbook] WHERE [{0}] = @UID AND [Status]<3 AND [WorkType] IN ({1});", If(MatchWithOwner, "Owner", "User"), String.Join(Of Integer)(",", WorkTypes))
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Jobs.Sort(New Comparers.CompareByID)
+            Users.Sort(New Comparers.CompareByID)
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@UID", UserID)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(Read(Reader, Jobs, Users))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
+
+        Function GetForClientsBetweenDates(ByVal CloseConnection As Boolean, ByVal ClientIDs As List(Of Integer), ByVal FromDate As Date, ByVal ToDate As Date) As IEnumerable(Of WorkbookItem)
+            Dim R As New List(Of WorkbookItem)
+
+            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE charindex(',' + CAST([ClientID] as nvarchar(5)) + ',', @ClientIDs) > 0 AND (([DateAdded] between @FromDate and @ToDate) OR ([DateCompleted] between @FromDate and @ToDate));"
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@ClientIDs", "," & String.Join(",", ClientIDs) & ",")
+                AddParameter(Command, "@FromDate", FromDate)
+                AddParameter(Command, "@ToDate", ToDate)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(Read(Reader))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
 
         Function GetWorkbookItemsCount(ByVal Client As Integer, ByVal Job As String, ByVal Period As String, ByVal PeriodType As Enums.PeriodType) As Integer
             Dim R As Integer = 0
@@ -426,7 +433,9 @@ Namespace Database
 
             Return R
         End Function
+#End Region
 
+#Region "Functions"
         Private Function Read(ByVal Reader As SqlDataReader, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As WorkbookItem
             Dim ID As Integer = Reader.Item("ID")
             Dim AssignedTo As User = Users(Users.BinarySearch(New User(Reader.Item("User")), New Comparers.CompareByID))
@@ -478,6 +487,7 @@ Namespace Database
 
             Return New WorkbookItem(ID, AssignedTo, Job, Client, DueDate, AddedOn, CompletedOn, UpdatedOn, Description, Remarks, TargetDate, PriorityOfWork, Status, CurrentStep, Owner, History, Billed, YearMonth.Parse(AssessmentDetail), YearMonth.Parse(FinancialDetail), WorkType)
         End Function
+#End Region
 
     End Module
 End Namespace
