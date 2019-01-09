@@ -805,15 +805,6 @@ Public Class frm_Main
         ProcessPermissions()
     End Sub
 
-    Private Sub frm_Main_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-        On Error Resume Next
-        For Each i As Form In Application.OpenForms
-            If TypeOf i Is XtraFormTemp Then
-                i.Close()
-            End If
-        Next
-    End Sub
-
     Private Sub btn_RefreshHome_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_RefreshHome.ItemClick
         If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
     End Sub
