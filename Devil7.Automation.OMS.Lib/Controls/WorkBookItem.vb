@@ -56,6 +56,7 @@ Namespace Controls
                     History &= i & vbNewLine
                 Next
                 txt_History.Text = History.Trim
+                txt_WorkType.Text = Item_.WorkType
             End If
         End Sub
 #End Region

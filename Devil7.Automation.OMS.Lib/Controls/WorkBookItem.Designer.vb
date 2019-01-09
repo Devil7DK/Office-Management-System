@@ -64,6 +64,10 @@
             Me.txt_AssessmentYearMonth = New Devil7.Automation.OMS.[Lib].Controls.YearMonthEdit()
             Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+            Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
+            Me.txt_WorkType = New DevExpress.XtraEditors.TextEdit()
+            Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
+            Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
             Me.TableLayoutPanel1.SuspendLayout()
             CType(Me.txt_CurrentlyAssignedTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_TargetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +83,7 @@
             CType(Me.txt_Client.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.txt_WorkType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'TableLayoutPanel1
@@ -128,10 +133,14 @@
             Me.TableLayoutPanel1.Controls.Add(Me.txt_AssessmentYearMonth, 2, 4)
             Me.TableLayoutPanel1.Controls.Add(Me.LabelControl8, 0, 4)
             Me.TableLayoutPanel1.Controls.Add(Me.LabelControl18, 1, 4)
+            Me.TableLayoutPanel1.Controls.Add(Me.LabelControl28, 0, 14)
+            Me.TableLayoutPanel1.Controls.Add(Me.txt_WorkType, 2, 14)
+            Me.TableLayoutPanel1.Controls.Add(Me.LabelControl29, 1, 14)
+            Me.TableLayoutPanel1.Controls.Add(Me.LabelControl30, 1, 13)
             Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
             Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
             Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-            Me.TableLayoutPanel1.RowCount = 14
+            Me.TableLayoutPanel1.RowCount = 15
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
@@ -145,6 +154,7 @@
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
+            Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 161.0!))
             Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
             Me.TableLayoutPanel1.Size = New System.Drawing.Size(611, 513)
             Me.TableLayoutPanel1.TabIndex = 2
@@ -441,7 +451,7 @@
             Me.txt_History.Name = "txt_History"
             Me.txt_History.Properties.ReadOnly = True
             Me.txt_History.Properties.ScrollBars = System.Windows.Forms.ScrollBars.Both
-            Me.txt_History.Size = New System.Drawing.Size(472, 182)
+            Me.txt_History.Size = New System.Drawing.Size(472, 155)
             Me.txt_History.TabIndex = 24
             '
             'txt_Client
@@ -513,6 +523,45 @@
             Me.LabelControl18.TabIndex = 10
             Me.LabelControl18.Text = ":"
             '
+            'LabelControl28
+            '
+            Me.LabelControl28.Location = New System.Drawing.Point(3, 489)
+            Me.LabelControl28.Name = "LabelControl28"
+            Me.LabelControl28.Size = New System.Drawing.Size(52, 13)
+            Me.LabelControl28.TabIndex = 25
+            Me.LabelControl28.Text = "Work Type"
+            '
+            'txt_WorkType
+            '
+            Me.txt_WorkType.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.txt_WorkType.Location = New System.Drawing.Point(136, 489)
+            Me.txt_WorkType.Name = "txt_WorkType"
+            Me.txt_WorkType.Properties.ReadOnly = True
+            Me.txt_WorkType.Size = New System.Drawing.Size(472, 20)
+            Me.txt_WorkType.TabIndex = 26
+            '
+            'LabelControl29
+            '
+            Me.LabelControl29.Appearance.Options.UseTextOptions = True
+            Me.LabelControl29.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+            Me.LabelControl29.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.LabelControl29.Location = New System.Drawing.Point(128, 489)
+            Me.LabelControl29.Name = "LabelControl29"
+            Me.LabelControl29.Size = New System.Drawing.Size(2, 21)
+            Me.LabelControl29.TabIndex = 27
+            Me.LabelControl29.Text = ":"
+            '
+            'LabelControl30
+            '
+            Me.LabelControl30.Appearance.Options.UseTextOptions = True
+            Me.LabelControl30.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
+            Me.LabelControl30.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.LabelControl30.Location = New System.Drawing.Point(128, 328)
+            Me.LabelControl30.Name = "LabelControl30"
+            Me.LabelControl30.Size = New System.Drawing.Size(2, 155)
+            Me.LabelControl30.TabIndex = 28
+            Me.LabelControl30.Text = ":"
+            '
             'WorkBookItem
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -536,6 +585,7 @@
             CType(Me.txt_Client.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_DueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_DueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.txt_WorkType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -582,5 +632,9 @@
         Friend WithEvents txt_AssessmentYearMonth As Controls.YearMonthEdit
         Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+        Friend WithEvents LabelControl28 As DevExpress.XtraEditors.LabelControl
+        Friend WithEvents txt_WorkType As DevExpress.XtraEditors.TextEdit
+        Friend WithEvents LabelControl29 As DevExpress.XtraEditors.LabelControl
+        Friend WithEvents LabelControl30 As DevExpress.XtraEditors.LabelControl
     End Class
 End Namespace
