@@ -663,6 +663,12 @@ Public Class frm_Main
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
+        If ClientsMinimal Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Workbook.Description = "Loading Clients..."
+                      End Sub)
+            ClientsMinimal = Database.Clients.GetMinimal()
+        End If
 
         Me.Invoke(Sub()
                       ProgressPanel_Home.Description = "Loading Home..."
