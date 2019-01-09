@@ -861,7 +861,9 @@ Public Class frm_Main
                 UpdateStageMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem(i, AddressOf UpdateStep))
             Next
             For Each i As Objects.User In Users
-                AssignToMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem(i.Username, AddressOf AssignTo))
+                If i.UserType <> Enums.UserType.System AndAlso i.UserType <> Enums.UserType.Auditor AndAlso i.ID <> User.ID Then
+                    AssignToMenu.Items.Add(New DevExpress.Utils.Menu.DXMenuItem(i.Username, AddressOf AssignTo))
+                End If
             Next
 
             e.Menu.Items.Add(UpdateStatusMenu)
