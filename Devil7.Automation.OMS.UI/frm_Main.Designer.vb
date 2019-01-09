@@ -19,6 +19,7 @@ Partial Class frm_Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
@@ -73,7 +74,7 @@ Partial Class frm_Main
         Me.TVC_Mobile = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.TVC_Photo = New DevExpress.XtraGrid.Columns.TileViewColumn()
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
-        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu()
+        Me.RibbonMenu = New DevExpress.XtraBars.Ribbon.ApplicationMenu(Me.components)
         Me.btn_EditProfile = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ChangePassword = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
@@ -114,8 +115,10 @@ Partial Class frm_Main
         Me.btn_MarkIncomplete = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_MarkIncomplete_2 = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_ClientJobsReport = New DevExpress.XtraBars.BarButtonItem()
-        Me.switch_PreviewPaneHome = New DevExpress.XtraBars.BarToggleSwitchItem()
+        Me.switch_PreviewPane = New DevExpress.XtraBars.BarToggleSwitchItem()
         Me.btn_AddWork_Self = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_RefreshAutoForwards = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_RefreshTransferred = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Edit = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Home = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Billing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -133,14 +136,16 @@ Partial Class frm_Main
         Me.rpg_Pending = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Skin = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.SkinSelector = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
+        Me.rpg_AutoForwards = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.rpg_Transferred = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.MainPane = New DevExpress.XtraBars.Navigation.NavigationPane()
         Me.np_Home = New DevExpress.XtraBars.Navigation.NavigationPage()
-        Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.container_Home = New DevExpress.XtraEditors.SplitContainerControl()
         Me.gc_Home = New DevExpress.XtraGrid.GridControl()
         Me.gv_Home = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.WorkBookItem_Preview = New Devil7.Automation.OMS.[Lib].Controls.WorkBookItem()
+        Me.WorkBookItem_Preview_Home = New Devil7.Automation.OMS.[Lib].Controls.WorkBookItem()
+        Me.ProgressPanel_Home = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.np_Utilities = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.ProgressPanel_Utilites = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Panel_Utilities = New DevExpress.XtraEditors.TileControl()
@@ -169,6 +174,18 @@ Partial Class frm_Main
         Me.ProgressPanel_Pending = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.gc_Pending = New DevExpress.XtraGrid.GridControl()
         Me.gv_Pending = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.np_AutoForwards = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_AutoForwards = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.container_AutoForwards = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.gc_AutoForwards = New DevExpress.XtraGrid.GridControl()
+        Me.gv_AutoForwards = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.WorkBookItem_Preview_AutoForwards = New Devil7.Automation.OMS.[Lib].Controls.WorkBookItem()
+        Me.np_Transferred = New DevExpress.XtraBars.Navigation.NavigationPage()
+        Me.ProgressPanel_Transferred = New DevExpress.XtraWaitForm.ProgressPanel()
+        Me.container_Transferred = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.gc_Transferred = New DevExpress.XtraGrid.GridControl()
+        Me.gv_Transferred = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.WorkBookItem_Preview_Transferred = New Devil7.Automation.OMS.[Lib].Controls.WorkBookItem()
         Me.Loader_Users = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Jobs = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Clients = New System.ComponentModel.BackgroundWorker()
@@ -176,9 +193,11 @@ Partial Class frm_Main
         Me.Loader_Home = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Utilities = New System.ComponentModel.BackgroundWorker()
         Me.Loader_Billing = New System.ComponentModel.BackgroundWorker()
-        Me.RAMMonitor = New System.Windows.Forms.Timer()
-        Me.ToolTipManager = New DevExpress.Utils.ToolTipController()
+        Me.RAMMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.ToolTipManager = New DevExpress.Utils.ToolTipController(Me.components)
         Me.Loader_Pending = New System.ComponentModel.BackgroundWorker()
+        Me.Loader_AutoForwards = New System.ComponentModel.BackgroundWorker()
+        Me.Loader_Transferred = New System.ComponentModel.BackgroundWorker()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -214,6 +233,16 @@ Partial Class frm_Main
         Me.np_Pending.SuspendLayout()
         CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.np_AutoForwards.SuspendLayout()
+        CType(Me.container_AutoForwards, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.container_AutoForwards.SuspendLayout()
+        CType(Me.gc_AutoForwards, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_AutoForwards, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.np_Transferred.SuspendLayout()
+        CType(Me.container_Transferred, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.container_Transferred.SuspendLayout()
+        CType(Me.gc_Transferred, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_Transferred, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TVC_Client_Photo
@@ -340,9 +369,9 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2, Me.btn_ClientJobsReport, Me.switch_PreviewPaneHome, Me.btn_AddWork_Self})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2, Me.btn_ClientJobsReport, Me.switch_PreviewPane, Me.btn_AddWork_Self, Me.btn_RefreshAutoForwards, Me.btn_RefreshTransferred})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 56
+        Me.RibbonControl.MaxItemId = 58
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
         Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress, Me.cmb_HomeView_Editor, Me.cmb_WorkbookView_View, Me.cmb_BillingView_Edit, Me.cmb_ClientsSort_Edit, Me.RepositoryItemComboBox1})
@@ -701,12 +730,12 @@ Partial Class frm_Main
         Me.btn_ClientJobsReport.ImageOptions.LargeImage = CType(resources.GetObject("btn_ClientJobsReport.ImageOptions.LargeImage"), System.Drawing.Image)
         Me.btn_ClientJobsReport.Name = "btn_ClientJobsReport"
         '
-        'switch_PreviewPaneHome
+        'switch_PreviewPane
         '
-        Me.switch_PreviewPaneHome.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
-        Me.switch_PreviewPaneHome.Caption = "Show Preview Pane :"
-        Me.switch_PreviewPaneHome.Id = 53
-        Me.switch_PreviewPaneHome.Name = "switch_PreviewPaneHome"
+        Me.switch_PreviewPane.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.switch_PreviewPane.Caption = "Show Preview Pane :"
+        Me.switch_PreviewPane.Id = 53
+        Me.switch_PreviewPane.Name = "switch_PreviewPane"
         '
         'btn_AddWork_Self
         '
@@ -716,9 +745,25 @@ Partial Class frm_Main
         Me.btn_AddWork_Self.ImageOptions.LargeImage = CType(resources.GetObject("btn_AddWork_Self.ImageOptions.LargeImage"), System.Drawing.Image)
         Me.btn_AddWork_Self.Name = "btn_AddWork_Self"
         '
+        'btn_RefreshAutoForwards
+        '
+        Me.btn_RefreshAutoForwards.Caption = "Refresh AutoForwards"
+        Me.btn_RefreshAutoForwards.Id = 56
+        Me.btn_RefreshAutoForwards.ImageOptions.Image = CType(resources.GetObject("btn_RefreshAutoForwards.ImageOptions.Image"), System.Drawing.Image)
+        Me.btn_RefreshAutoForwards.ImageOptions.LargeImage = CType(resources.GetObject("btn_RefreshAutoForwards.ImageOptions.LargeImage"), System.Drawing.Image)
+        Me.btn_RefreshAutoForwards.Name = "btn_RefreshAutoForwards"
+        '
+        'btn_RefreshTransferred
+        '
+        Me.btn_RefreshTransferred.Caption = "Refresh Transferred"
+        Me.btn_RefreshTransferred.Id = 57
+        Me.btn_RefreshTransferred.ImageOptions.Image = CType(resources.GetObject("btn_RefreshTransferred.ImageOptions.Image"), System.Drawing.Image)
+        Me.btn_RefreshTransferred.ImageOptions.LargeImage = CType(resources.GetObject("btn_RefreshTransferred.ImageOptions.LargeImage"), System.Drawing.Image)
+        Me.btn_RefreshTransferred.Name = "btn_RefreshTransferred"
+        '
         'rp_Edit
         '
-        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Pending, Me.rpg_Skin})
+        Me.rp_Edit.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Home, Me.rpg_Billing, Me.rpg_Workbook, Me.rpg_Clients, Me.rpg_Jobs, Me.rpg_Users, Me.rpg_Pending, Me.rpg_AutoForwards, Me.rpg_Transferred, Me.rpg_Skin})
         Me.rp_Edit.Name = "rp_Edit"
         Me.rp_Edit.Text = "Edit"
         '
@@ -861,6 +906,20 @@ Partial Class frm_Main
         Me.SkinSelector.Id = 1
         Me.SkinSelector.Name = "SkinSelector"
         '
+        'rpg_AutoForwards
+        '
+        Me.rpg_AutoForwards.ItemLinks.Add(Me.btn_RefreshAutoForwards)
+        Me.rpg_AutoForwards.Name = "rpg_AutoForwards"
+        Me.rpg_AutoForwards.ShowCaptionButton = False
+        Me.rpg_AutoForwards.Text = "Actions"
+        '
+        'rpg_Transferred
+        '
+        Me.rpg_Transferred.ItemLinks.Add(Me.btn_RefreshTransferred)
+        Me.rpg_Transferred.Name = "rpg_Transferred"
+        Me.rpg_Transferred.ShowCaptionButton = False
+        Me.rpg_Transferred.Text = "Actions"
+        '
         'RibbonStatusBar
         '
         Me.RibbonStatusBar.ItemLinks.Add(Me.grp_btn_Clients_View)
@@ -871,7 +930,7 @@ Partial Class frm_Main
         Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_BillingView)
         Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_ClientsSort, True)
         Me.RibbonStatusBar.ItemLinks.Add(Me.cmb_PendingView)
-        Me.RibbonStatusBar.ItemLinks.Add(Me.switch_PreviewPaneHome)
+        Me.RibbonStatusBar.ItemLinks.Add(Me.switch_PreviewPane)
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
@@ -887,12 +946,14 @@ Partial Class frm_Main
         Me.MainPane.Controls.Add(Me.np_Users)
         Me.MainPane.Controls.Add(Me.np_Billing)
         Me.MainPane.Controls.Add(Me.np_Pending)
+        Me.MainPane.Controls.Add(Me.np_AutoForwards)
+        Me.MainPane.Controls.Add(Me.np_Transferred)
         Me.MainPane.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainPane.Location = New System.Drawing.Point(0, 143)
         Me.MainPane.Name = "MainPane"
         Me.MainPane.PageProperties.ShowCollapseButton = False
         Me.MainPane.PageProperties.ShowExpandButton = False
-        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_Workbook, Me.np_Billing, Me.np_Pending, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
+        Me.MainPane.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.np_Home, Me.np_AutoForwards, Me.np_Transferred, Me.np_Workbook, Me.np_Billing, Me.np_Pending, Me.np_Clients, Me.np_Jobs, Me.np_Users, Me.np_Utilities})
         Me.MainPane.RegularSize = New System.Drawing.Size(1360, 275)
         Me.MainPane.SelectedPage = Me.np_Home
         Me.MainPane.Size = New System.Drawing.Size(1360, 275)
@@ -902,22 +963,10 @@ Partial Class frm_Main
         'np_Home
         '
         Me.np_Home.Caption = "Home"
-        Me.np_Home.Controls.Add(Me.ProgressPanel_Home)
         Me.np_Home.Controls.Add(Me.container_Home)
+        Me.np_Home.Controls.Add(Me.ProgressPanel_Home)
         Me.np_Home.Name = "np_Home"
-        Me.np_Home.Size = New System.Drawing.Size(1278, 229)
-        '
-        'ProgressPanel_Home
-        '
-        Me.ProgressPanel_Home.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.ProgressPanel_Home.Appearance.Options.UseBackColor = True
-        Me.ProgressPanel_Home.BarAnimationElementThickness = 2
-        Me.ProgressPanel_Home.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
-        Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
-        Me.ProgressPanel_Home.Size = New System.Drawing.Size(1278, 229)
-        Me.ProgressPanel_Home.TabIndex = 6
+        Me.np_Home.Size = New System.Drawing.Size(1255, 229)
         '
         'container_Home
         '
@@ -927,10 +976,10 @@ Partial Class frm_Main
         Me.container_Home.Name = "container_Home"
         Me.container_Home.Panel1.Controls.Add(Me.gc_Home)
         Me.container_Home.Panel1.Text = "Panel1"
-        Me.container_Home.Panel2.Controls.Add(Me.WorkBookItem_Preview)
+        Me.container_Home.Panel2.Controls.Add(Me.WorkBookItem_Preview_Home)
         Me.container_Home.Panel2.Text = "Panel2"
         Me.container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
-        Me.container_Home.Size = New System.Drawing.Size(1278, 229)
+        Me.container_Home.Size = New System.Drawing.Size(1255, 229)
         Me.container_Home.SplitterPosition = 397
         Me.container_Home.TabIndex = 7
         Me.container_Home.Text = "SplitContainerControl1"
@@ -942,7 +991,7 @@ Partial Class frm_Main
         Me.gc_Home.MainView = Me.gv_Home
         Me.gc_Home.MenuManager = Me.RibbonControl
         Me.gc_Home.Name = "gc_Home"
-        Me.gc_Home.Size = New System.Drawing.Size(1278, 229)
+        Me.gc_Home.Size = New System.Drawing.Size(1255, 229)
         Me.gc_Home.TabIndex = 0
         Me.gc_Home.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Home})
         '
@@ -954,14 +1003,26 @@ Partial Class frm_Main
         Me.gv_Home.OptionsBehavior.ReadOnly = True
         Me.gv_Home.OptionsSelection.MultiSelect = True
         '
-        'WorkBookItem_Preview
+        'WorkBookItem_Preview_Home
         '
-        Me.WorkBookItem_Preview.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WorkBookItem_Preview.Item = Nothing
-        Me.WorkBookItem_Preview.Location = New System.Drawing.Point(0, 0)
-        Me.WorkBookItem_Preview.Name = "WorkBookItem_Preview"
-        Me.WorkBookItem_Preview.Size = New System.Drawing.Size(0, 0)
-        Me.WorkBookItem_Preview.TabIndex = 0
+        Me.WorkBookItem_Preview_Home.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WorkBookItem_Preview_Home.Item = Nothing
+        Me.WorkBookItem_Preview_Home.Location = New System.Drawing.Point(0, 0)
+        Me.WorkBookItem_Preview_Home.Name = "WorkBookItem_Preview_Home"
+        Me.WorkBookItem_Preview_Home.Size = New System.Drawing.Size(0, 0)
+        Me.WorkBookItem_Preview_Home.TabIndex = 0
+        '
+        'ProgressPanel_Home
+        '
+        Me.ProgressPanel_Home.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Home.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Home.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Home.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Home.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Home.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Home.Name = "ProgressPanel_Home"
+        Me.ProgressPanel_Home.Size = New System.Drawing.Size(1255, 229)
+        Me.ProgressPanel_Home.TabIndex = 6
         '
         'np_Utilities
         '
@@ -969,7 +1030,7 @@ Partial Class frm_Main
         Me.np_Utilities.Controls.Add(Me.ProgressPanel_Utilites)
         Me.np_Utilities.Controls.Add(Me.Panel_Utilities)
         Me.np_Utilities.Name = "np_Utilities"
-        Me.np_Utilities.Size = New System.Drawing.Size(725, 275)
+        Me.np_Utilities.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Utilites
         '
@@ -980,7 +1041,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Utilites.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Utilites.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Utilites.Name = "ProgressPanel_Utilites"
-        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(725, 275)
+        Me.ProgressPanel_Utilites.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Utilites.TabIndex = 3
         '
         'Panel_Utilities
@@ -989,7 +1050,7 @@ Partial Class frm_Main
         Me.Panel_Utilities.Location = New System.Drawing.Point(0, 0)
         Me.Panel_Utilities.MaxId = 5
         Me.Panel_Utilities.Name = "Panel_Utilities"
-        Me.Panel_Utilities.Size = New System.Drawing.Size(725, 275)
+        Me.Panel_Utilities.Size = New System.Drawing.Size(1360, 275)
         Me.Panel_Utilities.TabIndex = 1
         Me.Panel_Utilities.Text = "Utilities"
         '
@@ -999,7 +1060,7 @@ Partial Class frm_Main
         Me.np_Workbook.Controls.Add(Me.ProgressPanel_Workbook)
         Me.np_Workbook.Controls.Add(Me.gc_WorkBook)
         Me.np_Workbook.Name = "np_Workbook"
-        Me.np_Workbook.Size = New System.Drawing.Size(643, 229)
+        Me.np_Workbook.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Workbook
         '
@@ -1010,7 +1071,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Workbook.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Workbook.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Workbook.Name = "ProgressPanel_Workbook"
-        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Workbook.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Workbook.TabIndex = 5
         '
         'gc_WorkBook
@@ -1020,7 +1081,7 @@ Partial Class frm_Main
         Me.gc_WorkBook.MainView = Me.gv_WorkBook
         Me.gc_WorkBook.MenuManager = Me.RibbonControl
         Me.gc_WorkBook.Name = "gc_WorkBook"
-        Me.gc_WorkBook.Size = New System.Drawing.Size(643, 229)
+        Me.gc_WorkBook.Size = New System.Drawing.Size(1360, 275)
         Me.gc_WorkBook.TabIndex = 1
         Me.gc_WorkBook.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_WorkBook})
         '
@@ -1037,7 +1098,7 @@ Partial Class frm_Main
         Me.np_Clients.Controls.Add(Me.ProgressPanel_Clients)
         Me.np_Clients.Controls.Add(Me.gc_Clients)
         Me.np_Clients.Name = "np_Clients"
-        Me.np_Clients.Size = New System.Drawing.Size(643, 229)
+        Me.np_Clients.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Clients
         '
@@ -1048,7 +1109,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Clients.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Clients.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Clients.Name = "ProgressPanel_Clients"
-        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Clients.TabIndex = 4
         '
         'gc_Clients
@@ -1058,7 +1119,7 @@ Partial Class frm_Main
         Me.gc_Clients.MainView = Me.tv_Clients
         Me.gc_Clients.MenuManager = Me.RibbonControl
         Me.gc_Clients.Name = "gc_Clients"
-        Me.gc_Clients.Size = New System.Drawing.Size(643, 229)
+        Me.gc_Clients.Size = New System.Drawing.Size(1360, 275)
         Me.gc_Clients.TabIndex = 1
         Me.gc_Clients.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Clients, Me.gv_Clients})
         '
@@ -1266,7 +1327,7 @@ Partial Class frm_Main
         Me.np_Jobs.Controls.Add(Me.ProgressPanel_Jobs)
         Me.np_Jobs.Controls.Add(Me.gc_Jobs)
         Me.np_Jobs.Name = "np_Jobs"
-        Me.np_Jobs.Size = New System.Drawing.Size(643, 229)
+        Me.np_Jobs.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Jobs
         '
@@ -1277,7 +1338,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Jobs.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Jobs.Name = "ProgressPanel_Jobs"
-        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Jobs.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Jobs.TabIndex = 3
         '
         'gc_Jobs
@@ -1287,7 +1348,7 @@ Partial Class frm_Main
         Me.gc_Jobs.MainView = Me.gv_Jobs
         Me.gc_Jobs.MenuManager = Me.RibbonControl
         Me.gc_Jobs.Name = "gc_Jobs"
-        Me.gc_Jobs.Size = New System.Drawing.Size(643, 229)
+        Me.gc_Jobs.Size = New System.Drawing.Size(1360, 275)
         Me.gc_Jobs.TabIndex = 1
         Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
         '
@@ -1304,7 +1365,7 @@ Partial Class frm_Main
         Me.np_Users.Controls.Add(Me.ProgressPanel_Users)
         Me.np_Users.Controls.Add(Me.gc_Users)
         Me.np_Users.Name = "np_Users"
-        Me.np_Users.Size = New System.Drawing.Size(725, 275)
+        Me.np_Users.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Users
         '
@@ -1315,7 +1376,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Users.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Users.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Users.Name = "ProgressPanel_Users"
-        Me.ProgressPanel_Users.Size = New System.Drawing.Size(725, 275)
+        Me.ProgressPanel_Users.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Users.TabIndex = 2
         '
         'gc_Users
@@ -1325,7 +1386,7 @@ Partial Class frm_Main
         Me.gc_Users.MainView = Me.tv_Users
         Me.gc_Users.MenuManager = Me.RibbonControl
         Me.gc_Users.Name = "gc_Users"
-        Me.gc_Users.Size = New System.Drawing.Size(725, 275)
+        Me.gc_Users.Size = New System.Drawing.Size(1360, 275)
         Me.gc_Users.TabIndex = 1
         Me.gc_Users.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Users})
         '
@@ -1372,7 +1433,7 @@ Partial Class frm_Main
         Me.np_Billing.Controls.Add(Me.ProgressPanel_Billing)
         Me.np_Billing.Controls.Add(Me.gc_Billing)
         Me.np_Billing.Name = "np_Billing"
-        Me.np_Billing.Size = New System.Drawing.Size(643, 229)
+        Me.np_Billing.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Billing
         '
@@ -1383,7 +1444,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Billing.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Billing.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Billing.Name = "ProgressPanel_Billing"
-        Me.ProgressPanel_Billing.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Billing.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Billing.TabIndex = 7
         '
         'gc_Billing
@@ -1393,7 +1454,7 @@ Partial Class frm_Main
         Me.gc_Billing.MainView = Me.gv_Billing
         Me.gc_Billing.MenuManager = Me.RibbonControl
         Me.gc_Billing.Name = "gc_Billing"
-        Me.gc_Billing.Size = New System.Drawing.Size(643, 229)
+        Me.gc_Billing.Size = New System.Drawing.Size(1360, 275)
         Me.gc_Billing.TabIndex = 2
         Me.gc_Billing.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Billing})
         '
@@ -1411,7 +1472,7 @@ Partial Class frm_Main
         Me.np_Pending.Controls.Add(Me.ProgressPanel_Pending)
         Me.np_Pending.Controls.Add(Me.gc_Pending)
         Me.np_Pending.Name = "np_Pending"
-        Me.np_Pending.Size = New System.Drawing.Size(643, 229)
+        Me.np_Pending.Size = New System.Drawing.Size(1360, 275)
         '
         'ProgressPanel_Pending
         '
@@ -1422,7 +1483,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Pending.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Pending.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Pending.Name = "ProgressPanel_Pending"
-        Me.ProgressPanel_Pending.Size = New System.Drawing.Size(643, 229)
+        Me.ProgressPanel_Pending.Size = New System.Drawing.Size(1360, 275)
         Me.ProgressPanel_Pending.TabIndex = 8
         '
         'gc_Pending
@@ -1432,7 +1493,7 @@ Partial Class frm_Main
         Me.gc_Pending.MainView = Me.gv_Pending
         Me.gc_Pending.MenuManager = Me.RibbonControl
         Me.gc_Pending.Name = "gc_Pending"
-        Me.gc_Pending.Size = New System.Drawing.Size(643, 229)
+        Me.gc_Pending.Size = New System.Drawing.Size(1360, 275)
         Me.gc_Pending.TabIndex = 3
         Me.gc_Pending.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Pending})
         '
@@ -1443,6 +1504,134 @@ Partial Class frm_Main
         Me.gv_Pending.OptionsBehavior.Editable = False
         Me.gv_Pending.OptionsBehavior.ReadOnly = True
         Me.gv_Pending.OptionsSelection.MultiSelect = True
+        '
+        'np_AutoForwards
+        '
+        Me.np_AutoForwards.Caption = "Auto Forwards"
+        Me.np_AutoForwards.Controls.Add(Me.ProgressPanel_AutoForwards)
+        Me.np_AutoForwards.Controls.Add(Me.container_AutoForwards)
+        Me.np_AutoForwards.Name = "np_AutoForwards"
+        Me.np_AutoForwards.Size = New System.Drawing.Size(1360, 275)
+        '
+        'ProgressPanel_AutoForwards
+        '
+        Me.ProgressPanel_AutoForwards.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_AutoForwards.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_AutoForwards.BarAnimationElementThickness = 2
+        Me.ProgressPanel_AutoForwards.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_AutoForwards.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_AutoForwards.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_AutoForwards.Name = "ProgressPanel_AutoForwards"
+        Me.ProgressPanel_AutoForwards.Size = New System.Drawing.Size(1360, 275)
+        Me.ProgressPanel_AutoForwards.TabIndex = 7
+        '
+        'container_AutoForwards
+        '
+        Me.container_AutoForwards.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.container_AutoForwards.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2
+        Me.container_AutoForwards.Location = New System.Drawing.Point(0, 0)
+        Me.container_AutoForwards.Name = "container_AutoForwards"
+        Me.container_AutoForwards.Panel1.Controls.Add(Me.gc_AutoForwards)
+        Me.container_AutoForwards.Panel1.Text = "Panel1"
+        Me.container_AutoForwards.Panel2.Controls.Add(Me.WorkBookItem_Preview_AutoForwards)
+        Me.container_AutoForwards.Panel2.Text = "Panel2"
+        Me.container_AutoForwards.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+        Me.container_AutoForwards.Size = New System.Drawing.Size(1360, 275)
+        Me.container_AutoForwards.SplitterPosition = 397
+        Me.container_AutoForwards.TabIndex = 9
+        Me.container_AutoForwards.Text = "SplitContainerControl1"
+        '
+        'gc_AutoForwards
+        '
+        Me.gc_AutoForwards.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_AutoForwards.Location = New System.Drawing.Point(0, 0)
+        Me.gc_AutoForwards.MainView = Me.gv_AutoForwards
+        Me.gc_AutoForwards.MenuManager = Me.RibbonControl
+        Me.gc_AutoForwards.Name = "gc_AutoForwards"
+        Me.gc_AutoForwards.Size = New System.Drawing.Size(1360, 275)
+        Me.gc_AutoForwards.TabIndex = 9
+        Me.gc_AutoForwards.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_AutoForwards})
+        '
+        'gv_AutoForwards
+        '
+        Me.gv_AutoForwards.GridControl = Me.gc_AutoForwards
+        Me.gv_AutoForwards.Name = "gv_AutoForwards"
+        Me.gv_AutoForwards.OptionsBehavior.Editable = False
+        Me.gv_AutoForwards.OptionsBehavior.ReadOnly = True
+        Me.gv_AutoForwards.OptionsSelection.MultiSelect = True
+        '
+        'WorkBookItem_Preview_AutoForwards
+        '
+        Me.WorkBookItem_Preview_AutoForwards.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WorkBookItem_Preview_AutoForwards.Item = Nothing
+        Me.WorkBookItem_Preview_AutoForwards.Location = New System.Drawing.Point(0, 0)
+        Me.WorkBookItem_Preview_AutoForwards.Name = "WorkBookItem_Preview_AutoForwards"
+        Me.WorkBookItem_Preview_AutoForwards.Size = New System.Drawing.Size(0, 0)
+        Me.WorkBookItem_Preview_AutoForwards.TabIndex = 0
+        '
+        'np_Transferred
+        '
+        Me.np_Transferred.Caption = "Transferred"
+        Me.np_Transferred.Controls.Add(Me.ProgressPanel_Transferred)
+        Me.np_Transferred.Controls.Add(Me.container_Transferred)
+        Me.np_Transferred.Name = "np_Transferred"
+        Me.np_Transferred.Size = New System.Drawing.Size(1360, 275)
+        '
+        'ProgressPanel_Transferred
+        '
+        Me.ProgressPanel_Transferred.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressPanel_Transferred.Appearance.Options.UseBackColor = True
+        Me.ProgressPanel_Transferred.BarAnimationElementThickness = 2
+        Me.ProgressPanel_Transferred.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ProgressPanel_Transferred.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ProgressPanel_Transferred.Location = New System.Drawing.Point(0, 0)
+        Me.ProgressPanel_Transferred.Name = "ProgressPanel_Transferred"
+        Me.ProgressPanel_Transferred.Size = New System.Drawing.Size(1360, 275)
+        Me.ProgressPanel_Transferred.TabIndex = 7
+        '
+        'container_Transferred
+        '
+        Me.container_Transferred.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.container_Transferred.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.Panel2
+        Me.container_Transferred.Location = New System.Drawing.Point(0, 0)
+        Me.container_Transferred.Name = "container_Transferred"
+        Me.container_Transferred.Panel1.Controls.Add(Me.gc_Transferred)
+        Me.container_Transferred.Panel1.Text = "Panel1"
+        Me.container_Transferred.Panel2.Controls.Add(Me.WorkBookItem_Preview_Transferred)
+        Me.container_Transferred.Panel2.Text = "Panel2"
+        Me.container_Transferred.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+        Me.container_Transferred.Size = New System.Drawing.Size(1360, 275)
+        Me.container_Transferred.SplitterPosition = 397
+        Me.container_Transferred.TabIndex = 9
+        Me.container_Transferred.Text = "SplitContainerControl1"
+        '
+        'gc_Transferred
+        '
+        Me.gc_Transferred.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_Transferred.Location = New System.Drawing.Point(0, 0)
+        Me.gc_Transferred.MainView = Me.gv_Transferred
+        Me.gc_Transferred.MenuManager = Me.RibbonControl
+        Me.gc_Transferred.Name = "gc_Transferred"
+        Me.gc_Transferred.Size = New System.Drawing.Size(1360, 275)
+        Me.gc_Transferred.TabIndex = 8
+        Me.gc_Transferred.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Transferred})
+        '
+        'gv_Transferred
+        '
+        Me.gv_Transferred.GridControl = Me.gc_Transferred
+        Me.gv_Transferred.Name = "gv_Transferred"
+        Me.gv_Transferred.OptionsBehavior.Editable = False
+        Me.gv_Transferred.OptionsBehavior.ReadOnly = True
+        Me.gv_Transferred.OptionsSelection.MultiSelect = True
+        '
+        'WorkBookItem_Preview_Transferred
+        '
+        Me.WorkBookItem_Preview_Transferred.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WorkBookItem_Preview_Transferred.Item = Nothing
+        Me.WorkBookItem_Preview_Transferred.Location = New System.Drawing.Point(0, 0)
+        Me.WorkBookItem_Preview_Transferred.Name = "WorkBookItem_Preview_Transferred"
+        Me.WorkBookItem_Preview_Transferred.Size = New System.Drawing.Size(0, 0)
+        Me.WorkBookItem_Preview_Transferred.TabIndex = 0
         '
         'Loader_Users
         '
@@ -1475,6 +1664,12 @@ Partial Class frm_Main
         Me.ToolTipManager.AutoPopDelay = 2000
         '
         'Loader_Pending
+        '
+        '
+        'Loader_AutoForwards
+        '
+        '
+        'Loader_Transferred
         '
         '
         'frm_Main
@@ -1526,6 +1721,16 @@ Partial Class frm_Main
         Me.np_Pending.ResumeLayout(False)
         CType(Me.gc_Pending, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Pending, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.np_AutoForwards.ResumeLayout(False)
+        CType(Me.container_AutoForwards, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.container_AutoForwards.ResumeLayout(False)
+        CType(Me.gc_AutoForwards, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_AutoForwards, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.np_Transferred.ResumeLayout(False)
+        CType(Me.container_Transferred, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.container_Transferred.ResumeLayout(False)
+        CType(Me.gc_Transferred, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_Transferred, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1649,8 +1854,26 @@ Partial Class frm_Main
     Friend WithEvents btn_MarkIncomplete As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_MarkIncomplete_2 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_ClientJobsReport As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents switch_PreviewPaneHome As DevExpress.XtraBars.BarToggleSwitchItem
+    Friend WithEvents switch_PreviewPane As DevExpress.XtraBars.BarToggleSwitchItem
     Friend WithEvents container_Home As DevExpress.XtraEditors.SplitContainerControl
-    Friend WithEvents WorkBookItem_Preview As [Lib].Controls.WorkBookItem
+    Friend WithEvents WorkBookItem_Preview_Home As [Lib].Controls.WorkBookItem
     Friend WithEvents btn_AddWork_Self As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Loader_AutoForwards As System.ComponentModel.BackgroundWorker
+    Friend WithEvents rpg_AutoForwards As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents np_AutoForwards As DevExpress.XtraBars.Navigation.NavigationPage
+    Friend WithEvents np_Transferred As DevExpress.XtraBars.Navigation.NavigationPage
+    Friend WithEvents ProgressPanel_Transferred As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents gc_Transferred As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_Transferred As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ProgressPanel_AutoForwards As DevExpress.XtraWaitForm.ProgressPanel
+    Friend WithEvents container_AutoForwards As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents gc_AutoForwards As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_AutoForwards As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents WorkBookItem_Preview_AutoForwards As [Lib].Controls.WorkBookItem
+    Friend WithEvents container_Transferred As DevExpress.XtraEditors.SplitContainerControl
+    Friend WithEvents WorkBookItem_Preview_Transferred As [Lib].Controls.WorkBookItem
+    Friend WithEvents Loader_Transferred As System.ComponentModel.BackgroundWorker
+    Friend WithEvents rpg_Transferred As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents btn_RefreshAutoForwards As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_RefreshTransferred As DevExpress.XtraBars.BarButtonItem
 End Class

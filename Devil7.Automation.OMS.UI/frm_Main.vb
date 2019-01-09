@@ -52,6 +52,8 @@ Public Class frm_Main
         rpg_Workbook.Visible = False
         rpg_Billing.Visible = False
         rpg_Home.Visible = False
+        rpg_AutoForwards.Visible = False
+        rpg_Transferred.Visible = False
         rpg_Pending.Visible = False
         grp_btn_Clients_View.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -59,7 +61,7 @@ Public Class frm_Main
         cmb_BillingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_PendingView.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         cmb_ClientsSort.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
-        switch_PreviewPaneHome.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        switch_PreviewPane.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
     End Sub
 
     Sub UsersPageLoad()
@@ -100,9 +102,25 @@ Public Class frm_Main
     Sub HomePageLoad()
         rpg_Home.Visible = True
         cmb_HomeView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
-        switch_PreviewPaneHome.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        switch_PreviewPane.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         If gc_Home.DataSource Is Nothing Then
             If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
+        End If
+    End Sub
+
+    Sub AutoForwardsPageLoad()
+        rpg_AutoForwards.Visible = True
+        switch_PreviewPane.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        If gc_AutoForwards.DataSource Is Nothing Then
+            If Not Loader_AutoForwards.IsBusy Then Loader_AutoForwards.RunWorkerAsync()
+        End If
+    End Sub
+
+    Sub TransferredPageLoad()
+        rpg_Transferred.Visible = True
+        switch_PreviewPane.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        If gc_Transferred.DataSource Is Nothing Then
+            If Not Loader_Transferred.IsBusy Then Loader_Transferred.RunWorkerAsync()
         End If
     End Sub
 
@@ -142,6 +160,10 @@ Public Class frm_Main
             WorkbookPageLoad()
         ElseIf MainPane.SelectedPage Is np_Home Then
             HomePageLoad()
+        ElseIf MainPane.SelectedPage Is np_AutoForwards Then
+            AutoForwardsPageLoad()
+        ElseIf MainPane.SelectedPage Is np_Transferred Then
+            TransferredPageLoad()
         ElseIf MainPane.SelectedPage Is np_Utilities Then
             UtilitiesPageLoad()
         ElseIf MainPane.SelectedPage Is np_Billing Then
@@ -499,21 +521,34 @@ Public Class frm_Main
         End If
     End Sub
 
-    Sub SetupHomeColumns()
+    Sub SetupHomeColumns(ByVal GridView As Views.Grid.GridView)
         If InvokeRequired Then
-            Invoke(Sub() SetupHomeColumns())
+            Invoke(Sub() SetupHomeColumns(GridView))
         Else
-            Dim HiddenColumns As String() = {"ID", "Owner", "AssignedTo", "CompletedOn", "Folder", "BillingStatus", "WorkType"}
-            For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+            Dim HiddenColumns As New List(Of String)({"ID", "CompletedOn", "Folder", "BillingStatus", "WorkType"})
+            Dim AvailableColumns As New List(Of String)({"Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"})
+            Dim MinimalColumns As New List(Of String)({"Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"})
+
+            If GridView Is gv_Home Then
+                HiddenColumns.AddRange({"Owner", "AssignedTo"})
+            ElseIf GridView Is gv_AutoForwards Then
+                HiddenColumns.Add("AssignedTo")
+                MinimalColumns.Add("Owner")
+                AvailableColumns.Add("Owner")
+            ElseIf GridView Is gv_AutoForwards Then
+                HiddenColumns.Add("Owner")
+                MinimalColumns.Add("AssignedTo")
+                AvailableColumns.Add("AssignedTo")
+            End If
+            For Each i As DevExpress.XtraGrid.Columns.GridColumn In GridView.Columns
                 If HiddenColumns.Contains(i.FieldName) Then
                     i.Visible = False
                 End If
             Next
 
-            Dim AvailableColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "AddedOn", "UpdatedOn", "Description", "Remarks", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail", "FinancialDetail"}
-            Dim MinimalColumns As String() = {"Job", "Client", "CurrentStep", "DueDate", "TargetDate", "PriorityOfWork", "Status", "AssessmentDetail"}
+
             If cmb_HomeView.EditValue = "Minimal" Then
-                For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+                For Each i As DevExpress.XtraGrid.Columns.GridColumn In GridView.Columns
                     If AvailableColumns.Contains(i.FieldName) Then
                         If MinimalColumns.Contains(i.FieldName) Then
                             i.Visible = True
@@ -523,7 +558,7 @@ Public Class frm_Main
                     End If
                 Next
             Else
-                For Each i As DevExpress.XtraGrid.Columns.GridColumn In gv_Home.Columns
+                For Each i As DevExpress.XtraGrid.Columns.GridColumn In GridView.Columns
                     If AvailableColumns.Contains(i.FieldName) Then
                         i.Visible = True
                     End If
@@ -633,11 +668,11 @@ Public Class frm_Main
                       ProgressPanel_Home.Description = "Loading Home..."
                   End Sub)
         Try
-            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID)
+            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Normal, Enums.WorkType.Followup, Enums.WorkType.Transfer}, False)
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
                       End Sub)
-            SetupHomeColumns()
+            SetupHomeColumns(gv_Home)
         Catch ex As Exception
             MsgBox("Error on loading Home: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
         End Try
@@ -807,10 +842,10 @@ Public Class frm_Main
         Utils.Misc.CleanRAM()
     End Sub
 
-    Private Sub gv_Home_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles gv_Home.PopupMenuShowing
+    Private Sub gv_Home_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles gv_Home.PopupMenuShowing, gv_AutoForwards.PopupMenuShowing
         If e.HitInfo.InRow AndAlso Not Loader_Home.IsBusy Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-            Dim item As Objects.WorkbookItem = gv_Home.GetRow(e.HitInfo.RowHandle)
+            Dim item As Objects.WorkbookItem = view.GetRow(e.HitInfo.RowHandle)
             view.FocusedRowHandle = e.HitInfo.RowHandle
 
             Dim UpdateStageMenu As New DevExpress.Utils.Menu.DXPopupMenu With {.Caption = "Update Steps/Stage"}
@@ -978,7 +1013,7 @@ Public Class frm_Main
 
     Private Sub cmb_HomeView_EditValueChanged(sender As Object, e As EventArgs) Handles cmb_HomeView.EditValueChanged
         If Loaded Then
-            SetupHomeColumns()
+            SetupHomeColumns(gv_Home)
             My.Settings.ViewHome = cmb_HomeView.EditValue
             My.Settings.Save()
         End If
@@ -1179,9 +1214,10 @@ Public Class frm_Main
         End Try
     End Sub
 
-    Private Sub gv_Home_DoubleClick(sender As Object, e As EventArgs) Handles gv_Home.DoubleClick
-        If gv_Home.SelectedRowsCount = 1 AndAlso Not switch_PreviewPaneHome.Checked Then
-            Dim f As New Dialogs.frm_DetailedWorkbookItem(MousePosition, gv_Home.GetRow(gv_Home.GetSelectedRows(0)))
+    Private Sub gv_Home_DoubleClick(sender As Object, e As EventArgs) Handles gv_Home.DoubleClick, gv_AutoForwards.DoubleClick, gv_Transferred.DoubleClick
+        Dim view As Views.Grid.GridView = CType(sender, Views.Grid.GridView)
+        If view.SelectedRowsCount = 1 AndAlso Not switch_PreviewPane.Checked Then
+            Dim f As New Dialogs.frm_DetailedWorkbookItem(MousePosition, view.GetRow(view.GetSelectedRows(0)))
             f.Show(Me)
         End If
     End Sub
@@ -1195,18 +1231,22 @@ Public Class frm_Main
         End If
     End Sub
 
-    Private Sub switch_PreviewPaneHome_CheckedChanged(sender As Object, e As ItemClickEventArgs) Handles switch_PreviewPaneHome.CheckedChanged
-        If switch_PreviewPaneHome.Checked Then
+    Private Sub switch_PreviewPane_CheckedChanged(sender As Object, e As ItemClickEventArgs) Handles switch_PreviewPane.CheckedChanged
+        If switch_PreviewPane.Checked Then
             container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both
+            container_AutoForwards.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both
+            container_Transferred.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both
         Else
             container_Home.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+            container_AutoForwards.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
+            container_Transferred.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
         End If
     End Sub
 
     Private Sub gv_Home_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles gv_Home.SelectionChanged
         If gv_Home.SelectedRowsCount = 1 Then
             Dim Row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows(0))
-            WorkBookItem_Preview.Item = Row
+            WorkBookItem_Preview_Home.Item = Row
         End If
     End Sub
 
@@ -1216,5 +1256,109 @@ Public Class frm_Main
             CType(gc_Home.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
             gc_Home.RefreshDataSource()
         End If
+    End Sub
+
+    Private Sub Loader_AutoForwards_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_AutoForwards.DoWork
+        While Loaded = False
+            Threading.Thread.Sleep(1000)
+        End While
+        Me.Invoke(Sub()
+                      ProgressPanel_AutoForwards.Visible = True
+                      rpg_AutoForwards.Enabled = False
+                  End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_AutoForwards.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_AutoForwards.Description = "Loading Jobs..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_AutoForwards.Description = "Loading AutoForwards..."
+                  End Sub)
+        Try
+            Dim AutoForwards As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.AutoForward}, False)
+            Me.Invoke(Sub()
+                          gc_AutoForwards.DataSource = AutoForwards
+                      End Sub)
+            SetupHomeColumns(gv_AutoForwards)
+        Catch ex As Exception
+            MsgBox("Error on loading AutoForwards: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Me.Invoke(Sub()
+                      ProgressPanel_AutoForwards.Visible = False
+                      rpg_AutoForwards.Enabled = True
+                  End Sub)
+        Utils.Misc.CleanRAM()
+    End Sub
+
+    Private Sub gv_Transferred_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles gv_Transferred.SelectionChanged
+        If gv_Transferred.SelectedRowsCount = 1 Then
+            Dim Row As Objects.WorkbookItem = gv_Transferred.GetRow(gv_Transferred.GetSelectedRows(0))
+            WorkBookItem_Preview_Transferred.Item = Row
+        End If
+    End Sub
+
+    Private Sub gv_AutoForwards_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles gv_AutoForwards.SelectionChanged
+        If gv_AutoForwards.SelectedRowsCount = 1 Then
+            Dim Row As Objects.WorkbookItem = gv_AutoForwards.GetRow(gv_AutoForwards.GetSelectedRows(0))
+            WorkBookItem_Preview_AutoForwards.Item = Row
+        End If
+    End Sub
+
+    Private Sub Loader_Transferred_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles Loader_Transferred.DoWork
+        While Loaded = False
+            Threading.Thread.Sleep(1000)
+        End While
+        Me.Invoke(Sub()
+                      ProgressPanel_Transferred.Visible = True
+                      rpg_Transferred.Enabled = False
+                  End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Transferred.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Transferred.Description = "Loading Jobs..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_Transferred.Description = "Loading Transferred..."
+                  End Sub)
+        Try
+            Dim Transferred As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Transfer}, True)
+            Me.Invoke(Sub()
+                          gc_Transferred.DataSource = Transferred
+                      End Sub)
+            SetupHomeColumns(gv_Transferred)
+        Catch ex As Exception
+            MsgBox("Error on loading Transferred: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+        End Try
+        Me.Invoke(Sub()
+                      ProgressPanel_Transferred.Visible = False
+                      rpg_Transferred.Enabled = True
+                  End Sub)
+        Utils.Misc.CleanRAM()
+    End Sub
+
+    Private Sub btn_RefreshTransferred_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_RefreshTransferred.ItemClick
+        If Not Loader_Transferred.IsBusy Then Loader_Transferred.RunWorkerAsync()
+    End Sub
+
+    Private Sub btn_RefreshAutoForwards_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_RefreshAutoForwards.ItemClick
+        If Not Loader_AutoForwards.IsBusy Then Loader_AutoForwards.RunWorkerAsync()
     End Sub
 End Class
