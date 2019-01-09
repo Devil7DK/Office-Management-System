@@ -43,12 +43,12 @@ Namespace Controls
                 txt_Client.Text = Item_.Client.ToString
                 txt_DueDate.DateTime = Item_.DueDate
                 txt_TargetDate.DateTime = Item_.TargetDate
-                txt_Priority.Text = Item_.PriorityOfWork
+                txt_Priority.Text = Enums.EnumToString(Item_.PriorityOfWork)
                 txt_FinancialYearMonth.Value = Item_.FinancialDetail
                 txt_AssessmentYearMonth.Value = Item_.AssessmentDetail
                 txt_Description.Text = Item_.Description
                 txt_Remarks.Text = Item_.Remarks
-                txt_Status.Text = Item_.Status
+                txt_Status.Text = Enums.EnumToString(Item_.Status)
                 txt_Steps.Text = Item_.CurrentStep
                 txt_CurrentlyAssignedTo.Text = Item_.AssignedTo.ToString
                 Dim History As String = ""
@@ -56,7 +56,7 @@ Namespace Controls
                     History &= i & vbNewLine
                 Next
                 txt_History.Text = History.Trim
-                txt_WorkType.Text = Item_.WorkType
+                txt_WorkType.Text = Enums.EnumToString(Item_.WorkType)
             End If
         End Sub
 #End Region
