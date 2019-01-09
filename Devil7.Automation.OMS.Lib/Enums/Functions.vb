@@ -24,5 +24,9 @@ Namespace Enums
         Function StringToEnum(Of T)(ByVal String_ As String) As T
             Return DirectCast([Enum].Parse(GetType(T), String_), T)
         End Function
+
+        Function EnumToString(Of T)(ByVal Enum_ As T) As String
+            Return [Enum].GetName(GetType(T), Enum_)
+        End Function
     End Module
 End Namespace
