@@ -90,10 +90,12 @@ Namespace Utils
         Function LoadUtilities() As List(Of DevExpress.XtraEditors.TileGroup)
             Dim R As New List(Of DevExpress.XtraEditors.TileGroup)
 
+            Dim ParentExe As String = IO.Path.GetFileName(Application.ExecutablePath)
             Dim random_ As New Random
             Dim defaultgroup As New DevExpress.XtraEditors.TileGroup() With {.Text = "Default"}
-            For Each i As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Utilities", FileIO.SearchOption.SearchTopLevelOnly, "*.exe")
-                If IO.Path.GetFileName(i).EndsWith("vshot.exe") = False Then
+            For Each i As String In My.Computer.FileSystem.GetFiles(Application.StartupPath, FileIO.SearchOption.SearchTopLevelOnly, "*.exe")
+                Dim Filename As String = IO.Path.GetFileName(i)
+                If Not Filename.EndsWith("vshot.exe") AndAlso Filename <> ParentExe Then
                     Dim it As New DevExpress.XtraEditors.TileItem() With {.Image = Drawing.Icon.ExtractAssociatedIcon(i).ToBitmap, .Text = IO.Path.GetFileNameWithoutExtension(i), .Tag = i}
                     it.AppearanceItem.Normal.BackColor = Drawing.Color.FromArgb(random_.Next(0, 257), random_.Next(0, 257), random_.Next(0, 257))
                     it.AppearanceItem.Normal.ForeColor = (GetOppositeColor(it.AppearanceItem.Normal.BackColor))
@@ -105,23 +107,6 @@ Namespace Utils
                 End If
             Next
             R.Add(defaultgroup)
-            For Each f As String In My.Computer.FileSystem.GetDirectories(Application.StartupPath & "\Utilities", FileIO.SearchOption.SearchAllSubDirectories, "*")
-                Dim g As New DevExpress.XtraEditors.TileGroup
-                g.Text = IO.Path.GetDirectoryName(f)
-                For Each i As String In My.Computer.FileSystem.GetFiles(f, FileIO.SearchOption.SearchTopLevelOnly, "*.exe")
-                    If IO.Path.GetFileName(i).EndsWith("vshot.exe") = False Then
-                        Dim it As New DevExpress.XtraEditors.TileItem() With {.Image = Drawing.Icon.ExtractAssociatedIcon(i).ToBitmap, .Text = IO.Path.GetFileNameWithoutExtension(i), .Tag = i}
-                        it.AppearanceItem.Normal.BackColor = Drawing.Color.FromArgb(random_.Next(0, 257), random_.Next(0, 257), random_.Next(0, 257))
-                        it.AppearanceItem.Normal.ForeColor = (GetOppositeColor(it.AppearanceItem.Normal.BackColor))
-                        it.ItemSize = random_.Next(2, 4)
-                        AddHandler it.ItemClick, Sub()
-                                                     Process.Start(it.Tag)
-                                                 End Sub
-                        g.Items.Add(it)
-                    End If
-                Next
-                R.Add(g)
-            Next
 
             Return R
         End Function
