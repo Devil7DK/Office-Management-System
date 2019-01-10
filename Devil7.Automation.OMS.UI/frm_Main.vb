@@ -1375,4 +1375,8 @@ Public Class frm_Main
     Private Sub btn_RefreshAutoForwards_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_RefreshAutoForwards.ItemClick
         If Not Loader_AutoForwards.IsBusy Then Loader_AutoForwards.RunWorkerAsync()
     End Sub
+
+    Private Sub frm_Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        Application.Exit()
+    End Sub
 End Class
