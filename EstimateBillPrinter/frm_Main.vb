@@ -29,6 +29,8 @@ Public Class frm_Main
     Dim ServicesList As New List(Of String)
     Dim ReceiversList As New List(Of ClientMinimal)
     Dim SendersList As New List(Of Sender)
+    Dim JobsList As New List(Of Job)
+    Dim UsersList As New List(Of User)
 #End Region
 
 #Region "Form Events"
@@ -145,6 +147,20 @@ Public Class frm_Main
             MsgBox("Unable to load estimate bills." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
+        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Users List...")
+        Try
+            UsersList = Database.Users.GetAll(False)
+        Catch ex As Exception
+            MsgBox("Unable to load users." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+        End Try
+
+        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Jobs List...")
+        Try
+            JobsList = Database.Jobs.GetAll(False)
+        Catch ex As Exception
+            MsgBox("Unable to load jobs." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+        End Try
+
         Invoke(Sub()
                    gc_EstimateBills.DataSource = EstimateBills
                    Ribbon.Enabled = True
@@ -160,7 +176,7 @@ Public Class frm_Main
     Private Sub btn_Print_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Print.ItemClick
         If gv_EstimateBills.SelectedRowsCount = 1 Then
             Dim EstimateBill As EstimateBill = gv_EstimateBills.GetRow(gv_EstimateBills.GetSelectedRows(0))
-            Dim ReportData As New ReportData(EstimateBill, Database.Clients.GetClientByID(EstimateBill.Receiver.ID), My.Computer.Keyboard.CtrlKeyDown, 18)
+            Dim ReportData As New ReportData(EstimateBill, Database.Clients.GetClientByID(EstimateBill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
             Dim Report As New report_EstimateBill(ReportData)
             Dim Viewer As New frm_ReportViewer(Report)
             Viewer.ShowDialog()
