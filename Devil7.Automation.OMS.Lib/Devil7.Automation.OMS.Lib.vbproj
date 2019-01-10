@@ -214,6 +214,7 @@
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\EstimateBill.vb" />
     <Compile Include="Objects\Job.vb" />
+    <Compile Include="Objects\JobUser.vb" />
     <Compile Include="Objects\Partner.vb" />
     <Compile Include="Objects\Sender.vb" />
     <Compile Include="Objects\Service.vb" />
