@@ -26,8 +26,9 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Clients
 
+#Region "Update Functions"
         Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of Job), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Client = Nothing
 
             Dim img As New System.IO.MemoryStream
@@ -60,7 +61,7 @@ Namespace Database
                 AddParameter(Command, "@partnerdirector", ObjectSerilizer.ToXML(PartnersOrDirectors))
                 AddParameter(Command, "@type", Type)
                 AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
-                AddParameter(Command, "@jobs", ObjectSerilizer.ToXML(Jobs))
+                AddParameter(Command, "@jobs", JobUser.ToXml(Jobs))
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", img.GetBuffer)
                 AddParameter(Command, "@gst", GST)
@@ -78,7 +79,7 @@ Namespace Database
         End Function
 
         Function Update(ByVal ID As Integer, ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of Job), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Boolean = False
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
@@ -111,7 +112,7 @@ Namespace Database
                 AddParameter(Command, "@partnerdirector", ObjectSerilizer.ToXML(PartnersOrDirectors))
                 AddParameter(Command, "@type", Type)
                 AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
-                AddParameter(Command, "@jobs", ObjectSerilizer.ToXML(Jobs))
+                AddParameter(Command, "@jobs", JobUser.ToXml(Jobs))
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", img.GetBuffer)
                 AddParameter(Command, "@gst", GST)
@@ -149,46 +150,10 @@ Namespace Database
 
             Return R
         End Function
+#End Region
 
-        Private Function Read(ByVal Reader As SqlDataReader) As Client
-            Dim ID As Integer = CInt(Reader.Item("ID").ToString.Trim)
-            Dim Name As String = Reader.Item("ClientName").ToString.Trim
-            Dim PAN As String = Reader.Item("PAN").ToString.Trim
-            Dim FatherName As String = Reader.Item("FatherName").ToString.Trim
-            Dim Mobile As String = Reader.Item("Mobile").ToString.Trim
-            Dim Phone As String = Reader.Item("Phone").ToString.Trim
-            Dim Email As String = Reader.Item("Email").ToString.Trim
-            Dim DOB As String = Reader.Item("DOB").ToString.Trim
-            Dim AddressLine1 As String = Reader.Item("Address1").ToString.Trim
-            Dim AddressLine2 As String = Reader.Item("Address2").ToString.Trim
-            Dim District As String = Reader.Item("District").ToString.Trim
-            Dim PinCode As String = Reader.Item("Pincode").ToString.Trim
-            Dim State As String = Reader.Item("State").ToString.Trim
-            Dim StateCode As String = Reader.Item("StateCode").ToString.Trim
-            Dim AadharNo As String = Reader.Item("AadharNo").ToString.Trim
-            Dim Description As String = Reader.Item("Description").ToString.Trim
-            Dim TypeOfEngagement As String = Reader.Item("TypeOfEngagement").ToString.Trim
-            Dim TIN As String = Reader.Item("TIN").ToString.Trim
-            Dim CIN As String = Reader.Item("CIN").ToString.Trim
-            Dim Partners As System.ComponentModel.BindingList(Of Partner) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Partner))(Reader.Item("PartnerDirector").ToString.Trim)
-            Dim Type As String = Reader.Item("Type").ToString.Trim
-            Dim Credentials As System.ComponentModel.BindingList(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString.Trim)
-            Dim Jobs As List(Of Job) = ObjectSerilizer.FromXML(Of List(Of Job))(Reader.Item("Jobs").ToString.Trim)
-            Dim Status As String = Reader.Item("Status").ToString.Trim
-            Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
-            Dim GST As String = Reader.Item("GST").ToString.Trim
-            Dim FileNo As String = Reader.Item("FileNo").ToString.Trim
-            Return New Client(ID, Name, PAN, FatherName, Mobile, phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, state, statecode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, Credentials, Jobs, Status, Photo, GST, FileNo)
-        End Function
-
-        Private Function ReadMinimal(ByVal Reader As SqlDataReader) As ClientMinimal
-            Dim ID As Integer = CInt(Reader.Item("ID").ToString.Trim)
-            Dim Name As String = Reader.Item("ClientName").ToString.Trim
-            Dim PAN As String = Reader.Item("PAN").ToString.Trim
-            Return New ClientMinimal(ID, Name, PAN)
-        End Function
-
-        Function GetClientByID(ByVal ID As Integer) As Client
+#Region "Load Functions"
+        Function GetClientByID(ByVal ID As Integer, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As Client
             Dim R As Client = Nothing
 
             Dim CommandString As String = "SELECT * FROM [Clients] WHERE [ID]=@ID"
@@ -201,7 +166,7 @@ Namespace Database
                 AddParameter(Command, "@ID", ID)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     If Reader.Read Then
-                        R = Read(Reader)
+                        R = Read(Reader, Jobs, Users)
                     End If
                 End Using
             End Using
@@ -229,7 +194,7 @@ Namespace Database
             Return R
         End Function
 
-        Function GetAll(ByVal CloseConnection As Boolean) As IEnumerable(Of Client)
+        Function GetAll(ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal CloseConnection As Boolean) As IEnumerable(Of Client)
             Dim R As New List(Of Client)
 
             Dim CommandString As String = "SELECT * FROM [Clients]"
@@ -241,13 +206,55 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
-                        R.Add(Read(Reader))
+                        R.Add(Read(Reader, Jobs, Users))
                     End While
                 End Using
             End Using
 
             Return R
         End Function
+#End Region
+
+#Region "Other Functions"
+        Private Function Read(ByVal Reader As SqlDataReader, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As Client
+            Dim ID As Integer = CInt(Reader.Item("ID").ToString.Trim)
+            Dim Name As String = Reader.Item("ClientName").ToString.Trim
+            Dim PAN As String = Reader.Item("PAN").ToString.Trim
+            Dim FatherName As String = Reader.Item("FatherName").ToString.Trim
+            Dim Mobile As String = Reader.Item("Mobile").ToString.Trim
+            Dim Phone As String = Reader.Item("Phone").ToString.Trim
+            Dim Email As String = Reader.Item("Email").ToString.Trim
+            Dim DOB As String = Reader.Item("DOB").ToString.Trim
+            Dim AddressLine1 As String = Reader.Item("Address1").ToString.Trim
+            Dim AddressLine2 As String = Reader.Item("Address2").ToString.Trim
+            Dim District As String = Reader.Item("District").ToString.Trim
+            Dim PinCode As String = Reader.Item("Pincode").ToString.Trim
+            Dim State As String = Reader.Item("State").ToString.Trim
+            Dim StateCode As String = Reader.Item("StateCode").ToString.Trim
+            Dim AadharNo As String = Reader.Item("AadharNo").ToString.Trim
+            Dim Description As String = Reader.Item("Description").ToString.Trim
+            Dim TypeOfEngagement As String = Reader.Item("TypeOfEngagement").ToString.Trim
+            Dim TIN As String = Reader.Item("TIN").ToString.Trim
+            Dim CIN As String = Reader.Item("CIN").ToString.Trim
+            Dim Partners As System.ComponentModel.BindingList(Of Partner) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Partner))(Reader.Item("PartnerDirector").ToString.Trim)
+            Dim Type As String = Reader.Item("Type").ToString.Trim
+            Dim Credentials As System.ComponentModel.BindingList(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString.Trim)
+            Dim JobUsers As List(Of JobUser) = JobUser.FromXML(Reader.Item("Jobs").ToString.Trim, Jobs, Users)
+            Dim Status As String = Reader.Item("Status").ToString.Trim
+            Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
+            Dim GST As String = Reader.Item("GST").ToString.Trim
+            Dim FileNo As String = Reader.Item("FileNo").ToString.Trim
+            Return New Client(ID, Name, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, Credentials, JobUsers, Status, Photo, GST, FileNo)
+        End Function
+
+        Private Function ReadMinimal(ByVal Reader As SqlDataReader) As ClientMinimal
+            Dim ID As Integer = CInt(Reader.Item("ID").ToString.Trim)
+            Dim Name As String = Reader.Item("ClientName").ToString.Trim
+            Dim PAN As String = Reader.Item("PAN").ToString.Trim
+            Return New ClientMinimal(ID, Name, PAN)
+        End Function
+#End Region
+
 
     End Module
 End Namespace
