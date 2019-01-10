@@ -24,12 +24,19 @@ Imports System.Drawing
 
 Namespace Dialogs
     Public Class frm_ClientAddEdit
+
+#Region "Variables"
         Dim Mode As Enums.DialogMode = Enums.DialogMode.Add
         Dim Jobs As List(Of Job)
         Dim Users As List(Of User)
         Dim ID As Integer = -1
-        Property Client As Objects.Client = Nothing
+#End Region
 
+#Region "Properties"
+        Property Client As Objects.Client = Nothing
+#End Region
+
+#Region "Constructor"
         Sub New(ByVal Mode As Enums.DialogMode, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), Optional ByVal ID As Integer = -1)
             InitializeComponent()
             Me.Mode = Mode
@@ -37,11 +44,9 @@ Namespace Dialogs
             Me.Users = Users
             Me.ID = ID
         End Sub
+#End Region
 
-        Private Sub Panel_Photo_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Panel_Photo.SizeChanged
-            Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
-        End Sub
-
+#Region "Form Events"
         Private Sub frm_ClientAddEdit_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
             If Mode = Enums.DialogMode.Edit AndAlso ID > -1 Then
                 Dim img As New System.IO.MemoryStream
@@ -57,25 +62,197 @@ Namespace Dialogs
                 txt_AddressLine2.Text = Client.AddressLine2
                 txt_District.Text = Client.District
                 txt_Pincode.Text = Client.PinCode
+                txt_State.SelectedItem = Client.State
 
                 txt_Aadhar.Text = Client.AadharNo
                 txt_Description.Text = Client.Description
                 cmb_TypeOfEngagement.SelectedItem = Client.TypeOfEngagement
                 txt_TIN.Text = Client.TIN
                 txt_CIN.Text = Client.CIN
-                gv_PartnersDirectors.DataSource = Client.Partners
+                gc_PartnersDirectors.DataSource = Client.Partners
                 cmb_Type.SelectedItem = Client.Type
-                gv_Credentials.DataSource = Client.Credentials
-                gv_Jobs.DataSource = Client.Jobs
+                gc_Credentials.DataSource = Client.Credentials
+                gc_Jobs.DataSource = Client.Jobs
                 txt_Status.Text = Client.Status
                 pic_Photo.Image = Client.Photo
                 txt_GSTNo.Text = Client.GST
                 txt_FileNo.Text = Client.FileNo
             Else
-                Me.gv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
-                Me.gv_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
-                Me.gv_Jobs.DataSource = New List(Of Objects.JobUser)
+                Me.gc_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
+                Me.gc_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
+                Me.gc_Jobs.DataSource = New List(Of Objects.JobUser)
             End If
+            Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
+        End Sub
+#End Region
+
+#Region "Button Events"
+#Region "Credential"
+        Private Sub btn_Credential_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Add.Click
+            Dim d As New frm_Credential(Enums.DialogMode.Add)
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                If gc_Credentials.DataSource Is Nothing Then gc_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
+                gc_Credentials.DataSource.Add(d.Credential)
+                gc_Credentials.RefreshDataSource()
+            End If
+        End Sub
+
+        Private Sub btn_Credential_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Edit.Click
+            If gv_Credentials.SelectedRowsCount = 1 Then
+                Dim row As Integer = (gv_Credentials.GetSelectedRows()(0))
+                Dim obj As Objects.Credential = TryCast(gv_Credentials.GetRow(row), Objects.Credential)
+                If obj Is Nothing Then
+                    Exit Sub
+                End If
+                Dim d As New frm_Credential(Enums.DialogMode.Edit, obj)
+                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                    obj.Name = d.Credential.Name
+                    obj.Password = d.Credential.Password
+                    obj.Password2 = d.Credential.Password2
+                    obj.Password3 = d.Credential.Password3
+                    obj.Template = d.Credential.Template
+                    obj.Username = d.Credential.Username
+                End If
+                gc_Credentials.RefreshDataSource()
+            End If
+        End Sub
+
+        Private Sub btn_Credential_Remove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Remove.Click
+            If gv_Credentials.SelectedRowsCount > 0 Then
+                For Each i As Integer In gv_Credentials.GetSelectedRows
+                    Dim row As Integer = (i)
+                    Dim obj As Objects.Credential = TryCast(gv_Credentials.GetRow(row), Objects.Credential)
+                    CType(gc_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)).Remove(obj)
+                Next
+                gc_Credentials.RefreshDataSource()
+            End If
+        End Sub
+#End Region
+#Region "Other"
+        Private Sub btn_BrowseImage_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_BrowseImage.Click
+            If OFD_Image.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                pic_Photo.Image = Image.FromFile(OFD_Image.FileName)
+            End If
+        End Sub
+#End Region
+#Region "Partner"
+        Private Sub btn_Client_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Add.Click
+            Dim d As New frm_Partner(Enums.DialogMode.Add)
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                If gc_PartnersDirectors.DataSource Is Nothing Then gc_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
+                CType(gc_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Add(d.Partner)
+                gc_PartnersDirectors.RefreshDataSource()
+            End If
+        End Sub
+
+        Private Sub btn_Client_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Edit.Click
+            If gv_PartnersDirectors.SelectedRowsCount = 1 Then
+                Dim row As Integer = (gv_PartnersDirectors.GetSelectedRows()(0))
+                Dim obj As Objects.Partner = TryCast(gv_PartnersDirectors.GetRow(row), Objects.Partner)
+                If obj Is Nothing Then
+                    Exit Sub
+                End If
+                Dim d As New frm_Partner(Enums.DialogMode.Edit, obj)
+                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                    obj.Name = d.Partner.Name
+                    obj.PAN = d.Partner.PAN
+                    obj.DOB = d.Partner.DOB
+                    obj.Address = d.Partner.Address
+                End If
+                gc_PartnersDirectors.RefreshDataSource()
+            End If
+        End Sub
+
+        Private Sub btn_Client_Remove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Remove.Click
+            If gv_PartnersDirectors.SelectedRowsCount > 0 Then
+                For Each inte As Integer In gv_PartnersDirectors.GetSelectedRows
+                    Dim obj As Objects.Partner = TryCast(gv_PartnersDirectors.GetRow(inte), Objects.Partner)
+                    CType(gc_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Remove(obj)
+                    gc_PartnersDirectors.RefreshDataSource()
+                Next
+            End If
+        End Sub
+#End Region
+#Region "Jobs"
+        Private Sub btn_Jobs_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Add.Click
+            Dim d As New frm_JobUser(Enums.DialogMode.Add, Jobs, Users)
+            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+                If gc_Jobs.DataSource Is Nothing Then gc_Jobs.DataSource = New List(Of Objects.Job)
+                CType(gc_Jobs.DataSource, List(Of Objects.JobUser)).Add(d.JobUser)
+                gc_Jobs.RefreshDataSource()
+            End If
+        End Sub
+
+        Private Sub btn_Jobs_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Edit.Click
+            If gv_Jobs.SelectedRowsCount = 1 Then
+                Dim List As List(Of JobUser) = CType(gv_Jobs.DataSource, List(Of JobUser))
+                Dim row As Integer = (gv_Jobs.GetSelectedRows()(0))
+                Dim obj As JobUser = TryCast(gv_Jobs.GetRow(row), JobUser)
+                If obj Is Nothing Then
+                    Exit Sub
+                End If
+                Dim Index As Integer = List.IndexOf(obj)
+                Dim d As New frm_JobUser(Enums.DialogMode.Edit, Jobs, Users, obj)
+                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                    List.Remove(obj)
+                    List.Insert(Index, d.JobUser)
+                End If
+                gc_Jobs.RefreshDataSource()
+            End If
+        End Sub
+
+        Private Sub btn_Jobs_Remove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Remove.Click
+            If gv_Jobs.SelectedRowsCount > 0 Then
+                For Each i As Integer In gv_Jobs.GetSelectedRows
+                    Dim row As Integer = (i)
+                    Dim obj As JobUser = TryCast(gv_Jobs.GetRow(row), JobUser)
+                    CType(gc_Jobs.DataSource, List(Of JobUser)).Remove(obj)
+                Next
+                gc_Jobs.RefreshDataSource()
+            End If
+        End Sub
+#End Region
+#Region "Dialog"
+        Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
+            If Mode = Enums.DialogMode.Add Then
+                Try
+                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gc_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gc_Credentials.DataSource, gc_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    If item IsNot Nothing Then
+                        Me.Client = item
+                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
+                        Me.Close()
+                    Else
+                        MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    End If
+                Catch ex As Exception
+                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+                End Try
+            ElseIf Mode = Enums.DialogMode.Edit Then
+                Try
+                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, gc_PartnersDirectors.DataSource, cmb_Type.SelectedItem, gc_Credentials.DataSource, gc_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    If result Then
+                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
+                        Me.Close()
+                    Else
+                        MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    End If
+                Catch ex As Exception
+                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+                End Try
+            End If
+        End Sub
+
+        Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
+            Me.Close()
+        End Sub
+#End Region
+#End Region
+
+#Region "Other Events"
+        Private Sub Panel_Photo_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Panel_Photo.SizeChanged
             Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
         End Sub
 
@@ -111,161 +288,9 @@ Namespace Dialogs
             End Try
         End Sub
 
-        Private Sub btn_Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Cancel.Click
-            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
-            Me.Close()
+        Private Sub txt_State_SelectedIndexChanged(sender As Object, e As EventArgs) Handles txt_State.SelectedIndexChanged
+            txt_StateCode.Text = txt_State.SelectedIndex + 1
         End Sub
-
-
-        Private Sub btn_BrowseImage_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_BrowseImage.Click
-            If OFD_Image.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                pic_Photo.Image = Image.FromFile(OFD_Image.FileName)
-            End If
-        End Sub
-        Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
-            If Mode = Enums.DialogMode.Add Then
-                Try
-                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
-                    If item IsNot Nothing Then
-                        Me.Client = item
-                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-                        Me.Close()
-                    Else
-                        MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
-                    End If
-                Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
-                End Try
-            ElseIf Mode = Enums.DialogMode.Edit Then
-                Try
-                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
-                    If result Then
-                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
-                        Me.DialogResult = System.Windows.Forms.DialogResult.OK
-                        Me.Close()
-                    Else
-                        MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
-                    End If
-                Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
-                End Try
-            End If
-        End Sub
-
-        Private Sub btn_Client_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Add.Click
-            Dim d As New frm_Partner(Enums.DialogMode.Add)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                If gv_PartnersDirectors.DataSource Is Nothing Then gv_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
-                CType(gv_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Add(d.Partner)
-                gv_PartnersDirectors.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Client_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Edit.Click
-            If GridView1.SelectedRowsCount = 1 Then
-                Dim row As Integer = (GridView1.GetSelectedRows()(0))
-                Dim obj As Objects.Partner = TryCast(GridView1.GetRow(row), Objects.Partner)
-                If obj Is Nothing Then
-                    Exit Sub
-                End If
-                Dim d As New frm_Partner(Enums.DialogMode.Edit, obj)
-                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    obj.Name = d.Partner.Name
-                    obj.PAN = d.Partner.PAN
-                    obj.DOB = d.Partner.DOB
-                    obj.Address = d.Partner.Address
-                End If
-                gv_PartnersDirectors.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Client_Remove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Client_Remove.Click
-            If GridView1.SelectedRowsCount > 0 Then
-                For Each inte As Integer In GridView1.GetSelectedRows
-                    Dim obj As Objects.Partner = TryCast(GridView1.GetRow(inte), Objects.Partner)
-                    CType(gv_PartnersDirectors.DataSource, System.ComponentModel.BindingList(Of Objects.Partner)).Remove(obj)
-                    gv_PartnersDirectors.RefreshDataSource()
-                Next
-            End If
-        End Sub
-
-        Private Sub btn_Jobs_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Add.Click
-            Dim d As New frm_JobUser(Enums.DialogMode.Add, Jobs, Users)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                If gv_Jobs.DataSource Is Nothing Then gv_Jobs.DataSource = New List(Of Objects.Job)
-                CType(gv_Jobs.DataSource, List(Of Objects.JobUser)).Add(d.JobUser)
-                gv_Jobs.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Jobs_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Edit.Click
-            If GridView2.SelectedRowsCount = 1 Then
-                Dim List As List(Of JobUser) = CType(GridView2.DataSource, List(Of JobUser))
-                Dim row As Integer = (GridView2.GetSelectedRows()(0))
-                Dim obj As JobUser = TryCast(GridView2.GetRow(row), JobUser)
-                If obj Is Nothing Then
-                    Exit Sub
-                End If
-                Dim Index As Integer = List.IndexOf(obj)
-                Dim d As New frm_JobUser(Enums.DialogMode.Edit, Jobs, Users, obj)
-                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    List.Remove(obj)
-                    List.Insert(Index, d.JobUser)
-                End If
-                gv_Jobs.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Jobs_Remove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Remove.Click
-            If GridView2.SelectedRowsCount > 0 Then
-                For Each i As Integer In GridView2.GetSelectedRows
-                    Dim row As Integer = (i)
-                    Dim obj As JobUser = TryCast(GridView2.GetRow(row), JobUser)
-                    CType(gv_Jobs.DataSource, List(Of JobUser)).Remove(obj)
-                Next
-                gv_Jobs.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Credential_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Add.Click
-            Dim d As New frm_Credential(Enums.DialogMode.Add)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                If gv_Credentials.DataSource Is Nothing Then gv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
-                gv_Credentials.DataSource.Add(d.Credential)
-                gv_Credentials.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Credential_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Edit.Click
-            If GridView3.SelectedRowsCount = 1 Then
-                Dim row As Integer = (GridView3.GetSelectedRows()(0))
-                Dim obj As Objects.Credential = TryCast(GridView3.GetRow(row), Objects.Credential)
-                If obj Is Nothing Then
-                    Exit Sub
-                End If
-                Dim d As New frm_Credential(Enums.DialogMode.Edit, obj)
-                If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    obj.Name = d.Credential.Name
-                    obj.Password = d.Credential.Password
-                    obj.Password2 = d.Credential.Password2
-                    obj.Password3 = d.Credential.Password3
-                    obj.Template = d.Credential.Template
-                    obj.Username = d.Credential.Username
-                End If
-                gv_Credentials.RefreshDataSource()
-            End If
-        End Sub
-
-        Private Sub btn_Credential_Remove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Credential_Remove.Click
-            If GridView3.SelectedRowsCount > 0 Then
-                For Each i As Integer In GridView3.GetSelectedRows
-                    Dim row As Integer = (i)
-                    Dim obj As Objects.Credential = TryCast(GridView3.GetRow(row), Objects.Credential)
-                    CType(gv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)).Remove(obj)
-                Next
-                gv_Credentials.RefreshDataSource()
-            End If
-        End Sub
+#End Region
     End Class
 End Namespace

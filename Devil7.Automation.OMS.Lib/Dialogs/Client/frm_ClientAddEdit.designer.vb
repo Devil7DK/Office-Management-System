@@ -83,22 +83,22 @@
             Me.Label39 = New DevExpress.XtraEditors.LabelControl()
             Me.Label40 = New DevExpress.XtraEditors.LabelControl()
             Me.Panel_Partners = New System.Windows.Forms.Panel()
-            Me.gv_PartnersDirectors = New DevExpress.XtraGrid.GridControl()
-            Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+            Me.gc_PartnersDirectors = New DevExpress.XtraGrid.GridControl()
+            Me.gv_PartnersDirectors = New DevExpress.XtraGrid.Views.Grid.GridView()
             Me.Panel_Partners_Control = New System.Windows.Forms.FlowLayoutPanel()
             Me.btn_Client_Add = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Client_Edit = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Client_Remove = New DevExpress.XtraEditors.SimpleButton()
             Me.Panel_Jobs = New System.Windows.Forms.Panel()
-            Me.gv_Jobs = New DevExpress.XtraGrid.GridControl()
-            Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+            Me.gc_Jobs = New DevExpress.XtraGrid.GridControl()
+            Me.gv_Jobs = New DevExpress.XtraGrid.Views.Grid.GridView()
             Me.Panel_Jobs_Control = New System.Windows.Forms.FlowLayoutPanel()
             Me.btn_Jobs_Add = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Jobs_Edit = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Jobs_Remove = New DevExpress.XtraEditors.SimpleButton()
             Me.Panel_Credentials = New System.Windows.Forms.Panel()
-            Me.gv_Credentials = New DevExpress.XtraGrid.GridControl()
-            Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+            Me.gc_Credentials = New DevExpress.XtraGrid.GridControl()
+            Me.gv_Credentials = New DevExpress.XtraGrid.Views.Grid.GridView()
             Me.Panel_Credentials_Control = New System.Windows.Forms.FlowLayoutPanel()
             Me.btn_Credential_Add = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Credential_Edit = New DevExpress.XtraEditors.SimpleButton()
@@ -119,6 +119,8 @@
             Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
             Me.txt_State = New DevExpress.XtraEditors.ComboBoxEdit()
+            Me.txt_StateCode = New DevExpress.XtraEditors.TextEdit()
+            Me.txt_Phone = New DevExpress.XtraEditors.TextEdit()
             Me.Panel_Photo = New System.Windows.Forms.Panel()
             Me.Panel_Photo_Control = New System.Windows.Forms.Panel()
             Me.pic_Photo = New System.Windows.Forms.PictureBox()
@@ -126,8 +128,6 @@
             Me.Panel_Control = New System.Windows.Forms.Panel()
             Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
-            Me.txt_StateCode = New DevExpress.XtraEditors.TextEdit()
-            Me.txt_Phone = New DevExpress.XtraEditors.TextEdit()
             Me.Panel_Main.SuspendLayout()
             Me.Panel_Details.SuspendLayout()
             Me.Panel_Controls_Layout.SuspendLayout()
@@ -148,28 +148,28 @@
             CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Partners.SuspendLayout()
+            CType(Me.gc_PartnersDirectors, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.gv_PartnersDirectors, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Partners_Control.SuspendLayout()
             Me.Panel_Jobs.SuspendLayout()
+            CType(Me.gc_Jobs, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.gv_Jobs, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Jobs_Control.SuspendLayout()
             Me.Panel_Credentials.SuspendLayout()
+            CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Credentials_Control.SuspendLayout()
             CType(Me.txt_DOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_DOB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_GSTNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_FileNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_State.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.txt_StateCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.txt_Phone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Photo.SuspendLayout()
             Me.Panel_Photo_Control.SuspendLayout()
             CType(Me.pic_Photo, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Control.SuspendLayout()
-            CType(Me.txt_StateCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.txt_Phone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'OFD_Image
@@ -308,9 +308,9 @@
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 184.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 149.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42.0!))
-            Me.Panel_Controls_Layout.Size = New System.Drawing.Size(762, 924)
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 171.0!))
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+            Me.Panel_Controls_Layout.Size = New System.Drawing.Size(762, 1055)
             Me.Panel_Controls_Layout.TabIndex = 0
             '
             'txt_Pincode
@@ -766,16 +766,16 @@
             Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label36.Location = New System.Drawing.Point(3, 712)
             Me.Label36.Name = "Label36"
-            Me.Label36.Size = New System.Drawing.Size(244, 143)
+            Me.Label36.Size = New System.Drawing.Size(244, 165)
             Me.Label36.TabIndex = 58
             Me.Label36.Text = "Jobs"
             '
             'Label37
             '
             Me.Label37.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label37.Location = New System.Drawing.Point(3, 861)
+            Me.Label37.Location = New System.Drawing.Point(3, 883)
             Me.Label37.Name = "Label37"
-            Me.Label37.Size = New System.Drawing.Size(244, 60)
+            Me.Label37.Size = New System.Drawing.Size(244, 169)
             Me.Label37.TabIndex = 59
             Me.Label37.Text = "Credentials"
             '
@@ -793,22 +793,22 @@
             Me.Label39.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label39.Location = New System.Drawing.Point(253, 712)
             Me.Label39.Name = "Label39"
-            Me.Label39.Size = New System.Drawing.Size(5, 143)
+            Me.Label39.Size = New System.Drawing.Size(5, 165)
             Me.Label39.TabIndex = 61
             Me.Label39.Text = ":"
             '
             'Label40
             '
             Me.Label40.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label40.Location = New System.Drawing.Point(253, 861)
+            Me.Label40.Location = New System.Drawing.Point(253, 883)
             Me.Label40.Name = "Label40"
-            Me.Label40.Size = New System.Drawing.Size(5, 60)
+            Me.Label40.Size = New System.Drawing.Size(5, 169)
             Me.Label40.TabIndex = 62
             Me.Label40.Text = ":"
             '
             'Panel_Partners
             '
-            Me.Panel_Partners.Controls.Add(Me.gv_PartnersDirectors)
+            Me.Panel_Partners.Controls.Add(Me.gc_PartnersDirectors)
             Me.Panel_Partners.Controls.Add(Me.Panel_Partners_Control)
             Me.Panel_Partners.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Panel_Partners.Location = New System.Drawing.Point(264, 528)
@@ -816,21 +816,21 @@
             Me.Panel_Partners.Size = New System.Drawing.Size(495, 178)
             Me.Panel_Partners.TabIndex = 63
             '
+            'gc_PartnersDirectors
+            '
+            Me.gc_PartnersDirectors.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.gc_PartnersDirectors.Location = New System.Drawing.Point(0, 0)
+            Me.gc_PartnersDirectors.MainView = Me.gv_PartnersDirectors
+            Me.gc_PartnersDirectors.Name = "gc_PartnersDirectors"
+            Me.gc_PartnersDirectors.Size = New System.Drawing.Size(495, 147)
+            Me.gc_PartnersDirectors.TabIndex = 17
+            Me.gc_PartnersDirectors.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_PartnersDirectors})
+            '
             'gv_PartnersDirectors
             '
-            Me.gv_PartnersDirectors.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gv_PartnersDirectors.Location = New System.Drawing.Point(0, 0)
-            Me.gv_PartnersDirectors.MainView = Me.GridView1
+            Me.gv_PartnersDirectors.GridControl = Me.gc_PartnersDirectors
             Me.gv_PartnersDirectors.Name = "gv_PartnersDirectors"
-            Me.gv_PartnersDirectors.Size = New System.Drawing.Size(495, 147)
-            Me.gv_PartnersDirectors.TabIndex = 17
-            Me.gv_PartnersDirectors.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-            '
-            'GridView1
-            '
-            Me.GridView1.GridControl = Me.gv_PartnersDirectors
-            Me.GridView1.Name = "GridView1"
-            Me.GridView1.OptionsView.ShowGroupPanel = False
+            Me.gv_PartnersDirectors.OptionsView.ShowGroupPanel = False
             '
             'Panel_Partners_Control
             '
@@ -882,29 +882,29 @@
             '
             'Panel_Jobs
             '
-            Me.Panel_Jobs.Controls.Add(Me.gv_Jobs)
+            Me.Panel_Jobs.Controls.Add(Me.gc_Jobs)
             Me.Panel_Jobs.Controls.Add(Me.Panel_Jobs_Control)
             Me.Panel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Panel_Jobs.Location = New System.Drawing.Point(264, 712)
             Me.Panel_Jobs.Name = "Panel_Jobs"
-            Me.Panel_Jobs.Size = New System.Drawing.Size(495, 143)
+            Me.Panel_Jobs.Size = New System.Drawing.Size(495, 165)
             Me.Panel_Jobs.TabIndex = 64
+            '
+            'gc_Jobs
+            '
+            Me.gc_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.gc_Jobs.Location = New System.Drawing.Point(0, 0)
+            Me.gc_Jobs.MainView = Me.gv_Jobs
+            Me.gc_Jobs.Name = "gc_Jobs"
+            Me.gc_Jobs.Size = New System.Drawing.Size(495, 131)
+            Me.gc_Jobs.TabIndex = 21
+            Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
             '
             'gv_Jobs
             '
-            Me.gv_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gv_Jobs.Location = New System.Drawing.Point(0, 0)
-            Me.gv_Jobs.MainView = Me.GridView2
+            Me.gv_Jobs.GridControl = Me.gc_Jobs
             Me.gv_Jobs.Name = "gv_Jobs"
-            Me.gv_Jobs.Size = New System.Drawing.Size(495, 109)
-            Me.gv_Jobs.TabIndex = 21
-            Me.gv_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-            '
-            'GridView2
-            '
-            Me.GridView2.GridControl = Me.gv_Jobs
-            Me.GridView2.Name = "GridView2"
-            Me.GridView2.OptionsView.ShowGroupPanel = False
+            Me.gv_Jobs.OptionsView.ShowGroupPanel = False
             '
             'Panel_Jobs_Control
             '
@@ -913,7 +913,7 @@
             Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Edit)
             Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Remove)
             Me.Panel_Jobs_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Jobs_Control.Location = New System.Drawing.Point(0, 109)
+            Me.Panel_Jobs_Control.Location = New System.Drawing.Point(0, 131)
             Me.Panel_Jobs_Control.Name = "Panel_Jobs_Control"
             Me.Panel_Jobs_Control.Size = New System.Drawing.Size(495, 34)
             Me.Panel_Jobs_Control.TabIndex = 3
@@ -956,29 +956,29 @@
             '
             'Panel_Credentials
             '
-            Me.Panel_Credentials.Controls.Add(Me.gv_Credentials)
+            Me.Panel_Credentials.Controls.Add(Me.gc_Credentials)
             Me.Panel_Credentials.Controls.Add(Me.Panel_Credentials_Control)
             Me.Panel_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Credentials.Location = New System.Drawing.Point(264, 861)
+            Me.Panel_Credentials.Location = New System.Drawing.Point(264, 883)
             Me.Panel_Credentials.Name = "Panel_Credentials"
-            Me.Panel_Credentials.Size = New System.Drawing.Size(495, 60)
+            Me.Panel_Credentials.Size = New System.Drawing.Size(495, 169)
             Me.Panel_Credentials.TabIndex = 65
+            '
+            'gc_Credentials
+            '
+            Me.gc_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.gc_Credentials.Location = New System.Drawing.Point(0, 0)
+            Me.gc_Credentials.MainView = Me.gv_Credentials
+            Me.gc_Credentials.Name = "gc_Credentials"
+            Me.gc_Credentials.Size = New System.Drawing.Size(495, 135)
+            Me.gc_Credentials.TabIndex = 25
+            Me.gc_Credentials.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Credentials})
             '
             'gv_Credentials
             '
-            Me.gv_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gv_Credentials.Location = New System.Drawing.Point(0, 0)
-            Me.gv_Credentials.MainView = Me.GridView3
+            Me.gv_Credentials.GridControl = Me.gc_Credentials
             Me.gv_Credentials.Name = "gv_Credentials"
-            Me.gv_Credentials.Size = New System.Drawing.Size(495, 26)
-            Me.gv_Credentials.TabIndex = 25
-            Me.gv_Credentials.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
-            '
-            'GridView3
-            '
-            Me.GridView3.GridControl = Me.gv_Credentials
-            Me.GridView3.Name = "GridView3"
-            Me.GridView3.OptionsView.ShowGroupPanel = False
+            Me.gv_Credentials.OptionsView.ShowGroupPanel = False
             '
             'Panel_Credentials_Control
             '
@@ -987,7 +987,7 @@
             Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Edit)
             Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Remove)
             Me.Panel_Credentials_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 26)
+            Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 135)
             Me.Panel_Credentials_Control.Name = "Panel_Credentials_Control"
             Me.Panel_Credentials_Control.Size = New System.Drawing.Size(495, 34)
             Me.Panel_Credentials_Control.TabIndex = 3
@@ -1181,6 +1181,23 @@
             Me.txt_State.Size = New System.Drawing.Size(495, 20)
             Me.txt_State.TabIndex = 9
             '
+            'txt_StateCode
+            '
+            Me.txt_StateCode.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.txt_StateCode.Location = New System.Drawing.Point(264, 242)
+            Me.txt_StateCode.Name = "txt_StateCode"
+            Me.txt_StateCode.Properties.ReadOnly = True
+            Me.txt_StateCode.Size = New System.Drawing.Size(495, 20)
+            Me.txt_StateCode.TabIndex = 79
+            '
+            'txt_Phone
+            '
+            Me.txt_Phone.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.txt_Phone.Location = New System.Drawing.Point(264, 286)
+            Me.txt_Phone.Name = "txt_Phone"
+            Me.txt_Phone.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Phone.TabIndex = 11
+            '
             'Panel_Photo
             '
             Me.Panel_Photo.Controls.Add(Me.Panel_Photo_Control)
@@ -1261,23 +1278,6 @@
             Me.btn_Done.TabStop = False
             Me.btn_Done.Text = "Done"
             '
-            'txt_StateCode
-            '
-            Me.txt_StateCode.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_StateCode.Location = New System.Drawing.Point(264, 242)
-            Me.txt_StateCode.Name = "txt_StateCode"
-            Me.txt_StateCode.Properties.ReadOnly = True
-            Me.txt_StateCode.Size = New System.Drawing.Size(495, 20)
-            Me.txt_StateCode.TabIndex = 79
-            '
-            'txt_Phone
-            '
-            Me.txt_Phone.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_Phone.Location = New System.Drawing.Point(264, 286)
-            Me.txt_Phone.Name = "txt_Phone"
-            Me.txt_Phone.Size = New System.Drawing.Size(495, 20)
-            Me.txt_Phone.TabIndex = 11
-            '
             'frm_ClientAddEdit
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1309,28 +1309,28 @@
             CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Partners.ResumeLayout(False)
+            CType(Me.gc_PartnersDirectors, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.gv_PartnersDirectors, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Partners_Control.ResumeLayout(False)
             Me.Panel_Jobs.ResumeLayout(False)
+            CType(Me.gc_Jobs, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.gv_Jobs, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Jobs_Control.ResumeLayout(False)
             Me.Panel_Credentials.ResumeLayout(False)
+            CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Credentials_Control.ResumeLayout(False)
             CType(Me.txt_DOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_DOB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_GSTNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_FileNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_State.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.txt_StateCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.txt_Phone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Photo.ResumeLayout(False)
             Me.Panel_Photo_Control.ResumeLayout(False)
             CType(Me.pic_Photo, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Control.ResumeLayout(False)
-            CType(Me.txt_StateCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.txt_Phone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -1416,12 +1416,12 @@
         Friend WithEvents btn_Credential_Remove As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents Label6 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents gv_PartnersDirectors As DevExpress.XtraGrid.GridControl
-        Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-        Friend WithEvents gv_Jobs As DevExpress.XtraGrid.GridControl
-        Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-        Friend WithEvents gv_Credentials As DevExpress.XtraGrid.GridControl
-        Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+        Friend WithEvents gc_PartnersDirectors As DevExpress.XtraGrid.GridControl
+        Friend WithEvents gv_PartnersDirectors As DevExpress.XtraGrid.Views.Grid.GridView
+        Friend WithEvents gc_Jobs As DevExpress.XtraGrid.GridControl
+        Friend WithEvents gv_Jobs As DevExpress.XtraGrid.Views.Grid.GridView
+        Friend WithEvents gc_Credentials As DevExpress.XtraGrid.GridControl
+        Friend WithEvents gv_Credentials As DevExpress.XtraGrid.Views.Grid.GridView
         Friend WithEvents txt_DOB As DevExpress.XtraEditors.DateEdit
         Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
