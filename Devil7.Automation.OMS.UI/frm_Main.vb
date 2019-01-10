@@ -355,8 +355,23 @@ Public Class frm_Main
                       rpg_Clients.Enabled = False
                       ProgressPanel_Clients.Visible = True
                   End Sub)
+
+        If Users Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Clients.Description = "Loading Users..."
+                      End Sub)
+            Loader_Users_DoWork(Me, Nothing)
+        End If
+
+        If Jobs Is Nothing Then
+            Me.Invoke(Sub()
+                          ProgressPanel_Clients.Description = "Loading Jobss..."
+                      End Sub)
+            Loader_Jobs_DoWork(Me, Nothing)
+        End If
+
         Try
-            Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(True)
+            Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(Jobs, Users, True)
             Me.Clients = Clients
             Me.Invoke(Sub()
                           gc_Clients.DataSource = Clients
@@ -389,7 +404,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_AddClient_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_AddClient.ItemClick
-        Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add)
+        Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add, Jobs, Users)
         If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             If d.Client IsNot Nothing Then
                 CType(gc_Clients.DataSource, List(Of Objects.Client)).Add(d.Client)
@@ -406,7 +421,7 @@ Public Class frm_Main
             Selected = tv_Clients.GetRow(tv_Clients.GetSelectedRows(0))
         End If
         If Selected IsNot Nothing Then
-            Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Edit, Selected.ID)
+            Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Edit, Jobs, Users, Selected.ID)
             If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
             End If
@@ -708,7 +723,7 @@ Public Class frm_Main
             Dim cs As String = sender.Tag.ToString.Split(":")(1)
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
@@ -1182,7 +1197,7 @@ Public Class frm_Main
             Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
             If gv_Billing.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Billing.GetRow(gv_Billing.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
@@ -1200,7 +1215,7 @@ Public Class frm_Main
             Dim s As Enums.WorkStatus = Enums.WorkStatus.OnGoing
             If gv_Pending.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Pending.GetRow(gv_Pending.GetSelectedRows()(0))
-                If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
+                If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
                     MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                 Else
