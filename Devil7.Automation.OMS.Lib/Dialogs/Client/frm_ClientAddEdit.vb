@@ -19,17 +19,22 @@
 '                                                                          '
 '=========================================================================='
 
+Imports Devil7.Automation.OMS.Lib.Objects
 Imports System.Drawing
 
 Namespace Dialogs
     Public Class frm_ClientAddEdit
         Dim Mode As Enums.DialogMode = Enums.DialogMode.Add
+        Dim Jobs As List(Of Job)
+        Dim Users As List(Of User)
         Dim ID As Integer = -1
         Property Client As Objects.Client = Nothing
 
-        Sub New(ByVal Mode As Enums.DialogMode, Optional ByVal ID As Integer = -1)
+        Sub New(ByVal Mode As Enums.DialogMode, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), Optional ByVal ID As Integer = -1)
             InitializeComponent()
             Me.Mode = Mode
+            Me.Jobs = Jobs
+            Me.Users = Users
             Me.ID = ID
         End Sub
 
@@ -41,7 +46,7 @@ Namespace Dialogs
             If Mode = Enums.DialogMode.Edit AndAlso ID > -1 Then
                 Dim img As New System.IO.MemoryStream
                 pic_Photo.Image.Save(img, Imaging.ImageFormat.Jpeg)
-                Dim Client As Objects.Client = Database.Clients.GetClientByID(ID)
+                Dim Client As Objects.Client = Database.Clients.GetClientByID(ID, Jobs, Users)
                 txt_PAN.Text = Client.PAN
                 txt_ClientName.Text = Client.Name
                 txt_FatherName.Text = Client.FatherName
@@ -69,7 +74,7 @@ Namespace Dialogs
             Else
                 Me.gv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
                 Me.gv_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
-                Me.gv_Jobs.DataSource = New List(Of Objects.Job)
+                Me.gv_Jobs.DataSource = New List(Of Objects.JobUser)
             End If
             Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
         End Sub
@@ -134,7 +139,7 @@ Namespace Dialogs
                 End Try
             ElseIf Mode = Enums.DialogMode.Edit Then
                 Try
-                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, gv_PartnersDirectors.DataSource, cmb_Type.SelectedItem, gv_Credentials.DataSource, gv_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If result Then
                         MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
@@ -186,30 +191,27 @@ Namespace Dialogs
         End Sub
 
         Private Sub btn_Jobs_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Add.Click
-            Dim d As New frm_Job_Lite(Enums.DialogMode.Add)
+            Dim d As New frm_JobUser(Enums.DialogMode.Add, Jobs, Users)
             If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gv_Jobs.DataSource Is Nothing Then gv_Jobs.DataSource = New List(Of Objects.Job)
-                CType(gv_Jobs.DataSource, List(Of Objects.Job)).Add(d.Job)
+                CType(gv_Jobs.DataSource, List(Of Objects.JobUser)).Add(d.JobUser)
                 gv_Jobs.RefreshDataSource()
             End If
         End Sub
 
         Private Sub btn_Jobs_Edit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Jobs_Edit.Click
             If GridView2.SelectedRowsCount = 1 Then
+                Dim List As List(Of JobUser) = CType(GridView2.DataSource, List(Of JobUser))
                 Dim row As Integer = (GridView2.GetSelectedRows()(0))
-                Dim obj As Objects.Job = TryCast(GridView2.GetRow(row), Objects.Job)
+                Dim obj As JobUser = TryCast(GridView2.GetRow(row), JobUser)
                 If obj Is Nothing Then
                     Exit Sub
                 End If
-                Dim d As New frm_Job_Lite(Enums.DialogMode.Edit, obj)
+                Dim Index As Integer = List.IndexOf(obj)
+                Dim d As New frm_JobUser(Enums.DialogMode.Edit, Jobs, Users, obj)
                 If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    obj.ID = d.Job.ID
-                    obj.Name = d.Job.Name
-                    obj.Group = d.Job.Group
-                    obj.Steps = d.Job.Steps
-                    obj.SubGroup = d.Job.SubGroup
-                    obj.Templates = d.Job.Templates
-                    obj.Type = d.Job.Type
+                    List.Remove(obj)
+                    List.Insert(Index, d.JobUser)
                 End If
                 gv_Jobs.RefreshDataSource()
             End If
@@ -219,8 +221,8 @@ Namespace Dialogs
             If GridView2.SelectedRowsCount > 0 Then
                 For Each i As Integer In GridView2.GetSelectedRows
                     Dim row As Integer = (i)
-                    Dim obj As Objects.Job = TryCast(GridView2.GetRow(row), Objects.Job)
-                    CType(gv_Jobs.DataSource, List(Of Objects.Job)).Remove(obj)
+                    Dim obj As JobUser = TryCast(GridView2.GetRow(row), JobUser)
+                    CType(gv_Jobs.DataSource, List(Of JobUser)).Remove(obj)
                 Next
                 gv_Jobs.RefreshDataSource()
             End If

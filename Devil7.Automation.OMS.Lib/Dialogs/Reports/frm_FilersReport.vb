@@ -123,7 +123,7 @@ Namespace Dialogs
 
             For Each i As Objects.Client In Me.Clients
                 If i.Jobs IsNot Nothing Then
-                    If i.Jobs.Find(Function(c) c.ID = txt_Job.EditValue) IsNot Nothing Then
+                    If i.Jobs.Find(Function(c) c.Job.ID = txt_Job.EditValue) IsNot Nothing Then
                         Clients.Add(i)
                     End If
                 End If

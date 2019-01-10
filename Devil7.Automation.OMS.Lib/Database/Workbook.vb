@@ -29,13 +29,13 @@ Namespace Database
 #Region "Update Functions - Normal"
         Function AddNew(ByVal User As User, ByVal Job As Job, ByVal DueDate As Date,
                    ByVal Client As ClientMinimal, ByVal Status As Enums.WorkStatus, ByVal Description As String, ByVal Remarks As String, ByVal TargetDate As Date,
-                   ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String, ByVal WorkType As Enums.WorkType) As WorkbookItem
+                   ByVal Priority As Enums.Priority, ByVal CurrentStep As String, ByVal Assessment As YearMonth, ByVal Financial As YearMonth, ByVal DefaultStorage As String, ByVal Owner As User, ByVal History As String, ByVal WorkType As Enums.WorkType, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
             Dim CommandString As String = "INSERT INTO Workbook ([User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType]) VALUES (@User,@Job,@DueDate,@ClientID,@Client,@DateAdded,@DateCompleted,@Status,@Description,@Remarks,@Folder,@TargetDate,@Priority,@DateUpdated,@CurrentStep,@AssessmentDetails,@FinancialDetails,@Owner,@History,@Billed,@WorkType);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
-            Dim FullClient As Client = GetClientByID(Client.ID)
+            Dim FullClient As Client = GetClientByID(Client.ID, Jobs, Users)
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
@@ -171,7 +171,7 @@ Namespace Database
             Return R
         End Function
 
-        Function UpdateStatus(ByVal WorkbookItem As WorkbookItem, ByVal CurrentStep As String, ByVal Status As Integer, ByVal History As String)
+        Function UpdateStatus(ByVal WorkbookItem As WorkbookItem, ByVal CurrentStep As String, ByVal Status As Integer, ByVal History As String, ByVal Jobs As List(Of Job), ByVal Users As List(Of User))
             Dim R As Boolean = False
 
             If WorkbookItem Is Nothing Then Return False
@@ -202,7 +202,7 @@ Namespace Database
             If R AndAlso Status = Enums.WorkStatus.Completed Then
                 If WorkbookItem.Job.FollowUps.Count > 0 Then
                     For Each i As Job In WorkbookItem.Job.FollowUps
-                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssessmentDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added", Enums.WorkType.Followup)
+                        Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssessmentDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added", Enums.WorkType.Followup, Jobs, Users)
                         If w Is Nothing Then
                             MsgBox("Unable to add followup job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
                         End If
