@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Security.Principal
+Imports DevExpress.XtraEditors
 Imports Devil7.Automation.OMS.Lib.Database
 Imports Devil7.Automation.OMS.Lib.Objects
 
@@ -30,6 +31,7 @@ Public Class frm_Login
     End Function
 
     Private Sub frm_Login_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        XtraMessageBox.SmartTextWrap = True
         Devil7.Automation.OMS.Lib.Utils.SettingsManager.LoadSettings()
         If IsAdmin() Then
             btn_ServerSettings.Enabled = True
@@ -41,7 +43,7 @@ Public Class frm_Login
             txt_Username.Properties.Items.AddRange(Users_)
             If Users_.Count >= My.Settings.LastUserIndex Then txt_Username.SelectedIndex = My.Settings.LastUserIndex
         Catch ex As Exception
-            MsgBox("Error on loading usernames.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            XtraMessageBox.Show("Error on loading usernames.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 

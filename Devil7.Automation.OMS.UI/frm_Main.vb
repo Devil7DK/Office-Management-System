@@ -21,6 +21,7 @@
 
 Imports DevExpress.Data
 Imports DevExpress.XtraBars
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid
 Imports Devil7.Automation.OMS.Lib
 
@@ -189,7 +190,7 @@ Public Class frm_Main
                           gc_Users.DataSource = Users
                       End Sub)
         Catch ex As Exception
-            MsgBox("Error on loading Users: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Users: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       rpg_Users.Enabled = True
@@ -214,7 +215,7 @@ Public Class frm_Main
             Dim row As Objects.User = tv_Users.GetRow(tv_Users.GetSelectedRows()(0))
 
             If row.UserType >= User.UserType Then
-                MsgBox("You cannot edit an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                XtraMessageBox.Show("You cannot edit an user whose role is greater than or equal to you!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
                 Dim d As New Dialogs.frm_User(Enums.DialogMode.Edit, row.ID, If(User.ID = row.ID, If(User.UserType = Enums.UserType.System, False, True), False))
                 If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
@@ -231,9 +232,9 @@ Public Class frm_Main
                 Dim row As Objects.User = tv_Users.GetRow(i)
 
                 If row.UserType >= User.UserType Then
-                    MsgBox("You cannot remove an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    XtraMessageBox.Show("You cannot remove an user whose role is greater than or equal to you!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Else
-                    If MsgBox("Are you sure? Do you want to remove selected user(s)..? " & vbNewLine & vbNewLine & "Note: This cannot be undone!", MsgBoxStyle.YesNo + MsgBoxStyle.Exclamation, "Sure?") = MsgBoxResult.Yes Then
+                    If XtraMessageBox.Show("Are you sure? Do you want to remove selected user(s)..? " & vbNewLine & vbNewLine & "Note: This cannot be undone!", "Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
                         If Database.Users.Remove(row.ID) Then
                             CType(gc_Users.DataSource, List(Of Objects.User)).Remove(row)
                         End If
@@ -248,9 +249,9 @@ Public Class frm_Main
         If tv_Users.SelectedRowsCount = 1 Then
             Dim row As Objects.User = tv_Users.GetRow(tv_Users.GetSelectedRows(0))
             If row.UserType >= User.UserType Then
-                MsgBox("You cannot reset password of an user whose role is greater than or equal to you!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                XtraMessageBox.Show("You cannot reset password of an user whose role is greater than or equal to you!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
-                If MsgBox("Are you sure to reset password for selected user...?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Sure..?") = MsgBoxResult.Yes Then
+                If XtraMessageBox.Show("Are you sure to reset password for selected user...?", "Sure..?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
                     Database.Users.ResetPassword(User.ID, True)
                 End If
             End If
@@ -296,7 +297,7 @@ Public Class frm_Main
                           gc_Jobs.RefreshDataSource()
                       End Sub)
         Catch ex As Exception
-            MsgBox("Error on loading Jobs: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Jobs: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       rpg_Jobs.Enabled = True
@@ -378,7 +379,7 @@ Public Class frm_Main
                           SortClients()
                       End Sub)
         Catch ex As Exception
-            MsgBox("Error on loading Clients: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Clients: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       rpg_Clients.Enabled = True
@@ -442,13 +443,13 @@ Public Class frm_Main
             Next
         End If
         If Selected IsNot Nothing Then
-            If MsgBox("Are you sure...? do you want to delete all selected clients...?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Sure?") = MsgBoxResult.Yes Then
+            If XtraMessageBox.Show("Are you sure...? do you want to delete all selected clients...?", "Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
                 For Each i As Objects.Client In Selected
                     Dim result As Boolean = Database.Clients.Remove(i.ID)
                     If result Then
                         CType(gc_Clients.DataSource, List(Of Objects.Client)).Remove(i)
                     Else
-                        MsgBox("Error on deleting client with id " & i.ID, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                        XtraMessageBox.Show("Error on deleting client with id " & i.ID, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
                 gc_Clients.RefreshDataSource()
@@ -494,7 +495,7 @@ Public Class frm_Main
                       End Sub)
             SetupWorkbookColumns()
         Catch ex As Exception
-            MsgBox("Error on loading Workbook: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Workbook: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       rpg_Workbook.Enabled = True
@@ -695,7 +696,7 @@ Public Class frm_Main
                       End Sub)
             SetupHomeColumns(gv_Home)
         Catch ex As Exception
-            MsgBox("Error on loading Home: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Home: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       ProgressPanel_Home.Visible = False
@@ -708,10 +709,11 @@ Public Class frm_Main
         LoginInstance.BeginInvoke(Sub() LoginInstance.Close())
         Loaded = True
         If User.UserType = Enums.UserType.System Then
-            If MsgBox("WARNING: You are logged in as and 'System' User." &
+            XtraMessageBox.SmartTextWrap = True
+            If XtraMessageBox.Show("WARNING: You are logged in as and 'System' User." &
                       " Playing/Testing with this account without proper knowledge " &
-                      "can lead to worst consequences. Use this accound only if you" &
-                      " know what you are doing. Do you want to exit this application..?", MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "Critical Warning!") = MsgBoxResult.Yes Then
+                      "can lead to worst consequences. Use this account only if you" &
+                      " know what you are doing. Do you want to exit this application..?", "Critical Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
                 Me.Close()
             End If
         End If
@@ -725,14 +727,14 @@ Public Class frm_Main
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStatus(row, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
-                    MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Successfully updated status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Unknown error on updating status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -743,14 +745,14 @@ Public Class frm_Main
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
                 If Database.Workbook.UpdatePriority(row.ID, s, (row.GetHistory & vbNewLine & "Priority updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.PriorityOfWork = s
-                    MsgBox("Successfully updated priority of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Successfully updated priority of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    MsgBox("Unknown error on updating priority of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Unknown error on updating priority of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on updating priority of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                  , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on updating priority of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                  , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -760,14 +762,14 @@ Public Class frm_Main
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStep(row.ID, sender.Caption, (row.GetHistory & vbNewLine & "Step/Stage updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.CurrentStep = sender.Caption
-                    MsgBox("Successfully updated step of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Successfully updated step of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    MsgBox("Unknown error on updating step of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Unknown error on updating step of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on updating step of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on updating step of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -780,15 +782,15 @@ Public Class frm_Main
                 If i.ShowDialog = DialogResult.OK Then
                     If Database.Workbook.UpdateRemarks(row.ID, i.Result, (row.GetHistory & vbNewLine & "Remarks updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                         row.Remarks = i.Result
-                        MsgBox("Successfully updated remarks of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Successfully updated remarks of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
-                        MsgBox("Unknown error on updating remarks of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Unknown error on updating remarks of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on updating remarks of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on updating remarks of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -803,15 +805,15 @@ Public Class frm_Main
             If gv_Home.SelectedRowsCount = 1 Then
                 Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
                 If Database.Workbook.AssignTo(row.ID, user.ID, (row.GetHistory & vbNewLine & "Work transferred from " & row.AssignedTo.Username & " to " & user.Username & " by " & Me.User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
-                    MsgBox("Successfully assigned selected work to the user " & user.Username & ".", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Successfully assigned selected work to the user " & user.Username & ".", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
                 Else
-                    MsgBox("Unknown error on assigning selected work to the user " & user.Username & ".", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Unknown error on assigning selected work to the user " & user.Username & ".", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on assigning selected work to the user {1}.{0}{0}{0}Additional Information:{0}{2}{0}{0}{3}", vbNewLine, user.Username, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on assigning selected work to the user {1}.{0}{0}{0}Additional Information:{0}{2}{0}{0}{3}", vbNewLine, user.Username, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -846,7 +848,7 @@ Public Class frm_Main
                           Next
                       End Sub)
         Catch ex As Exception
-            MsgBox("Error on loading Utilities: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Utilities: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       ProgressPanel_Utilites.Visible = False
@@ -918,7 +920,7 @@ Public Class frm_Main
                       End Sub)
             SetupBillingColumns()
         Catch ex As Exception
-            MsgBox("Error on loading Billing: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Billing: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       rpg_Billing.Enabled = True
@@ -937,17 +939,17 @@ Public Class frm_Main
                 For Each i As Integer In gv_Billing.GetSelectedRows
                     Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Billed, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
-                        MsgBox("Successfully marked selected items as 'Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Successfully marked selected items as 'Billed'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         gc_Billing.DataSource.Remove(row)
                     Else
-                        MsgBox("Unknown error while marking item " & row.ID & " as billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as billed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
                 gc_Billing.RefreshDataSource()
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -1021,7 +1023,7 @@ Public Class frm_Main
             Dim d As New Dialogs.frm_FilersReport(Clients)
             d.ShowDialog()
         Else
-            MsgBox("Clients list is not fetched yet. Load/Refresh clients list and try again.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            XtraMessageBox.Show("Clients list is not fetched yet. Load/Refresh clients list and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 
@@ -1111,7 +1113,7 @@ Public Class frm_Main
                       End Sub)
             SetupPendingColumns()
         Catch ex As Exception
-            MsgBox("Error on loading Pending: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Pending: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       rpg_Pending.Enabled = True
@@ -1138,17 +1140,17 @@ Public Class frm_Main
                 For Each i As Integer In gv_Billing.GetSelectedRows
                     Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Pending, (row.GetHistory & vbNewLine & "Marked as 'Pending' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
-                        MsgBox("Successfully marked selected items as 'Pending'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Successfully marked selected items as 'Pending'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         gc_Billing.DataSource.Remove(row)
                     Else
-                        MsgBox("Unknown error while marking item " & row.ID & " as pending.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as pending.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
                 gc_Billing.RefreshDataSource()
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on marking selected items as pending.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on marking selected items as pending.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -1158,17 +1160,17 @@ Public Class frm_Main
                 For Each i As Integer In gv_Pending.GetSelectedRows
                     Dim row As Objects.WorkbookItem = gv_Pending.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Billed, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
-                        MsgBox("Successfully marked selected items as 'Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Successfully marked selected items as 'Billed'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         gc_Pending.DataSource.Remove(row)
                     Else
-                        MsgBox("Unknown error while marking item " & row.ID & " as billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as billed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
                 gc_Pending.RefreshDataSource()
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -1178,17 +1180,17 @@ Public Class frm_Main
                 For Each i As Integer In gv_Pending.GetSelectedRows
                     Dim row As Objects.WorkbookItem = gv_Pending.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.NotBilled, (row.GetHistory & vbNewLine & "Marked as 'Not Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
-                        MsgBox("Successfully marked selected items as 'Not Billed'.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Successfully marked selected items as 'Not Billed'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         gc_Pending.DataSource.Remove(row)
                     Else
-                        MsgBox("Unknown error while marking item " & row.ID & " as not billed.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                        XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as not billed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
                 gc_Pending.RefreshDataSource()
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on marking selected items as not billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on marking selected items as not billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -1199,14 +1201,14 @@ Public Class frm_Main
                 Dim row As Objects.WorkbookItem = gv_Billing.GetRow(gv_Billing.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
-                    MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Successfully updated status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Unknown error on updating status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -1217,14 +1219,14 @@ Public Class frm_Main
                 Dim row As Objects.WorkbookItem = gv_Pending.GetRow(gv_Pending.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStatus(row, row.CurrentStep, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
-                    MsgBox("Successfully updated status of selected work.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Successfully updated status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    MsgBox("Unknown error on updating status of selected work.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+                    XtraMessageBox.Show("Unknown error on updating status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         Catch ex As Exception
-            MsgBox(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
-                   , MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Done")
+            XtraMessageBox.Show(String.Format("Error on updating status of selected work.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
+                   , "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -1241,7 +1243,7 @@ Public Class frm_Main
             Dim d As New Dialogs.frm_ClientJobsReport(Clients)
             d.ShowDialog()
         Else
-            MsgBox("Clients list is not fetched yet. Load/Refresh clients list and try again.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            XtraMessageBox.Show("Clients list is not fetched yet. Load/Refresh clients list and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 
@@ -1304,7 +1306,7 @@ Public Class frm_Main
                       End Sub)
             SetupHomeColumns(gv_AutoForwards)
         Catch ex As Exception
-            MsgBox("Error on loading AutoForwards: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading AutoForwards: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       ProgressPanel_AutoForwards.Visible = False
@@ -1359,7 +1361,7 @@ Public Class frm_Main
                       End Sub)
             SetupHomeColumns(gv_Transferred)
         Catch ex As Exception
-            MsgBox("Error on loading Transferred: " & ex.Message, MsgBoxStyle.Exclamation, "Error")
+            XtraMessageBox.Show("Error on loading Transferred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
         Me.Invoke(Sub()
                       ProgressPanel_Transferred.Visible = False
