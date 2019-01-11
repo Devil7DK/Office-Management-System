@@ -155,9 +155,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\splash.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Devil7.Automation.OMS.Lib\Devil7.Automation.OMS.Lib.vbproj">
       <Project>{8F9C9BFC-AEB9-4E2B-8A20-CF6A88A1023F}</Project>
       <Name>Devil7.Automation.OMS.Lib</Name>
@@ -168,53 +165,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\secure_screen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\login.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\server_settings.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\save.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="Resources\incomplete.png" />
-    <None Include="Resources\not_paid.png" />
-    <None Include="Resources\pending.png" />
-    <None Include="Resources\report.png" />
-    <None Include="Resources\ram.png" />
-    <None Include="Resources\clean.png" />
-    <None Include="Resources\paid.png" />
-    <None Include="Resources\details_view.png" />
-    <None Include="Resources\card_view.png" />
-    <None Include="Resources\exit.png" />
-    <None Include="Resources\edit_password.png" />
-    <None Include="Resources\edit_profile.png" />
-    <None Include="Resources\Edit.png" />
-    <None Include="Resources\minus.png" />
-    <None Include="Resources\add.png" />
-    <None Include="Resources\client_default.jpg" />
-    <None Include="Resources\refresh.png" />
-    <None Include="Resources\client.ico" />
-    <None Include="Resources\calendar_refresh.png" />
-    <None Include="Resources\client_remove.png" />
-    <None Include="Resources\client_edit.png" />
-    <None Include="Resources\client_add.png" />
-    <None Include="Resources\user_reset_password.png" />
-    <None Include="Resources\user_remove.png" />
-    <None Include="Resources\user_edit.png" />
-    <None Include="Resources\user_add.png" />
-    <None Include="Resources\form_new.png" />
-    <None Include="Resources\form_edit.png" />
-    <None Include="Resources\form_delete.png" />
-    <None Include="Resources\calendar_remove.png" />
-    <None Include="Resources\calendar_new.png" />
-    <None Include="Resources\calendar_edit.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PreBuildEvent>break &gt; "$(ProjectDir)My Project\licenses.licx"</PreBuildEvent>
