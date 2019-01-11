@@ -55,6 +55,8 @@ Public Class frm_Login
     Private Sub btn_Login_Click(sender As System.Object, e As System.EventArgs) Handles btn_Login.Click
         If txt_Username.SelectedIndex >= 0 AndAlso txt_Password.Text.Trim <> "" Then
             If Not LoginWorker.IsBusy Then LoginWorker.RunWorkerAsync()
+            My.Settings.LastUserIndex = txt_Username.SelectedIndex
+            My.Settings.Save()
         End If
     End Sub
 
