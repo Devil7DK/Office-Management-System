@@ -43,7 +43,7 @@ Public Class frm_Login
             txt_Username.Properties.Items.AddRange(Users_)
             If Users_.Count >= My.Settings.LastUserIndex Then txt_Username.SelectedIndex = My.Settings.LastUserIndex
         Catch ex As Exception
-            XtraMessageBox.Show("Error on loading usernames.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            XtraMessageBox.Show("Error on loading usernames." & vbNewLine & vbNewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
