@@ -78,7 +78,7 @@ Partial Class frm_Login
         'btn_ServerSettings
         '
         Me.btn_ServerSettings.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_ServerSettings.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.server_settings
+        Me.btn_ServerSettings.ImageOptions.SvgImage = CType(resources.GetObject("btn_ServerSettings.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_ServerSettings.Location = New System.Drawing.Point(169, 116)
         Me.btn_ServerSettings.Name = "btn_ServerSettings"
         Me.btn_ServerSettings.Size = New System.Drawing.Size(38, 38)
@@ -88,7 +88,7 @@ Partial Class frm_Login
         'btn_Login
         '
         Me.btn_Login.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btn_Login.ImageOptions.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.login
+        Me.btn_Login.ImageOptions.SvgImage = CType(resources.GetObject("btn_Login.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Login.Location = New System.Drawing.Point(357, 116)
         Me.btn_Login.Name = "btn_Login"
         Me.btn_Login.Size = New System.Drawing.Size(84, 38)
@@ -98,7 +98,7 @@ Partial Class frm_Login
         'pic_SidePanel
         '
         Me.pic_SidePanel.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pic_SidePanel.Image = Global.Devil7.Automation.OMS.Res.My.Resources.Resources.secure_screen
+        Me.pic_SidePanel.Image = CType(resources.GetObject("pic_SidePanel.Image"), System.Drawing.Image)
         Me.pic_SidePanel.Location = New System.Drawing.Point(0, 0)
         Me.pic_SidePanel.Name = "pic_SidePanel"
         Me.pic_SidePanel.Size = New System.Drawing.Size(153, 166)
