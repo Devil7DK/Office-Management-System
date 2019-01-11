@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Data.SqlClient
+Imports System.Windows.Forms
 Imports Devil7.Automation.OMS.Lib.Objects
 
 Namespace Database
@@ -49,7 +50,7 @@ Namespace Database
                 If ID > 0 Then
                     R = New EstimateBill(ID, SerialNo, EstimateDate, Sender, Receiver, Services)
                 Else
-                    MsgBox("Unknown error while inserting estimate bill item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting estimate bill item.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -79,7 +80,7 @@ Namespace Database
                     R = True
                 Else
                     R = False
-                    MsgBox("Unknown error while editing estimate bill item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while editing estimate bill item.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 

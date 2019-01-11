@@ -21,6 +21,7 @@
 
 Imports Devil7.Automation.OMS.Lib.Objects
 Imports System.Drawing
+Imports System.Windows.Forms
 
 Namespace Dialogs
     Public Class frm_ClientAddEdit
@@ -219,27 +220,27 @@ Namespace Dialogs
                     Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, gc_PartnersDirectors.DataSource, cmb_Type.SelectedItem.ToString, gc_Credentials.DataSource, gc_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If item IsNot Nothing Then
                         Me.Client = item
-                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     Else
-                        MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             ElseIf Mode = Enums.DialogMode.Edit Then
                 Try
                     Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, gc_PartnersDirectors.DataSource, cmb_Type.SelectedItem, gc_Credentials.DataSource, gc_Jobs.DataSource, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If result Then
-                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     Else
-                        MsgBox("Unknown error.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             End If
         End Sub

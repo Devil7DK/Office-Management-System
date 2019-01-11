@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Data.SqlClient
+Imports System.Windows.Forms
 Imports Devil7.Automation.OMS.Lib.Objects
 Imports Devil7.Automation.OMS.Lib.Utils
 
@@ -57,7 +58,7 @@ Namespace Database
                 If ID > 0 Then
                     R = New Job(ID, Name, Group, SubGroup, Type, Steps, Templates, FollowUps, AutoForwards, NotifyInterval, DueInterval, PrimaryPeriodType)
                 Else
-                    MsgBox("Unknown error while inserting job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting job.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -99,7 +100,7 @@ Namespace Database
                     R = True
                 Else
                     R = False
-                    MsgBox("Unknown error while updating job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while updating job.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 

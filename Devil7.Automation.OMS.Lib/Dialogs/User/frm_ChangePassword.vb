@@ -19,6 +19,8 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Windows.Forms
+
 Namespace Dialogs
     Public Class frm_ChangePassword
 
@@ -31,18 +33,18 @@ Namespace Dialogs
 
         Private Sub btn_ChangePassword_Click(sender As System.Object, e As System.EventArgs) Handles btn_ChangePassword.Click
             If txt_OldPassword.Text = "" Then
-                MsgBox("Please enter old password", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                DevExpress.XtraEditors.XtraMessageBox.Show("Please enter old password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf txt_NewPassword.Text = "" Or txt_ConfirmNewPassword.Text = "" Then
-                MsgBox("Please enter new password", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                DevExpress.XtraEditors.XtraMessageBox.Show("Please enter new password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ElseIf txt_NewPassword.Text <> txt_ConfirmNewPassword.Text Then
-                MsgBox("New password not matching", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                DevExpress.XtraEditors.XtraMessageBox.Show("New password not matching", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Else
                 If Database.Users.ChangePassword(User.Username, txt_OldPassword.Text, txt_NewPassword.Text, True) Then
-                    MsgBox("Password successfully changed.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Password successfully changed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Me.DialogResult = System.Windows.Forms.DialogResult.OK
                     Me.Close()
                 Else
-                    MsgBox("Unable to change password.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unable to change password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         End Sub

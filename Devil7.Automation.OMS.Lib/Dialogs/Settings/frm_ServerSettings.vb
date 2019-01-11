@@ -1,4 +1,5 @@
-﻿Imports Devil7.Automation.OMS.Lib.Utils
+﻿Imports System.Windows.Forms
+Imports Devil7.Automation.OMS.Lib.Utils
 
 Namespace Dialogs
     Public Class frm_ServerSettings
@@ -13,10 +14,10 @@ Namespace Dialogs
                 SettingsManager.SaveSettings()
                 SettingsManager.LoadSettings()
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
-                MsgBox("Successfully saved Server Settings. Restart application to apply the changes.", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                DevExpress.XtraEditors.XtraMessageBox.Show("Successfully saved Server Settings. Restart application to apply the changes.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Me.Close()
             Catch ex As Exception
-                MsgBox("Error on saving settings. Try running as administrator" & vbNewLine & vbNewLine & "Additional Information:" & vbNewLine & ex.Message & vbNewLine & ex.StackTrace, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                DevExpress.XtraEditors.XtraMessageBox.Show("Error on saving settings. Try running as administrator" & vbNewLine & vbNewLine & "Additional Information:" & vbNewLine & ex.Message & vbNewLine & ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
         End Sub
 

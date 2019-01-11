@@ -19,6 +19,7 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Windows.Forms
 Imports Devil7.Automation.OMS.Lib
 Imports Devil7.Automation.OMS.Lib.Objects
 
@@ -87,7 +88,7 @@ Namespace Dialogs
                     txt_DueInterval.Value = Job.DueInterval
                     txt_PrimaryPeriod.SelectedIndex = Job.PrimaryPeriodType
                 Catch ex As Exception
-                    MsgBox(ex.Message)
+                    DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message)
                 End Try
             Else
                 txt_PrimaryPeriod.SelectedIndex = 0
@@ -100,9 +101,9 @@ Namespace Dialogs
             If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Job)
                 If d.Job.ID = ID Then
-                    MsgBox("You can't add the job itself to its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("You can't add the job itself to its follow up...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 ElseIf d.Job.FollowUps.Find(Function(c) c.ID = ID) IsNot Nothing Then
-                    MsgBox("You can't add a job which has the current job as its follow up...", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("You can't add a job which has the current job as its follow up...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Else
                     CType(gc_FollowUps.DataSource, List(Of Job)).Add(d.Job)
                     gc_FollowUps.RefreshDataSource()

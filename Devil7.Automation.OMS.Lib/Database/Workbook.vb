@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Data.SqlClient
+Imports System.Windows.Forms
 Imports Devil7.Automation.OMS.Lib.Objects
 Imports Devil7.Automation.OMS.Lib.Utils
 
@@ -66,7 +67,7 @@ Namespace Database
                 If ID > 0 Then
                     R = New WorkbookItem(ID, User, Job, Client, DueDate, Now, Now, Now, Description, Remarks, TargetDate, Priority, Status, CurrentStep, Owner, History, False, Assessment, Financial, WorkType)
                 Else
-                    MsgBox("Unknown error while inserting workbook item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting workbook item.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -99,7 +100,7 @@ Namespace Database
                     R = True
                 Else
                     R = False
-                    MsgBox("Unknown error while editing workbook item.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while editing workbook item.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -204,7 +205,7 @@ Namespace Database
                     For Each i As Job In WorkbookItem.Job.FollowUps
                         Dim w = AddNew(WorkbookItem.Owner, i, WorkbookItem.DueDate, WorkbookItem.Client, Enums.WorkStatus.Initialized, "Follow Up Job of Work ID " & WorkbookItem.ID, WorkbookItem.Remarks, WorkbookItem.TargetDate, Enums.Priority.Normal, i.Steps(0), WorkbookItem.AssessmentDetail, WorkbookItem.FinancialDetail, WorkbookItem.Folder, WorkbookItem.Owner, "Followup Job Added", Enums.WorkType.Followup, Jobs, Users)
                         If w Is Nothing Then
-                            MsgBox("Unable to add followup job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                            DevExpress.XtraEditors.XtraMessageBox.Show("Unable to add followup job.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                         End If
                     Next
                 End If

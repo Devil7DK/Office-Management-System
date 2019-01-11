@@ -19,6 +19,8 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Windows.Forms
+
 Namespace Dialogs
     Public Class frm_WorkBook
 
@@ -169,22 +171,22 @@ Namespace Dialogs
                     WorkItemSelected = Nothing
                     WorkItemSelected = Database.Workbook.AddNew(CType(cmb_User.SelectedItem, Objects.User), CType(cmb_Job.SelectedItem, Objects.Job), txt_DueDate.DateTime, ClientsMinimal.Find(Function(c) c.ID = cmb_Client.EditValue), cmb_Status.SelectedIndex, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, cmb_Priority.SelectedIndex - 2, cmb_Steps.SelectedItem.ToString, txt_AssessmentYearMonth.Value, txt_FinancialYearMonth.Value, Utils.Misc.GetFolder(GetDefaultStorage, Database.Clients.GetClientByID(cmb_Client.EditValue, Jobs, Users), CType(cmb_Job.SelectedItem, Objects.Job), txt_AssessmentYearMonth.Value.ToString, Now.Year), CType(cmb_User.SelectedItem, Objects.User), "New work assigned to " & CType(cmb_User.SelectedItem, Objects.User).Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt"), Enums.WorkType.Normal, Jobs, Users)
                     If WorkItemSelected IsNot Nothing Then
-                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             ElseIf Mode = Enums.DialogMode.Edit AndAlso ID > -1 Then
                 Try
                     If Database.Workbook.Update(ID, txt_DueDate.DateTime, txt_Description.Text, txt_Remarks.Text, txt_TargetDate.DateTime, CType(cmb_CurrentlyAssignedTo.SelectedItem, Objects.User), (txt_History.Text & vbNewLine & "Item editted at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).Trim & " by user " & UserData.Username) Then
-                        MsgBox("Process Completed Successfully", MsgBoxStyle.Information + MsgBoxStyle.OkOnly, "Done")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             End If
         End Sub
@@ -263,8 +265,8 @@ Namespace Dialogs
                 Return
             End If
             Dim edit As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
-            Dim propertyDescriptors As ComponentModel.PropertyDescriptorCollection = System.Windows.Forms.ListBindingHelper.GetListItemProperties(edit.Properties.DataSource)
-            Dim operators As IEnumerable(Of DevExpress.Data.Filtering.FunctionOperator) = propertyDescriptors.OfType(Of ComponentModel.PropertyDescriptor)().Select(Function(t) New DevExpress.Data.Filtering.FunctionOperator(DevExpress.Data.Filtering.FunctionOperatorType.Contains, New DevExpress.Data.Filtering.OperandProperty(t.Name), New DevExpress.Data.Filtering.OperandValue(e.SearchText)))
+            Dim propertyDescriptors As System.ComponentModel.PropertyDescriptorCollection = System.Windows.Forms.ListBindingHelper.GetListItemProperties(edit.Properties.DataSource)
+            Dim operators As IEnumerable(Of DevExpress.Data.Filtering.FunctionOperator) = propertyDescriptors.OfType(Of System.ComponentModel.PropertyDescriptor)().Select(Function(t) New DevExpress.Data.Filtering.FunctionOperator(DevExpress.Data.Filtering.FunctionOperatorType.Contains, New DevExpress.Data.Filtering.OperandProperty(t.Name), New DevExpress.Data.Filtering.OperandValue(e.SearchText)))
             e.Criteria = New DevExpress.Data.Filtering.GroupOperator(DevExpress.Data.Filtering.GroupOperatorType.Or, operators)
             e.SuppressSearchCriteria = True
         End Sub

@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Data.SqlClient
+Imports System.Windows.Forms
 Imports Devil7.Automation.OMS.Lib.Objects
 
 Namespace Database
@@ -68,7 +69,7 @@ Namespace Database
                 If ID > 0 Then
                     R = New Sender(ID, Name, Education, Position, AddressLine1, AddressLine2, City, PINCode, State, StateCode, PhoneNo, MobileNo, Email, GSTIN, EstimateBillHeading, Logo, PrintLogo)
                 Else
-                    MsgBox("Unknown error while inserting job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting job.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -117,7 +118,7 @@ Namespace Database
                     R = True
                 Else
                     R = False
-                    MsgBox("Unknown error while updating job.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while updating job.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -149,19 +150,19 @@ Namespace Database
 
         Private Function Read(ByVal Reader As SqlDataReader) As Sender
             Dim ID As Integer = Reader.Item("ID")
-            Dim Name As String = Reader.item("Name").Tostring()
-            Dim Education As String = Reader.item("Education").Tostring()
-            Dim Position As String = Reader.item("Position").Tostring()
-            Dim GSTIN As String = Reader.item("GSTIN").Tostring()
-            Dim EstimateBillHeading As String = Reader.item("EstimateBillHeading").Tostring()
-            Dim AddressLine1 As String = Reader.item("AddressLine1").Tostring()
-            Dim AddressLine2 As String = Reader.item("AddressLine2").Tostring()
-            Dim City As String = Reader.item("City").Tostring()
-            Dim PINCode As String = Reader.item("PINCode").Tostring()
-            Dim State As String = Reader.item("State").Tostring()
-            Dim StateCode As Integer = Reader.item("StateCode").Tostring()
-            Dim PhoneNo As String = Reader.item("PhoneNo").Tostring()
-            Dim MobileNo As String = Reader.item("MobileNo").Tostring()
+            Dim Name As String = Reader.Item("Name").ToString()
+            Dim Education As String = Reader.Item("Education").ToString()
+            Dim Position As String = Reader.Item("Position").ToString()
+            Dim GSTIN As String = Reader.Item("GSTIN").ToString()
+            Dim EstimateBillHeading As String = Reader.Item("EstimateBillHeading").ToString()
+            Dim AddressLine1 As String = Reader.Item("AddressLine1").ToString()
+            Dim AddressLine2 As String = Reader.Item("AddressLine2").ToString()
+            Dim City As String = Reader.Item("City").ToString()
+            Dim PINCode As String = Reader.Item("PINCode").ToString()
+            Dim State As String = Reader.Item("State").ToString()
+            Dim StateCode As Integer = Reader.Item("StateCode").ToString()
+            Dim PhoneNo As String = Reader.Item("PhoneNo").ToString()
+            Dim MobileNo As String = Reader.Item("MobileNo").ToString()
             Dim Email As String = Reader.Item("Email").ToString()
             Dim PrintLogo As Boolean = False
             Boolean.TryParse(Reader.Item("PrintLogo").ToString, PrintLogo)

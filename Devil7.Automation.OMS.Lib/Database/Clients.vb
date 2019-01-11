@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Data.SqlClient
+Imports System.Windows.Forms
 Imports Devil7.Automation.OMS.Lib.Objects
 Imports Devil7.Automation.OMS.Lib.Utils
 
@@ -28,7 +29,7 @@ Namespace Database
 
 #Region "Update Functions"
         Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As System.ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As System.ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Client = Nothing
 
             Dim img As New System.IO.MemoryStream
@@ -71,7 +72,7 @@ Namespace Database
                 If ID > 0 Then
                     R = New Client(ID, ClientName, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, Aadhar, Description, TypeOfEngagement, TIN, CIN, PartnersOrDirectors, Type, Credentials, Jobs, Status, Photo, GST, FileNo)
                 Else
-                    MsgBox("Unknown error while inserting client.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting client.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 
@@ -79,7 +80,7 @@ Namespace Database
         End Function
 
         Function Update(ByVal ID As Integer, ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As System.ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As System.ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Boolean = False
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
@@ -123,7 +124,7 @@ Namespace Database
                     R = True
                 Else
                     R = False
-                    MsgBox("Unknown error while editing client.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Failed!")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while editing client.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End Using
 

@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.ComponentModel
+Imports System.Windows.Forms
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraWizard
 
@@ -92,7 +93,7 @@ Namespace Dialogs
                     End If
                     MainWizard.SelectedPage = page_Finish
                 Else
-                    MsgBox("Export path is not valid.", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show("Export path is not valid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             End If
         End Sub

@@ -19,6 +19,8 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Windows.Forms
+
 Namespace Objects
     Public Class Partner
 
@@ -49,7 +51,7 @@ Namespace Objects
                 Try
                     dob_ = Date.Parse(value)
                 Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                    DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End Try
             End Set
         End Property

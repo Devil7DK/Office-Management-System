@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Drawing
+Imports System.Windows.Forms
 
 Namespace Dialogs
     Public Class frm_User
@@ -151,14 +152,14 @@ Namespace Dialogs
                     Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedIndex, txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
                     If Result IsNot Nothing Then
                         Me.User = Result
-                        MsgBox("User Successfully Added.", MsgBoxStyle.Information, "Done")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("User Successfully Added.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 ElseIf Mode = Enums.DialogMode.Edit Then
                     Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
                     If Result Then
-                        MsgBox("User Successfully Updated.", MsgBoxStyle.Information, "Done")
+                        DevExpress.XtraEditors.XtraMessageBox.Show("User Successfully Updated.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If

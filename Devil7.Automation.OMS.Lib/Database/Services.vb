@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports System.Data.SqlClient
+Imports System.Windows.Forms
 
 Namespace Database
     Public Class Services
@@ -41,7 +42,7 @@ Namespace Database
                     Return Command.ExecuteNonQuery
                 End Using
             Catch ex As Exception
-                MsgBox("Error while saving services." & vbNewLine & vbNewLine & "Additional Information :" & vbNewLine & vbNewLine & ex.Message & vbNewLine & vbNewLine & ex.StackTrace, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                DevExpress.XtraEditors.XtraMessageBox.Show("Error while saving services." & vbNewLine & vbNewLine & "Additional Information :" & vbNewLine & vbNewLine & ex.Message & vbNewLine & vbNewLine & ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Finally
                 If CloseConnection AndAlso Connection.State = ConnectionState.Open Then Connection.Close()
             End Try
@@ -62,10 +63,10 @@ Namespace Database
                     End If
                 End Using
             Catch ex As Exception
-                MsgBox("Error while loading services." & vbNewLine & vbNewLine & "Additional Information :" & vbNewLine & vbNewLine & ex.Message & vbNewLine & vbNewLine & ex.StackTrace, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                DevExpress.XtraEditors.XtraMessageBox.Show("Error while loading services." & vbNewLine & vbNewLine & "Additional Information :" & vbNewLine & vbNewLine & ex.Message & vbNewLine & vbNewLine & ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
             If CloseConnection AndAlso Connection.State = ConnectionState.Open Then Connection.Close()
-            Return r
+            Return R
         End Function
 #End Region
 
