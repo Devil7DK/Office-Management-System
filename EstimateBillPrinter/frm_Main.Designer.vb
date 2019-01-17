@@ -33,7 +33,7 @@ Partial Class frm_Main
         Me.btn_Export_Excel = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_EstimateBills = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.rpg_Printing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.gc_EstimateBills = New DevExpress.XtraGrid.GridControl()
@@ -133,7 +133,7 @@ Partial Class frm_Main
         '
         'rp_Home
         '
-        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.RibbonPageGroup3, Me.RibbonPageGroup2})
+        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.rpg_Printing, Me.RibbonPageGroup2})
         Me.rp_Home.Name = "rp_Home"
         Me.rp_Home.Text = "Home"
         '
@@ -147,12 +147,12 @@ Partial Class frm_Main
         Me.rpg_EstimateBills.ShowCaptionButton = False
         Me.rpg_EstimateBills.Text = "Estimate Bills"
         '
-        'RibbonPageGroup3
+        'rpg_Printing
         '
-        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_Print)
-        Me.RibbonPageGroup3.Name = "RibbonPageGroup3"
-        Me.RibbonPageGroup3.ShowCaptionButton = False
-        Me.RibbonPageGroup3.Text = "Printing"
+        Me.rpg_Printing.ItemLinks.Add(Me.btn_Print)
+        Me.rpg_Printing.Name = "rpg_Printing"
+        Me.rpg_Printing.ShowCaptionButton = False
+        Me.rpg_Printing.Text = "Printing"
         '
         'RibbonPageGroup2
         '
@@ -239,7 +239,7 @@ Partial Class frm_Main
     Friend WithEvents gc_EstimateBills As DevExpress.XtraGrid.GridControl
     Friend WithEvents gv_EstimateBills As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ProgressPanel_Bills As DevExpress.XtraWaitForm.ProgressPanel
-    Friend WithEvents RibbonPageGroup3 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents rpg_Printing As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents btn_Refresh As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Add As DevExpress.XtraBars.BarButtonItem
