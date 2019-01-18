@@ -220,6 +220,8 @@
     <Compile Include="Objects\ClientMinimal.vb" />
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\EstimateBill.vb" />
+    <Compile Include="Objects\FeesItem.vb" />
+    <Compile Include="Objects\FeesReminder.vb" />
     <Compile Include="Objects\Job.vb" />
     <Compile Include="Objects\JobUser.vb" />
     <Compile Include="Objects\Partner.vb" />
