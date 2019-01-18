@@ -205,6 +205,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Enums\BillingStatus.vb" />
+    <Compile Include="Enums\Effect.vb" />
     <Compile Include="Enums\PeriodType.vb" />
     <Compile Include="Enums\CenterType.vb" />
     <Compile Include="Enums\DialogMode.vb" />
