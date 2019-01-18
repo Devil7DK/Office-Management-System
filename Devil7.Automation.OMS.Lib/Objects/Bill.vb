@@ -22,7 +22,7 @@
 Imports System.ComponentModel
 
 Namespace Objects
-    Public Class EstimateBill
+    Public Class Bill
 
 #Region "Properties/Fields"
         Property ID As Integer
@@ -30,8 +30,8 @@ Namespace Objects
         <DisplayName("Serial Number")>
         Property SerialNo As String
 
-        <DisplayName("Estimate Date")>
-        Property EstimateDate As Date
+        <DisplayName("Date")>
+        Property [Date] As Date
 
         Property Sender As Sender
 
@@ -66,10 +66,10 @@ Namespace Objects
 #End Region
 
 #Region "Constructors"
-        Sub New(ByVal ID As Integer, ByVal SerialNo As String, ByVal EstimateDate As Date, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Services As List(Of Service))
+        Sub New(ByVal ID As Integer, ByVal SerialNo As String, ByVal [Date] As Date, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Services As List(Of Service))
             Me.ID = ID
             Me.SerialNo = SerialNo
-            Me.EstimateDate = EstimateDate
+            Me.Date = [Date]
             Me.Sender = Sender
             Me.Receiver = Receiver
             Me.Services = Services

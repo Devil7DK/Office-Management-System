@@ -31,10 +31,10 @@ Namespace Database
 #End Region
 
 #Region "Subs"
-        Function AddNew(ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal EstimateBillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean, ByVal CloseConnection As Boolean) As Sender
+        Function AddNew(ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal BillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean, ByVal CloseConnection As Boolean) As Sender
             Dim R As New Sender
 
-            Dim CommandString As String = String.Format("INSERT INTO {0} ([Name],[Education],[Position],[AddressLine1],[AddressLine2],[City],[PINCode],[State],[StateCode],[PhoneNo],[MobileNo],[Email],[GSTIN],[EstimateBillHeading],[Logo],[PrintLogo]) VALUES (@name,@education,@position,@addressline1,@addressline2,@city,@pincode,@state,@statecode,@phoneno,@mobileno,@email,@gstin,@estimatebillheading,@logo,@printlogo); SELECT SCOPE_IDENTITY();", TableName)
+            Dim CommandString As String = String.Format("INSERT INTO {0} ([Name],[Education],[Position],[AddressLine1],[AddressLine2],[City],[PINCode],[State],[StateCode],[PhoneNo],[MobileNo],[Email],[GSTIN],[BillHeading],[Logo],[PrintLogo]) VALUES (@name,@education,@position,@addressline1,@addressline2,@city,@pincode,@state,@statecode,@phoneno,@mobileno,@email,@gstin,@BillHeading,@logo,@printlogo); SELECT SCOPE_IDENTITY();", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -53,7 +53,7 @@ Namespace Database
                 AddParameter(Command, "@mobileno", MobileNo)
                 AddParameter(Command, "@email", Email)
                 AddParameter(Command, "@gstin", GSTIN)
-                AddParameter(Command, "@estimatebillheading", EstimateBillHeading)
+                AddParameter(Command, "@BillHeading", BillHeading)
                 AddParameter(Command, "@printlogo", PrintLogo)
 
                 Dim LogoParm As New SqlParameter("@logo", SqlDbType.Image)
@@ -67,7 +67,7 @@ Namespace Database
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New Sender(ID, Name, Education, Position, AddressLine1, AddressLine2, City, PINCode, State, StateCode, PhoneNo, MobileNo, Email, GSTIN, EstimateBillHeading, Logo, PrintLogo)
+                    R = New Sender(ID, Name, Education, Position, AddressLine1, AddressLine2, City, PINCode, State, StateCode, PhoneNo, MobileNo, Email, GSTIN, BillHeading, Logo, PrintLogo)
                 Else
                     DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting job.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
@@ -78,10 +78,10 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal EstimateBillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean, ByVal CloseConnection As Boolean) As Boolean
+        Function Update(ByVal ID As Integer, ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal BillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean, ByVal CloseConnection As Boolean) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = String.Format("UPDATE {0} SET [Name]=@name,[Education]=@education,[Position]=@position,[AddressLine1]=@addressline1,[AddressLine2]=@addressline2,[City]=@city,[PINCode]=@pincode,[State]=@state,[StateCode]=@statecode,[PhoneNo]=@phoneno,[MobileNo]=@mobileno,[Email]=@email,[GSTIN]=@gstin,[EstimateBillHeading]=@estimatebillheading,[Logo]=@logo,[PrintLogo]=@printlogo WHERE [ID]=@id;", TableName)
+            Dim CommandString As String = String.Format("UPDATE {0} SET [Name]=@name,[Education]=@education,[Position]=@position,[AddressLine1]=@addressline1,[AddressLine2]=@addressline2,[City]=@city,[PINCode]=@pincode,[State]=@state,[StateCode]=@statecode,[PhoneNo]=@phoneno,[MobileNo]=@mobileno,[Email]=@email,[GSTIN]=@gstin,[BillHeading]=@BillHeading,[Logo]=@logo,[PrintLogo]=@printlogo WHERE [ID]=@id;", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -101,7 +101,7 @@ Namespace Database
                 AddParameter(Command, "@mobileno", MobileNo)
                 AddParameter(Command, "@email", Email)
                 AddParameter(Command, "@gstin", GSTIN)
-                AddParameter(Command, "@estimatebillheading", EstimateBillHeading)
+                AddParameter(Command, "@BillHeading", BillHeading)
                 AddParameter(Command, "@printlogo", PrintLogo)
 
                 Dim LogoParm As New SqlParameter("@logo", SqlDbType.Image)
@@ -154,7 +154,7 @@ Namespace Database
             Dim Education As String = Reader.Item("Education").ToString()
             Dim Position As String = Reader.Item("Position").ToString()
             Dim GSTIN As String = Reader.Item("GSTIN").ToString()
-            Dim EstimateBillHeading As String = Reader.Item("EstimateBillHeading").ToString()
+            Dim BillHeading As String = Reader.Item("BillHeading").ToString()
             Dim AddressLine1 As String = Reader.Item("AddressLine1").ToString()
             Dim AddressLine2 As String = Reader.Item("AddressLine2").ToString()
             Dim City As String = Reader.Item("City").ToString()
@@ -173,7 +173,7 @@ Namespace Database
                     Logo = Drawing.Image.FromStream(MS)
                 End Using
             End If
-            Return New Sender(ID, Name, Education, Position, AddressLine1, AddressLine2, City, PINCode, State, StateCode, PhoneNo, MobileNo, Email, GSTIN, EstimateBillHeading, Logo, PrintLogo)
+            Return New Sender(ID, Name, Education, Position, AddressLine1, AddressLine2, City, PINCode, State, StateCode, PhoneNo, MobileNo, Email, GSTIN, BillHeading, Logo, PrintLogo)
         End Function
 
         Function GetSenderByID(ByVal ID As Integer, ByVal CloseConnection As Boolean) As Sender

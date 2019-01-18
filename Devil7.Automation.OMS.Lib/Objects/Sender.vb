@@ -32,8 +32,8 @@ Namespace Objects
         Property Position As String
         Property GSTIN As String
 
-        <DisplayName("Heading for Estimate Bill")>
-        Property EstimateBillHeading As String
+        <DisplayName("Heading for Bill")>
+        Property BillHeading As String
 
         <DisplayName("Address Line 1")>
         Property AddressLine1 As String
@@ -88,7 +88,7 @@ Namespace Objects
 
 #Region "Subs"
         Public Overrides Function ToString() As String
-            Return String.Format("{0} ({1})", Me.Name, If(Me.EstimateBillHeading.Contains("|"), Me.EstimateBillHeading.Split("|")(0), Me.EstimateBillHeading))
+            Return String.Format("{0} ({1})", Me.Name, If(Me.BillHeading.Contains("|"), Me.BillHeading.Split("|")(0), Me.BillHeading))
         End Function
 #End Region
 
@@ -108,12 +108,12 @@ Namespace Objects
             Me.MobileNo = ""
             Me.Email = ""
             Me.GSTIN = ""
-            Me.EstimateBillHeading = ""
+            Me.BillHeading = ""
             Me.Logo = Nothing
             Me.PrintLogo = False
         End Sub
 
-        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal EstimateBillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean)
+        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal Education As String, ByVal Position As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PINCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal PhoneNo As String, ByVal MobileNo As String, ByVal Email As String, ByVal GSTIN As String, ByVal BillHeading As String, ByVal Logo As Drawing.Image, ByVal PrintLogo As Boolean)
             Me.ID = ID
             Me.Name = Name
             Me.Education = Education
@@ -128,7 +128,7 @@ Namespace Objects
             Me.MobileNo = MobileNo
             Me.Email = Email
             Me.GSTIN = GSTIN
-            Me.EstimateBillHeading = EstimateBillHeading
+            Me.BillHeading = BillHeading
             Me.Logo = Logo
             Me.PrintLogo = PrintLogo
         End Sub

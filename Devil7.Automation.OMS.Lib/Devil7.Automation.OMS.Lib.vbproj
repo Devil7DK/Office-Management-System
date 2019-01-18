@@ -90,7 +90,7 @@
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
-    <Compile Include="Database\EstimateBills.vb" />
+    <Compile Include="Database\Bills.vb" />
     <Compile Include="Database\FeesItems.vb" />
     <Compile Include="Database\FeesReminders.vb" />
     <Compile Include="Database\Senders.vb" />
@@ -221,7 +221,7 @@
     <Compile Include="Objects\AutoForward.vb" />
     <Compile Include="Objects\ClientMinimal.vb" />
     <Compile Include="Objects\Client.vb" />
-    <Compile Include="Objects\EstimateBill.vb" />
+    <Compile Include="Objects\Bill.vb" />
     <Compile Include="Objects\FeesItem.vb" />
     <Compile Include="Objects\FeesReminder.vb" />
     <Compile Include="Objects\Job.vb" />
