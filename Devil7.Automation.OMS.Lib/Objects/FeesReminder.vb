@@ -26,15 +26,17 @@ Namespace Objects
         Property ID As Integer
         Property Sender As Sender
         Property Receiver As ClientMinimal
+        Property OpeningBalance As Double
         Property Items As List(Of FeesItem)
         Property CustomText As String
 #End Region
 
 #Region "Constructor"
-        Sub New(ByVal ID As Integer, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Items As List(Of FeesItem), ByVal CustomText As String)
+        Sub New(ByVal ID As Integer, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String)
             Me.ID = ID
             Me.Sender = Sender
             Me.Receiver = Receiver
+            Me.OpeningBalance = OpeningBalance
             Me.Items = Items
             Me.CustomText = CustomText
         End Sub

@@ -31,10 +31,10 @@ Namespace Database
 #End Region
 
 #Region "Update Functions"
-        Function AddNew(ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As FeesReminder
+        Function AddNew(ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As FeesReminder
             Dim R As FeesReminder = Nothing
 
-            Dim CommandString As String = String.Format("INSERT INTO {0} ([Sender],[Receiver],[Items],[CustomText]) VALUES (@Sender,@Receiver,@Items,@CustomText);SELECT SCOPE_IDENTITY();", TableName)
+            Dim CommandString As String = String.Format("INSERT INTO {0} ([Sender],[Receiver],[OpeningBalance],[Items],[CustomText]) VALUES (@Sender,@Receiver,@OpeningBalance,@Items,@CustomText);SELECT SCOPE_IDENTITY();", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -47,7 +47,7 @@ Namespace Database
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New FeesReminder(ID, Sender, Receiver, Items, CustomText)
+                    R = New FeesReminder(ID, Sender, Receiver, OpeningBalance, Items, CustomText)
                 Else
                     DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting fees reminder item.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
@@ -58,10 +58,10 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As Boolean
+        Function Update(ByVal ID As Integer, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = String.Format("UPDATE {0} SET [Sender]=@Sender,[Receiver]=@Receiver,[Items]=@Items,[CustomText]=@CustomText WHERE [ID]=@ID;", TableName)
+            Dim CommandString As String = String.Format("UPDATE {0} SET [Sender]=@Sender,[Receiver]=@Receiver,[OpeningBalance]=@OpeningBalance,[Items]=@Items,[CustomText]=@CustomText WHERE [ID]=@ID;", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -70,6 +70,7 @@ Namespace Database
                 AddParameter(Command, "@ID", ID)
                 AddParameter(Command, "@Sender", Utils.ToXML(Sender))
                 AddParameter(Command, "@Receiver", Utils.ToXML(Receiver))
+                AddParameter(Command, "@OpeningBalance", OpeningBalance)
                 AddParameter(Command, "@Items", Utils.ToXML(Items))
                 AddParameter(Command, "@CustomText", CustomText)
 
@@ -116,9 +117,10 @@ Namespace Database
             Dim ID As Integer = Reader.Item("ID")
             Dim Sender As Sender = Utils.FromXML(Of Sender)(Reader.Item("Sender").ToString)
             Dim Receiver As ClientMinimal = Utils.FromXML(Of ClientMinimal)(Reader.Item("Receiver").ToString)
+            Dim OpeningBalance As Double = Reader.Item("OpeningBalance")
             Dim Items As List(Of FeesItem) = Utils.FromXML(Of List(Of FeesItem))(Reader.Item("Items").ToString)
             Dim CustomText As String = Reader.Item("CustomText").ToString
-            Return New FeesReminder(ID, Sender, Receiver, Items, CustomText)
+            Return New FeesReminder(ID, Sender, Receiver, OpeningBalance, Items, CustomText)
         End Function
 
         Function GetAll(ByVal CloseConnection As Boolean) As List(Of FeesReminder)
