@@ -91,6 +91,8 @@
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
     <Compile Include="Database\EstimateBills.vb" />
+    <Compile Include="Database\FeesItems.vb" />
+    <Compile Include="Database\FeesReminders.vb" />
     <Compile Include="Database\Senders.vb" />
     <Compile Include="Database\Services.vb" />
     <Compile Include="Database\Workbook.vb" />
