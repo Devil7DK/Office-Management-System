@@ -93,7 +93,7 @@ Public Class frm_Sender
                 txt_MobileNumber.Text = Item.MobileNo
                 txt_EMail.Text = Item.Email
                 txt_GSTIN.Text = Item.GSTIN
-                txt_EstimateBillHeading.Text = Item.EstimateBillHeading
+                txt_EstimateBillHeading.Text = Item.BillHeading
                 pic_Logo.Image = Item.Logo
             End If
         Catch ex As Exception

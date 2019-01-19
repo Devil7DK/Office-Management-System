@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AC7782AA-7C05-4253-B05D-F17A4CCCE687}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Devil7.Automation.OMS.Utils.My.MyApplication</StartupObject>
-    <RootNamespace>Devil7.Automation.OMS.Utils</RootNamespace>
-    <AssemblyName>Estimate Bill Printer</AssemblyName>
+    <StartupObject>Devil7.Automation.OMS.Utils.BillPrinter.My.MyApplication</StartupObject>
+    <RootNamespace>Devil7.Automation.OMS.Utils.BillPrinter</RootNamespace>
+    <AssemblyName>Devil7 - Bill &amp; Fees Reminder Printer</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -21,8 +21,8 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\bin\Debug\</OutputPath>
-    <DocumentationFile>Estimate Bill Printer.xml</DocumentationFile>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DocumentationFile>Devil7 - Bill &amp; Fees Reminder Printer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -32,8 +32,8 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release\</OutputPath>
-    <DocumentationFile>Estimate Bill Printer.xml</DocumentationFile>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DocumentationFile>Devil7 - Bill &amp; Fees Reminder Printer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -61,6 +61,7 @@
     <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Export, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v18.2.UI, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -98,10 +99,16 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialogs\frm_EstimateBill.designer.vb">
-      <DependentUpon>frm_EstimateBill.vb</DependentUpon>
+    <Compile Include="Dialogs\frm_FeesReminder.designer.vb">
+      <DependentUpon>frm_FeesReminder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\frm_EstimateBill.vb">
+    <Compile Include="Dialogs\frm_FeesReminder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Bill.designer.vb">
+      <DependentUpon>frm_Bill.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Bill.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frm_ReportViewer.designer.vb">
@@ -114,6 +121,12 @@
       <DependentUpon>frm_Sender.vb</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\frm_Sender.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_FeesItems.designer.vb">
+      <DependentUpon>frm_FeesItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_FeesItems.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frm_Services.designer.vb">
@@ -155,23 +168,37 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Reporting\ReportData.vb" />
-    <Compile Include="Reporting\report_EstimateBill.designer.vb">
-      <DependentUpon>report_EstimateBill.vb</DependentUpon>
+    <Compile Include="Reporting\data_Bill.vb" />
+    <Compile Include="Reporting\data_FeesReminder.vb" />
+    <Compile Include="Reporting\data_FeesReminder_Item.vb" />
+    <Compile Include="Reporting\report_Bill.designer.vb">
+      <DependentUpon>report_Bill.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reporting\report_EstimateBill.vb">
+    <Compile Include="Reporting\report_Bill.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporting\report_FeesReminder.Designer.vb">
+      <DependentUpon>report_FeesReminder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\report_FeesReminder.vb">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dialogs\frm_EstimateBill.resx">
-      <DependentUpon>frm_EstimateBill.vb</DependentUpon>
+    <EmbeddedResource Include="Dialogs\frm_FeesReminder.resx">
+      <DependentUpon>frm_FeesReminder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Bill.resx">
+      <DependentUpon>frm_Bill.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_ReportViewer.resx">
       <DependentUpon>frm_ReportViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Sender.resx">
       <DependentUpon>frm_Sender.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_FeesItems.resx">
+      <DependentUpon>frm_FeesItems.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Services.resx">
       <DependentUpon>frm_Services.vb</DependentUpon>
@@ -192,8 +219,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\report_EstimateBill.resx">
-      <DependentUpon>report_EstimateBill.vb</DependentUpon>
+    <EmbeddedResource Include="Reporting\report_Bill.resx">
+      <DependentUpon>report_Bill.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\report_FeesReminder.resx">
+      <DependentUpon>report_FeesReminder.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -212,11 +242,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Devil7.Automation.OMS.Lib\Devil7.Automation.OMS.Lib.vbproj">
+    <ProjectReference Include="..\..\Devil7.Automation.OMS.Lib\Devil7.Automation.OMS.Lib.vbproj">
       <Project>{8f9c9bfc-aeb9-4e2b-8a20-cf6a88a1023f}</Project>
       <Name>Devil7.Automation.OMS.Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Devil7.Automation.OMS.Res\Devil7.Automation.OMS.Res.vbproj">
+    <ProjectReference Include="..\..\Devil7.Automation.OMS.Res\Devil7.Automation.OMS.Res.vbproj">
       <Project>{1541b265-21eb-4700-83d5-5f3f49bc2a31}</Project>
       <Name>Devil7.Automation.OMS.Res</Name>
     </ProjectReference>

@@ -20,7 +20,7 @@
 
 Imports Devil7.Automation.OMS.Lib.Objects
 
-Public Class ReportData
+Public Class data_Bill
 
 #Region "Properties/Variables"
     Property SerialNumber As String
@@ -84,23 +84,23 @@ Public Class ReportData
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal EstimateBill As EstimateBill, ByVal Receiver As Client, ByVal PrintTaxDetails As Boolean, ByVal GSTPercentage As Double)
-        Me.SerialNumber = EstimateBill.SerialNo
-        Me.EstimateDate = EstimateBill.EstimateDate
-        Me.Sender = EstimateBill.Sender
+    Sub New(ByVal Bill As Bill, ByVal Receiver As Client, ByVal PrintTaxDetails As Boolean, ByVal GSTPercentage As Double)
+        Me.SerialNumber = Bill.SerialNo
+        Me.EstimateDate = Bill.Date
+        Me.Sender = Bill.Sender
         Me.Receiver = Receiver
-        Me.Services = EstimateBill.Services
-        Me.TotalFees = EstimateBill.Fees
-        Me.HasGSTIN = EstimateBill.HasGSTIN
-        Me.FeesInWords = [Lib].Utils.Misc.AmountInWords(EstimateBill.Fees)
+        Me.Services = Bill.Services
+        Me.TotalFees = Bill.Fees
+        Me.HasGSTIN = Bill.HasGSTIN
+        Me.FeesInWords = [Lib].Utils.Misc.AmountInWords(Bill.Fees)
         Me.PrintTaxDetails = PrintTaxDetails
         Me.GSTPercentage = GSTPercentage
 
-        If EstimateBill.Sender.EstimateBillHeading.Contains("|") Then
-            Me.Heading = EstimateBill.Sender.EstimateBillHeading.Split("|")(0)
-            Me.SubHeading = EstimateBill.Sender.EstimateBillHeading.Split("|")(1)
+        If Bill.Sender.BillHeading.Contains("|") Then
+            Me.Heading = Bill.Sender.BillHeading.Split("|")(0)
+            Me.SubHeading = Bill.Sender.BillHeading.Split("|")(1)
         Else
-            Me.Heading = EstimateBill.Sender.EstimateBillHeading
+            Me.Heading = Bill.Sender.BillHeading
             Me.SubHeading = ""
         End If
     End Sub

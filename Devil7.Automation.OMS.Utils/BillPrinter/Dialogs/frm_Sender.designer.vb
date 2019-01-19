@@ -369,7 +369,7 @@ Partial Class frm_Sender
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(100, 20)
         Me.LabelControl14.TabIndex = 0
-        Me.LabelControl14.Text = "Estimate Bill Heading"
+        Me.LabelControl14.Text = "Bill Heading"
         '
         'LabelControl15
         '

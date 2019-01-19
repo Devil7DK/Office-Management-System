@@ -21,7 +21,7 @@
 Imports Devil7.Automation.OMS.Lib
 Imports Devil7.Automation.OMS.Lib.Objects
 
-Public Class frm_EstimateBill
+Public Class frm_Bill
 
 #Region "Variabls"
     Dim ID As Integer = 0
@@ -31,14 +31,14 @@ Public Class frm_EstimateBill
 #End Region
 
 #Region "Properties"
-    Property Item As EstimateBill
+    Property Item As Bill
     Property AllServices As New List(Of String)
     Property ServicesEdited As Boolean = False
     Property ReceiversEdited As Boolean = False
 #End Region
 
 #Region "Constructors"
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of ClientMinimal), ByVal SendersList As List(Of Sender), Optional ByVal Item As EstimateBill = Nothing, Optional ByVal Serial As String = "")
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of ClientMinimal), ByVal SendersList As List(Of Sender), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
         InitializeComponent()
 
         Me.Mode = Mode
@@ -80,7 +80,7 @@ Public Class frm_EstimateBill
         End If
         If Mode = Enums.DialogMode.Edit Then
             Me.txt_SerialNumber.Text = Item.SerialNo
-            Me.txt_Date.EditValue = Item.EstimateDate
+            Me.txt_Date.EditValue = Item.Date
             Try
                 Dim index As Integer = -1
                 For ind As Integer = 0 To cmb_Sender.Properties.Items.Count - 1
@@ -160,19 +160,19 @@ Public Class frm_EstimateBill
 
     Private Sub btn_Ok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Ok.Click
         If Me.Mode = Enums.DialogMode.Add Then
-            Me.Item = Database.EstimateBills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
+            Me.Item = Database.Bills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
             If Me.Item IsNot Nothing Then
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             End If
         Else
-            Dim Result As Boolean = Database.EstimateBills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
+            Dim Result As Boolean = Database.Bills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
             If Result Then
-                Me.Item = New EstimateBill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource)
+                Me.Item = New Bill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource)
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             Else
-                MsgBox("Unable to edit estimate bill!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+                MsgBox("Unable to edit bill!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
             End If
         End If
     End Sub

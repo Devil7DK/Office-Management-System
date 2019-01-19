@@ -8,5 +8,11 @@
     <Setting Name="LastUsedService" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="FeesReminderDefaultText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">It is a gentle reminder to pay my fees of Rs.[Total]/-. Which is outstanding in my records.</Value>
+    </Setting>
+    <Setting Name="LastUsedDetail" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Public Class report_EstimateBill
+Partial Public Class report_Bill
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
@@ -787,7 +787,7 @@ Partial Public Class report_EstimateBill
         '
         'BindingSource1
         '
-        Me.BindingSource1.DataSource = GetType(Devil7.Automation.OMS.Utils.ReportData)
+        Me.BindingSource1.DataSource = GetType(Devil7.Automation.OMS.Utils.BillPrinter.data_Bill)
         '
         'pic_Logo
         '

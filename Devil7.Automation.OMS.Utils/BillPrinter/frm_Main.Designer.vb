@@ -31,27 +31,39 @@ Partial Class frm_Main
         Me.btn_Settings = New DevExpress.XtraBars.BarButtonItem()
         Me.SkinRibbonGalleryBarItem1 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.btn_Export_Excel = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_FeesItems = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
-        Me.rpg_EstimateBills = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.rpg_Items = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Printing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.gc_EstimateBills = New DevExpress.XtraGrid.GridControl()
-        Me.gv_EstimateBills = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.gc_Bills = New DevExpress.XtraGrid.GridControl()
+        Me.gv_Bills = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ProgressPanel_Bills = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader = New System.ComponentModel.BackgroundWorker()
         Me.btn_PrintPreview = New DevExpress.XtraBars.BarButtonItem()
+        Me.tc_Main = New DevExpress.XtraTab.XtraTabControl()
+        Me.tab_Bills = New DevExpress.XtraTab.XtraTabPage()
+        Me.tab_FeesReminders = New DevExpress.XtraTab.XtraTabPage()
+        Me.gc_FeesReminders = New DevExpress.XtraGrid.GridControl()
+        Me.gv_FeesReminders = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gc_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gv_EstimateBills, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gc_Bills, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_Bills, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tc_Main, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tc_Main.SuspendLayout()
+        Me.tab_Bills.SuspendLayout()
+        Me.tab_FeesReminders.SuspendLayout()
+        CType(Me.gc_FeesReminders, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gv_FeesReminders, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 14
+        Me.RibbonControl.MaxItemId = 15
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Home})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -131,21 +143,28 @@ Partial Class frm_Main
         Me.btn_Export_Excel.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Excel.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Export_Excel.Name = "btn_Export_Excel"
         '
+        'btn_FeesItems
+        '
+        Me.btn_FeesItems.Caption = "Fees Items"
+        Me.btn_FeesItems.Id = 14
+        Me.btn_FeesItems.ImageOptions.SvgImage = CType(resources.GetObject("btn_FeesItems.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_FeesItems.Name = "btn_FeesItems"
+        '
         'rp_Home
         '
-        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_EstimateBills, Me.rpg_Printing, Me.RibbonPageGroup2})
+        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Items, Me.rpg_Printing, Me.RibbonPageGroup2})
         Me.rp_Home.Name = "rp_Home"
         Me.rp_Home.Text = "Home"
         '
-        'rpg_EstimateBills
+        'rpg_Items
         '
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Refresh)
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Add, True)
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Edit)
-        Me.rpg_EstimateBills.ItemLinks.Add(Me.btn_Remove)
-        Me.rpg_EstimateBills.Name = "rpg_EstimateBills"
-        Me.rpg_EstimateBills.ShowCaptionButton = False
-        Me.rpg_EstimateBills.Text = "Estimate Bills"
+        Me.rpg_Items.ItemLinks.Add(Me.btn_Refresh)
+        Me.rpg_Items.ItemLinks.Add(Me.btn_Add, True)
+        Me.rpg_Items.ItemLinks.Add(Me.btn_Edit)
+        Me.rpg_Items.ItemLinks.Add(Me.btn_Remove)
+        Me.rpg_Items.Name = "rpg_Items"
+        Me.rpg_Items.ShowCaptionButton = False
+        Me.rpg_Items.Text = "Items"
         '
         'rpg_Printing
         '
@@ -158,6 +177,7 @@ Partial Class frm_Main
         '
         Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Sender)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Services)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_FeesItems)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Settings, True)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.SkinRibbonGalleryBarItem1)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
@@ -171,21 +191,23 @@ Partial Class frm_Main
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
         Me.RibbonStatusBar.Size = New System.Drawing.Size(692, 31)
         '
-        'gc_EstimateBills
+        'gc_Bills
         '
-        Me.gc_EstimateBills.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gc_EstimateBills.Location = New System.Drawing.Point(0, 143)
-        Me.gc_EstimateBills.MainView = Me.gv_EstimateBills
-        Me.gc_EstimateBills.MenuManager = Me.RibbonControl
-        Me.gc_EstimateBills.Name = "gc_EstimateBills"
-        Me.gc_EstimateBills.Size = New System.Drawing.Size(692, 275)
-        Me.gc_EstimateBills.TabIndex = 2
-        Me.gc_EstimateBills.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_EstimateBills})
+        Me.gc_Bills.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_Bills.Location = New System.Drawing.Point(0, 0)
+        Me.gc_Bills.MainView = Me.gv_Bills
+        Me.gc_Bills.MenuManager = Me.RibbonControl
+        Me.gc_Bills.Name = "gc_Bills"
+        Me.gc_Bills.Size = New System.Drawing.Size(686, 247)
+        Me.gc_Bills.TabIndex = 2
+        Me.gc_Bills.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Bills})
         '
-        'gv_EstimateBills
+        'gv_Bills
         '
-        Me.gv_EstimateBills.GridControl = Me.gc_EstimateBills
-        Me.gv_EstimateBills.Name = "gv_EstimateBills"
+        Me.gv_Bills.GridControl = Me.gc_Bills
+        Me.gv_Bills.Name = "gv_Bills"
+        Me.gv_Bills.OptionsBehavior.Editable = False
+        Me.gv_Bills.OptionsBehavior.ReadOnly = True
         '
         'ProgressPanel_Bills
         '
@@ -210,23 +232,72 @@ Partial Class frm_Main
         Me.btn_PrintPreview.ImageOptions.SvgImage = CType(resources.GetObject("btn_PrintPreview.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_PrintPreview.Name = "btn_PrintPreview"
         '
+        'tc_Main
+        '
+        Me.tc_Main.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tc_Main.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.tc_Main.Location = New System.Drawing.Point(0, 143)
+        Me.tc_Main.Name = "tc_Main"
+        Me.tc_Main.SelectedTabPage = Me.tab_Bills
+        Me.tc_Main.Size = New System.Drawing.Size(692, 275)
+        Me.tc_Main.TabIndex = 9
+        Me.tc_Main.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tab_Bills, Me.tab_FeesReminders})
+        '
+        'tab_Bills
+        '
+        Me.tab_Bills.Controls.Add(Me.gc_Bills)
+        Me.tab_Bills.Name = "tab_Bills"
+        Me.tab_Bills.Size = New System.Drawing.Size(686, 247)
+        Me.tab_Bills.Text = "Bills"
+        '
+        'tab_FeesReminders
+        '
+        Me.tab_FeesReminders.Controls.Add(Me.gc_FeesReminders)
+        Me.tab_FeesReminders.Name = "tab_FeesReminders"
+        Me.tab_FeesReminders.Size = New System.Drawing.Size(686, 247)
+        Me.tab_FeesReminders.Text = "Fees Reminders"
+        '
+        'gc_FeesReminders
+        '
+        Me.gc_FeesReminders.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gc_FeesReminders.Location = New System.Drawing.Point(0, 0)
+        Me.gc_FeesReminders.MainView = Me.gv_FeesReminders
+        Me.gc_FeesReminders.MenuManager = Me.RibbonControl
+        Me.gc_FeesReminders.Name = "gc_FeesReminders"
+        Me.gc_FeesReminders.Size = New System.Drawing.Size(686, 247)
+        Me.gc_FeesReminders.TabIndex = 3
+        Me.gc_FeesReminders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_FeesReminders})
+        '
+        'gv_FeesReminders
+        '
+        Me.gv_FeesReminders.GridControl = Me.gc_FeesReminders
+        Me.gv_FeesReminders.Name = "gv_FeesReminders"
+        Me.gv_FeesReminders.OptionsBehavior.Editable = False
+        Me.gv_FeesReminders.OptionsBehavior.ReadOnly = True
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(692, 449)
         Me.Controls.Add(Me.ProgressPanel_Bills)
-        Me.Controls.Add(Me.gc_EstimateBills)
+        Me.Controls.Add(Me.tc_Main)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_Main"
         Me.Ribbon = Me.RibbonControl
         Me.StatusBar = Me.RibbonStatusBar
-        Me.Text = "Devil7 - Estimate Bill Printer"
+        Me.Text = "Devil7 - Bills & Fees Reminder Printer"
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gc_EstimateBills, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gv_EstimateBills, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gc_Bills, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_Bills, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tc_Main, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tc_Main.ResumeLayout(False)
+        Me.tab_Bills.ResumeLayout(False)
+        Me.tab_FeesReminders.ResumeLayout(False)
+        CType(Me.gc_FeesReminders, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gv_FeesReminders, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -234,10 +305,10 @@ Partial Class frm_Main
 
     Friend WithEvents RibbonControl As DevExpress.XtraBars.Ribbon.RibbonControl
     Friend WithEvents rp_Home As DevExpress.XtraBars.Ribbon.RibbonPage
-    Friend WithEvents rpg_EstimateBills As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents rpg_Items As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
-    Friend WithEvents gc_EstimateBills As DevExpress.XtraGrid.GridControl
-    Friend WithEvents gv_EstimateBills As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents gc_Bills As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_Bills As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ProgressPanel_Bills As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents rpg_Printing As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
@@ -253,4 +324,10 @@ Partial Class frm_Main
     Friend WithEvents btn_Export_Excel As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Loader As System.ComponentModel.BackgroundWorker
     Friend WithEvents btn_PrintPreview As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents tc_Main As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents tab_Bills As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents tab_FeesReminders As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents gc_FeesReminders As DevExpress.XtraGrid.GridControl
+    Friend WithEvents gv_FeesReminders As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents btn_FeesItems As DevExpress.XtraBars.BarButtonItem
 End Class

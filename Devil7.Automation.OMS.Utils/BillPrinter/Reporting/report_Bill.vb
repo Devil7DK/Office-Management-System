@@ -1,9 +1,9 @@
 ﻿Imports System.Drawing.Printing
 
-Public Class report_EstimateBill
+Public Class report_Bill
 
 #Region "Constructor"
-    Sub New(ByVal ReportData As ReportData)
+    Sub New(ByVal ReportData As data_Bill)
         InitializeComponent()
         Me.BindingSource1.DataSource = ReportData
         Me.DataMember = "Services"
@@ -12,7 +12,7 @@ Public Class report_EstimateBill
 
 #Region "Events"
     Private Sub report_EstimateBill_BeforePrint(sender As Object, e As PrintEventArgs) Handles Me.BeforePrint
-        Dim TI As ReportData = BindingSource1.DataSource
+        Dim TI As data_Bill = BindingSource1.DataSource
 
         If TI.HasGSTIN Then
             table_Notes.Visible = True

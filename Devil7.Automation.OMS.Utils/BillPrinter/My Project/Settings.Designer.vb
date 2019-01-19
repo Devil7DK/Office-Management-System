@@ -77,6 +77,31 @@ Namespace My
                 Me("LastUsedService") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("It is a gentle reminder to pay my fees of Rs.[Total]/-. Which is outstanding in m"& _ 
+            "y records.")>  _
+        Public Property FeesReminderDefaultText() As String
+            Get
+                Return CType(Me("FeesReminderDefaultText"),String)
+            End Get
+            Set
+                Me("FeesReminderDefaultText") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LastUsedDetail() As String
+            Get
+                Return CType(Me("LastUsedDetail"),String)
+            End Get
+            Set
+                Me("LastUsedDetail") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
@@ -88,9 +113,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.Devil7.Automation.OMS.Utils.My.MySettings
+        Friend ReadOnly Property Settings() As Global.Devil7.Automation.OMS.Utils.BillPrinter.My.MySettings
             Get
-                Return Global.Devil7.Automation.OMS.Utils.My.MySettings.Default
+                Return Global.Devil7.Automation.OMS.Utils.BillPrinter.My.MySettings.Default
             End Get
         End Property
     End Module

@@ -8,8 +8,8 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Devil7 - Estimate Bill Printer")>
-<Assembly: AssemblyDescription("Utility to print & manage estimate bills to clients")>
+<Assembly: AssemblyTitle("Devil7 - Bills & Fees Reminder Printer")>
+<Assembly: AssemblyDescription("Utility to print & manage estimate/invoice bills and fees reminder letters")>
 <Assembly: AssemblyCompany("Devil7 Softwares")>
 <Assembly: AssemblyProduct("Devil7 - Office Management System")>
 <Assembly: AssemblyCopyright("Copyright © Devil7 Softwares 2018")>
