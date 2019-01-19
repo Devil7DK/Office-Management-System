@@ -26,7 +26,7 @@ Namespace Objects
 
 #Region "Properties/Fields"
         <DisplayName("Date")>
-        Property Date_ As Date
+        Property [Date] As Date
 
         <DisplayName("Detail")>
         Property Name As String
@@ -34,23 +34,23 @@ Namespace Objects
         <DisplayName("Effect")>
         Property Effect As Enums.Effect
 
-        <DisplayName("Is Date Applicable")>
-        Property IsDateApplicable As Boolean
+        <DisplayName("Fees")>
+        Property Fees As Double
 #End Region
 
 #Region "Constructor"
         Sub New()
-            Me.Date_ = Nothing
-            Me.IsDateApplicable = False
+            Me.[Date] = Nothing
             Me.Name = ""
             Me.Effect = Enums.Effect.Dr
+            Me.Fees = 0
         End Sub
 
-        Sub New(ByVal Date_ As Date, ByVal IsDateApplicable As Boolean, ByVal Name As String, ByVal Effect As Enums.Effect)
-            Me.Date_ = Date_
-            Me.IsDateApplicable = IsDateApplicable
+        Sub New(ByVal [Date] As Date, ByVal Name As String, ByVal Effect As Enums.Effect, ByVal Fees As Double)
+            Me.[Date] = [Date]
             Me.Name = Name
             Me.Effect = Effect
+            Me.Fees = Fees
         End Sub
 #End Region
 
