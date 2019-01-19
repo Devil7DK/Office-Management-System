@@ -29,6 +29,21 @@ Namespace Objects
         Property OpeningBalance As Double
         Property Items As List(Of FeesItem)
         Property CustomText As String
+
+        ReadOnly Property Total As Double
+            Get
+                Dim Total_ As Double = 0
+                Total_ += OpeningBalance
+                For Each i As FeesItem In Items
+                    If i.Effect = Enums.Effect.Dr Then
+                        Total_ += i.Fees
+                    Else
+                        Total_ -= i.Fees
+                    End If
+                Next
+                Return Total_
+            End Get
+        End Property
 #End Region
 
 #Region "Constructor"
