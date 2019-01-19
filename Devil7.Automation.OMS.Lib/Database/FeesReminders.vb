@@ -42,6 +42,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@Sender", Utils.ToXML(Sender))
                 AddParameter(Command, "@Receiver", Utils.ToXML(Receiver))
+                AddParameter(Command, "@OpeningBalance", OpeningBalance)
                 AddParameter(Command, "@Items", Utils.ToXML(Items))
                 AddParameter(Command, "@CustomText", CustomText)
 
