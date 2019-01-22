@@ -19,6 +19,7 @@ Partial Class frm_Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.btn_Refresh = New DevExpress.XtraBars.BarButtonItem()
@@ -32,6 +33,13 @@ Partial Class frm_Main
         Me.SkinRibbonGalleryBarItem1 = New DevExpress.XtraBars.SkinRibbonGalleryBarItem()
         Me.btn_Export_Excel = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_FeesItems = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_PDF = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_Others = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_Word = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_HTML = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_RTF = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_Image = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Export_MHTML = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Items = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Printing = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -47,6 +55,8 @@ Partial Class frm_Main
         Me.tab_FeesReminders = New DevExpress.XtraTab.XtraTabPage()
         Me.gc_FeesReminders = New DevExpress.XtraGrid.GridControl()
         Me.gv_FeesReminders = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.dlg_Save = New System.Windows.Forms.SaveFileDialog()
+        Me.Menu_ExportFormats = New DevExpress.XtraBars.PopupMenu(Me.components)
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_Bills, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Bills, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,14 +66,15 @@ Partial Class frm_Main
         Me.tab_FeesReminders.SuspendLayout()
         CType(Me.gc_FeesReminders, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_FeesReminders, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Menu_ExportFormats, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems, Me.btn_Export_PDF, Me.btn_Export_Others, Me.btn_Export_Word, Me.btn_Export_HTML, Me.btn_Export_RTF, Me.btn_Export_Image, Me.btn_Export_MHTML})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 15
+        Me.RibbonControl.MaxItemId = 22
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Home})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -150,6 +161,58 @@ Partial Class frm_Main
         Me.btn_FeesItems.ImageOptions.SvgImage = CType(resources.GetObject("btn_FeesItems.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_FeesItems.Name = "btn_FeesItems"
         '
+        'btn_Export_PDF
+        '
+        Me.btn_Export_PDF.Caption = "Export to PDF"
+        Me.btn_Export_PDF.Id = 15
+        Me.btn_Export_PDF.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_PDF.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_PDF.Name = "btn_Export_PDF"
+        '
+        'btn_Export_Others
+        '
+        Me.btn_Export_Others.ActAsDropDown = True
+        Me.btn_Export_Others.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown
+        Me.btn_Export_Others.Caption = "Other Formats"
+        Me.btn_Export_Others.DropDownControl = Me.Menu_ExportFormats
+        Me.btn_Export_Others.Id = 16
+        Me.btn_Export_Others.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Others.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_Others.Name = "btn_Export_Others"
+        '
+        'btn_Export_Word
+        '
+        Me.btn_Export_Word.Caption = "Word Document"
+        Me.btn_Export_Word.Id = 17
+        Me.btn_Export_Word.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Word.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_Word.Name = "btn_Export_Word"
+        '
+        'btn_Export_HTML
+        '
+        Me.btn_Export_HTML.Caption = "HTML Webpage"
+        Me.btn_Export_HTML.Id = 18
+        Me.btn_Export_HTML.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_HTML.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_HTML.Name = "btn_Export_HTML"
+        '
+        'btn_Export_RTF
+        '
+        Me.btn_Export_RTF.Caption = "Rich Text Format"
+        Me.btn_Export_RTF.Id = 19
+        Me.btn_Export_RTF.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_RTF.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_RTF.Name = "btn_Export_RTF"
+        '
+        'btn_Export_Image
+        '
+        Me.btn_Export_Image.Caption = "JPEG Image"
+        Me.btn_Export_Image.Id = 20
+        Me.btn_Export_Image.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Image.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_Image.Name = "btn_Export_Image"
+        '
+        'btn_Export_MHTML
+        '
+        Me.btn_Export_MHTML.Caption = "Microsoft HTML"
+        Me.btn_Export_MHTML.Id = 21
+        Me.btn_Export_MHTML.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_MHTML.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Export_MHTML.Name = "btn_Export_MHTML"
+        '
         'rp_Home
         '
         Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Items, Me.rpg_Printing, Me.RibbonPageGroup2})
@@ -169,6 +232,8 @@ Partial Class frm_Main
         'rpg_Printing
         '
         Me.rpg_Printing.ItemLinks.Add(Me.btn_Print)
+        Me.rpg_Printing.ItemLinks.Add(Me.btn_Export_PDF, True)
+        Me.rpg_Printing.ItemLinks.Add(Me.btn_Export_Others)
         Me.rpg_Printing.Name = "rpg_Printing"
         Me.rpg_Printing.ShowCaptionButton = False
         Me.rpg_Printing.Text = "Printing"
@@ -275,6 +340,16 @@ Partial Class frm_Main
         Me.gv_FeesReminders.OptionsBehavior.Editable = False
         Me.gv_FeesReminders.OptionsBehavior.ReadOnly = True
         '
+        'Menu_ExportFormats
+        '
+        Me.Menu_ExportFormats.ItemLinks.Add(Me.btn_Export_Word)
+        Me.Menu_ExportFormats.ItemLinks.Add(Me.btn_Export_HTML)
+        Me.Menu_ExportFormats.ItemLinks.Add(Me.btn_Export_MHTML)
+        Me.Menu_ExportFormats.ItemLinks.Add(Me.btn_Export_RTF)
+        Me.Menu_ExportFormats.ItemLinks.Add(Me.btn_Export_Image)
+        Me.Menu_ExportFormats.Name = "Menu_ExportFormats"
+        Me.Menu_ExportFormats.Ribbon = Me.RibbonControl
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -298,6 +373,7 @@ Partial Class frm_Main
         Me.tab_FeesReminders.ResumeLayout(False)
         CType(Me.gc_FeesReminders, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_FeesReminders, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Menu_ExportFormats, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -330,4 +406,13 @@ Partial Class frm_Main
     Friend WithEvents gc_FeesReminders As DevExpress.XtraGrid.GridControl
     Friend WithEvents gv_FeesReminders As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents btn_FeesItems As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_Export_PDF As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents dlg_Save As SaveFileDialog
+    Friend WithEvents btn_Export_Others As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Menu_ExportFormats As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents btn_Export_Word As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_Export_HTML As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_Export_RTF As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_Export_Image As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_Export_MHTML As DevExpress.XtraBars.BarButtonItem
 End Class

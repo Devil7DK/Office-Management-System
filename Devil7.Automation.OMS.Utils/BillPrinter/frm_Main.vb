@@ -35,6 +35,26 @@ Public Class frm_Main
     Dim FeesItemsList As New List(Of String)
 #End Region
 
+#Region "Functions"
+    Private Function GetFeesReminderReport(ByVal FeesReminder As FeesReminder) As report_FeesReminder
+        Dim Items As New List(Of data_FeesReminder_Item)
+        If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
+        For Each i As FeesItem In FeesReminder.Items
+            Dim Dr As Double = 0
+            Dim Cr As Double = 0
+            If i.Effect = Enums.Effect.Dr Then
+                Dr = i.Fees
+            Else
+                Cr = i.Fees
+            End If
+            Items.Add(New data_FeesReminder_Item(i.Date, i.Name, Dr, Cr))
+        Next
+
+        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList), Items, FeesReminder.CustomText)
+        Return New report_FeesReminder(ReportData, My.Computer.Keyboard.CtrlKeyDown)
+    End Function
+#End Region
+
 #Region "Form Events"
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not Loader.IsBusy Then Loader.RunWorkerAsync()
@@ -150,13 +170,17 @@ Public Class frm_Main
         If Not Loader.IsBusy Then Loader.RunWorkerAsync()
     End Sub
 
-
-
     Private Sub btn_Services_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Services.ItemClick
         Dim n As New frm_Services
         If n.ShowDialog() = DialogResult.OK Then If Not Loader.IsBusy Then Loader.RunWorkerAsync()
     End Sub
 
+    Private Sub btn_FeesItems_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_FeesItems.ItemClick
+        Dim n As New frm_FeesItems
+        If n.ShowDialog() = DialogResult.OK Then If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+    End Sub
+
+#Region "Report Generation"
     Private Sub btn_Print_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Print.ItemClick
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
@@ -169,32 +193,190 @@ Public Class frm_Main
         ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
             If gv_FeesReminders.SelectedRowsCount = 1 Then
                 Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
-
-                Dim Items As New List(Of data_FeesReminder_Item)
-                If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
-                For Each i As FeesItem In FeesReminder.Items
-                    Dim Dr As Double = 0
-                    Dim Cr As Double = 0
-                    If i.Effect = Enums.Effect.Dr Then
-                        Dr = i.Fees
-                    Else
-                        Cr = i.Fees
-                    End If
-                    Items.Add(New data_FeesReminder_Item(i.Date, i.Name, Dr, Cr))
-                Next
-
-                Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList), Items, FeesReminder.CustomText)
-                Dim Report As New report_FeesReminder(ReportData, My.Computer.Keyboard.CtrlKeyDown)
+                Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
                 Dim Viewer As New frm_ReportViewer(Report)
                 Viewer.ShowDialog()
             End If
         End If
     End Sub
 
-    Private Sub btn_FeesItems_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_FeesItems.ItemClick
-        Dim n As New frm_FeesItems
-        If n.ShowDialog() = DialogResult.OK Then If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+    Private Sub btn_Export_PDF_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Export_PDF.ItemClick
+        dlg_Save.DefaultExt = "pdf"
+        dlg_Save.Filter = "Adobe Portable Document Format (*.pdf)|*.pdf"
+
+        Dim PDFOptions As New DevExpress.XtraPrinting.PdfExportOptions
+        PDFOptions.ConvertImagesToJpeg = False
+        PDFOptions.DocumentOptions.Application = My.Application.Info.Title
+
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            If gv_Bills.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
+                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim Report As New report_Bill(ReportData)
+                    PDFOptions.DocumentOptions.Author = Bill.Sender.Name
+                    PDFOptions.DocumentOptions.Subject = Bill.Sender.BillHeading.Replace("|", " ")
+                    PDFOptions.DocumentOptions.Title = Bill.Sender.BillHeading.Split("|")(0)
+                    Report.ExportToPdf(dlg_Save.FileName, PDFOptions)
+                End If
+            End If
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            If gv_FeesReminders.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
+                    Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
+                    PDFOptions.DocumentOptions.Author = FeesReminder.Sender.Name
+                    PDFOptions.DocumentOptions.Subject = FeesReminder.Sender.BillHeading.Replace("|", " ")
+                    PDFOptions.DocumentOptions.Title = FeesReminder.Sender.BillHeading.Split("|")(0)
+                    Report.ExportToPdf(dlg_Save.FileName, PDFOptions)
+                End If
+            End If
+        End If
     End Sub
+
+    Private Sub btn_Export_HTML_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Export_HTML.ItemClick
+        dlg_Save.DefaultExt = "html"
+        dlg_Save.Filter = "HyperText Markup Language Files (*.html)|*.html"
+
+        Dim HTMLOptions As New DevExpress.XtraPrinting.HtmlExportOptions
+        HTMLOptions.EmbedImagesInHTML = True
+        HTMLOptions.ExportMode = DevExpress.XtraPrinting.HtmlExportMode.SingleFile
+
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            If gv_Bills.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
+                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim Report As New report_Bill(ReportData)
+                    Report.ExportToHtml(dlg_Save.FileName, HTMLOptions)
+                End If
+            End If
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            If gv_FeesReminders.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
+                    Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
+                    Report.ExportToHtml(dlg_Save.FileName, HTMLOptions)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_Export_MHTML_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Export_MHTML.ItemClick
+        dlg_Save.DefaultExt = "mht"
+        dlg_Save.Filter = "Microsoft HTML Document (*.mht)|*.mht"
+
+        Dim MHTOptions As New DevExpress.XtraPrinting.MhtExportOptions
+        MHTOptions.ExportMode = DevExpress.XtraPrinting.HtmlExportMode.SingleFile
+
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            If gv_Bills.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
+                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim Report As New report_Bill(ReportData)
+                    Report.ExportToMht(dlg_Save.FileName, MHTOptions)
+                End If
+            End If
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            If gv_FeesReminders.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
+                    Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
+                    Report.ExportToMht(dlg_Save.FileName, MHTOptions)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_Export_Image_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Export_Image.ItemClick
+        dlg_Save.DefaultExt = "jpeg"
+        dlg_Save.Filter = "JPEG Images (*.jpeg)|*.jpeg"
+
+        Dim ImageOptions As New DevExpress.XtraPrinting.ImageExportOptions
+        ImageOptions.ExportMode = DevExpress.XtraPrinting.ImageExportMode.DifferentFiles
+        ImageOptions.Format = Imaging.ImageFormat.Jpeg
+
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            If gv_Bills.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
+                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim Report As New report_Bill(ReportData)
+                    Report.ExportToImage(dlg_Save.FileName, ImageOptions)
+                End If
+            End If
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            If gv_FeesReminders.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
+                    Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
+                    Report.ExportToImage(dlg_Save.FileName, ImageOptions)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_Export_RTF_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Export_RTF.ItemClick
+        dlg_Save.DefaultExt = "rtf"
+        dlg_Save.Filter = "Rich Text Format (*.rtf)|*.rtf"
+
+        Dim RTFOptions As New DevExpress.XtraPrinting.RtfExportOptions
+        RTFOptions.ExportMode = DevExpress.XtraPrinting.RtfExportMode.SingleFilePageByPage
+
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            If gv_Bills.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
+                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim Report As New report_Bill(ReportData)
+                    Report.ExportToRtf(dlg_Save.FileName, RTFOptions)
+                End If
+            End If
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            If gv_FeesReminders.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
+                    Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
+                    Report.ExportToRtf(dlg_Save.FileName, RTFOptions)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_Export_Word_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Export_Word.ItemClick
+        dlg_Save.DefaultExt = "docx"
+        dlg_Save.Filter = "Microsoft Open Word Document (*.docx)|*.docx"
+
+        Dim docxOptions As New DevExpress.XtraPrinting.DocxExportOptions
+        docxOptions.ExportMode = DevExpress.XtraPrinting.DocxExportMode.SingleFilePageByPage
+
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            If gv_Bills.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
+                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim Report As New report_Bill(ReportData)
+                    docxOptions.DocumentOptions.Author = Bill.Sender.Name
+                    docxOptions.DocumentOptions.Subject = Bill.Sender.BillHeading.Replace("|", " ")
+                    docxOptions.DocumentOptions.Title = Bill.Sender.BillHeading.Split("|")(0)
+                    Report.ExportToDocx(dlg_Save.FileName, docxOptions)
+                End If
+            End If
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            If gv_FeesReminders.SelectedRowsCount = 1 Then
+                If dlg_Save.ShowDialog = DialogResult.OK Then
+                    Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
+                    Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
+                    docxOptions.DocumentOptions.Author = FeesReminder.Sender.Name
+                    docxOptions.DocumentOptions.Subject = FeesReminder.Sender.BillHeading.Replace("|", " ")
+                    docxOptions.DocumentOptions.Title = FeesReminder.Sender.BillHeading.Split("|")(0)
+                    Report.ExportToDocx(dlg_Save.FileName, docxOptions)
+                End If
+            End If
+        End If
+    End Sub
+#End Region
 #End Region
 
 #Region "Other Events"
