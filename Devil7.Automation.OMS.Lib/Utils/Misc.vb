@@ -229,5 +229,9 @@ Namespace Utils
             End If
             Return wAmount
         End Function
+
+        Public Function IsValidEmailFormat(ByVal s As String) As Boolean
+            Return Text.RegularExpressions.Regex.IsMatch(s, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
+        End Function
     End Module
 End Namespace
