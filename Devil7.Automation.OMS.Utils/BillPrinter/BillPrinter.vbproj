@@ -56,6 +56,7 @@
     <Reference Include="DevExpress.Charts.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -76,6 +77,7 @@
     <Reference Include="DevExpress.CodeParser.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v18.2.Extensions, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -111,6 +113,12 @@
     <Compile Include="Dialogs\frm_Bill.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_FromAddress.Designer.vb">
+      <DependentUpon>frm_FromAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_FromAddress.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_ReportViewer.designer.vb">
       <DependentUpon>frm_ReportViewer.vb</DependentUpon>
     </Compile>
@@ -127,6 +135,18 @@
       <DependentUpon>frm_FeesItems.vb</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\frm_FeesItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_FromAddresses.designer.vb">
+      <DependentUpon>frm_FromAddresses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_FromAddresses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_SendMail.Designer.vb">
+      <DependentUpon>frm_SendMail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_SendMail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frm_Services.designer.vb">
@@ -177,6 +197,12 @@
     <Compile Include="Reporting\report_Bill.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporting\report_FeesReminder_Mail.Designer.vb">
+      <DependentUpon>report_FeesReminder_Mail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\report_FeesReminder_Mail.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reporting\report_FeesReminder.Designer.vb">
       <DependentUpon>report_FeesReminder.vb</DependentUpon>
     </Compile>
@@ -191,6 +217,9 @@
     <EmbeddedResource Include="Dialogs\frm_Bill.resx">
       <DependentUpon>frm_Bill.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_FromAddress.resx">
+      <DependentUpon>frm_FromAddress.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_ReportViewer.resx">
       <DependentUpon>frm_ReportViewer.vb</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +228,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_FeesItems.resx">
       <DependentUpon>frm_FeesItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_FromAddresses.resx">
+      <DependentUpon>frm_FromAddresses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_SendMail.resx">
+      <DependentUpon>frm_SendMail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Services.resx">
       <DependentUpon>frm_Services.vb</DependentUpon>
@@ -221,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporting\report_Bill.resx">
       <DependentUpon>report_Bill.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\report_FeesReminder_Mail.resx">
+      <DependentUpon>report_FeesReminder_Mail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporting\report_FeesReminder.resx">
       <DependentUpon>report_FeesReminder.vb</DependentUpon>

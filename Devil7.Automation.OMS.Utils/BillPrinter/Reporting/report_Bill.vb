@@ -3,10 +3,14 @@
 Public Class report_Bill
 
 #Region "Constructor"
-    Sub New(ByVal ReportData As data_Bill)
+    Sub New(ByVal ReportData As data_Bill, ByVal HideSignature As Boolean)
         InitializeComponent()
         Me.BindingSource1.DataSource = ReportData
         Me.DataMember = "Services"
+
+        If HideSignature Then
+            lbl_Signature.Visible = False
+        End If
     End Sub
 #End Region
 

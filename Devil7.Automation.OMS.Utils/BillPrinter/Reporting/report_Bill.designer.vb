@@ -36,6 +36,7 @@ Partial Public Class report_Bill
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.pic_Logo = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.lbl_Sender_GSTIN = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -55,7 +56,7 @@ Partial Public Class report_Bill
         Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.lbl_Signature = New DevExpress.XtraReports.UI.XRLabel()
         Me.table_Total = New DevExpress.XtraReports.UI.XRTable()
         Me.row_SubTotal = New DevExpress.XtraReports.UI.XRTableRow()
         Me.lbl_Total_Text = New DevExpress.XtraReports.UI.XRTableCell()
@@ -79,7 +80,6 @@ Partial Public Class report_Bill
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.pic_Logo = New DevExpress.XtraReports.UI.XRPictureBox()
         CType(Me.table_Data, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_Notes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,6 +266,16 @@ Partial Public Class report_Bill
         Me.XrLabel7.StylePriority.UseFont = False
         Me.XrLabel7.Text = "Details of Service Receiver"
         '
+        'pic_Logo
+        '
+        Me.pic_Logo.AnchorHorizontal = CType((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left Or DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right), DevExpress.XtraReports.UI.HorizontalAnchorStyles)
+        Me.pic_Logo.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageSource", "[Logo]")})
+        Me.pic_Logo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleLeft
+        Me.pic_Logo.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.pic_Logo.Name = "pic_Logo"
+        Me.pic_Logo.SizeF = New System.Drawing.SizeF(339.375!, 100.0!)
+        Me.pic_Logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
+        '
         'lbl_Sender_GSTIN
         '
         Me.lbl_Sender_GSTIN.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right
@@ -428,7 +438,7 @@ Partial Public Class report_Bill
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table_Notes, Me.XrLabel20, Me.XrLabel17, Me.table_Total})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.table_Notes, Me.XrLabel20, Me.lbl_Signature, Me.table_Total})
         Me.ReportFooter.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.ReportFooter.HeightF = 225.7706!
         Me.ReportFooter.Name = "ReportFooter"
@@ -490,17 +500,17 @@ Partial Public Class report_Bill
         Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrLabel20.TextFormatString = "Rupees {0}Only."
         '
-        'XrLabel17
+        'lbl_Signature
         '
-        Me.XrLabel17.CanGrow = False
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(463.0362!, 202.7706!)
-        Me.XrLabel17.Multiline = True
-        Me.XrLabel17.Name = "XrLabel17"
-        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel17.SizeF = New System.Drawing.SizeF(216.964!, 23.0!)
-        Me.XrLabel17.StylePriority.UseTextAlignment = False
-        Me.XrLabel17.Text = "Signature"
-        Me.XrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.lbl_Signature.CanGrow = False
+        Me.lbl_Signature.LocationFloat = New DevExpress.Utils.PointFloat(463.0362!, 202.7706!)
+        Me.lbl_Signature.Multiline = True
+        Me.lbl_Signature.Name = "lbl_Signature"
+        Me.lbl_Signature.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.lbl_Signature.SizeF = New System.Drawing.SizeF(216.964!, 23.0!)
+        Me.lbl_Signature.StylePriority.UseTextAlignment = False
+        Me.lbl_Signature.Text = "Signature"
+        Me.lbl_Signature.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'table_Total
         '
@@ -789,23 +799,13 @@ Partial Public Class report_Bill
         '
         Me.BindingSource1.DataSource = GetType(Devil7.Automation.OMS.Utils.BillPrinter.data_Bill)
         '
-        'pic_Logo
-        '
-        Me.pic_Logo.AnchorHorizontal = CType((DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left Or DevExpress.XtraReports.UI.HorizontalAnchorStyles.Right), DevExpress.XtraReports.UI.HorizontalAnchorStyles)
-        Me.pic_Logo.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Image", "[Logo]")})
-        Me.pic_Logo.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleLeft
-        Me.pic_Logo.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.pic_Logo.Name = "pic_Logo"
-        Me.pic_Logo.SizeF = New System.Drawing.SizeF(339.375!, 100.0!)
-        Me.pic_Logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.ZoomImage
-        '
-        'report_EstimateBill
+        'report_Bill
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter, Me.GroupHeader1})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.BindingSource1})
         Me.DataSource = Me.BindingSource1
         Me.Margins = New System.Drawing.Printing.Margins(85, 85, 50, 75)
-        Me.Version = "18.1"
+        Me.Version = "18.2"
         CType(Me.table_Data, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table_Notes, System.ComponentModel.ISupportInitialize).EndInit()
@@ -841,7 +841,7 @@ Partial Public Class report_Bill
     Friend WithEvents XrTableCell6 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
-    Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents lbl_Signature As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel20 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents GroupHeader1 As DevExpress.XtraReports.UI.GroupHeaderBand
