@@ -366,10 +366,15 @@ Public Class frm_Main
 
         If Jobs Is Nothing Then
             Me.Invoke(Sub()
-                          ProgressPanel_Clients.Description = "Loading Jobss..."
+                          ProgressPanel_Clients.Description = "Loading Jobs..."
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
+
+        Me.Invoke(Sub()
+                      ProgressPanel_Workbook.Description = "Loading Clients..."
+                  End Sub)
+        ClientsMinimal = Database.Clients.GetMinimal()
 
         Try
             Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(Jobs, Users, True)
@@ -679,6 +684,7 @@ Public Class frm_Main
                       End Sub)
             Loader_Jobs_DoWork(Me, Nothing)
         End If
+
         If ClientsMinimal Is Nothing Then
             Me.Invoke(Sub()
                           ProgressPanel_Workbook.Description = "Loading Clients..."
