@@ -129,6 +129,12 @@
     <Compile Include="Comparers\CompareByName.vb" />
     <Compile Include="Comparers\CompareByPAN.vb" />
     <Compile Include="Comparers\CompareByFileNo.vb" />
+    <Compile Include="Controls\ExList.Designer.vb">
+      <DependentUpon>ExList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExList.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\WorkBookItem.Designer.vb">
       <DependentUpon>WorkBookItem.vb</DependentUpon>
     </Compile>
@@ -418,6 +424,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-3.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-1.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
