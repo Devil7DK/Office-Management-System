@@ -29,7 +29,7 @@ Namespace Database
 
 #Region "Update Functions"
         Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As System.ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As System.ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Credentials As List(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Client = Nothing
 
             Dim img As New System.IO.MemoryStream
@@ -80,7 +80,7 @@ Namespace Database
         End Function
 
         Function Update(ByVal ID As Integer, ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As System.ComponentModel.BindingList(Of Partner), ByVal Type As String, ByVal Credentials As System.ComponentModel.BindingList(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Credentials As List(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Boolean = False
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
@@ -237,9 +237,9 @@ Namespace Database
             Dim TypeOfEngagement As String = Reader.Item("TypeOfEngagement").ToString.Trim
             Dim TIN As String = Reader.Item("TIN").ToString.Trim
             Dim CIN As String = Reader.Item("CIN").ToString.Trim
-            Dim Partners As System.ComponentModel.BindingList(Of Partner) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Partner))(Reader.Item("PartnerDirector").ToString.Trim)
+            Dim Partners As List(Of Partner) = ObjectSerilizer.FromXML(Of List(Of Partner))(Reader.Item("PartnerDirector").ToString.Trim)
             Dim Type As String = Reader.Item("Type").ToString.Trim
-            Dim Credentials As System.ComponentModel.BindingList(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString.Trim)
+            Dim Credentials As List(Of Credential) = ObjectSerilizer.FromXML(Of List(Of Credential))(Reader.Item("Credentials").ToString.Trim)
             Dim JobUsers As List(Of JobUser) = JobUser.FromXML(Reader.Item("Jobs").ToString.Trim, Jobs, Users)
             Dim Status As String = Reader.Item("Status").ToString.Trim
             Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
