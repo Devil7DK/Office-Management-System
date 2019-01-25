@@ -25,8 +25,8 @@ Namespace Objects
     Public Class JobUser
 
 #Region "Properties/Fields"
-        ReadOnly Property Job As Job
-        ReadOnly Property User As User
+        Property Job As Job
+        Property User As User
 #End Region
 
 #Region "Constructors"
