@@ -119,7 +119,7 @@ Public Class frm_Main
 
             End Try
 
-            Dim d As New frm_Bill(Enums.DialogMode.Add, ServicesList, ReceiversList, SendersList, Serial:=sa)
+            Dim d As New frm_Bill(Enums.DialogMode.Add, ServicesList, ReceiversList, SendersList, JobsList, UsersList, Serial:=sa)
             If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If d.ServicesEdited Then
                     Database.Services.Save(d.AllServices, True)
@@ -141,7 +141,7 @@ Public Class frm_Main
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
                 Dim r = CType(gv_Bills.GetRow(gv_Bills.GetSelectedRows(0)), Bill)
-                Dim d As New frm_Bill(Enums.DialogMode.Edit, ServicesList, ReceiversList, SendersList, r)
+                Dim d As New frm_Bill(Enums.DialogMode.Edit, ServicesList, ReceiversList, SendersList, JobsList, UsersList, r)
                 If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                     If d.ServicesEdited Then
                         Database.Services.Save(d.AllServices, True)

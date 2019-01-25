@@ -54,6 +54,8 @@ Partial Class frm_Bill
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Ok = New DevExpress.XtraEditors.SimpleButton()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btn_Receiver_Add = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Sender.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +74,7 @@ Partial Class frm_Bill
         CType(Me.txt_Fees.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -83,7 +86,6 @@ Partial Class frm_Bill
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl6, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl1, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.cmb_Receiver, 2, 3)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl2, 0, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl3, 0, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.LabelControl4, 0, 3)
@@ -93,6 +95,7 @@ Partial Class frm_Bill
         Me.TableLayoutPanel1.Controls.Add(Me.cmb_Sender, 2, 2)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_Date, 2, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.txt_SerialNumber, 2, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel3, 2, 3)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -101,7 +104,7 @@ Partial Class frm_Bill
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(534, 107)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(534, 113)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'LabelControl6
@@ -132,11 +135,11 @@ Partial Class frm_Bill
         'cmb_Receiver
         '
         Me.cmb_Receiver.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cmb_Receiver.Location = New System.Drawing.Point(113, 84)
+        Me.cmb_Receiver.Location = New System.Drawing.Point(3, 3)
         Me.cmb_Receiver.Name = "cmb_Receiver"
         Me.cmb_Receiver.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmb_Receiver.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cmb_Receiver.Size = New System.Drawing.Size(418, 20)
+        Me.cmb_Receiver.Size = New System.Drawing.Size(328, 20)
         Me.cmb_Receiver.TabIndex = 1
         '
         'LabelControl2
@@ -174,7 +177,7 @@ Partial Class frm_Bill
         Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelControl4.Location = New System.Drawing.Point(3, 84)
         Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(94, 21)
+        Me.LabelControl4.Size = New System.Drawing.Size(94, 26)
         Me.LabelControl4.TabIndex = 0
         Me.LabelControl4.Text = "Receiver"
         '
@@ -210,7 +213,7 @@ Partial Class frm_Bill
         Me.LabelControl9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelControl9.Location = New System.Drawing.Point(103, 84)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(4, 21)
+        Me.LabelControl9.Size = New System.Drawing.Size(4, 26)
         Me.LabelControl9.TabIndex = 0
         Me.LabelControl9.Text = ":"
         '
@@ -256,9 +259,9 @@ Partial Class frm_Bill
         Me.GroupControl1.Controls.Add(Me.GridControl_Services)
         Me.GroupControl1.Controls.Add(Me.PanelControl1)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 107)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 113)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(534, 244)
+        Me.GroupControl1.Size = New System.Drawing.Size(534, 238)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Services"
         '
@@ -269,7 +272,7 @@ Partial Class frm_Bill
         Me.GridControl_Services.Location = New System.Drawing.Point(2, 75)
         Me.GridControl_Services.MainView = Me.GridView_Services
         Me.GridControl_Services.Name = "GridControl_Services"
-        Me.GridControl_Services.Size = New System.Drawing.Size(530, 167)
+        Me.GridControl_Services.Size = New System.Drawing.Size(530, 161)
         Me.GridControl_Services.TabIndex = 1
         Me.GridControl_Services.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView_Services})
         '
@@ -429,7 +432,31 @@ Partial Class frm_Bill
         Me.btn_Ok.TabIndex = 0
         Me.btn_Ok.Text = "Ok"
         '
-        'frm_EstimateBill
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 2
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.cmb_Receiver, 0, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.btn_Receiver_Add, 1, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(113, 84)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 1
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(418, 26)
+        Me.TableLayoutPanel3.TabIndex = 4
+        '
+        'btn_Receiver_Add
+        '
+        Me.btn_Receiver_Add.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btn_Receiver_Add.Location = New System.Drawing.Point(337, 3)
+        Me.btn_Receiver_Add.Name = "btn_Receiver_Add"
+        Me.btn_Receiver_Add.Size = New System.Drawing.Size(78, 23)
+        Me.btn_Receiver_Add.TabIndex = 2
+        Me.btn_Receiver_Add.Text = "Add New"
+        '
+        'frm_Bill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -439,7 +466,7 @@ Partial Class frm_Bill
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "frm_EstimateBill"
+        Me.Name = "frm_Bill"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Details"
         Me.TableLayoutPanel1.ResumeLayout(False)
@@ -462,6 +489,7 @@ Partial Class frm_Bill
         CType(Me.txt_Fees.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.TableLayoutPanel3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -497,4 +525,6 @@ Partial Class frm_Bill
     Friend WithEvents txt_Fees As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents RemoveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
+    Friend WithEvents btn_Receiver_Add As DevExpress.XtraEditors.SimpleButton
 End Class

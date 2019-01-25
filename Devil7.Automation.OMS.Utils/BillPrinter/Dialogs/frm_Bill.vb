@@ -28,6 +28,8 @@ Public Class frm_Bill
     Dim Mode As Enums.DialogMode
     Dim ReceiversList As New List(Of ClientMinimal)
     Dim SendersList As New List(Of Sender)
+    Dim UsersList As New List(Of User)
+    Dim JobsList As New List(Of Job)
 #End Region
 
 #Region "Properties"
@@ -38,7 +40,7 @@ Public Class frm_Bill
 #End Region
 
 #Region "Constructors"
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of ClientMinimal), ByVal SendersList As List(Of Sender), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of ClientMinimal), ByVal SendersList As List(Of Sender), ByVal JobsList As List(Of Job), ByVal UsersList As List(Of User), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
         InitializeComponent()
 
         Me.Mode = Mode
@@ -47,6 +49,8 @@ Public Class frm_Bill
             Me.txt_SerialNumber.Text = Serial
         End If
         Me.SendersList = SendersList
+        Me.UsersList = UsersList
+        Me.JobsList = JobsList
         Me.AllServices = ServicesList
         Me.ReceiversList = ReceiversList
         If Item IsNot Nothing Then
@@ -199,6 +203,16 @@ Public Class frm_Bill
                 GridControl_Services.DataSource.Remove(r)
             Next
             GridControl_Services.RefreshDataSource()
+        End If
+    End Sub
+
+    Private Sub btn_Receiver_Add_Click(sender As Object, e As EventArgs) Handles btn_Receiver_Add.Click
+        Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add, JobsList, UsersList)
+        If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            If d.Client IsNot Nothing Then
+                cmb_Receiver.Properties.Items.Add(d.Client)
+                cmb_Receiver.SelectedItem = d.Client
+            End If
         End If
     End Sub
 #End Region
