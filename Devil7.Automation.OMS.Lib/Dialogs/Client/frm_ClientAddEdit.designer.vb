@@ -185,7 +185,7 @@
             Me.Panel_Main.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Panel_Main.Location = New System.Drawing.Point(0, 0)
             Me.Panel_Main.Name = "Panel_Main"
-            Me.Panel_Main.Size = New System.Drawing.Size(781, 445)
+            Me.Panel_Main.Size = New System.Drawing.Size(658, 445)
             Me.Panel_Main.TabIndex = 0
             '
             'Panel_Details
@@ -197,14 +197,14 @@
             Me.Panel_Details.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Panel_Details.Location = New System.Drawing.Point(0, 0)
             Me.Panel_Details.Name = "Panel_Details"
-            Me.Panel_Details.Size = New System.Drawing.Size(781, 412)
+            Me.Panel_Details.Size = New System.Drawing.Size(658, 412)
             Me.Panel_Details.TabIndex = 1
             '
             'Panel_Controls_Layout
             '
             Me.Panel_Controls_Layout.ColumnCount = 3
-            Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250.0!))
-            Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 11.0!))
+            Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+            Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
             Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_Pincode, 2, 8)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label9, 0, 4)
@@ -285,67 +285,67 @@
             Me.Panel_Controls_Layout.Location = New System.Drawing.Point(0, 175)
             Me.Panel_Controls_Layout.Name = "Panel_Controls_Layout"
             Me.Panel_Controls_Layout.RowCount = 25
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 184.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 171.0!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-            Me.Panel_Controls_Layout.Size = New System.Drawing.Size(762, 1055)
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+            Me.Panel_Controls_Layout.Size = New System.Drawing.Size(639, 1055)
             Me.Panel_Controls_Layout.TabIndex = 0
             '
             'txt_Pincode
             '
             Me.txt_Pincode.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Pincode.EnterMoveNextControl = True
-            Me.txt_Pincode.Location = New System.Drawing.Point(264, 198)
+            Me.txt_Pincode.Location = New System.Drawing.Point(203, 211)
             Me.txt_Pincode.Name = "txt_Pincode"
-            Me.txt_Pincode.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Pincode.Size = New System.Drawing.Size(433, 20)
             Me.txt_Pincode.TabIndex = 8
             '
             'Label9
             '
             Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label9.Location = New System.Drawing.Point(3, 100)
+            Me.Label9.Location = New System.Drawing.Point(3, 107)
             Me.Label9.Name = "Label9"
-            Me.Label9.Size = New System.Drawing.Size(244, 19)
+            Me.Label9.Size = New System.Drawing.Size(184, 20)
             Me.Label9.TabIndex = 21
             Me.Label9.Text = "Date Of Birth/Incorporation/Formation"
             '
             'Label8
             '
             Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label8.Location = New System.Drawing.Point(3, 75)
+            Me.Label8.Location = New System.Drawing.Point(3, 81)
             Me.Label8.Name = "Label8"
-            Me.Label8.Size = New System.Drawing.Size(244, 19)
+            Me.Label8.Size = New System.Drawing.Size(184, 20)
             Me.Label8.TabIndex = 14
             Me.Label8.Text = "Type"
             '
             'Label7
             '
             Me.Label7.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label7.Location = New System.Drawing.Point(253, 75)
+            Me.Label7.Location = New System.Drawing.Point(193, 81)
             Me.Label7.Name = "Label7"
-            Me.Label7.Size = New System.Drawing.Size(5, 19)
+            Me.Label7.Size = New System.Drawing.Size(4, 20)
             Me.Label7.TabIndex = 12
             Me.Label7.Text = ":"
             '
@@ -353,32 +353,32 @@
             '
             Me.txt_FatherName.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_FatherName.EnterMoveNextControl = True
-            Me.txt_FatherName.Location = New System.Drawing.Point(264, 51)
+            Me.txt_FatherName.Location = New System.Drawing.Point(203, 55)
             Me.txt_FatherName.Name = "txt_FatherName"
-            Me.txt_FatherName.Size = New System.Drawing.Size(495, 20)
+            Me.txt_FatherName.Size = New System.Drawing.Size(433, 20)
             Me.txt_FatherName.TabIndex = 2
             '
             'Label4
             '
             Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label4.Location = New System.Drawing.Point(3, 27)
+            Me.Label4.Location = New System.Drawing.Point(3, 29)
             Me.Label4.Name = "Label4"
-            Me.Label4.Size = New System.Drawing.Size(244, 18)
+            Me.Label4.Size = New System.Drawing.Size(184, 20)
             Me.Label4.TabIndex = 4
             Me.Label4.Text = "Client Name"
             '
             'Label1
             '
             Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label1.Location = New System.Drawing.Point(253, 3)
+            Me.Label1.Location = New System.Drawing.Point(193, 3)
             Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(5, 18)
+            Me.Label1.Size = New System.Drawing.Size(4, 20)
             Me.Label1.TabIndex = 0
             Me.Label1.Text = ":"
             '
             'Label2
             '
-            Me.Label2.Location = New System.Drawing.Point(253, 27)
+            Me.Label2.Location = New System.Drawing.Point(193, 29)
             Me.Label2.Name = "Label2"
             Me.Label2.Size = New System.Drawing.Size(4, 13)
             Me.Label2.TabIndex = 1
@@ -389,7 +389,7 @@
             Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label3.Location = New System.Drawing.Point(3, 3)
             Me.Label3.Name = "Label3"
-            Me.Label3.Size = New System.Drawing.Size(244, 18)
+            Me.Label3.Size = New System.Drawing.Size(184, 20)
             Me.Label3.TabIndex = 2
             Me.Label3.Text = "PAN"
             '
@@ -397,40 +397,40 @@
             '
             Me.txt_PAN.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_PAN.EnterMoveNextControl = True
-            Me.txt_PAN.Location = New System.Drawing.Point(264, 3)
+            Me.txt_PAN.Location = New System.Drawing.Point(203, 3)
             Me.txt_PAN.Name = "txt_PAN"
             Me.txt_PAN.Properties.Mask.BeepOnError = True
             Me.txt_PAN.Properties.Mask.EditMask = "[A-Z]{3}[ABCFGHLJPTK][A-Z][0-9]{4}[A-Z]"
             Me.txt_PAN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx
-            Me.txt_PAN.Size = New System.Drawing.Size(495, 20)
+            Me.txt_PAN.Size = New System.Drawing.Size(433, 20)
             Me.txt_PAN.TabIndex = 0
             '
             'txt_ClientName
             '
             Me.txt_ClientName.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_ClientName.EnterMoveNextControl = True
-            Me.txt_ClientName.Location = New System.Drawing.Point(264, 27)
+            Me.txt_ClientName.Location = New System.Drawing.Point(203, 29)
             Me.txt_ClientName.Name = "txt_ClientName"
-            Me.txt_ClientName.Size = New System.Drawing.Size(495, 20)
+            Me.txt_ClientName.Size = New System.Drawing.Size(433, 20)
             Me.txt_ClientName.TabIndex = 1
             '
             'cmb_Type
             '
             Me.cmb_Type.Dock = System.Windows.Forms.DockStyle.Fill
             Me.cmb_Type.EnterMoveNextControl = True
-            Me.cmb_Type.Location = New System.Drawing.Point(264, 75)
+            Me.cmb_Type.Location = New System.Drawing.Point(203, 81)
             Me.cmb_Type.Name = "cmb_Type"
             Me.cmb_Type.Properties.Items.AddRange(New Object() {"Association of Persons (AOP)", "Body of Individuals (BOI)", "Company", "Firm", "Government", "HUF (Hindu Undivided Family)", "Local Authority", "Artificial Juridical Person", "Individual", "AOP (Trust)", "Krish (Trust Krish)"})
             Me.cmb_Type.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-            Me.cmb_Type.Size = New System.Drawing.Size(495, 20)
+            Me.cmb_Type.Size = New System.Drawing.Size(433, 20)
             Me.cmb_Type.TabIndex = 3
             '
             'Label11
             '
             Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label11.Location = New System.Drawing.Point(3, 125)
+            Me.Label11.Location = New System.Drawing.Point(3, 133)
             Me.Label11.Name = "Label11"
-            Me.Label11.Size = New System.Drawing.Size(244, 18)
+            Me.Label11.Size = New System.Drawing.Size(184, 20)
             Me.Label11.TabIndex = 22
             Me.Label11.Text = "Address Line 1"
             '
@@ -438,26 +438,26 @@
             '
             Me.txt_AddressLine1.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_AddressLine1.EnterMoveNextControl = True
-            Me.txt_AddressLine1.Location = New System.Drawing.Point(264, 125)
+            Me.txt_AddressLine1.Location = New System.Drawing.Point(203, 133)
             Me.txt_AddressLine1.Name = "txt_AddressLine1"
-            Me.txt_AddressLine1.Size = New System.Drawing.Size(495, 20)
+            Me.txt_AddressLine1.Size = New System.Drawing.Size(433, 20)
             Me.txt_AddressLine1.TabIndex = 5
             '
             'Label10
             '
             Me.Label10.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label10.Location = New System.Drawing.Point(253, 125)
+            Me.Label10.Location = New System.Drawing.Point(193, 133)
             Me.Label10.Name = "Label10"
-            Me.Label10.Size = New System.Drawing.Size(5, 18)
+            Me.Label10.Size = New System.Drawing.Size(4, 20)
             Me.Label10.TabIndex = 20
             Me.Label10.Text = ":"
             '
             'Label12
             '
             Me.Label12.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label12.Location = New System.Drawing.Point(253, 100)
+            Me.Label12.Location = New System.Drawing.Point(193, 107)
             Me.Label12.Name = "Label12"
-            Me.Label12.Size = New System.Drawing.Size(5, 19)
+            Me.Label12.Size = New System.Drawing.Size(4, 20)
             Me.Label12.TabIndex = 20
             Me.Label12.Text = ":"
             '
@@ -465,44 +465,44 @@
             '
             Me.txt_AddressLine2.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_AddressLine2.EnterMoveNextControl = True
-            Me.txt_AddressLine2.Location = New System.Drawing.Point(264, 149)
+            Me.txt_AddressLine2.Location = New System.Drawing.Point(203, 159)
             Me.txt_AddressLine2.Name = "txt_AddressLine2"
-            Me.txt_AddressLine2.Size = New System.Drawing.Size(495, 20)
+            Me.txt_AddressLine2.Size = New System.Drawing.Size(433, 20)
             Me.txt_AddressLine2.TabIndex = 6
             '
             'Label14
             '
             Me.Label14.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label14.Location = New System.Drawing.Point(253, 149)
+            Me.Label14.Location = New System.Drawing.Point(193, 159)
             Me.Label14.Name = "Label14"
-            Me.Label14.Size = New System.Drawing.Size(5, 18)
+            Me.Label14.Size = New System.Drawing.Size(4, 20)
             Me.Label14.TabIndex = 24
             Me.Label14.Text = ":"
             '
             'Label13
             '
             Me.Label13.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label13.Location = New System.Drawing.Point(3, 149)
+            Me.Label13.Location = New System.Drawing.Point(3, 159)
             Me.Label13.Name = "Label13"
-            Me.Label13.Size = New System.Drawing.Size(244, 18)
+            Me.Label13.Size = New System.Drawing.Size(184, 20)
             Me.Label13.TabIndex = 25
             Me.Label13.Text = "Address Line 2"
             '
             'Label15
             '
             Me.Label15.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label15.Location = New System.Drawing.Point(3, 173)
+            Me.Label15.Location = New System.Drawing.Point(3, 185)
             Me.Label15.Name = "Label15"
-            Me.Label15.Size = New System.Drawing.Size(244, 19)
+            Me.Label15.Size = New System.Drawing.Size(184, 20)
             Me.Label15.TabIndex = 27
             Me.Label15.Text = "District"
             '
             'Label16
             '
             Me.Label16.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label16.Location = New System.Drawing.Point(253, 173)
+            Me.Label16.Location = New System.Drawing.Point(193, 185)
             Me.Label16.Name = "Label16"
-            Me.Label16.Size = New System.Drawing.Size(5, 19)
+            Me.Label16.Size = New System.Drawing.Size(4, 20)
             Me.Label16.TabIndex = 28
             Me.Label16.Text = ":"
             '
@@ -510,26 +510,26 @@
             '
             Me.txt_District.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_District.EnterMoveNextControl = True
-            Me.txt_District.Location = New System.Drawing.Point(264, 173)
+            Me.txt_District.Location = New System.Drawing.Point(203, 185)
             Me.txt_District.Name = "txt_District"
-            Me.txt_District.Size = New System.Drawing.Size(495, 20)
+            Me.txt_District.Size = New System.Drawing.Size(433, 20)
             Me.txt_District.TabIndex = 7
             '
             'Label17
             '
             Me.Label17.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label17.Location = New System.Drawing.Point(3, 198)
+            Me.Label17.Location = New System.Drawing.Point(3, 211)
             Me.Label17.Name = "Label17"
-            Me.Label17.Size = New System.Drawing.Size(244, 18)
+            Me.Label17.Size = New System.Drawing.Size(184, 20)
             Me.Label17.TabIndex = 30
             Me.Label17.Text = "PIN Code"
             '
             'Label18
             '
             Me.Label18.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label18.Location = New System.Drawing.Point(253, 198)
+            Me.Label18.Location = New System.Drawing.Point(193, 211)
             Me.Label18.Name = "Label18"
-            Me.Label18.Size = New System.Drawing.Size(5, 18)
+            Me.Label18.Size = New System.Drawing.Size(4, 20)
             Me.Label18.TabIndex = 31
             Me.Label18.Text = ":"
             '
@@ -537,44 +537,44 @@
             '
             Me.txt_Mobile.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Mobile.EnterMoveNextControl = True
-            Me.txt_Mobile.Location = New System.Drawing.Point(264, 262)
+            Me.txt_Mobile.Location = New System.Drawing.Point(203, 289)
             Me.txt_Mobile.Name = "txt_Mobile"
-            Me.txt_Mobile.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Mobile.Size = New System.Drawing.Size(433, 20)
             Me.txt_Mobile.TabIndex = 10
             '
             'Label19
             '
             Me.Label19.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label19.Location = New System.Drawing.Point(253, 262)
+            Me.Label19.Location = New System.Drawing.Point(193, 289)
             Me.Label19.Name = "Label19"
-            Me.Label19.Size = New System.Drawing.Size(5, 18)
+            Me.Label19.Size = New System.Drawing.Size(4, 20)
             Me.Label19.TabIndex = 34
             Me.Label19.Text = ":"
             '
             'Label20
             '
             Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label20.Location = New System.Drawing.Point(3, 262)
+            Me.Label20.Location = New System.Drawing.Point(3, 289)
             Me.Label20.Name = "Label20"
-            Me.Label20.Size = New System.Drawing.Size(244, 18)
+            Me.Label20.Size = New System.Drawing.Size(184, 20)
             Me.Label20.TabIndex = 35
             Me.Label20.Text = "Mobile Number(s)"
             '
             'Label21
             '
             Me.Label21.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label21.Location = New System.Drawing.Point(3, 306)
+            Me.Label21.Location = New System.Drawing.Point(3, 341)
             Me.Label21.Name = "Label21"
-            Me.Label21.Size = New System.Drawing.Size(244, 18)
+            Me.Label21.Size = New System.Drawing.Size(184, 20)
             Me.Label21.TabIndex = 36
             Me.Label21.Text = "Email"
             '
             'Label22
             '
             Me.Label22.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label22.Location = New System.Drawing.Point(253, 306)
+            Me.Label22.Location = New System.Drawing.Point(193, 341)
             Me.Label22.Name = "Label22"
-            Me.Label22.Size = New System.Drawing.Size(5, 18)
+            Me.Label22.Size = New System.Drawing.Size(4, 20)
             Me.Label22.TabIndex = 37
             Me.Label22.Text = ":"
             '
@@ -582,26 +582,26 @@
             '
             Me.txt_Email.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Email.EnterMoveNextControl = True
-            Me.txt_Email.Location = New System.Drawing.Point(264, 306)
+            Me.txt_Email.Location = New System.Drawing.Point(203, 341)
             Me.txt_Email.Name = "txt_Email"
-            Me.txt_Email.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Email.Size = New System.Drawing.Size(433, 20)
             Me.txt_Email.TabIndex = 12
             '
             'Label23
             '
             Me.Label23.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label23.Location = New System.Drawing.Point(3, 330)
+            Me.Label23.Location = New System.Drawing.Point(3, 367)
             Me.Label23.Name = "Label23"
-            Me.Label23.Size = New System.Drawing.Size(244, 18)
+            Me.Label23.Size = New System.Drawing.Size(184, 20)
             Me.Label23.TabIndex = 39
             Me.Label23.Text = "Aadhar Number"
             '
             'Label24
             '
             Me.Label24.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label24.Location = New System.Drawing.Point(253, 330)
+            Me.Label24.Location = New System.Drawing.Point(193, 367)
             Me.Label24.Name = "Label24"
-            Me.Label24.Size = New System.Drawing.Size(5, 18)
+            Me.Label24.Size = New System.Drawing.Size(4, 20)
             Me.Label24.TabIndex = 40
             Me.Label24.Text = ":"
             '
@@ -609,46 +609,46 @@
             '
             Me.txt_Aadhar.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Aadhar.EnterMoveNextControl = True
-            Me.txt_Aadhar.Location = New System.Drawing.Point(264, 330)
+            Me.txt_Aadhar.Location = New System.Drawing.Point(203, 367)
             Me.txt_Aadhar.Name = "txt_Aadhar"
             Me.txt_Aadhar.Properties.Mask.BeepOnError = True
             Me.txt_Aadhar.Properties.Mask.EditMask = "000000000000"
-            Me.txt_Aadhar.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Aadhar.Size = New System.Drawing.Size(433, 20)
             Me.txt_Aadhar.TabIndex = 13
             '
             'Label25
             '
             Me.Label25.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label25.Location = New System.Drawing.Point(3, 354)
+            Me.Label25.Location = New System.Drawing.Point(3, 393)
             Me.Label25.Name = "Label25"
-            Me.Label25.Size = New System.Drawing.Size(244, 19)
+            Me.Label25.Size = New System.Drawing.Size(184, 20)
             Me.Label25.TabIndex = 42
             Me.Label25.Text = "TIN"
             '
             'Label26
             '
             Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label26.Location = New System.Drawing.Point(253, 354)
+            Me.Label26.Location = New System.Drawing.Point(193, 393)
             Me.Label26.Name = "Label26"
-            Me.Label26.Size = New System.Drawing.Size(5, 19)
+            Me.Label26.Size = New System.Drawing.Size(4, 20)
             Me.Label26.TabIndex = 43
             Me.Label26.Text = ":"
             '
             'Label27
             '
             Me.Label27.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label27.Location = New System.Drawing.Point(3, 379)
+            Me.Label27.Location = New System.Drawing.Point(3, 419)
             Me.Label27.Name = "Label27"
-            Me.Label27.Size = New System.Drawing.Size(244, 18)
+            Me.Label27.Size = New System.Drawing.Size(184, 20)
             Me.Label27.TabIndex = 44
             Me.Label27.Text = "CIN"
             '
             'Label28
             '
             Me.Label28.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label28.Location = New System.Drawing.Point(253, 379)
+            Me.Label28.Location = New System.Drawing.Point(193, 419)
             Me.Label28.Name = "Label28"
-            Me.Label28.Size = New System.Drawing.Size(5, 18)
+            Me.Label28.Size = New System.Drawing.Size(4, 20)
             Me.Label28.TabIndex = 45
             Me.Label28.Text = ":"
             '
@@ -656,32 +656,32 @@
             '
             Me.txt_TIN.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_TIN.EnterMoveNextControl = True
-            Me.txt_TIN.Location = New System.Drawing.Point(264, 354)
+            Me.txt_TIN.Location = New System.Drawing.Point(203, 393)
             Me.txt_TIN.Name = "txt_TIN"
-            Me.txt_TIN.Size = New System.Drawing.Size(495, 20)
+            Me.txt_TIN.Size = New System.Drawing.Size(433, 20)
             Me.txt_TIN.TabIndex = 14
             '
             'txt_CIN
             '
             Me.txt_CIN.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_CIN.EnterMoveNextControl = True
-            Me.txt_CIN.Location = New System.Drawing.Point(264, 379)
+            Me.txt_CIN.Location = New System.Drawing.Point(203, 419)
             Me.txt_CIN.Name = "txt_CIN"
-            Me.txt_CIN.Size = New System.Drawing.Size(495, 20)
+            Me.txt_CIN.Size = New System.Drawing.Size(433, 20)
             Me.txt_CIN.TabIndex = 15
             '
             'Label29
             '
             Me.Label29.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label29.Location = New System.Drawing.Point(3, 453)
+            Me.Label29.Location = New System.Drawing.Point(3, 497)
             Me.Label29.Name = "Label29"
-            Me.Label29.Size = New System.Drawing.Size(244, 19)
+            Me.Label29.Size = New System.Drawing.Size(184, 20)
             Me.Label29.TabIndex = 48
             Me.Label29.Text = "Type Of Engagement"
             '
             'Label30
             '
-            Me.Label30.Location = New System.Drawing.Point(253, 453)
+            Me.Label30.Location = New System.Drawing.Point(193, 497)
             Me.Label30.Name = "Label30"
             Me.Label30.Size = New System.Drawing.Size(4, 13)
             Me.Label30.TabIndex = 49
@@ -691,28 +691,28 @@
             '
             Me.cmb_TypeOfEngagement.Dock = System.Windows.Forms.DockStyle.Fill
             Me.cmb_TypeOfEngagement.EnterMoveNextControl = True
-            Me.cmb_TypeOfEngagement.Location = New System.Drawing.Point(264, 453)
+            Me.cmb_TypeOfEngagement.Location = New System.Drawing.Point(203, 497)
             Me.cmb_TypeOfEngagement.Name = "cmb_TypeOfEngagement"
             Me.cmb_TypeOfEngagement.Properties.Items.AddRange(New Object() {"N/A"})
             Me.cmb_TypeOfEngagement.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-            Me.cmb_TypeOfEngagement.Size = New System.Drawing.Size(495, 20)
+            Me.cmb_TypeOfEngagement.Size = New System.Drawing.Size(433, 20)
             Me.cmb_TypeOfEngagement.TabIndex = 18
             '
             'Label31
             '
             Me.Label31.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label31.Location = New System.Drawing.Point(3, 478)
+            Me.Label31.Location = New System.Drawing.Point(3, 523)
             Me.Label31.Name = "Label31"
-            Me.Label31.Size = New System.Drawing.Size(244, 19)
+            Me.Label31.Size = New System.Drawing.Size(184, 20)
             Me.Label31.TabIndex = 51
             Me.Label31.Text = "Description"
             '
             'Label32
             '
             Me.Label32.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label32.Location = New System.Drawing.Point(253, 478)
+            Me.Label32.Location = New System.Drawing.Point(193, 523)
             Me.Label32.Name = "Label32"
-            Me.Label32.Size = New System.Drawing.Size(5, 19)
+            Me.Label32.Size = New System.Drawing.Size(4, 20)
             Me.Label32.TabIndex = 52
             Me.Label32.Text = ":"
             '
@@ -720,26 +720,26 @@
             '
             Me.txt_Description.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Description.EnterMoveNextControl = True
-            Me.txt_Description.Location = New System.Drawing.Point(264, 478)
+            Me.txt_Description.Location = New System.Drawing.Point(203, 523)
             Me.txt_Description.Name = "txt_Description"
-            Me.txt_Description.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Description.Size = New System.Drawing.Size(433, 20)
             Me.txt_Description.TabIndex = 19
             '
             'Label33
             '
             Me.Label33.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label33.Location = New System.Drawing.Point(3, 503)
+            Me.Label33.Location = New System.Drawing.Point(3, 549)
             Me.Label33.Name = "Label33"
-            Me.Label33.Size = New System.Drawing.Size(244, 19)
+            Me.Label33.Size = New System.Drawing.Size(184, 20)
             Me.Label33.TabIndex = 54
             Me.Label33.Text = "Status"
             '
             'Label34
             '
             Me.Label34.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label34.Location = New System.Drawing.Point(253, 503)
+            Me.Label34.Location = New System.Drawing.Point(193, 549)
             Me.Label34.Name = "Label34"
-            Me.Label34.Size = New System.Drawing.Size(5, 19)
+            Me.Label34.Size = New System.Drawing.Size(4, 20)
             Me.Label34.TabIndex = 55
             Me.Label34.Text = ":"
             '
@@ -747,62 +747,62 @@
             '
             Me.txt_Status.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Status.EnterMoveNextControl = True
-            Me.txt_Status.Location = New System.Drawing.Point(264, 503)
+            Me.txt_Status.Location = New System.Drawing.Point(203, 549)
             Me.txt_Status.Name = "txt_Status"
-            Me.txt_Status.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Status.Size = New System.Drawing.Size(433, 20)
             Me.txt_Status.TabIndex = 20
             '
             'Label35
             '
             Me.Label35.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label35.Location = New System.Drawing.Point(3, 528)
+            Me.Label35.Location = New System.Drawing.Point(3, 575)
             Me.Label35.Name = "Label35"
-            Me.Label35.Size = New System.Drawing.Size(244, 178)
+            Me.Label35.Size = New System.Drawing.Size(184, 154)
             Me.Label35.TabIndex = 57
             Me.Label35.Text = "Partners/Directors"
             '
             'Label36
             '
             Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label36.Location = New System.Drawing.Point(3, 712)
+            Me.Label36.Location = New System.Drawing.Point(3, 735)
             Me.Label36.Name = "Label36"
-            Me.Label36.Size = New System.Drawing.Size(244, 165)
+            Me.Label36.Size = New System.Drawing.Size(184, 154)
             Me.Label36.TabIndex = 58
             Me.Label36.Text = "Jobs"
             '
             'Label37
             '
             Me.Label37.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label37.Location = New System.Drawing.Point(3, 883)
+            Me.Label37.Location = New System.Drawing.Point(3, 895)
             Me.Label37.Name = "Label37"
-            Me.Label37.Size = New System.Drawing.Size(244, 169)
+            Me.Label37.Size = New System.Drawing.Size(184, 157)
             Me.Label37.TabIndex = 59
             Me.Label37.Text = "Credentials"
             '
             'Label38
             '
             Me.Label38.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label38.Location = New System.Drawing.Point(253, 528)
+            Me.Label38.Location = New System.Drawing.Point(193, 575)
             Me.Label38.Name = "Label38"
-            Me.Label38.Size = New System.Drawing.Size(5, 178)
+            Me.Label38.Size = New System.Drawing.Size(4, 154)
             Me.Label38.TabIndex = 60
             Me.Label38.Text = ":"
             '
             'Label39
             '
             Me.Label39.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label39.Location = New System.Drawing.Point(253, 712)
+            Me.Label39.Location = New System.Drawing.Point(193, 735)
             Me.Label39.Name = "Label39"
-            Me.Label39.Size = New System.Drawing.Size(5, 165)
+            Me.Label39.Size = New System.Drawing.Size(4, 154)
             Me.Label39.TabIndex = 61
             Me.Label39.Text = ":"
             '
             'Label40
             '
             Me.Label40.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label40.Location = New System.Drawing.Point(253, 883)
+            Me.Label40.Location = New System.Drawing.Point(193, 895)
             Me.Label40.Name = "Label40"
-            Me.Label40.Size = New System.Drawing.Size(5, 169)
+            Me.Label40.Size = New System.Drawing.Size(4, 157)
             Me.Label40.TabIndex = 62
             Me.Label40.Text = ":"
             '
@@ -811,9 +811,9 @@
             Me.Panel_Partners.Controls.Add(Me.gc_PartnersDirectors)
             Me.Panel_Partners.Controls.Add(Me.Panel_Partners_Control)
             Me.Panel_Partners.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Partners.Location = New System.Drawing.Point(264, 528)
+            Me.Panel_Partners.Location = New System.Drawing.Point(203, 575)
             Me.Panel_Partners.Name = "Panel_Partners"
-            Me.Panel_Partners.Size = New System.Drawing.Size(495, 178)
+            Me.Panel_Partners.Size = New System.Drawing.Size(433, 154)
             Me.Panel_Partners.TabIndex = 63
             '
             'gc_PartnersDirectors
@@ -822,7 +822,7 @@
             Me.gc_PartnersDirectors.Location = New System.Drawing.Point(0, 0)
             Me.gc_PartnersDirectors.MainView = Me.gv_PartnersDirectors
             Me.gc_PartnersDirectors.Name = "gc_PartnersDirectors"
-            Me.gc_PartnersDirectors.Size = New System.Drawing.Size(495, 147)
+            Me.gc_PartnersDirectors.Size = New System.Drawing.Size(433, 123)
             Me.gc_PartnersDirectors.TabIndex = 17
             Me.gc_PartnersDirectors.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_PartnersDirectors})
             '
@@ -839,9 +839,9 @@
             Me.Panel_Partners_Control.Controls.Add(Me.btn_Client_Edit)
             Me.Panel_Partners_Control.Controls.Add(Me.btn_Client_Remove)
             Me.Panel_Partners_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Partners_Control.Location = New System.Drawing.Point(0, 147)
+            Me.Panel_Partners_Control.Location = New System.Drawing.Point(0, 123)
             Me.Panel_Partners_Control.Name = "Panel_Partners_Control"
-            Me.Panel_Partners_Control.Size = New System.Drawing.Size(495, 31)
+            Me.Panel_Partners_Control.Size = New System.Drawing.Size(433, 31)
             Me.Panel_Partners_Control.TabIndex = 1
             '
             'btn_Client_Add
@@ -885,9 +885,9 @@
             Me.Panel_Jobs.Controls.Add(Me.gc_Jobs)
             Me.Panel_Jobs.Controls.Add(Me.Panel_Jobs_Control)
             Me.Panel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Jobs.Location = New System.Drawing.Point(264, 712)
+            Me.Panel_Jobs.Location = New System.Drawing.Point(203, 735)
             Me.Panel_Jobs.Name = "Panel_Jobs"
-            Me.Panel_Jobs.Size = New System.Drawing.Size(495, 165)
+            Me.Panel_Jobs.Size = New System.Drawing.Size(433, 154)
             Me.Panel_Jobs.TabIndex = 64
             '
             'gc_Jobs
@@ -896,7 +896,7 @@
             Me.gc_Jobs.Location = New System.Drawing.Point(0, 0)
             Me.gc_Jobs.MainView = Me.gv_Jobs
             Me.gc_Jobs.Name = "gc_Jobs"
-            Me.gc_Jobs.Size = New System.Drawing.Size(495, 131)
+            Me.gc_Jobs.Size = New System.Drawing.Size(433, 120)
             Me.gc_Jobs.TabIndex = 21
             Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
             '
@@ -913,9 +913,9 @@
             Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Edit)
             Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Remove)
             Me.Panel_Jobs_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Jobs_Control.Location = New System.Drawing.Point(0, 131)
+            Me.Panel_Jobs_Control.Location = New System.Drawing.Point(0, 120)
             Me.Panel_Jobs_Control.Name = "Panel_Jobs_Control"
-            Me.Panel_Jobs_Control.Size = New System.Drawing.Size(495, 34)
+            Me.Panel_Jobs_Control.Size = New System.Drawing.Size(433, 34)
             Me.Panel_Jobs_Control.TabIndex = 3
             '
             'btn_Jobs_Add
@@ -959,9 +959,9 @@
             Me.Panel_Credentials.Controls.Add(Me.gc_Credentials)
             Me.Panel_Credentials.Controls.Add(Me.Panel_Credentials_Control)
             Me.Panel_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Credentials.Location = New System.Drawing.Point(264, 883)
+            Me.Panel_Credentials.Location = New System.Drawing.Point(203, 895)
             Me.Panel_Credentials.Name = "Panel_Credentials"
-            Me.Panel_Credentials.Size = New System.Drawing.Size(495, 169)
+            Me.Panel_Credentials.Size = New System.Drawing.Size(433, 157)
             Me.Panel_Credentials.TabIndex = 65
             '
             'gc_Credentials
@@ -970,7 +970,7 @@
             Me.gc_Credentials.Location = New System.Drawing.Point(0, 0)
             Me.gc_Credentials.MainView = Me.gv_Credentials
             Me.gc_Credentials.Name = "gc_Credentials"
-            Me.gc_Credentials.Size = New System.Drawing.Size(495, 135)
+            Me.gc_Credentials.Size = New System.Drawing.Size(433, 123)
             Me.gc_Credentials.TabIndex = 25
             Me.gc_Credentials.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Credentials})
             '
@@ -987,9 +987,9 @@
             Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Edit)
             Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Remove)
             Me.Panel_Credentials_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 135)
+            Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 123)
             Me.Panel_Credentials_Control.Name = "Panel_Credentials_Control"
-            Me.Panel_Credentials_Control.Size = New System.Drawing.Size(495, 34)
+            Me.Panel_Credentials_Control.Size = New System.Drawing.Size(433, 34)
             Me.Panel_Credentials_Control.TabIndex = 3
             '
             'btn_Credential_Add
@@ -1030,7 +1030,7 @@
             '
             'Label6
             '
-            Me.Label6.Location = New System.Drawing.Point(3, 51)
+            Me.Label6.Location = New System.Drawing.Point(3, 55)
             Me.Label6.Name = "Label6"
             Me.Label6.Size = New System.Drawing.Size(108, 13)
             Me.Label6.TabIndex = 10
@@ -1038,7 +1038,7 @@
             '
             'LabelControl1
             '
-            Me.LabelControl1.Location = New System.Drawing.Point(253, 51)
+            Me.LabelControl1.Location = New System.Drawing.Point(193, 55)
             Me.LabelControl1.Name = "LabelControl1"
             Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
             Me.LabelControl1.TabIndex = 1
@@ -1049,65 +1049,65 @@
             Me.txt_DOB.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_DOB.EditValue = Nothing
             Me.txt_DOB.EnterMoveNextControl = True
-            Me.txt_DOB.Location = New System.Drawing.Point(264, 100)
+            Me.txt_DOB.Location = New System.Drawing.Point(203, 107)
             Me.txt_DOB.Name = "txt_DOB"
             Me.txt_DOB.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
             Me.txt_DOB.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-            Me.txt_DOB.Size = New System.Drawing.Size(495, 20)
+            Me.txt_DOB.Size = New System.Drawing.Size(433, 20)
             Me.txt_DOB.TabIndex = 4
             '
             'LabelControl2
             '
             Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl2.Location = New System.Drawing.Point(3, 403)
+            Me.LabelControl2.Location = New System.Drawing.Point(3, 445)
             Me.LabelControl2.Name = "LabelControl2"
-            Me.LabelControl2.Size = New System.Drawing.Size(244, 19)
+            Me.LabelControl2.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl2.TabIndex = 66
             Me.LabelControl2.Text = "GST Registration Number"
             '
             'LabelControl3
             '
             Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl3.Location = New System.Drawing.Point(3, 428)
+            Me.LabelControl3.Location = New System.Drawing.Point(3, 471)
             Me.LabelControl3.Name = "LabelControl3"
-            Me.LabelControl3.Size = New System.Drawing.Size(244, 19)
+            Me.LabelControl3.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl3.TabIndex = 67
             Me.LabelControl3.Text = "Associated File Number"
             '
             'LabelControl4
             '
             Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl4.Location = New System.Drawing.Point(253, 403)
+            Me.LabelControl4.Location = New System.Drawing.Point(193, 445)
             Me.LabelControl4.Name = "LabelControl4"
-            Me.LabelControl4.Size = New System.Drawing.Size(5, 19)
+            Me.LabelControl4.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl4.TabIndex = 68
             Me.LabelControl4.Text = ":"
             '
             'LabelControl5
             '
             Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl5.Location = New System.Drawing.Point(253, 428)
+            Me.LabelControl5.Location = New System.Drawing.Point(193, 471)
             Me.LabelControl5.Name = "LabelControl5"
-            Me.LabelControl5.Size = New System.Drawing.Size(5, 19)
+            Me.LabelControl5.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl5.TabIndex = 69
             Me.LabelControl5.Text = ":"
             '
             'txt_GSTNo
             '
             Me.txt_GSTNo.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_GSTNo.Location = New System.Drawing.Point(264, 403)
+            Me.txt_GSTNo.Location = New System.Drawing.Point(203, 445)
             Me.txt_GSTNo.Name = "txt_GSTNo"
             Me.txt_GSTNo.Properties.Mask.EditMask = "[0-9]{2}[A-Z]{3}[ABCFGHLJPTK][A-Z][0-9]{4}[A-Z][0-9]{1}[Z]{1}[A-Z0-9]{1}"
             Me.txt_GSTNo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx
-            Me.txt_GSTNo.Size = New System.Drawing.Size(495, 20)
+            Me.txt_GSTNo.Size = New System.Drawing.Size(433, 20)
             Me.txt_GSTNo.TabIndex = 16
             '
             'txt_FileNo
             '
             Me.txt_FileNo.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_FileNo.Location = New System.Drawing.Point(264, 428)
+            Me.txt_FileNo.Location = New System.Drawing.Point(203, 471)
             Me.txt_FileNo.Name = "txt_FileNo"
-            Me.txt_FileNo.Size = New System.Drawing.Size(495, 20)
+            Me.txt_FileNo.Size = New System.Drawing.Size(433, 20)
             Me.txt_FileNo.TabIndex = 17
             '
             'LabelControl6
@@ -1115,9 +1115,9 @@
             Me.LabelControl6.Appearance.Options.UseTextOptions = True
             Me.LabelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
             Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl6.Location = New System.Drawing.Point(3, 222)
+            Me.LabelControl6.Location = New System.Drawing.Point(3, 237)
             Me.LabelControl6.Name = "LabelControl6"
-            Me.LabelControl6.Size = New System.Drawing.Size(244, 14)
+            Me.LabelControl6.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl6.TabIndex = 72
             Me.LabelControl6.Text = "State"
             '
@@ -1126,9 +1126,9 @@
             Me.LabelControl7.Appearance.Options.UseTextOptions = True
             Me.LabelControl7.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
             Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl7.Location = New System.Drawing.Point(3, 242)
+            Me.LabelControl7.Location = New System.Drawing.Point(3, 263)
             Me.LabelControl7.Name = "LabelControl7"
-            Me.LabelControl7.Size = New System.Drawing.Size(244, 14)
+            Me.LabelControl7.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl7.TabIndex = 73
             Me.LabelControl7.Text = "State Code"
             '
@@ -1137,65 +1137,65 @@
             Me.LabelControl8.Appearance.Options.UseTextOptions = True
             Me.LabelControl8.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
             Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl8.Location = New System.Drawing.Point(3, 286)
+            Me.LabelControl8.Location = New System.Drawing.Point(3, 315)
             Me.LabelControl8.Name = "LabelControl8"
-            Me.LabelControl8.Size = New System.Drawing.Size(244, 14)
+            Me.LabelControl8.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl8.TabIndex = 74
             Me.LabelControl8.Text = "Phone"
             '
             'LabelControl9
             '
             Me.LabelControl9.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl9.Location = New System.Drawing.Point(253, 222)
+            Me.LabelControl9.Location = New System.Drawing.Point(193, 237)
             Me.LabelControl9.Name = "LabelControl9"
-            Me.LabelControl9.Size = New System.Drawing.Size(5, 14)
+            Me.LabelControl9.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl9.TabIndex = 75
             Me.LabelControl9.Text = ":"
             '
             'LabelControl10
             '
             Me.LabelControl10.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl10.Location = New System.Drawing.Point(253, 242)
+            Me.LabelControl10.Location = New System.Drawing.Point(193, 263)
             Me.LabelControl10.Name = "LabelControl10"
-            Me.LabelControl10.Size = New System.Drawing.Size(5, 14)
+            Me.LabelControl10.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl10.TabIndex = 76
             Me.LabelControl10.Text = ":"
             '
             'LabelControl11
             '
             Me.LabelControl11.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl11.Location = New System.Drawing.Point(253, 286)
+            Me.LabelControl11.Location = New System.Drawing.Point(193, 315)
             Me.LabelControl11.Name = "LabelControl11"
-            Me.LabelControl11.Size = New System.Drawing.Size(5, 14)
+            Me.LabelControl11.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl11.TabIndex = 77
             Me.LabelControl11.Text = ":"
             '
             'txt_State
             '
             Me.txt_State.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_State.Location = New System.Drawing.Point(264, 222)
+            Me.txt_State.Location = New System.Drawing.Point(203, 237)
             Me.txt_State.Name = "txt_State"
             Me.txt_State.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
             Me.txt_State.Properties.Items.AddRange(New Object() {"Jammu & Kashmir", "Himachal Pradesh", "Punjab", "Chandigarh", "Uttarakhand", "Haryana", "Delhi", "Rajasthan", "Uttar Pradesh", "Bihar", "Sikkim", "Arunachal Pradesh", "Nagaland", "Manipur", "Mizoram", "Tripura", "Meghalaya", "Assam", "West Bengal", "Jharkhand", "Orissa", "Chhattisgarh", "Madhya Pradesh", "Gujarat", "Daman & Diu", "Dadra & Nagar Haveli", "Maharashtra", "Andhra Pradesh", "Karnataka", "Goa", "Lakshadweep", "Kerala", "Tamil Nadu", "Puducherry", "Andaman & Nicobar Islands", "Telengana", "Andrapradesh(New)"})
             Me.txt_State.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-            Me.txt_State.Size = New System.Drawing.Size(495, 20)
+            Me.txt_State.Size = New System.Drawing.Size(433, 20)
             Me.txt_State.TabIndex = 9
             '
             'txt_StateCode
             '
             Me.txt_StateCode.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_StateCode.Location = New System.Drawing.Point(264, 242)
+            Me.txt_StateCode.Location = New System.Drawing.Point(203, 263)
             Me.txt_StateCode.Name = "txt_StateCode"
             Me.txt_StateCode.Properties.ReadOnly = True
-            Me.txt_StateCode.Size = New System.Drawing.Size(495, 20)
+            Me.txt_StateCode.Size = New System.Drawing.Size(433, 20)
             Me.txt_StateCode.TabIndex = 79
             '
             'txt_Phone
             '
             Me.txt_Phone.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_Phone.Location = New System.Drawing.Point(264, 286)
+            Me.txt_Phone.Location = New System.Drawing.Point(203, 315)
             Me.txt_Phone.Name = "txt_Phone"
-            Me.txt_Phone.Size = New System.Drawing.Size(495, 20)
+            Me.txt_Phone.Size = New System.Drawing.Size(433, 20)
             Me.txt_Phone.TabIndex = 11
             '
             'Panel_Photo
@@ -1204,14 +1204,14 @@
             Me.Panel_Photo.Dock = System.Windows.Forms.DockStyle.Top
             Me.Panel_Photo.Location = New System.Drawing.Point(0, 0)
             Me.Panel_Photo.Name = "Panel_Photo"
-            Me.Panel_Photo.Size = New System.Drawing.Size(762, 175)
+            Me.Panel_Photo.Size = New System.Drawing.Size(639, 175)
             Me.Panel_Photo.TabIndex = 1
             '
             'Panel_Photo_Control
             '
             Me.Panel_Photo_Control.Controls.Add(Me.pic_Photo)
             Me.Panel_Photo_Control.Controls.Add(Me.btn_BrowseImage)
-            Me.Panel_Photo_Control.Location = New System.Drawing.Point(310, 3)
+            Me.Panel_Photo_Control.Location = New System.Drawing.Point(252, 3)
             Me.Panel_Photo_Control.Name = "Panel_Photo_Control"
             Me.Panel_Photo_Control.Size = New System.Drawing.Size(134, 169)
             Me.Panel_Photo_Control.TabIndex = 1
@@ -1249,7 +1249,7 @@
             Me.Panel_Control.Dock = System.Windows.Forms.DockStyle.Bottom
             Me.Panel_Control.Location = New System.Drawing.Point(0, 412)
             Me.Panel_Control.Name = "Panel_Control"
-            Me.Panel_Control.Size = New System.Drawing.Size(781, 33)
+            Me.Panel_Control.Size = New System.Drawing.Size(658, 33)
             Me.Panel_Control.TabIndex = 0
             '
             'btn_Cancel
@@ -1258,7 +1258,7 @@
             Me.btn_Cancel.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
             Me.btn_Cancel.Appearance.Options.UseFont = True
             Me.btn_Cancel.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Cancel.Location = New System.Drawing.Point(631, 4)
+            Me.btn_Cancel.Location = New System.Drawing.Point(508, 4)
             Me.btn_Cancel.Name = "btn_Cancel"
             Me.btn_Cancel.Size = New System.Drawing.Size(65, 24)
             Me.btn_Cancel.TabIndex = 30
@@ -1271,7 +1271,7 @@
             Me.btn_Done.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
             Me.btn_Done.Appearance.Options.UseFont = True
             Me.btn_Done.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Done.Location = New System.Drawing.Point(702, 4)
+            Me.btn_Done.Location = New System.Drawing.Point(579, 4)
             Me.btn_Done.Name = "btn_Done"
             Me.btn_Done.Size = New System.Drawing.Size(65, 24)
             Me.btn_Done.TabIndex = 29
@@ -1282,9 +1282,10 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(781, 445)
+            Me.ClientSize = New System.Drawing.Size(658, 445)
             Me.Controls.Add(Me.Panel_Main)
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+            Me.MinimizeBox = False
             Me.Name = "frm_ClientAddEdit"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Client"

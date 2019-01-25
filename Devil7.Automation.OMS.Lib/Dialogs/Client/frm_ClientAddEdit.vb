@@ -79,6 +79,7 @@ Namespace Dialogs
                 txt_GSTNo.Text = Client.GST
                 txt_FileNo.Text = Client.FileNo
             Else
+                Me.cmb_TypeOfEngagement.SelectedIndex = 0
                 Me.gc_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
                 Me.gc_PartnersDirectors.DataSource = New System.ComponentModel.BindingList(Of Objects.Partner)
                 Me.gc_Jobs.DataSource = New List(Of Objects.JobUser)
