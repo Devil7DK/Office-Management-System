@@ -26,7 +26,6 @@ Partial Class frm_Bill
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.cmb_Receiver = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -36,6 +35,9 @@ Partial Class frm_Bill
         Me.cmb_Sender = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txt_Date = New DevExpress.XtraEditors.DateEdit()
         Me.txt_SerialNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btn_Receiver_Add = New DevExpress.XtraEditors.SimpleButton()
+        Me.txt_Receiver = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GridControl_Services = New DevExpress.XtraGrid.GridControl()
@@ -54,14 +56,13 @@ Partial Class frm_Bill
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Ok = New DevExpress.XtraEditors.SimpleButton()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.btn_Receiver_Add = New DevExpress.XtraEditors.SimpleButton()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Sender.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Date.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Date.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_SerialNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanel3.SuspendLayout()
+        CType(Me.txt_Receiver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GridControl_Services, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +75,6 @@ Partial Class frm_Bill
         CType(Me.txt_Fees.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -131,16 +131,6 @@ Partial Class frm_Bill
         Me.LabelControl1.Size = New System.Drawing.Size(94, 21)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Serial Number"
-        '
-        'cmb_Receiver
-        '
-        Me.cmb_Receiver.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cmb_Receiver.Location = New System.Drawing.Point(3, 3)
-        Me.cmb_Receiver.Name = "cmb_Receiver"
-        Me.cmb_Receiver.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmb_Receiver.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cmb_Receiver.Size = New System.Drawing.Size(328, 20)
-        Me.cmb_Receiver.TabIndex = 1
         '
         'LabelControl2
         '
@@ -245,6 +235,42 @@ Partial Class frm_Bill
         Me.txt_SerialNumber.Name = "txt_SerialNumber"
         Me.txt_SerialNumber.Size = New System.Drawing.Size(418, 20)
         Me.txt_SerialNumber.TabIndex = 3
+        '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 2
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.btn_Receiver_Add, 1, 0)
+        Me.TableLayoutPanel3.Controls.Add(Me.txt_Receiver, 0, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(113, 84)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 1
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(418, 26)
+        Me.TableLayoutPanel3.TabIndex = 4
+        '
+        'btn_Receiver_Add
+        '
+        Me.btn_Receiver_Add.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btn_Receiver_Add.Location = New System.Drawing.Point(337, 3)
+        Me.btn_Receiver_Add.Name = "btn_Receiver_Add"
+        Me.btn_Receiver_Add.Size = New System.Drawing.Size(78, 23)
+        Me.btn_Receiver_Add.TabIndex = 2
+        Me.btn_Receiver_Add.Text = "Add New"
+        '
+        'txt_Receiver
+        '
+        Me.txt_Receiver.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt_Receiver.Location = New System.Drawing.Point(3, 3)
+        Me.txt_Receiver.Name = "txt_Receiver"
+        Me.txt_Receiver.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.txt_Receiver.Properties.DisplayMember = "Name"
+        Me.txt_Receiver.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
+        Me.txt_Receiver.Properties.ValueMember = "ID"
+        Me.txt_Receiver.Size = New System.Drawing.Size(328, 20)
+        Me.txt_Receiver.TabIndex = 3
         '
         'LabelControl5
         '
@@ -432,30 +458,6 @@ Partial Class frm_Bill
         Me.btn_Ok.TabIndex = 0
         Me.btn_Ok.Text = "Ok"
         '
-        'TableLayoutPanel3
-        '
-        Me.TableLayoutPanel3.ColumnCount = 2
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.0!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.0!))
-        Me.TableLayoutPanel3.Controls.Add(Me.cmb_Receiver, 0, 0)
-        Me.TableLayoutPanel3.Controls.Add(Me.btn_Receiver_Add, 1, 0)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(113, 84)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 1
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(418, 26)
-        Me.TableLayoutPanel3.TabIndex = 4
-        '
-        'btn_Receiver_Add
-        '
-        Me.btn_Receiver_Add.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btn_Receiver_Add.Location = New System.Drawing.Point(337, 3)
-        Me.btn_Receiver_Add.Name = "btn_Receiver_Add"
-        Me.btn_Receiver_Add.Size = New System.Drawing.Size(78, 23)
-        Me.btn_Receiver_Add.TabIndex = 2
-        Me.btn_Receiver_Add.Text = "Add New"
-        '
         'frm_Bill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -471,11 +473,12 @@ Partial Class frm_Bill
         Me.Text = "Details"
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Sender.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Date.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Date.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_SerialNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanel3.ResumeLayout(False)
+        CType(Me.txt_Receiver.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GridControl_Services, System.ComponentModel.ISupportInitialize).EndInit()
@@ -489,7 +492,6 @@ Partial Class frm_Bill
         CType(Me.txt_Fees.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        Me.TableLayoutPanel3.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -505,7 +507,6 @@ Partial Class frm_Bill
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cmb_Sender As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents cmb_Receiver As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txt_Date As DevExpress.XtraEditors.DateEdit
     Friend WithEvents txt_SerialNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
@@ -527,4 +528,5 @@ Partial Class frm_Bill
     Friend WithEvents RemoveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents btn_Receiver_Add As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents txt_Receiver As DevExpress.XtraEditors.LookUpEdit
 End Class

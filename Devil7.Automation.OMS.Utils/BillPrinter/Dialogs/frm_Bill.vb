@@ -77,7 +77,7 @@ Public Class frm_Bill
         End If
 
         If ReceiversList.Count > 0 Then
-            cmb_Receiver.Properties.Items.AddRange(ReceiversList.ToArray)
+            txt_Receiver.Properties.DataSource = ReceiversList
         End If
         If SendersList.Count > 0 Then
             cmb_Sender.Properties.Items.AddRange(SendersList.ToArray)
@@ -104,19 +104,7 @@ Public Class frm_Bill
 
             End Try
             Try
-                Dim index As Integer = -1
-                For ind As Integer = 0 To cmb_Receiver.Properties.Items.Count - 1
-                    Dim i As ClientMinimal = cmb_Receiver.Properties.Items(ind)
-                    If i.ID = Item.Receiver.ID Then
-                        index = ind
-                    End If
-                Next
-                If index >= 0 Then
-                    cmb_Receiver.SelectedIndex = index
-                Else
-                    cmb_Receiver.Properties.Items.Add(New ClientMinimal(Item.Receiver.ID, Item.Receiver.Name, Item.Receiver.PAN))
-                    cmb_Receiver.SelectedIndex = cmb_Receiver.Properties.Items.Count - 1
-                End If
+                txt_Receiver.EditValue = Item.Receiver.ID
             Catch ex As Exception
 
             End Try
@@ -126,8 +114,8 @@ Public Class frm_Bill
             Me.txt_Date.EditValue = Today
         End If
         Try
-            If cmb_Receiver.SelectedIndex = -1 Then
-                cmb_Receiver.SelectedIndex = 0
+            If txt_Receiver.EditValue = Nothing Then
+                txt_Receiver.EditValue = ReceiversList(0).ID
             End If
         Catch ex As Exception
         End Try
@@ -164,15 +152,15 @@ Public Class frm_Bill
 
     Private Sub btn_Ok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Ok.Click
         If Me.Mode = Enums.DialogMode.Add Then
-            Me.Item = Database.Bills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
+            Me.Item = Database.Bills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.ID = txt_Receiver.EditValue), GridView_Services.DataSource, True)
             If Me.Item IsNot Nothing Then
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             End If
         Else
-            Dim Result As Boolean = Database.Bills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource, True)
+            Dim Result As Boolean = Database.Bills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.ID = txt_Receiver.EditValue), GridView_Services.DataSource, True)
             If Result Then
-                Me.Item = New Bill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, GridView_Services.DataSource)
+                Me.Item = New Bill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.ID = txt_Receiver.EditValue), GridView_Services.DataSource)
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             Else
@@ -210,8 +198,8 @@ Public Class frm_Bill
         Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add, JobsList, UsersList)
         If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
             If d.Client IsNot Nothing Then
-                cmb_Receiver.Properties.Items.Add(d.Client)
-                cmb_Receiver.SelectedItem = d.Client
+                txt_Receiver.Properties.DataSource.Add(d.Client)
+                txt_Receiver.EditValue = d.Client.ID
             End If
         End If
     End Sub
