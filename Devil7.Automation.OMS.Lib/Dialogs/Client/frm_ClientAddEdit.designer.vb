@@ -82,27 +82,6 @@
             Me.Label38 = New DevExpress.XtraEditors.LabelControl()
             Me.Label39 = New DevExpress.XtraEditors.LabelControl()
             Me.Label40 = New DevExpress.XtraEditors.LabelControl()
-            Me.Panel_Partners = New System.Windows.Forms.Panel()
-            Me.gc_PartnersDirectors = New DevExpress.XtraGrid.GridControl()
-            Me.gv_PartnersDirectors = New DevExpress.XtraGrid.Views.Grid.GridView()
-            Me.Panel_Partners_Control = New System.Windows.Forms.FlowLayoutPanel()
-            Me.btn_Client_Add = New DevExpress.XtraEditors.SimpleButton()
-            Me.btn_Client_Edit = New DevExpress.XtraEditors.SimpleButton()
-            Me.btn_Client_Remove = New DevExpress.XtraEditors.SimpleButton()
-            Me.Panel_Jobs = New System.Windows.Forms.Panel()
-            Me.gc_Jobs = New DevExpress.XtraGrid.GridControl()
-            Me.gv_Jobs = New DevExpress.XtraGrid.Views.Grid.GridView()
-            Me.Panel_Jobs_Control = New System.Windows.Forms.FlowLayoutPanel()
-            Me.btn_Jobs_Add = New DevExpress.XtraEditors.SimpleButton()
-            Me.btn_Jobs_Edit = New DevExpress.XtraEditors.SimpleButton()
-            Me.btn_Jobs_Remove = New DevExpress.XtraEditors.SimpleButton()
-            Me.Panel_Credentials = New System.Windows.Forms.Panel()
-            Me.gc_Credentials = New DevExpress.XtraGrid.GridControl()
-            Me.gv_Credentials = New DevExpress.XtraGrid.Views.Grid.GridView()
-            Me.Panel_Credentials_Control = New System.Windows.Forms.FlowLayoutPanel()
-            Me.btn_Credential_Add = New DevExpress.XtraEditors.SimpleButton()
-            Me.btn_Credential_Edit = New DevExpress.XtraEditors.SimpleButton()
-            Me.btn_Credential_Remove = New DevExpress.XtraEditors.SimpleButton()
             Me.Label6 = New DevExpress.XtraEditors.LabelControl()
             Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
             Me.txt_DOB = New DevExpress.XtraEditors.DateEdit()
@@ -121,6 +100,9 @@
             Me.txt_State = New DevExpress.XtraEditors.ComboBoxEdit()
             Me.txt_StateCode = New DevExpress.XtraEditors.TextEdit()
             Me.txt_Phone = New DevExpress.XtraEditors.TextEdit()
+            Me.lst_Partners = New Devil7.Automation.OMS.[Lib].Controls.ExList(Of Objects.Partner)()
+            Me.lst_Jobs = New Devil7.Automation.OMS.[Lib].Controls.ExList(Of Objects.JobUser)()
+            Me.lst_Credentials = New Devil7.Automation.OMS.[Lib].Controls.ExList(Of Objects.Credential)()
             Me.Panel_Photo = New System.Windows.Forms.Panel()
             Me.Panel_Photo_Control = New System.Windows.Forms.Panel()
             Me.pic_Photo = New System.Windows.Forms.PictureBox()
@@ -147,18 +129,6 @@
             CType(Me.cmb_TypeOfEngagement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.Panel_Partners.SuspendLayout()
-            CType(Me.gc_PartnersDirectors, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.gv_PartnersDirectors, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.Panel_Partners_Control.SuspendLayout()
-            Me.Panel_Jobs.SuspendLayout()
-            CType(Me.gc_Jobs, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.gv_Jobs, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.Panel_Jobs_Control.SuspendLayout()
-            Me.Panel_Credentials.SuspendLayout()
-            CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.Panel_Credentials_Control.SuspendLayout()
             CType(Me.txt_DOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_DOB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_GSTNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,9 +230,6 @@
             Me.Panel_Controls_Layout.Controls.Add(Me.Label38, 1, 22)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label39, 1, 23)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label40, 1, 24)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Partners, 2, 22)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Jobs, 2, 23)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Panel_Credentials, 2, 24)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label6, 0, 2)
             Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl1, 1, 2)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_DOB, 2, 4)
@@ -281,6 +248,9 @@
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_State, 2, 9)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_StateCode, 2, 10)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_Phone, 2, 12)
+            Me.Panel_Controls_Layout.Controls.Add(Me.lst_Partners, 2, 22)
+            Me.Panel_Controls_Layout.Controls.Add(Me.lst_Jobs, 2, 23)
+            Me.Panel_Controls_Layout.Controls.Add(Me.lst_Credentials, 2, 24)
             Me.Panel_Controls_Layout.Dock = System.Windows.Forms.DockStyle.Top
             Me.Panel_Controls_Layout.Location = New System.Drawing.Point(0, 175)
             Me.Panel_Controls_Layout.Name = "Panel_Controls_Layout"
@@ -324,6 +294,8 @@
             '
             'Label9
             '
+            Me.Label9.Appearance.Options.UseTextOptions = True
+            Me.Label9.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label9.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label9.Location = New System.Drawing.Point(3, 107)
             Me.Label9.Name = "Label9"
@@ -333,6 +305,8 @@
             '
             'Label8
             '
+            Me.Label8.Appearance.Options.UseTextOptions = True
+            Me.Label8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label8.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label8.Location = New System.Drawing.Point(3, 81)
             Me.Label8.Name = "Label8"
@@ -360,6 +334,8 @@
             '
             'Label4
             '
+            Me.Label4.Appearance.Options.UseTextOptions = True
+            Me.Label4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label4.Location = New System.Drawing.Point(3, 29)
             Me.Label4.Name = "Label4"
@@ -386,6 +362,8 @@
             '
             'Label3
             '
+            Me.Label3.Appearance.Options.UseTextOptions = True
+            Me.Label3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label3.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label3.Location = New System.Drawing.Point(3, 3)
             Me.Label3.Name = "Label3"
@@ -427,6 +405,8 @@
             '
             'Label11
             '
+            Me.Label11.Appearance.Options.UseTextOptions = True
+            Me.Label11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label11.Location = New System.Drawing.Point(3, 133)
             Me.Label11.Name = "Label11"
@@ -481,6 +461,8 @@
             '
             'Label13
             '
+            Me.Label13.Appearance.Options.UseTextOptions = True
+            Me.Label13.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label13.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label13.Location = New System.Drawing.Point(3, 159)
             Me.Label13.Name = "Label13"
@@ -490,6 +472,8 @@
             '
             'Label15
             '
+            Me.Label15.Appearance.Options.UseTextOptions = True
+            Me.Label15.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label15.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label15.Location = New System.Drawing.Point(3, 185)
             Me.Label15.Name = "Label15"
@@ -517,6 +501,8 @@
             '
             'Label17
             '
+            Me.Label17.Appearance.Options.UseTextOptions = True
+            Me.Label17.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label17.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label17.Location = New System.Drawing.Point(3, 211)
             Me.Label17.Name = "Label17"
@@ -553,6 +539,8 @@
             '
             'Label20
             '
+            Me.Label20.Appearance.Options.UseTextOptions = True
+            Me.Label20.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label20.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label20.Location = New System.Drawing.Point(3, 289)
             Me.Label20.Name = "Label20"
@@ -562,6 +550,8 @@
             '
             'Label21
             '
+            Me.Label21.Appearance.Options.UseTextOptions = True
+            Me.Label21.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label21.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label21.Location = New System.Drawing.Point(3, 341)
             Me.Label21.Name = "Label21"
@@ -589,6 +579,8 @@
             '
             'Label23
             '
+            Me.Label23.Appearance.Options.UseTextOptions = True
+            Me.Label23.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label23.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label23.Location = New System.Drawing.Point(3, 367)
             Me.Label23.Name = "Label23"
@@ -618,6 +610,8 @@
             '
             'Label25
             '
+            Me.Label25.Appearance.Options.UseTextOptions = True
+            Me.Label25.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label25.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label25.Location = New System.Drawing.Point(3, 393)
             Me.Label25.Name = "Label25"
@@ -636,6 +630,8 @@
             '
             'Label27
             '
+            Me.Label27.Appearance.Options.UseTextOptions = True
+            Me.Label27.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label27.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label27.Location = New System.Drawing.Point(3, 419)
             Me.Label27.Name = "Label27"
@@ -672,6 +668,8 @@
             '
             'Label29
             '
+            Me.Label29.Appearance.Options.UseTextOptions = True
+            Me.Label29.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label29.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label29.Location = New System.Drawing.Point(3, 497)
             Me.Label29.Name = "Label29"
@@ -700,6 +698,8 @@
             '
             'Label31
             '
+            Me.Label31.Appearance.Options.UseTextOptions = True
+            Me.Label31.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label31.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label31.Location = New System.Drawing.Point(3, 523)
             Me.Label31.Name = "Label31"
@@ -727,6 +727,8 @@
             '
             'Label33
             '
+            Me.Label33.Appearance.Options.UseTextOptions = True
+            Me.Label33.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label33.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label33.Location = New System.Drawing.Point(3, 549)
             Me.Label33.Name = "Label33"
@@ -754,293 +756,90 @@
             '
             'Label35
             '
+            Me.Label35.Appearance.Options.UseTextOptions = True
+            Me.Label35.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+            Me.Label35.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label35.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label35.Location = New System.Drawing.Point(3, 575)
             Me.Label35.Name = "Label35"
-            Me.Label35.Size = New System.Drawing.Size(184, 154)
+            Me.Label35.Size = New System.Drawing.Size(184, 155)
             Me.Label35.TabIndex = 57
             Me.Label35.Text = "Partners/Directors"
             '
             'Label36
             '
+            Me.Label36.Appearance.Options.UseTextOptions = True
+            Me.Label36.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+            Me.Label36.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label36.Location = New System.Drawing.Point(3, 735)
+            Me.Label36.Location = New System.Drawing.Point(3, 736)
             Me.Label36.Name = "Label36"
-            Me.Label36.Size = New System.Drawing.Size(184, 154)
+            Me.Label36.Size = New System.Drawing.Size(184, 155)
             Me.Label36.TabIndex = 58
             Me.Label36.Text = "Jobs"
             '
             'Label37
             '
+            Me.Label37.Appearance.Options.UseTextOptions = True
+            Me.Label37.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+            Me.Label37.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label37.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label37.Location = New System.Drawing.Point(3, 895)
+            Me.Label37.Location = New System.Drawing.Point(3, 897)
             Me.Label37.Name = "Label37"
-            Me.Label37.Size = New System.Drawing.Size(184, 157)
+            Me.Label37.Size = New System.Drawing.Size(184, 155)
             Me.Label37.TabIndex = 59
             Me.Label37.Text = "Credentials"
             '
             'Label38
             '
+            Me.Label38.Appearance.Options.UseTextOptions = True
+            Me.Label38.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label38.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label38.Location = New System.Drawing.Point(193, 575)
             Me.Label38.Name = "Label38"
-            Me.Label38.Size = New System.Drawing.Size(4, 154)
+            Me.Label38.Size = New System.Drawing.Size(4, 155)
             Me.Label38.TabIndex = 60
             Me.Label38.Text = ":"
             '
             'Label39
             '
+            Me.Label39.Appearance.Options.UseTextOptions = True
+            Me.Label39.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label39.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label39.Location = New System.Drawing.Point(193, 735)
+            Me.Label39.Location = New System.Drawing.Point(193, 736)
             Me.Label39.Name = "Label39"
-            Me.Label39.Size = New System.Drawing.Size(4, 154)
+            Me.Label39.Size = New System.Drawing.Size(4, 155)
             Me.Label39.TabIndex = 61
             Me.Label39.Text = ":"
             '
             'Label40
             '
+            Me.Label40.Appearance.Options.UseTextOptions = True
+            Me.Label40.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label40.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label40.Location = New System.Drawing.Point(193, 895)
+            Me.Label40.Location = New System.Drawing.Point(193, 897)
             Me.Label40.Name = "Label40"
-            Me.Label40.Size = New System.Drawing.Size(4, 157)
+            Me.Label40.Size = New System.Drawing.Size(4, 155)
             Me.Label40.TabIndex = 62
             Me.Label40.Text = ":"
             '
-            'Panel_Partners
-            '
-            Me.Panel_Partners.Controls.Add(Me.gc_PartnersDirectors)
-            Me.Panel_Partners.Controls.Add(Me.Panel_Partners_Control)
-            Me.Panel_Partners.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Partners.Location = New System.Drawing.Point(203, 575)
-            Me.Panel_Partners.Name = "Panel_Partners"
-            Me.Panel_Partners.Size = New System.Drawing.Size(433, 154)
-            Me.Panel_Partners.TabIndex = 63
-            '
-            'gc_PartnersDirectors
-            '
-            Me.gc_PartnersDirectors.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gc_PartnersDirectors.Location = New System.Drawing.Point(0, 0)
-            Me.gc_PartnersDirectors.MainView = Me.gv_PartnersDirectors
-            Me.gc_PartnersDirectors.Name = "gc_PartnersDirectors"
-            Me.gc_PartnersDirectors.Size = New System.Drawing.Size(433, 123)
-            Me.gc_PartnersDirectors.TabIndex = 17
-            Me.gc_PartnersDirectors.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_PartnersDirectors})
-            '
-            'gv_PartnersDirectors
-            '
-            Me.gv_PartnersDirectors.GridControl = Me.gc_PartnersDirectors
-            Me.gv_PartnersDirectors.Name = "gv_PartnersDirectors"
-            Me.gv_PartnersDirectors.OptionsView.ShowGroupPanel = False
-            '
-            'Panel_Partners_Control
-            '
-            Me.Panel_Partners_Control.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-            Me.Panel_Partners_Control.Controls.Add(Me.btn_Client_Add)
-            Me.Panel_Partners_Control.Controls.Add(Me.btn_Client_Edit)
-            Me.Panel_Partners_Control.Controls.Add(Me.btn_Client_Remove)
-            Me.Panel_Partners_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Partners_Control.Location = New System.Drawing.Point(0, 123)
-            Me.Panel_Partners_Control.Name = "Panel_Partners_Control"
-            Me.Panel_Partners_Control.Size = New System.Drawing.Size(433, 31)
-            Me.Panel_Partners_Control.TabIndex = 1
-            '
-            'btn_Client_Add
-            '
-            Me.btn_Client_Add.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Client_Add.Appearance.Options.UseFont = True
-            Me.btn_Client_Add.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Client_Add.Location = New System.Drawing.Point(3, 3)
-            Me.btn_Client_Add.Name = "btn_Client_Add"
-            Me.btn_Client_Add.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Client_Add.TabIndex = 18
-            Me.btn_Client_Add.TabStop = False
-            Me.btn_Client_Add.Text = "Add"
-            '
-            'btn_Client_Edit
-            '
-            Me.btn_Client_Edit.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Client_Edit.Appearance.Options.UseFont = True
-            Me.btn_Client_Edit.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Client_Edit.Location = New System.Drawing.Point(81, 3)
-            Me.btn_Client_Edit.Name = "btn_Client_Edit"
-            Me.btn_Client_Edit.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Client_Edit.TabIndex = 19
-            Me.btn_Client_Edit.TabStop = False
-            Me.btn_Client_Edit.Text = "Edit"
-            '
-            'btn_Client_Remove
-            '
-            Me.btn_Client_Remove.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Client_Remove.Appearance.Options.UseFont = True
-            Me.btn_Client_Remove.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Client_Remove.Location = New System.Drawing.Point(159, 3)
-            Me.btn_Client_Remove.Name = "btn_Client_Remove"
-            Me.btn_Client_Remove.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Client_Remove.TabIndex = 20
-            Me.btn_Client_Remove.TabStop = False
-            Me.btn_Client_Remove.Text = "Remove"
-            '
-            'Panel_Jobs
-            '
-            Me.Panel_Jobs.Controls.Add(Me.gc_Jobs)
-            Me.Panel_Jobs.Controls.Add(Me.Panel_Jobs_Control)
-            Me.Panel_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Jobs.Location = New System.Drawing.Point(203, 735)
-            Me.Panel_Jobs.Name = "Panel_Jobs"
-            Me.Panel_Jobs.Size = New System.Drawing.Size(433, 154)
-            Me.Panel_Jobs.TabIndex = 64
-            '
-            'gc_Jobs
-            '
-            Me.gc_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gc_Jobs.Location = New System.Drawing.Point(0, 0)
-            Me.gc_Jobs.MainView = Me.gv_Jobs
-            Me.gc_Jobs.Name = "gc_Jobs"
-            Me.gc_Jobs.Size = New System.Drawing.Size(433, 120)
-            Me.gc_Jobs.TabIndex = 21
-            Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
-            '
-            'gv_Jobs
-            '
-            Me.gv_Jobs.GridControl = Me.gc_Jobs
-            Me.gv_Jobs.Name = "gv_Jobs"
-            Me.gv_Jobs.OptionsView.ShowGroupPanel = False
-            '
-            'Panel_Jobs_Control
-            '
-            Me.Panel_Jobs_Control.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-            Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Add)
-            Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Edit)
-            Me.Panel_Jobs_Control.Controls.Add(Me.btn_Jobs_Remove)
-            Me.Panel_Jobs_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Jobs_Control.Location = New System.Drawing.Point(0, 120)
-            Me.Panel_Jobs_Control.Name = "Panel_Jobs_Control"
-            Me.Panel_Jobs_Control.Size = New System.Drawing.Size(433, 34)
-            Me.Panel_Jobs_Control.TabIndex = 3
-            '
-            'btn_Jobs_Add
-            '
-            Me.btn_Jobs_Add.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Jobs_Add.Appearance.Options.UseFont = True
-            Me.btn_Jobs_Add.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Jobs_Add.Location = New System.Drawing.Point(3, 3)
-            Me.btn_Jobs_Add.Name = "btn_Jobs_Add"
-            Me.btn_Jobs_Add.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Jobs_Add.TabIndex = 22
-            Me.btn_Jobs_Add.TabStop = False
-            Me.btn_Jobs_Add.Text = "Add"
-            '
-            'btn_Jobs_Edit
-            '
-            Me.btn_Jobs_Edit.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Jobs_Edit.Appearance.Options.UseFont = True
-            Me.btn_Jobs_Edit.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Jobs_Edit.Location = New System.Drawing.Point(81, 3)
-            Me.btn_Jobs_Edit.Name = "btn_Jobs_Edit"
-            Me.btn_Jobs_Edit.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Jobs_Edit.TabIndex = 23
-            Me.btn_Jobs_Edit.TabStop = False
-            Me.btn_Jobs_Edit.Text = "Edit"
-            '
-            'btn_Jobs_Remove
-            '
-            Me.btn_Jobs_Remove.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Jobs_Remove.Appearance.Options.UseFont = True
-            Me.btn_Jobs_Remove.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Jobs_Remove.Location = New System.Drawing.Point(159, 3)
-            Me.btn_Jobs_Remove.Name = "btn_Jobs_Remove"
-            Me.btn_Jobs_Remove.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Jobs_Remove.TabIndex = 24
-            Me.btn_Jobs_Remove.TabStop = False
-            Me.btn_Jobs_Remove.Text = "Remove"
-            '
-            'Panel_Credentials
-            '
-            Me.Panel_Credentials.Controls.Add(Me.gc_Credentials)
-            Me.Panel_Credentials.Controls.Add(Me.Panel_Credentials_Control)
-            Me.Panel_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Panel_Credentials.Location = New System.Drawing.Point(203, 895)
-            Me.Panel_Credentials.Name = "Panel_Credentials"
-            Me.Panel_Credentials.Size = New System.Drawing.Size(433, 157)
-            Me.Panel_Credentials.TabIndex = 65
-            '
-            'gc_Credentials
-            '
-            Me.gc_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gc_Credentials.Location = New System.Drawing.Point(0, 0)
-            Me.gc_Credentials.MainView = Me.gv_Credentials
-            Me.gc_Credentials.Name = "gc_Credentials"
-            Me.gc_Credentials.Size = New System.Drawing.Size(433, 123)
-            Me.gc_Credentials.TabIndex = 25
-            Me.gc_Credentials.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Credentials})
-            '
-            'gv_Credentials
-            '
-            Me.gv_Credentials.GridControl = Me.gc_Credentials
-            Me.gv_Credentials.Name = "gv_Credentials"
-            Me.gv_Credentials.OptionsView.ShowGroupPanel = False
-            '
-            'Panel_Credentials_Control
-            '
-            Me.Panel_Credentials_Control.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-            Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Add)
-            Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Edit)
-            Me.Panel_Credentials_Control.Controls.Add(Me.btn_Credential_Remove)
-            Me.Panel_Credentials_Control.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel_Credentials_Control.Location = New System.Drawing.Point(0, 123)
-            Me.Panel_Credentials_Control.Name = "Panel_Credentials_Control"
-            Me.Panel_Credentials_Control.Size = New System.Drawing.Size(433, 34)
-            Me.Panel_Credentials_Control.TabIndex = 3
-            '
-            'btn_Credential_Add
-            '
-            Me.btn_Credential_Add.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Credential_Add.Appearance.Options.UseFont = True
-            Me.btn_Credential_Add.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Credential_Add.Location = New System.Drawing.Point(3, 3)
-            Me.btn_Credential_Add.Name = "btn_Credential_Add"
-            Me.btn_Credential_Add.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Credential_Add.TabIndex = 26
-            Me.btn_Credential_Add.TabStop = False
-            Me.btn_Credential_Add.Text = "Add"
-            '
-            'btn_Credential_Edit
-            '
-            Me.btn_Credential_Edit.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Credential_Edit.Appearance.Options.UseFont = True
-            Me.btn_Credential_Edit.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Credential_Edit.Location = New System.Drawing.Point(81, 3)
-            Me.btn_Credential_Edit.Name = "btn_Credential_Edit"
-            Me.btn_Credential_Edit.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Credential_Edit.TabIndex = 27
-            Me.btn_Credential_Edit.TabStop = False
-            Me.btn_Credential_Edit.Text = "Edit"
-            '
-            'btn_Credential_Remove
-            '
-            Me.btn_Credential_Remove.Appearance.Font = New System.Drawing.Font("Verdana", 8.0!)
-            Me.btn_Credential_Remove.Appearance.Options.UseFont = True
-            Me.btn_Credential_Remove.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.btn_Credential_Remove.Location = New System.Drawing.Point(159, 3)
-            Me.btn_Credential_Remove.Name = "btn_Credential_Remove"
-            Me.btn_Credential_Remove.Size = New System.Drawing.Size(72, 24)
-            Me.btn_Credential_Remove.TabIndex = 28
-            Me.btn_Credential_Remove.TabStop = False
-            Me.btn_Credential_Remove.Text = "Remove"
-            '
             'Label6
             '
+            Me.Label6.Appearance.Options.UseTextOptions = True
+            Me.Label6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+            Me.Label6.Dock = System.Windows.Forms.DockStyle.Fill
             Me.Label6.Location = New System.Drawing.Point(3, 55)
             Me.Label6.Name = "Label6"
-            Me.Label6.Size = New System.Drawing.Size(108, 13)
+            Me.Label6.Size = New System.Drawing.Size(184, 20)
             Me.Label6.TabIndex = 10
             Me.Label6.Text = "Father/Husband Name"
             '
             'LabelControl1
             '
+            Me.LabelControl1.Dock = System.Windows.Forms.DockStyle.Fill
             Me.LabelControl1.Location = New System.Drawing.Point(193, 55)
             Me.LabelControl1.Name = "LabelControl1"
-            Me.LabelControl1.Size = New System.Drawing.Size(4, 13)
+            Me.LabelControl1.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl1.TabIndex = 1
             Me.LabelControl1.Text = ":"
             '
@@ -1058,6 +857,8 @@
             '
             'LabelControl2
             '
+            Me.LabelControl2.Appearance.Options.UseTextOptions = True
+            Me.LabelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
             Me.LabelControl2.Location = New System.Drawing.Point(3, 445)
             Me.LabelControl2.Name = "LabelControl2"
@@ -1067,6 +868,8 @@
             '
             'LabelControl3
             '
+            Me.LabelControl3.Appearance.Options.UseTextOptions = True
+            Me.LabelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
             Me.LabelControl3.Location = New System.Drawing.Point(3, 471)
             Me.LabelControl3.Name = "LabelControl3"
@@ -1113,6 +916,7 @@
             'LabelControl6
             '
             Me.LabelControl6.Appearance.Options.UseTextOptions = True
+            Me.LabelControl6.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
             Me.LabelControl6.Dock = System.Windows.Forms.DockStyle.Fill
             Me.LabelControl6.Location = New System.Drawing.Point(3, 237)
@@ -1124,6 +928,7 @@
             'LabelControl7
             '
             Me.LabelControl7.Appearance.Options.UseTextOptions = True
+            Me.LabelControl7.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl7.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
             Me.LabelControl7.Dock = System.Windows.Forms.DockStyle.Fill
             Me.LabelControl7.Location = New System.Drawing.Point(3, 263)
@@ -1135,6 +940,7 @@
             'LabelControl8
             '
             Me.LabelControl8.Appearance.Options.UseTextOptions = True
+            Me.LabelControl8.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl8.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center
             Me.LabelControl8.Dock = System.Windows.Forms.DockStyle.Fill
             Me.LabelControl8.Location = New System.Drawing.Point(3, 315)
@@ -1197,6 +1003,33 @@
             Me.txt_Phone.Name = "txt_Phone"
             Me.txt_Phone.Size = New System.Drawing.Size(433, 20)
             Me.txt_Phone.TabIndex = 11
+            '
+            'lst_Partners
+            '
+            Me.lst_Partners.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.lst_Partners.ListData = Nothing
+            Me.lst_Partners.Location = New System.Drawing.Point(203, 575)
+            Me.lst_Partners.Name = "lst_Partners"
+            Me.lst_Partners.Size = New System.Drawing.Size(433, 155)
+            Me.lst_Partners.TabIndex = 80
+            '
+            'lst_Jobs
+            '
+            Me.lst_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.lst_Jobs.ListData = Nothing
+            Me.lst_Jobs.Location = New System.Drawing.Point(203, 736)
+            Me.lst_Jobs.Name = "lst_Jobs"
+            Me.lst_Jobs.Size = New System.Drawing.Size(433, 155)
+            Me.lst_Jobs.TabIndex = 81
+            '
+            'lst_Credentials
+            '
+            Me.lst_Credentials.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.lst_Credentials.ListData = Nothing
+            Me.lst_Credentials.Location = New System.Drawing.Point(203, 897)
+            Me.lst_Credentials.Name = "lst_Credentials"
+            Me.lst_Credentials.Size = New System.Drawing.Size(433, 155)
+            Me.lst_Credentials.TabIndex = 82
             '
             'Panel_Photo
             '
@@ -1309,18 +1142,6 @@
             CType(Me.cmb_TypeOfEngagement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.Panel_Partners.ResumeLayout(False)
-            CType(Me.gc_PartnersDirectors, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.gv_PartnersDirectors, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.Panel_Partners_Control.ResumeLayout(False)
-            Me.Panel_Jobs.ResumeLayout(False)
-            CType(Me.gc_Jobs, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.gv_Jobs, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.Panel_Jobs_Control.ResumeLayout(False)
-            Me.Panel_Credentials.ResumeLayout(False)
-            CType(Me.gc_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.gv_Credentials, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.Panel_Credentials_Control.ResumeLayout(False)
             CType(Me.txt_DOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_DOB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_GSTNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1397,32 +1218,11 @@
         Friend WithEvents Label38 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents Label39 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents Label40 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents Panel_Partners As System.Windows.Forms.Panel
-        Friend WithEvents Panel_Jobs As System.Windows.Forms.Panel
-        Friend WithEvents Panel_Credentials As System.Windows.Forms.Panel
-        Friend WithEvents Panel_Partners_Control As System.Windows.Forms.FlowLayoutPanel
-        Friend WithEvents Panel_Jobs_Control As System.Windows.Forms.FlowLayoutPanel
-        Friend WithEvents Panel_Credentials_Control As System.Windows.Forms.FlowLayoutPanel
         Friend WithEvents btn_Cancel As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents btn_Done As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents OFD_Image As System.Windows.Forms.OpenFileDialog
-        Friend WithEvents btn_Client_Add As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Client_Edit As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Client_Remove As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Jobs_Add As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Jobs_Edit As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Jobs_Remove As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Credential_Add As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Credential_Edit As DevExpress.XtraEditors.SimpleButton
-        Friend WithEvents btn_Credential_Remove As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents Label6 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents gc_PartnersDirectors As DevExpress.XtraGrid.GridControl
-        Friend WithEvents gv_PartnersDirectors As DevExpress.XtraGrid.Views.Grid.GridView
-        Friend WithEvents gc_Jobs As DevExpress.XtraGrid.GridControl
-        Friend WithEvents gv_Jobs As DevExpress.XtraGrid.Views.Grid.GridView
-        Friend WithEvents gc_Credentials As DevExpress.XtraGrid.GridControl
-        Friend WithEvents gv_Credentials As DevExpress.XtraGrid.Views.Grid.GridView
         Friend WithEvents txt_DOB As DevExpress.XtraEditors.DateEdit
         Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
@@ -1439,5 +1239,8 @@
         Friend WithEvents txt_State As DevExpress.XtraEditors.ComboBoxEdit
         Friend WithEvents txt_StateCode As DevExpress.XtraEditors.TextEdit
         Friend WithEvents txt_Phone As DevExpress.XtraEditors.TextEdit
+        Friend WithEvents lst_Partners As Controls.ExList(Of Objects.Partner)
+        Friend WithEvents lst_Jobs As Controls.ExList(Of Objects.JobUser)
+        Friend WithEvents lst_Credentials As Controls.ExList(Of Objects.Credential)
     End Class
 End Namespace
