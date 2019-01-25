@@ -333,7 +333,8 @@ Public Class frm_Main
                 If group.Contains(i.Group) = False AndAlso i.SubGroup.Trim <> "" Then group.Add(i.Group)
                 If subgroup.Contains(i.SubGroup) = False AndAlso i.SubGroup.Trim <> "" Then subgroup.Add(i.SubGroup)
             Next
-            Dim d As New Dialogs.frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, Users, row.ID)
+            Dim d As New Dialogs.frm_Job(Enums.DialogMode.Edit, group.ToArray, subgroup.ToArray, Users)
+            d.Job = row
             If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 If Not Loader_Jobs.IsBusy Then Loader_Jobs.RunWorkerAsync()
             End If
