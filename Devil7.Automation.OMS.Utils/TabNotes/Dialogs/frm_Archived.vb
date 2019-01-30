@@ -92,8 +92,8 @@ Public Class frm_Archived
             Dim Note As Objects.Note = CType(gv_Archived.GetRow(gv_Archived.GetSelectedRows(gv_Archived.SelectedRowsCount - 1)), Objects.Note)
 
             txt_Title.Text = Note.Title
-            txt_DateAdded.Text = Note.DateAdded.ToString("dd/MM/yyyy hh:mm")
-            txt_DateEdited.Text = Note.DateEdited.ToString("dd/MM/yyyy hh:mm")
+            txt_DateAdded.Text = Note.DateAdded.ToString("dd/MM/yyyy")
+            txt_DateEdited.Text = Note.DateEdited.ToString("dd/MM/yyyy")
             txt_Content.Text = Note.Content
         End If
     End Sub

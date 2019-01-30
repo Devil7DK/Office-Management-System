@@ -309,6 +309,7 @@ Partial Class frm_Archived
         Me.txt_Title.Location = New System.Drawing.Point(76, 3)
         Me.txt_Title.MenuManager = Me.BarManager1
         Me.txt_Title.Name = "txt_Title"
+        Me.txt_Title.Properties.ReadOnly = True
         Me.txt_Title.Size = New System.Drawing.Size(1, 20)
         Me.txt_Title.TabIndex = 8
         '
@@ -318,6 +319,7 @@ Partial Class frm_Archived
         Me.txt_DateAdded.Location = New System.Drawing.Point(76, 29)
         Me.txt_DateAdded.MenuManager = Me.BarManager1
         Me.txt_DateAdded.Name = "txt_DateAdded"
+        Me.txt_DateAdded.Properties.ReadOnly = True
         Me.txt_DateAdded.Size = New System.Drawing.Size(1, 20)
         Me.txt_DateAdded.TabIndex = 9
         '
@@ -327,6 +329,7 @@ Partial Class frm_Archived
         Me.txt_DateEdited.Location = New System.Drawing.Point(76, 55)
         Me.txt_DateEdited.MenuManager = Me.BarManager1
         Me.txt_DateEdited.Name = "txt_DateEdited"
+        Me.txt_DateEdited.Properties.ReadOnly = True
         Me.txt_DateEdited.Size = New System.Drawing.Size(1, 20)
         Me.txt_DateEdited.TabIndex = 10
         '
@@ -336,6 +339,7 @@ Partial Class frm_Archived
         Me.txt_Content.Location = New System.Drawing.Point(76, 81)
         Me.txt_Content.MenuManager = Me.BarManager1
         Me.txt_Content.Name = "txt_Content"
+        Me.txt_Content.Properties.ReadOnly = True
         Me.txt_Content.Size = New System.Drawing.Size(1, 1)
         Me.txt_Content.TabIndex = 11
         '
