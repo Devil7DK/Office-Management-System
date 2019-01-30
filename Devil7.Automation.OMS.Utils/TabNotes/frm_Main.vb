@@ -27,6 +27,8 @@ Public Class frm_Main
         Location = My.Settings.WindowLocation
         Size = My.Settings.WindowSize
         WindowState = My.Settings.WindowState
+
+        [Lib].Utils.CleanRAM()
     End Sub
 
     Private Sub frm_Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -38,6 +40,7 @@ Public Class frm_Main
         If Not Exiting Then
             e.Cancel = True
             Me.Hide()
+            [Lib].Utils.CleanRAM()
         End If
     End Sub
 
