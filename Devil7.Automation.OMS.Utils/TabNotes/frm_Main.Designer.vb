@@ -28,6 +28,7 @@ Partial Class frm_Main
         Me.btn_More = New DevExpress.XtraBars.BarButtonItem()
         Me.Menu_More = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.btn_ViewArchived = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
         Me.TabFormDefaultManager1 = New DevExpress.XtraBars.TabFormDefaultManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -39,7 +40,7 @@ Partial Class frm_Main
         Me.Menu_Tray = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.menu_Show = New System.Windows.Forms.ToolStripMenuItem()
         Me.menu_Exit = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btn_Exit = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_Logout = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.TabFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_More, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,7 +49,7 @@ Partial Class frm_Main
         '
         'TabFormControl1
         '
-        Me.TabFormControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived, Me.btn_Exit})
+        Me.TabFormControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived, Me.btn_Exit, Me.btn_Logout})
         Me.TabFormControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabFormControl1.Manager = Me.TabFormDefaultManager1
         Me.TabFormControl1.Name = "TabFormControl1"
@@ -72,7 +73,7 @@ Partial Class frm_Main
         '
         'Menu_More
         '
-        Me.Menu_More.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ViewArchived), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_Exit)})
+        Me.Menu_More.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ViewArchived), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_Logout, True), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_Exit)})
         Me.Menu_More.Manager = Me.TabFormDefaultManager1
         Me.Menu_More.Name = "Menu_More"
         '
@@ -83,6 +84,13 @@ Partial Class frm_Main
         Me.btn_ViewArchived.ImageOptions.SvgImage = CType(resources.GetObject("btn_ViewArchived.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_ViewArchived.Name = "btn_ViewArchived"
         '
+        'btn_Exit
+        '
+        Me.btn_Exit.Caption = "Exit"
+        Me.btn_Exit.Id = 8
+        Me.btn_Exit.ImageOptions.SvgImage = CType(resources.GetObject("btn_Exit.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Exit.Name = "btn_Exit"
+        '
         'TabFormDefaultManager1
         '
         Me.TabFormDefaultManager1.AllowQuickCustomization = False
@@ -92,8 +100,8 @@ Partial Class frm_Main
         Me.TabFormDefaultManager1.DockControls.Add(Me.barDockControlRight)
         Me.TabFormDefaultManager1.DockingEnabled = False
         Me.TabFormDefaultManager1.Form = Me
-        Me.TabFormDefaultManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived, Me.btn_Exit})
-        Me.TabFormDefaultManager1.MaxItemId = 9
+        Me.TabFormDefaultManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived, Me.btn_Exit, Me.btn_Logout})
+        Me.TabFormDefaultManager1.MaxItemId = 11
         '
         'barDockControlTop
         '
@@ -170,12 +178,12 @@ Partial Class frm_Main
         Me.menu_Exit.Size = New System.Drawing.Size(103, 22)
         Me.menu_Exit.Text = "Exit"
         '
-        'btn_Exit
+        'btn_Logout
         '
-        Me.btn_Exit.Caption = "Exit"
-        Me.btn_Exit.Id = 8
-        Me.btn_Exit.ImageOptions.SvgImage = CType(resources.GetObject("btn_Exit.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btn_Exit.Name = "btn_Exit"
+        Me.btn_Logout.Caption = "Logout"
+        Me.btn_Logout.Id = 10
+        Me.btn_Logout.ImageOptions.SvgImage = CType(resources.GetObject("btn_Logout.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Logout.Name = "btn_Logout"
         '
         'frm_Main
         '
@@ -217,4 +225,5 @@ Partial Class frm_Main
     Friend WithEvents menu_Show As ToolStripMenuItem
     Friend WithEvents menu_Exit As ToolStripMenuItem
     Friend WithEvents btn_Exit As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_Logout As DevExpress.XtraBars.BarButtonItem
 End Class

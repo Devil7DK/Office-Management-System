@@ -70,6 +70,15 @@ Public Class frm_Main
         Exiting = True
         Application.Exit()
     End Sub
+
+    Private Sub btn_Logout_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Logout.ItemClick
+        My.Settings.AutoLogin = False
+        My.Settings.Username = ""
+        My.Settings.Password = ""
+        My.Settings.Save()
+
+        btn_Exit.PerformClick()
+    End Sub
 #End Region
 
 #Region "Other Events"
