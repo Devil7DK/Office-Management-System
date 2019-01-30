@@ -76,7 +76,8 @@ Public Class ExEditor
 #Region "Button Events"
     Private Sub btn_Save_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_Save.ItemClick
         If Mode = Enums.DialogMode.Add Then
-            Dim Note As Objects.Note = Database.Notes.AddNew(TmpTitle, txt_Content.Text, User)
+            Dim Title As String = [Lib].Utils.ExInputBox("Change Title", "Enter Title for This Note:", TmpTitle)
+            Dim Note As Objects.Note = Database.Notes.AddNew(Title, txt_Content.Text, User)
             If Note IsNot Nothing Then
                 Me.Note = Note
                 Me.Mode = Enums.DialogMode.Edit
