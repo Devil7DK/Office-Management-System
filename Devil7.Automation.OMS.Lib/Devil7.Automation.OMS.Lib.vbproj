@@ -201,6 +201,12 @@
     <Compile Include="Dialogs\frm_DetailedWorkbookItem.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_ExInputBox.Designer.vb">
+      <DependentUpon>frm_ExInputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_ExInputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_Job.designer.vb">
       <DependentUpon>frm_Job.vb</DependentUpon>
     </Compile>
@@ -347,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_DetailedWorkbookItem.resx">
       <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_ExInputBox.resx">
+      <DependentUpon>frm_ExInputBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Job.resx">
       <DependentUpon>frm_Job.vb</DependentUpon>

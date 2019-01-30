@@ -24,6 +24,15 @@ Imports System.Windows.Forms
 Namespace Utils
     Public Module Misc
 
+        Public Function ExInputBox(ByVal Title As String, ByVal Prompt As String, Optional ByVal DefaultValue As String = "") As String
+            Dim D As New frm_ExInputBox(Title, Prompt, DefaultValue)
+            If D.ShowDialog = DialogResult.OK Then
+                Return D.Value
+            Else
+                Return ""
+            End If
+        End Function
+
         Public Sub CenterControl(ByVal ControlToCenter As Control, ByVal Type As Enums.CenterType)
             Try
                 Dim x As Single = ControlToCenter.Location.X
