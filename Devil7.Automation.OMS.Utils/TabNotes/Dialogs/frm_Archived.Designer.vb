@@ -27,6 +27,7 @@ Partial Class frm_Archived
         Me.MainBar = New DevExpress.XtraBars.Bar()
         Me.btn_UnArchive = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Remove = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_ShowPreviewPane = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -69,9 +70,9 @@ Partial Class frm_Archived
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_UnArchive, Me.btn_Remove})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_UnArchive, Me.btn_Remove, Me.btn_ShowPreviewPane})
         Me.BarManager1.MainMenu = Me.MainBar
-        Me.BarManager1.MaxItemId = 2
+        Me.BarManager1.MaxItemId = 3
         '
         'MainBar
         '
@@ -79,7 +80,7 @@ Partial Class frm_Archived
         Me.MainBar.DockCol = 0
         Me.MainBar.DockRow = 0
         Me.MainBar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.MainBar.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_UnArchive), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_Remove)})
+        Me.MainBar.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_UnArchive), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_Remove), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ShowPreviewPane, True)})
         Me.MainBar.OptionsBar.AllowQuickCustomization = False
         Me.MainBar.OptionsBar.DrawDragBorder = False
         Me.MainBar.OptionsBar.MultiLine = True
@@ -101,6 +102,15 @@ Partial Class frm_Archived
         Me.btn_Remove.ImageOptions.SvgImage = CType(resources.GetObject("btn_Remove.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Remove.Name = "btn_Remove"
         Me.btn_Remove.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        '
+        'btn_ShowPreviewPane
+        '
+        Me.btn_ShowPreviewPane.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check
+        Me.btn_ShowPreviewPane.Caption = "Show Preview Pane"
+        Me.btn_ShowPreviewPane.Id = 2
+        Me.btn_ShowPreviewPane.ImageOptions.SvgImage = CType(resources.GetObject("btn_ShowPreviewPane.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_ShowPreviewPane.Name = "btn_ShowPreviewPane"
+        Me.btn_ShowPreviewPane.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
         'barDockControlTop
         '
@@ -141,7 +151,7 @@ Partial Class frm_Archived
         Me.gc_Archived.MainView = Me.gv_Archived
         Me.gc_Archived.MenuManager = Me.BarManager1
         Me.gc_Archived.Name = "gc_Archived"
-        Me.gc_Archived.Size = New System.Drawing.Size(532, 426)
+        Me.gc_Archived.Size = New System.Drawing.Size(800, 426)
         Me.gc_Archived.TabIndex = 4
         Me.gc_Archived.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Archived})
         '
@@ -163,6 +173,7 @@ Partial Class frm_Archived
         Me.SplitContainer.Panel1.Text = "Panel1"
         Me.SplitContainer.Panel2.Controls.Add(Me.TableLayoutPanel1)
         Me.SplitContainer.Panel2.Text = "Panel2"
+        Me.SplitContainer.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
         Me.SplitContainer.Size = New System.Drawing.Size(800, 426)
         Me.SplitContainer.SplitterPosition = 263
         Me.SplitContainer.TabIndex = 6
@@ -193,7 +204,7 @@ Partial Class frm_Archived
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(263, 426)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(0, 0)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'lbl_Title
@@ -276,7 +287,7 @@ Partial Class frm_Archived
         Me.lbl_Content.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_Content.Location = New System.Drawing.Point(3, 81)
         Me.lbl_Content.Name = "lbl_Content"
-        Me.lbl_Content.Size = New System.Drawing.Size(57, 342)
+        Me.lbl_Content.Size = New System.Drawing.Size(57, 1)
         Me.lbl_Content.TabIndex = 6
         Me.lbl_Content.Text = "Content"
         '
@@ -288,7 +299,7 @@ Partial Class frm_Archived
         Me.lbl_Splitter_4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbl_Splitter_4.Location = New System.Drawing.Point(66, 81)
         Me.lbl_Splitter_4.Name = "lbl_Splitter_4"
-        Me.lbl_Splitter_4.Size = New System.Drawing.Size(4, 342)
+        Me.lbl_Splitter_4.Size = New System.Drawing.Size(4, 1)
         Me.lbl_Splitter_4.TabIndex = 7
         Me.lbl_Splitter_4.Text = ":"
         '
@@ -298,7 +309,7 @@ Partial Class frm_Archived
         Me.txt_Title.Location = New System.Drawing.Point(76, 3)
         Me.txt_Title.MenuManager = Me.BarManager1
         Me.txt_Title.Name = "txt_Title"
-        Me.txt_Title.Size = New System.Drawing.Size(184, 20)
+        Me.txt_Title.Size = New System.Drawing.Size(1, 20)
         Me.txt_Title.TabIndex = 8
         '
         'txt_DateAdded
@@ -307,7 +318,7 @@ Partial Class frm_Archived
         Me.txt_DateAdded.Location = New System.Drawing.Point(76, 29)
         Me.txt_DateAdded.MenuManager = Me.BarManager1
         Me.txt_DateAdded.Name = "txt_DateAdded"
-        Me.txt_DateAdded.Size = New System.Drawing.Size(184, 20)
+        Me.txt_DateAdded.Size = New System.Drawing.Size(1, 20)
         Me.txt_DateAdded.TabIndex = 9
         '
         'txt_DateEdited
@@ -316,7 +327,7 @@ Partial Class frm_Archived
         Me.txt_DateEdited.Location = New System.Drawing.Point(76, 55)
         Me.txt_DateEdited.MenuManager = Me.BarManager1
         Me.txt_DateEdited.Name = "txt_DateEdited"
-        Me.txt_DateEdited.Size = New System.Drawing.Size(184, 20)
+        Me.txt_DateEdited.Size = New System.Drawing.Size(1, 20)
         Me.txt_DateEdited.TabIndex = 10
         '
         'txt_Content
@@ -325,7 +336,7 @@ Partial Class frm_Archived
         Me.txt_Content.Location = New System.Drawing.Point(76, 81)
         Me.txt_Content.MenuManager = Me.BarManager1
         Me.txt_Content.Name = "txt_Content"
-        Me.txt_Content.Size = New System.Drawing.Size(184, 342)
+        Me.txt_Content.Size = New System.Drawing.Size(1, 1)
         Me.txt_Content.TabIndex = 11
         '
         'ProgressPanel
@@ -400,4 +411,5 @@ Partial Class frm_Archived
     Friend WithEvents btn_Remove As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents ProgressPanel As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents Loader As System.ComponentModel.BackgroundWorker
+    Friend WithEvents btn_ShowPreviewPane As DevExpress.XtraBars.BarButtonItem
 End Class

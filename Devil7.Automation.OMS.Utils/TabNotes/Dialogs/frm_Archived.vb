@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.Data
+Imports DevExpress.XtraBars
 Imports Devil7.Automation.OMS.Lib
 
 Public Class frm_Archived
@@ -57,6 +58,14 @@ Public Class frm_Archived
                     gc_Archived.RefreshDataSource()
                 End If
             End If
+        End If
+    End Sub
+
+    Private Sub btn_ShowPreviewPane_DownChanged(sender As Object, e As ItemClickEventArgs) Handles btn_ShowPreviewPane.DownChanged
+        If btn_ShowPreviewPane.Down Then
+            SplitContainer.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Both
+        Else
+            SplitContainer.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1
         End If
     End Sub
 #End Region

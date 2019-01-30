@@ -160,6 +160,31 @@
         LjUsNiwyNSw2eiIgZmlsbD0iIzcyNzI3MiIgY2xhc3M9IkJsYWNrIiAvPg0KICA8L2c+DQo8L3N2Zz4L
 </value>
   </data>
+  <data name="btn_ShowPreviewPane.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v18.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjE4LjIsIFZlcnNpb249MTguMi40
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAACoEAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHdpZHRoPSI0NjguMDYycHgiIGhlaWdodD0iNDY4LjA2MnB4IiB2aWV3Qm94PSIwIDAgNDY4LjA2MiA0
+        NjguMDYyIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1s
+        bnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbDpzcGFjZT0icHJlc2VydmUi
+        IGlkPSJDYXBhXzEiPg0KICA8Zz4NCiAgICA8cGF0aCBkPSJNNDMxLjM3OSwwLjIyMmgtMzk0LjdDMTYu
+        NDU2LDAuMjIyLDAsMTYuNjcxLDAsMzYuODk1djM5NC4yNjhjMCwyMC4yMjEsMTYuNDU2LDM2LjY3Nywz
+        Ni42NzksMzYuNjc3aDM5NC43ICAgYzIwLjIyOCwwLDM2LjY4My0xNi40NTYsMzYuNjgzLTM2LjY3N1Yz
+        Ni44OTVDNDY4LjA2MiwxNi42NjUsNDUxLjYwNiwwLjIyMiw0MzEuMzc5LDAuMjIyeiBNNDA2LjUxOSw0
+        MS45NjYgICBjOC42ODksMCwxNS43MjMsNy4wNCwxNS43MjMsMTUuNzJjMCw4LjY4My03LjAzMywxNS43
+        MTctMTUuNzIzLDE1LjcxN2MtOC42ODgsMC0xNS43MjMtNy4wNC0xNS43MjMtMTUuNzE3ICAgQzM5MC43
+        OTYsNDkuMDA2LDM5Ny44Myw0MS45NjYsNDA2LjUxOSw0MS45NjZ6IE0zNTAuMTg5LDQxLjk2NmM4LjY4
+        OCwwLDE1LjcyMyw3LjA0LDE1LjcyMywxNS43MiAgIGMwLDguNjgzLTcuMDM0LDE1LjcxNy0xNS43MjMs
+        MTUuNzE3Yy04LjY4NCwwLTE1LjcxMS03LjA0LTE1LjcxMS0xNS43MTdDMzM0LjQ3OSw0OS4wMDYsMzQx
+        LjUwNiw0MS45NjYsMzUwLjE4OSw0MS45NjZ6ICAgIE00MS45MTMsMTEyLjQyNmgxODQuMDU1djMxMy40
+        OTVINDEuOTEzVjExMi40MjZ6IE00MjYuMTQ4LDQyNS45MjFIMjQyLjEwNFYxMTIuNDI2aDE4NC4wNDRW
+        NDI1LjkyMXoiIC8+DQogIDwvZz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAg
+        PGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4N
+        CiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCiAgPGcgLz4NCjwvc3ZnPgs=
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
