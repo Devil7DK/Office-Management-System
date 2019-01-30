@@ -73,6 +73,12 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ExEditor.Designer.vb">
+      <DependentUpon>ExEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExEditor.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="frm_Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
+    <EmbeddedResource Include="Controls\ExEditor.resx">
+      <DependentUpon>ExEditor.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +122,12 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Devil7.Automation.OMS.Lib\Devil7.Automation.OMS.Lib.vbproj">
+      <Project>{8f9c9bfc-aeb9-4e2b-8a20-cf6a88a1023f}</Project>
+      <Name>Devil7.Automation.OMS.Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
