@@ -50,6 +50,9 @@
     <Reference Include="DevExpress.XtraBars.v18.2" />
     <Reference Include="DevExpress.Sparkline.v18.2.Core" />
     <Reference Include="DevExpress.XtraEditors.v18.2" />
+    <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -79,6 +82,12 @@
     <Compile Include="Controls\ExEditor.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_Archived.Designer.vb">
+      <DependentUpon>frm_Archived.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Archived.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_Login.Designer.vb">
       <DependentUpon>frm_Login.vb</DependentUpon>
     </Compile>
@@ -99,12 +108,16 @@
     <EmbeddedResource Include="Controls\ExEditor.resx">
       <DependentUpon>ExEditor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Archived.resx">
+      <DependentUpon>frm_Archived.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Login.resx">
       <DependentUpon>frm_Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>

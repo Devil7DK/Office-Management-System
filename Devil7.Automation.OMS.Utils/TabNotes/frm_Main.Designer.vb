@@ -22,6 +22,7 @@ Partial Class frm_Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.TabFormControl1 = New DevExpress.XtraBars.TabFormControl()
         Me.TabFormDefaultManager1 = New DevExpress.XtraBars.TabFormDefaultManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -30,12 +31,17 @@ Partial Class frm_Main
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.ProgressPanel = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader = New System.ComponentModel.BackgroundWorker()
+        Me.btn_More = New DevExpress.XtraBars.BarButtonItem()
+        Me.Menu_More = New DevExpress.XtraBars.PopupMenu()
+        Me.btn_ViewArchived = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.TabFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Menu_More, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabFormControl1
         '
+        Me.TabFormControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived})
         Me.TabFormControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabFormControl1.Manager = Me.TabFormDefaultManager1
         Me.TabFormControl1.Name = "TabFormControl1"
@@ -44,6 +50,7 @@ Partial Class frm_Main
         Me.TabFormControl1.Size = New System.Drawing.Size(540, 27)
         Me.TabFormControl1.TabForm = Me
         Me.TabFormControl1.TabIndex = 0
+        Me.TabFormControl1.TabLeftItemLinks.Add(Me.btn_More)
         Me.TabFormControl1.TabStop = False
         '
         'TabFormDefaultManager1
@@ -54,7 +61,8 @@ Partial Class frm_Main
         Me.TabFormDefaultManager1.DockControls.Add(Me.barDockControlRight)
         Me.TabFormDefaultManager1.DockingEnabled = False
         Me.TabFormDefaultManager1.Form = Me
-        Me.TabFormDefaultManager1.MaxItemId = 2
+        Me.TabFormDefaultManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived})
+        Me.TabFormDefaultManager1.MaxItemId = 4
         '
         'barDockControlTop
         '
@@ -104,6 +112,29 @@ Partial Class frm_Main
         'Loader
         '
         '
+        'btn_More
+        '
+        Me.btn_More.ActAsDropDown = True
+        Me.btn_More.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown
+        Me.btn_More.Caption = "More"
+        Me.btn_More.DropDownControl = Me.Menu_More
+        Me.btn_More.Id = 2
+        Me.btn_More.ImageOptions.SvgImage = CType(resources.GetObject("btn_More.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_More.Name = "btn_More"
+        '
+        'Menu_More
+        '
+        Me.Menu_More.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ViewArchived)})
+        Me.Menu_More.Manager = Me.TabFormDefaultManager1
+        Me.Menu_More.Name = "Menu_More"
+        '
+        'btn_ViewArchived
+        '
+        Me.btn_ViewArchived.Caption = "View Archived Items"
+        Me.btn_ViewArchived.Id = 3
+        Me.btn_ViewArchived.ImageOptions.SvgImage = CType(resources.GetObject("btn_ViewArchived.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_ViewArchived.Name = "btn_ViewArchived"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -120,6 +151,7 @@ Partial Class frm_Main
         Me.Text = "Devil7 - Tab Notes"
         CType(Me.TabFormControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabFormDefaultManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Menu_More, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -132,4 +164,7 @@ Partial Class frm_Main
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents ProgressPanel As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents Loader As System.ComponentModel.BackgroundWorker
+    Friend WithEvents btn_More As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_ViewArchived As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Menu_More As DevExpress.XtraBars.PopupMenu
 End Class

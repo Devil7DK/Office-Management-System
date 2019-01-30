@@ -23,6 +23,15 @@ Public Class frm_Main
     End Sub
 #End Region
 
+#Region "Button Events"
+    Private Sub btn_ViewArchived_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_ViewArchived.ItemClick
+        Dim D As New frm_Archived(User)
+        If D.ShowDialog = DialogResult.OK Then
+            If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+        End If
+    End Sub
+#End Region
+
 #Region "Other Events"
     Private Sub TabFormControl1_PageCreated(sender As Object, e As PageCreatedEventArgs) Handles TabFormControl1.PageCreated
         If e.Page.ContentContainer.Controls.Count < 1 Then
@@ -37,7 +46,7 @@ Public Class frm_Main
                       ProgressPanel.Visible = True
                   End Sub)
 
-        Dim Notes As List(Of Objects.Note) = Database.Notes.GetAll(User)
+        Dim Notes As List(Of Objects.Note) = Database.Notes.GetAll(User, False)
         For Each Note As Objects.Note In Notes
             Me.Invoke(Sub()
                           TabFormControl1.AddNewPage()
