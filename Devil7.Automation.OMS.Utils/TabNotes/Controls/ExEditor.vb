@@ -108,7 +108,7 @@ Public Class ExEditor
 
     Private Sub btn_EditTitle_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_EditTitle.ItemClick
         If Mode = Enums.DialogMode.Edit AndAlso Me.Note IsNot Nothing Then
-            Dim Title As String = Utils.ExInputBox("Change Title", "Enter New Title for Note :", Me.Note.Title)
+            Dim Title As String = [Lib].Utils.ExInputBox("Change Title", "Enter New Title for Note :", Me.Note.Title)
             If Not String.IsNullOrEmpty(Title) Then
                 Me.Note.UpdateTitle(Title)
             End If

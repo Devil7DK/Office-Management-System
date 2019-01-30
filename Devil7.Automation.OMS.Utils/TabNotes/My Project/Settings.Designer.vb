@@ -98,9 +98,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.TabNotes.Settings
+        Friend ReadOnly Property Settings() As Global.Devil7.Automation.OMS.Utils.TabNotes.Settings
             Get
-                Return Global.TabNotes.Settings.Default
+                Return Global.Devil7.Automation.OMS.Utils.TabNotes.Settings.Default
             End Get
         End Property
     End Module

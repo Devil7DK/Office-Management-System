@@ -32,7 +32,12 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.TabNotes.frm_Login
+            Me.MainForm = Global.Devil7.Automation.OMS.Utils.TabNotes.frm_Login
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
+        Protected Overrides Sub OnCreateSplashScreen()
+            Me.SplashScreen = Global.Devil7.Automation.OMS.Utils.TabNotes.frm_Splash
         End Sub
     End Class
 End Namespace

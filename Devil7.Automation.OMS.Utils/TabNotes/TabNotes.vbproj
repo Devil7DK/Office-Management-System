@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A29854CC-DC9E-4496-AB22-B62761FA1486}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TabNotes</RootNamespace>
-    <AssemblyName>TabNotes</AssemblyName>
+    <RootNamespace>Devil7.Automation.OMS.Utils.TabNotes</RootNamespace>
+    <AssemblyName>Devil7 - Tab Notes</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <StartupObject>TabNotes.Program</StartupObject>
     <FileAlignment>512</FileAlignment>
@@ -40,7 +40,10 @@
     <MyType>WindowsForms</MyType>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>TabNotes.My.MyApplication</StartupObject>
+    <StartupObject>Devil7.Automation.OMS.Utils.TabNotes.My.MyApplication</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.2" />
@@ -100,6 +103,12 @@
     <Compile Include="frm_Main.Designer.vb">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </Compile>
+    <Compile Include="frm_Splash.designer.vb">
+      <DependentUpon>frm_Splash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Splash.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -117,6 +126,9 @@
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_Splash.resx">
+      <DependentUpon>frm_Splash.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -127,6 +139,7 @@
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="My Project\Settings.settings">
@@ -150,6 +163,9 @@
       <Project>{8f9c9bfc-aeb9-4e2b-8a20-cf6a88a1023f}</Project>
       <Name>Devil7.Automation.OMS.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
