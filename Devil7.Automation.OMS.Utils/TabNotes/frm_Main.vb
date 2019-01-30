@@ -23,9 +23,18 @@ Public Class frm_Main
 #Region "Form Events"
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoginInstance.BeginInvoke(Sub() LoginInstance.Close())
+
+        Location = My.Settings.WindowLocation
+        Size = My.Settings.WindowSize
+        WindowState = My.Settings.WindowState
     End Sub
 
     Private Sub frm_Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        My.Settings.WindowLocation = Location
+        My.Settings.WindowSize = Size
+        My.Settings.WindowState = WindowState
+        My.Settings.Save()
+
         If Not Exiting Then
             e.Cancel = True
             Me.Hide()

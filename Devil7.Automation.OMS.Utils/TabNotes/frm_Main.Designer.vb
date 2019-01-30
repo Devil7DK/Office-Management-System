@@ -22,10 +22,11 @@ Partial Class frm_Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Main))
         Me.TabFormControl1 = New DevExpress.XtraBars.TabFormControl()
         Me.btn_More = New DevExpress.XtraBars.BarButtonItem()
-        Me.Menu_More = New DevExpress.XtraBars.PopupMenu()
+        Me.Menu_More = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.btn_ViewArchived = New DevExpress.XtraBars.BarButtonItem()
         Me.TabFormDefaultManager1 = New DevExpress.XtraBars.TabFormDefaultManager()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -34,10 +35,10 @@ Partial Class frm_Main
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.ProgressPanel = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader = New System.ComponentModel.BackgroundWorker()
-        Me.TrayIcon = New System.Windows.Forms.NotifyIcon()
-        Me.Menu_Tray = New System.Windows.Forms.ContextMenuStrip()
-        Me.menu_Exit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TrayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.Menu_Tray = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.menu_Show = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menu_Exit = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.TabFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_More, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +53,7 @@ Partial Class frm_Main
         Me.TabFormControl1.Name = "TabFormControl1"
         Me.TabFormControl1.ShowTabCloseButtons = False
         Me.TabFormControl1.ShowTabsInTitleBar = DevExpress.XtraBars.ShowTabsInTitleBar.[True]
-        Me.TabFormControl1.Size = New System.Drawing.Size(540, 27)
+        Me.TabFormControl1.Size = New System.Drawing.Size(324, 27)
         Me.TabFormControl1.TabForm = Me
         Me.TabFormControl1.TabIndex = 0
         Me.TabFormControl1.TabLeftItemLinks.Add(Me.btn_More)
@@ -83,6 +84,7 @@ Partial Class frm_Main
         '
         'TabFormDefaultManager1
         '
+        Me.TabFormDefaultManager1.AllowQuickCustomization = False
         Me.TabFormDefaultManager1.DockControls.Add(Me.barDockControlTop)
         Me.TabFormDefaultManager1.DockControls.Add(Me.barDockControlBottom)
         Me.TabFormDefaultManager1.DockControls.Add(Me.barDockControlLeft)
@@ -90,7 +92,7 @@ Partial Class frm_Main
         Me.TabFormDefaultManager1.DockingEnabled = False
         Me.TabFormDefaultManager1.Form = Me
         Me.TabFormDefaultManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived})
-        Me.TabFormDefaultManager1.MaxItemId = 6
+        Me.TabFormDefaultManager1.MaxItemId = 8
         '
         'barDockControlTop
         '
@@ -98,15 +100,15 @@ Partial Class frm_Main
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 27)
         Me.barDockControlTop.Manager = Nothing
-        Me.barDockControlTop.Size = New System.Drawing.Size(540, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(324, 0)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 261)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 295)
         Me.barDockControlBottom.Manager = Nothing
-        Me.barDockControlBottom.Size = New System.Drawing.Size(540, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(324, 0)
         '
         'barDockControlLeft
         '
@@ -114,15 +116,15 @@ Partial Class frm_Main
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 27)
         Me.barDockControlLeft.Manager = Nothing
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 234)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 268)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(540, 27)
+        Me.barDockControlRight.Location = New System.Drawing.Point(324, 27)
         Me.barDockControlRight.Manager = Nothing
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 234)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 268)
         '
         'ProgressPanel
         '
@@ -133,7 +135,7 @@ Partial Class frm_Main
         Me.ProgressPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel.Location = New System.Drawing.Point(0, 27)
         Me.ProgressPanel.Name = "ProgressPanel"
-        Me.ProgressPanel.Size = New System.Drawing.Size(540, 234)
+        Me.ProgressPanel.Size = New System.Drawing.Size(324, 268)
         Me.ProgressPanel.TabIndex = 4
         Me.ProgressPanel.Visible = False
         '
@@ -153,25 +155,25 @@ Partial Class frm_Main
         Me.Menu_Tray.Name = "Menu_Tray"
         Me.Menu_Tray.Size = New System.Drawing.Size(104, 48)
         '
-        'menu_Exit
-        '
-        Me.menu_Exit.Image = CType(resources.GetObject("menu_Exit.Image"), System.Drawing.Image)
-        Me.menu_Exit.Name = "menu_Exit"
-        Me.menu_Exit.Size = New System.Drawing.Size(180, 22)
-        Me.menu_Exit.Text = "Exit"
-        '
         'menu_Show
         '
         Me.menu_Show.Image = CType(resources.GetObject("menu_Show.Image"), System.Drawing.Image)
         Me.menu_Show.Name = "menu_Show"
-        Me.menu_Show.Size = New System.Drawing.Size(180, 22)
+        Me.menu_Show.Size = New System.Drawing.Size(103, 22)
         Me.menu_Show.Text = "Show"
+        '
+        'menu_Exit
+        '
+        Me.menu_Exit.Image = CType(resources.GetObject("menu_Exit.Image"), System.Drawing.Image)
+        Me.menu_Exit.Name = "menu_Exit"
+        Me.menu_Exit.Size = New System.Drawing.Size(103, 22)
+        Me.menu_Exit.Text = "Exit"
         '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(540, 261)
+        Me.ClientSize = New System.Drawing.Size(324, 295)
         Me.Controls.Add(Me.ProgressPanel)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -179,6 +181,7 @@ Partial Class frm_Main
         Me.Controls.Add(Me.barDockControlTop)
         Me.Controls.Add(Me.TabFormControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MinimumSize = New System.Drawing.Size(300, 300)
         Me.Name = "frm_Main"
         Me.TabFormControl = Me.TabFormControl1
         Me.Text = "Devil7 - Tab Notes"
