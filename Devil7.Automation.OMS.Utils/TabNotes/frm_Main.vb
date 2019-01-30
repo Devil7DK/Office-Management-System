@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraBars
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraBars
 Imports Devil7.Automation.OMS.Lib
 
 Public Class frm_Main
@@ -6,6 +7,8 @@ Public Class frm_Main
 #Region "Variables"
     Dim User As Objects.User
     Dim LoginInstance As frm_Login
+
+    Dim Exiting As Boolean = False
 #End Region
 
 #Region "Constructor"
@@ -21,6 +24,17 @@ Public Class frm_Main
     Private Sub frm_Main_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoginInstance.BeginInvoke(Sub() LoginInstance.Close())
     End Sub
+
+    Private Sub frm_Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If Not Exiting Then
+            e.Cancel = True
+            Me.Hide()
+        End If
+    End Sub
+
+    Private Sub frm_Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+    End Sub
 #End Region
 
 #Region "Button Events"
@@ -29,6 +43,15 @@ Public Class frm_Main
         If D.ShowDialog = DialogResult.OK Then
             If Not Loader.IsBusy Then Loader.RunWorkerAsync()
         End If
+    End Sub
+
+    Private Sub menu_Show_Click(sender As Object, e As EventArgs) Handles menu_Show.Click
+        Me.Show()
+    End Sub
+
+    Private Sub menu_Exit_Click(sender As Object, e As EventArgs) Handles menu_Exit.Click
+        Exiting = True
+        Application.Exit()
     End Sub
 #End Region
 
@@ -64,7 +87,7 @@ Public Class frm_Main
                               Page.ContentContainer.Controls.Add(Editor)
                           Else
                               Editor.Note = Note
-                              Editor.RefreshData
+                              Editor.RefreshData()
                           End If
                       End Sub)
         Next
@@ -75,12 +98,8 @@ Public Class frm_Main
                   End Sub)
     End Sub
 
-    Private Sub frm_Main_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        Application.Exit()
-    End Sub
-
-    Private Sub frm_Main_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+    Private Sub TrayIcon_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles TrayIcon.MouseDoubleClick
+        Me.Show()
     End Sub
 #End Region
 

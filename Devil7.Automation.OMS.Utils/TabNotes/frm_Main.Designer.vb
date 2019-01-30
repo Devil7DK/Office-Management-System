@@ -34,9 +34,14 @@ Partial Class frm_Main
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.ProgressPanel = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader = New System.ComponentModel.BackgroundWorker()
+        Me.TrayIcon = New System.Windows.Forms.NotifyIcon()
+        Me.Menu_Tray = New System.Windows.Forms.ContextMenuStrip()
+        Me.menu_Exit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menu_Show = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.TabFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_More, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Menu_Tray.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabFormControl1
@@ -85,7 +90,7 @@ Partial Class frm_Main
         Me.TabFormDefaultManager1.DockingEnabled = False
         Me.TabFormDefaultManager1.Form = Me
         Me.TabFormDefaultManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_More, Me.btn_ViewArchived})
-        Me.TabFormDefaultManager1.MaxItemId = 5
+        Me.TabFormDefaultManager1.MaxItemId = 6
         '
         'barDockControlTop
         '
@@ -135,6 +140,33 @@ Partial Class frm_Main
         'Loader
         '
         '
+        'TrayIcon
+        '
+        Me.TrayIcon.ContextMenuStrip = Me.Menu_Tray
+        Me.TrayIcon.Icon = CType(resources.GetObject("TrayIcon.Icon"), System.Drawing.Icon)
+        Me.TrayIcon.Text = "Devil7 - Tab Notes"
+        Me.TrayIcon.Visible = True
+        '
+        'Menu_Tray
+        '
+        Me.Menu_Tray.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menu_Show, Me.menu_Exit})
+        Me.Menu_Tray.Name = "Menu_Tray"
+        Me.Menu_Tray.Size = New System.Drawing.Size(104, 48)
+        '
+        'menu_Exit
+        '
+        Me.menu_Exit.Image = CType(resources.GetObject("menu_Exit.Image"), System.Drawing.Image)
+        Me.menu_Exit.Name = "menu_Exit"
+        Me.menu_Exit.Size = New System.Drawing.Size(180, 22)
+        Me.menu_Exit.Text = "Exit"
+        '
+        'menu_Show
+        '
+        Me.menu_Show.Image = CType(resources.GetObject("menu_Show.Image"), System.Drawing.Image)
+        Me.menu_Show.Name = "menu_Show"
+        Me.menu_Show.Size = New System.Drawing.Size(180, 22)
+        Me.menu_Show.Text = "Show"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -153,6 +185,7 @@ Partial Class frm_Main
         CType(Me.TabFormControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Menu_More, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabFormDefaultManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Menu_Tray.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -168,4 +201,8 @@ Partial Class frm_Main
     Friend WithEvents btn_More As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_ViewArchived As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Menu_More As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents TrayIcon As NotifyIcon
+    Friend WithEvents Menu_Tray As ContextMenuStrip
+    Friend WithEvents menu_Show As ToolStripMenuItem
+    Friend WithEvents menu_Exit As ToolStripMenuItem
 End Class
