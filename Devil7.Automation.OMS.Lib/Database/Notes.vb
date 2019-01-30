@@ -168,16 +168,17 @@ Namespace Database
             Return R
         End Function
 
-        Function GetAll(ByVal User As User) As List(Of Note)
+        Function GetAll(ByVal User As User, ByVal ArchivedStatus As Boolean) As List(Of Note)
             Dim R As New List(Of Note)
 
-            Dim CommandString As String = String.Format("SELECT * FROM {0} WHERE [User]=@User AND [Archived]=0;", TableName)
+            Dim CommandString As String = String.Format("SELECT * FROM {0} WHERE [User]=@User AND [Archived]=@Archived;", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
 
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@User", User.ID)
+                AddParameter(Command, "@Archived", ArchivedStatus)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
                         R.Add(Read(Reader))
