@@ -289,6 +289,7 @@
     <Compile Include="Objects\FeesReminder.vb" />
     <Compile Include="Objects\Job.vb" />
     <Compile Include="Objects\JobUser.vb" />
+    <Compile Include="Objects\Note.vb" />
     <Compile Include="Objects\Partner.vb" />
     <Compile Include="Objects\Sender.vb" />
     <Compile Include="Objects\Service.vb" />
