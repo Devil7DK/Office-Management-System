@@ -27,17 +27,15 @@ Imports Devil7.Automation.OMS.Lib.Utils
 
 Public Class frm_Login
 
+    Dim Users_ As String()
+
     Private Sub frm_Login_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         XtraMessageBox.SmartTextWrap = True
         Devil7.Automation.OMS.Lib.Utils.SettingsManager.LoadSettings()
         chk_Remember.Checked = My.Settings.AutoLogin
         Try
-            Dim Users_ As String() = Users.GetUsernames
+            Users_ = Users.GetUsernames
             txt_Username.Properties.Items.AddRange(Users_)
-            If My.Settings.AutoLogin Then
-                txt_Username.SelectedIndex = Users_.ToList.FindIndex(Function(c) c = My.Settings.Username)
-                txt_Password.Text = Encryption.DecryptString(My.Settings.Password)
-            End If
         Catch ex As Exception
             XtraMessageBox.Show("Error on loading usernames." & vbNewLine & vbNewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
@@ -82,5 +80,17 @@ Public Class frm_Login
     Private Sub chk_Remember_CheckedChanged(sender As Object, e As EventArgs) Handles chk_Remember.CheckedChanged
         My.Settings.AutoLogin = chk_Remember.Checked
         My.Settings.Save()
+    End Sub
+
+    Private Sub frm_Login_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If My.Settings.AutoLogin Then
+                txt_Username.SelectedIndex = Users_.ToList.FindIndex(Function(c) c = My.Settings.Username)
+                txt_Password.Text = Encryption.DecryptString(My.Settings.Password)
+                btn_Login.PerformClick()
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
