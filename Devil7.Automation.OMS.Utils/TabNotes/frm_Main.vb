@@ -110,6 +110,11 @@ Public Class frm_Main
     Private Sub TrayIcon_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles TrayIcon.MouseDoubleClick
         Me.Show()
     End Sub
+
+    Private Sub btn_Exit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Exit.ItemClick
+        Exiting = True
+        Application.Exit()
+    End Sub
 #End Region
 
 End Class
