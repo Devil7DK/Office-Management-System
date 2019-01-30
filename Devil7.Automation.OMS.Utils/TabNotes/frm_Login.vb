@@ -53,6 +53,7 @@ Public Class frm_Login
                   End Sub)
         Dim User As User = Users.Login(txt_Username.SelectedItem.ToString, txt_Password.Text)
         If User IsNot Nothing Then
+            My.Settings.LastUserIndex = txt_Username.SelectedIndex
             My.Settings.Username = txt_Username.Text
             My.Settings.Password = Encryption.EncryptString(txt_Password.Text)
             My.Settings.Save()
@@ -92,5 +93,13 @@ Public Class frm_Login
         Catch ex As Exception
 
         End Try
+
+        If txt_Username.Properties.Items.Count > 0 And txt_Username.SelectedIndex = -1 Then
+            If My.Settings.LastUserIndex < txt_Username.Properties.Items.Count Then
+                txt_Username.SelectedIndex = My.Settings.LastUserIndex
+            Else
+                txt_Username.SelectedIndex = 0
+            End If
+        End If
     End Sub
 End Class
