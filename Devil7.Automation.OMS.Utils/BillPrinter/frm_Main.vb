@@ -34,9 +34,19 @@ Public Class frm_Main
     Dim ServicesList As New List(Of String)
     Dim FeesItemsList As New List(Of String)
     Dim FromAddressList As New List(Of ExMailAddress)
+
+    Dim ProgressOverlayHandle As DevExpress.XtraSplashScreen.IOverlaySplashScreenHandle
 #End Region
 
 #Region "Subs & Functions"
+    Sub ShowProgressOverlay()
+        ProgressOverlayHandle = DevExpress.XtraSplashScreen.SplashScreenManager.ShowOverlayForm(Me)
+    End Sub
+
+    Sub CloseProgressOverlay()
+        If ProgressOverlayHandle IsNot Nothing Then DevExpress.XtraSplashScreen.SplashScreenManager.CloseOverlayForm(ProgressOverlayHandle)
+    End Sub
+
     Private Function GetFeesReminderReport(ByVal FeesReminder As FeesReminder, Optional ByVal Client As Client = Nothing) As report_FeesReminder
         Dim Items As New List(Of data_FeesReminder_Item)
         If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
@@ -570,8 +580,7 @@ Public Class frm_Main
     Private Sub Loader_DoWork(sender As Object, e As DoWorkEventArgs) Handles Loader.DoWork
         Invoke(Sub()
                    Ribbon.Enabled = False
-                   ProgressPanel_Bills.Visible = True
-                   ProgressPanel_Bills.Description = "Loading Services List..."
+                   ShowProgressOverlay()
                End Sub)
 
         Try
@@ -580,35 +589,30 @@ Public Class frm_Main
             MsgBox("Unable to load services." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Fees Items List...")
         Try
             FeesItemsList = Database.FeesItems.Load(False)
         Catch ex As Exception
             MsgBox("Unable to load fees items." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading E-Mail Addresses List...")
         Try
             FromAddressList = Database.EMailAddresses.Load(False)
         Catch ex As Exception
             MsgBox("Unable to load e-mail addresses." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Senders List...")
         Try
             SendersList = Database.Senders.GetAll(False)
         Catch ex As Exception
             MsgBox("Unable to load senders." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Receivers List...")
         Try
             ReceiversList = Database.Clients.GetMinimal
         Catch ex As Exception
             MsgBox("Unable to load receivers/clients." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Bills List...")
         Dim EstimateBills As New List(Of Objects.Bill)
         Try
             EstimateBills = Database.Bills.GetAll(False)
@@ -616,7 +620,6 @@ Public Class frm_Main
             MsgBox("Unable to load bills." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Fees Reminders List...")
         Dim FeesReminders As New List(Of Objects.FeesReminder)
         Try
             FeesReminders = Database.FeesReminders.GetAll(False)
@@ -624,14 +627,12 @@ Public Class frm_Main
             MsgBox("Unable to load fees reminders." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Users List...")
         Try
             UsersList = Database.Users.GetAll(False)
         Catch ex As Exception
             MsgBox("Unable to load users." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Invoke(Sub() ProgressPanel_Bills.Description = "Loading Jobs List...")
         Try
             JobsList = Database.Jobs.GetAll(False)
         Catch ex As Exception
@@ -642,7 +643,7 @@ Public Class frm_Main
                    gc_Bills.DataSource = EstimateBills
                    gc_FeesReminders.DataSource = FeesReminders
                    Ribbon.Enabled = True
-                   ProgressPanel_Bills.Visible = False
+                   CloseProgressOverlay()
                End Sub)
     End Sub
 #End Region

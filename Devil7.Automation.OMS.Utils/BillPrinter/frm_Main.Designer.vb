@@ -42,9 +42,10 @@ Partial Class frm_Main
         Me.btn_Export_RTF = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Export_Image = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Export_Mail_HTML = New DevExpress.XtraBars.BarButtonItem()
-        Me.btn_FromAddresses = New DevExpress.XtraBars.BarButtonItem()
+        Me.Menu_MailFormats = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.btn_Export_Mail_PDF_HTML = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Export_Mail_PDF = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_FromAddresses = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Items = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Report = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -53,7 +54,6 @@ Partial Class frm_Main
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.gc_Bills = New DevExpress.XtraGrid.GridControl()
         Me.gv_Bills = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.ProgressPanel_Bills = New DevExpress.XtraWaitForm.ProgressPanel()
         Me.Loader = New System.ComponentModel.BackgroundWorker()
         Me.btn_PrintPreview = New DevExpress.XtraBars.BarButtonItem()
         Me.tc_Main = New DevExpress.XtraTab.XtraTabControl()
@@ -62,9 +62,9 @@ Partial Class frm_Main
         Me.gc_FeesReminders = New DevExpress.XtraGrid.GridControl()
         Me.gv_FeesReminders = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.dlg_Save = New System.Windows.Forms.SaveFileDialog()
-        Me.Menu_MailFormats = New DevExpress.XtraBars.PopupMenu(Me.components)
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_ExportFormats, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Menu_MailFormats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_Bills, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Bills, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tc_Main, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,7 +73,6 @@ Partial Class frm_Main
         Me.tab_FeesReminders.SuspendLayout()
         CType(Me.gc_FeesReminders, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_FeesReminders, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Menu_MailFormats, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl
@@ -88,7 +87,7 @@ Partial Class frm_Main
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowToolbarCustomizeItem = False
-        Me.RibbonControl.Size = New System.Drawing.Size(692, 143)
+        Me.RibbonControl.Size = New System.Drawing.Size(907, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
         '
@@ -239,12 +238,12 @@ Partial Class frm_Main
         Me.btn_Export_Mail_HTML.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Mail_HTML.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Export_Mail_HTML.Name = "btn_Export_Mail_HTML"
         '
-        'btn_FromAddresses
+        'Menu_MailFormats
         '
-        Me.btn_FromAddresses.Caption = "From Addresses"
-        Me.btn_FromAddresses.Id = 23
-        Me.btn_FromAddresses.ImageOptions.SvgImage = CType(resources.GetObject("btn_FromAddresses.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btn_FromAddresses.Name = "btn_FromAddresses"
+        Me.Menu_MailFormats.ItemLinks.Add(Me.btn_Export_Mail_PDF_HTML)
+        Me.Menu_MailFormats.ItemLinks.Add(Me.btn_Export_Mail_PDF)
+        Me.Menu_MailFormats.Name = "Menu_MailFormats"
+        Me.Menu_MailFormats.Ribbon = Me.RibbonControl
         '
         'btn_Export_Mail_PDF_HTML
         '
@@ -259,6 +258,13 @@ Partial Class frm_Main
         Me.btn_Export_Mail_PDF.Id = 25
         Me.btn_Export_Mail_PDF.ImageOptions.SvgImage = CType(resources.GetObject("btn_Export_Mail_PDF.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_Export_Mail_PDF.Name = "btn_Export_Mail_PDF"
+        '
+        'btn_FromAddresses
+        '
+        Me.btn_FromAddresses.Caption = "From Addresses"
+        Me.btn_FromAddresses.Id = 23
+        Me.btn_FromAddresses.ImageOptions.SvgImage = CType(resources.GetObject("btn_FromAddresses.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_FromAddresses.Name = "btn_FromAddresses"
         '
         'rp_Home
         '
@@ -301,6 +307,7 @@ Partial Class frm_Main
         Me.rpg_Export.ItemLinks.Add(Me.btn_Export_PDF)
         Me.rpg_Export.ItemLinks.Add(Me.btn_Export_Others)
         Me.rpg_Export.Name = "rpg_Export"
+        Me.rpg_Export.ShowCaptionButton = False
         Me.rpg_Export.Text = "Export"
         '
         'RibbonStatusBar
@@ -308,7 +315,7 @@ Partial Class frm_Main
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(692, 31)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(907, 31)
         '
         'gc_Bills
         '
@@ -317,7 +324,7 @@ Partial Class frm_Main
         Me.gc_Bills.MainView = Me.gv_Bills
         Me.gc_Bills.MenuManager = Me.RibbonControl
         Me.gc_Bills.Name = "gc_Bills"
-        Me.gc_Bills.Size = New System.Drawing.Size(686, 247)
+        Me.gc_Bills.Size = New System.Drawing.Size(901, 247)
         Me.gc_Bills.TabIndex = 2
         Me.gc_Bills.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Bills})
         '
@@ -327,19 +334,6 @@ Partial Class frm_Main
         Me.gv_Bills.Name = "gv_Bills"
         Me.gv_Bills.OptionsBehavior.Editable = False
         Me.gv_Bills.OptionsBehavior.ReadOnly = True
-        '
-        'ProgressPanel_Bills
-        '
-        Me.ProgressPanel_Bills.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.ProgressPanel_Bills.Appearance.Options.UseBackColor = True
-        Me.ProgressPanel_Bills.BarAnimationElementThickness = 2
-        Me.ProgressPanel_Bills.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ProgressPanel_Bills.Description = "Fetching Data from Server..."
-        Me.ProgressPanel_Bills.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ProgressPanel_Bills.Location = New System.Drawing.Point(0, 143)
-        Me.ProgressPanel_Bills.Name = "ProgressPanel_Bills"
-        Me.ProgressPanel_Bills.Size = New System.Drawing.Size(692, 275)
-        Me.ProgressPanel_Bills.TabIndex = 6
         '
         'Loader
         '
@@ -358,7 +352,7 @@ Partial Class frm_Main
         Me.tc_Main.Location = New System.Drawing.Point(0, 143)
         Me.tc_Main.Name = "tc_Main"
         Me.tc_Main.SelectedTabPage = Me.tab_Bills
-        Me.tc_Main.Size = New System.Drawing.Size(692, 275)
+        Me.tc_Main.Size = New System.Drawing.Size(907, 275)
         Me.tc_Main.TabIndex = 9
         Me.tc_Main.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tab_Bills, Me.tab_FeesReminders})
         '
@@ -366,7 +360,7 @@ Partial Class frm_Main
         '
         Me.tab_Bills.Controls.Add(Me.gc_Bills)
         Me.tab_Bills.Name = "tab_Bills"
-        Me.tab_Bills.Size = New System.Drawing.Size(686, 247)
+        Me.tab_Bills.Size = New System.Drawing.Size(901, 247)
         Me.tab_Bills.Text = "Bills"
         '
         'tab_FeesReminders
@@ -394,19 +388,11 @@ Partial Class frm_Main
         Me.gv_FeesReminders.OptionsBehavior.Editable = False
         Me.gv_FeesReminders.OptionsBehavior.ReadOnly = True
         '
-        'Menu_MailFormats
-        '
-        Me.Menu_MailFormats.ItemLinks.Add(Me.btn_Export_Mail_PDF_HTML)
-        Me.Menu_MailFormats.ItemLinks.Add(Me.btn_Export_Mail_PDF)
-        Me.Menu_MailFormats.Name = "Menu_MailFormats"
-        Me.Menu_MailFormats.Ribbon = Me.RibbonControl
-        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(692, 449)
-        Me.Controls.Add(Me.ProgressPanel_Bills)
+        Me.ClientSize = New System.Drawing.Size(907, 449)
         Me.Controls.Add(Me.tc_Main)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
@@ -417,6 +403,7 @@ Partial Class frm_Main
         Me.Text = "Devil7 - Bills & Fees Reminder Printer"
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Menu_ExportFormats, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Menu_MailFormats, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gc_Bills, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_Bills, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tc_Main, System.ComponentModel.ISupportInitialize).EndInit()
@@ -425,7 +412,6 @@ Partial Class frm_Main
         Me.tab_FeesReminders.ResumeLayout(False)
         CType(Me.gc_FeesReminders, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gv_FeesReminders, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Menu_MailFormats, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -437,7 +423,6 @@ Partial Class frm_Main
     Friend WithEvents RibbonStatusBar As DevExpress.XtraBars.Ribbon.RibbonStatusBar
     Friend WithEvents gc_Bills As DevExpress.XtraGrid.GridControl
     Friend WithEvents gv_Bills As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents ProgressPanel_Bills As DevExpress.XtraWaitForm.ProgressPanel
     Friend WithEvents rpg_Report As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents btn_Refresh As DevExpress.XtraBars.BarButtonItem
