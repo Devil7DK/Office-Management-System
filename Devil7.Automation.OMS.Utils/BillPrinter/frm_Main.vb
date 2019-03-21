@@ -19,6 +19,7 @@
 '=========================================================================='
 
 Imports DevExpress.XtraBars
+Imports DevExpress.XtraTab
 Imports Devil7.Automation.OMS.Lib
 Imports Devil7.Automation.OMS.Lib.Objects
 Imports System.ComponentModel
@@ -671,6 +672,14 @@ Public Class frm_Main
                    Ribbon.Enabled = True
                    CloseProgressOverlay()
                End Sub)
+    End Sub
+
+    Private Sub tc_Main_SelectedPageChanged(sender As Object, e As TabPageChangedEventArgs) Handles tc_Main.SelectedPageChanged
+        If tc_Main.SelectedTabPage Is tab_Bills Then
+            rpg_Report.Text = "Bill"
+        ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
+            rpg_Report.Text = "Fees Reminder"
+        End If
     End Sub
 #End Region
 
