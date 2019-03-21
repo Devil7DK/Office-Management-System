@@ -574,6 +574,32 @@ Public Class frm_Main
         End If
     End Sub
 #End Region
+
+#Region "Cover"
+    Private Sub btn_SmallCover_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_SmallCover.ItemClick
+        Dim D As New frm_Cover(SendersList, ReceiversList)
+        If D.ShowDialog = DialogResult.OK Then
+            Dim Client As Client = Database.GetClientByID(D.Receiver.ID, JobsList, UsersList)
+            If Client IsNot Nothing Then
+                Dim Report As New report_SmallCover(New data_Cover(D.Sender, Client))
+                Dim Viewer As New frm_ReportViewer(Report)
+                Viewer.ShowDialog()
+            End If
+        End If
+    End Sub
+
+    Private Sub btn_BigCover_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_BigCover.ItemClick
+        Dim D As New frm_Cover(SendersList, ReceiversList)
+        If D.ShowDialog = DialogResult.OK Then
+            Dim Client As Client = Database.GetClientByID(D.Receiver.ID, JobsList, UsersList)
+            If Client IsNot Nothing Then
+                Dim Report As New report_BigCover(New data_Cover(D.Sender, Client))
+                Dim Viewer As New frm_ReportViewer(Report)
+                Viewer.ShowDialog()
+            End If
+        End If
+    End Sub
+#End Region
 #End Region
 
 #Region "Other Events"

@@ -101,6 +101,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\frm_Cover.Designer.vb">
+      <DependentUpon>frm_Cover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Cover.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_FeesReminder.designer.vb">
       <DependentUpon>frm_FeesReminder.vb</DependentUpon>
     </Compile>
@@ -189,6 +195,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Reporting\data_Bill.vb" />
+    <Compile Include="Reporting\data_Cover.vb" />
     <Compile Include="Reporting\data_FeesReminder.vb" />
     <Compile Include="Reporting\data_FeesReminder_Item.vb" />
     <Compile Include="Reporting\report_Bill.designer.vb">
@@ -209,8 +216,23 @@
     <Compile Include="Reporting\report_FeesReminder.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reporting\report_BigCover.Designer.vb">
+      <DependentUpon>report_BigCover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\report_BigCover.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporting\report_SmallCover.Designer.vb">
+      <DependentUpon>report_SmallCover.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\report_SmallCover.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frm_Cover.resx">
+      <DependentUpon>frm_Cover.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_FeesReminder.resx">
       <DependentUpon>frm_FeesReminder.vb</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +284,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reporting\report_FeesReminder.resx">
       <DependentUpon>report_FeesReminder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\report_BigCover.resx">
+      <DependentUpon>report_BigCover.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\report_SmallCover.resx">
+      <DependentUpon>report_SmallCover.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -46,11 +46,14 @@ Partial Class frm_Main
         Me.btn_Export_Mail_PDF_HTML = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_Export_Mail_PDF = New DevExpress.XtraBars.BarButtonItem()
         Me.btn_FromAddresses = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_SmallCover = New DevExpress.XtraBars.BarButtonItem()
+        Me.btn_BigCover = New DevExpress.XtraBars.BarButtonItem()
         Me.rp_Home = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.rpg_Items = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Report = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Export = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.rpg_Covers = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.gc_Bills = New DevExpress.XtraGrid.GridControl()
         Me.gv_Bills = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -78,16 +81,16 @@ Partial Class frm_Main
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems, Me.btn_Export_PDF, Me.btn_Export_Others, Me.btn_Export_Word, Me.btn_Export_HTML, Me.btn_Export_RTF, Me.btn_Export_Image, Me.btn_Export_MHTML, Me.btn_Export_Mail_HTML, Me.btn_FromAddresses, Me.btn_Export_Mail_PDF_HTML, Me.btn_Export_Mail_PDF})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems, Me.btn_Export_PDF, Me.btn_Export_Others, Me.btn_Export_Word, Me.btn_Export_HTML, Me.btn_Export_RTF, Me.btn_Export_Image, Me.btn_Export_MHTML, Me.btn_Export_Mail_HTML, Me.btn_FromAddresses, Me.btn_Export_Mail_PDF_HTML, Me.btn_Export_Mail_PDF, Me.btn_SmallCover, Me.btn_BigCover})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 26
+        Me.RibbonControl.MaxItemId = 28
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Home})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowToolbarCustomizeItem = False
-        Me.RibbonControl.Size = New System.Drawing.Size(907, 143)
+        Me.RibbonControl.Size = New System.Drawing.Size(1206, 143)
         Me.RibbonControl.StatusBar = Me.RibbonStatusBar
         Me.RibbonControl.Toolbar.ShowCustomizeItem = False
         '
@@ -266,9 +269,23 @@ Partial Class frm_Main
         Me.btn_FromAddresses.ImageOptions.SvgImage = CType(resources.GetObject("btn_FromAddresses.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_FromAddresses.Name = "btn_FromAddresses"
         '
+        'btn_SmallCover
+        '
+        Me.btn_SmallCover.Caption = "Small"
+        Me.btn_SmallCover.Id = 26
+        Me.btn_SmallCover.ImageOptions.SvgImage = CType(resources.GetObject("btn_SmallCover.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_SmallCover.Name = "btn_SmallCover"
+        '
+        'btn_BigCover
+        '
+        Me.btn_BigCover.Caption = "Long"
+        Me.btn_BigCover.Id = 27
+        Me.btn_BigCover.ImageOptions.SvgImage = CType(resources.GetObject("btn_BigCover.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_BigCover.Name = "btn_BigCover"
+        '
         'rp_Home
         '
-        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Items, Me.rpg_Report, Me.RibbonPageGroup2, Me.rpg_Export})
+        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Items, Me.rpg_Report, Me.RibbonPageGroup2, Me.rpg_Export, Me.rpg_Covers})
         Me.rp_Home.Name = "rp_Home"
         Me.rp_Home.Text = "Home"
         '
@@ -310,12 +327,20 @@ Partial Class frm_Main
         Me.rpg_Export.ShowCaptionButton = False
         Me.rpg_Export.Text = "Export"
         '
+        'rpg_Covers
+        '
+        Me.rpg_Covers.ItemLinks.Add(Me.btn_SmallCover)
+        Me.rpg_Covers.ItemLinks.Add(Me.btn_BigCover)
+        Me.rpg_Covers.Name = "rpg_Covers"
+        Me.rpg_Covers.ShowCaptionButton = False
+        Me.rpg_Covers.Text = "Covers"
+        '
         'RibbonStatusBar
         '
         Me.RibbonStatusBar.Location = New System.Drawing.Point(0, 418)
         Me.RibbonStatusBar.Name = "RibbonStatusBar"
         Me.RibbonStatusBar.Ribbon = Me.RibbonControl
-        Me.RibbonStatusBar.Size = New System.Drawing.Size(907, 31)
+        Me.RibbonStatusBar.Size = New System.Drawing.Size(1206, 31)
         '
         'gc_Bills
         '
@@ -324,7 +349,7 @@ Partial Class frm_Main
         Me.gc_Bills.MainView = Me.gv_Bills
         Me.gc_Bills.MenuManager = Me.RibbonControl
         Me.gc_Bills.Name = "gc_Bills"
-        Me.gc_Bills.Size = New System.Drawing.Size(901, 247)
+        Me.gc_Bills.Size = New System.Drawing.Size(1200, 247)
         Me.gc_Bills.TabIndex = 2
         Me.gc_Bills.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Bills})
         '
@@ -352,7 +377,7 @@ Partial Class frm_Main
         Me.tc_Main.Location = New System.Drawing.Point(0, 143)
         Me.tc_Main.Name = "tc_Main"
         Me.tc_Main.SelectedTabPage = Me.tab_Bills
-        Me.tc_Main.Size = New System.Drawing.Size(907, 275)
+        Me.tc_Main.Size = New System.Drawing.Size(1206, 275)
         Me.tc_Main.TabIndex = 9
         Me.tc_Main.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.tab_Bills, Me.tab_FeesReminders})
         '
@@ -360,14 +385,14 @@ Partial Class frm_Main
         '
         Me.tab_Bills.Controls.Add(Me.gc_Bills)
         Me.tab_Bills.Name = "tab_Bills"
-        Me.tab_Bills.Size = New System.Drawing.Size(901, 247)
+        Me.tab_Bills.Size = New System.Drawing.Size(1200, 247)
         Me.tab_Bills.Text = "Bills"
         '
         'tab_FeesReminders
         '
         Me.tab_FeesReminders.Controls.Add(Me.gc_FeesReminders)
         Me.tab_FeesReminders.Name = "tab_FeesReminders"
-        Me.tab_FeesReminders.Size = New System.Drawing.Size(686, 247)
+        Me.tab_FeesReminders.Size = New System.Drawing.Size(901, 247)
         Me.tab_FeesReminders.Text = "Fees Reminders"
         '
         'gc_FeesReminders
@@ -377,7 +402,7 @@ Partial Class frm_Main
         Me.gc_FeesReminders.MainView = Me.gv_FeesReminders
         Me.gc_FeesReminders.MenuManager = Me.RibbonControl
         Me.gc_FeesReminders.Name = "gc_FeesReminders"
-        Me.gc_FeesReminders.Size = New System.Drawing.Size(686, 247)
+        Me.gc_FeesReminders.Size = New System.Drawing.Size(901, 247)
         Me.gc_FeesReminders.TabIndex = 3
         Me.gc_FeesReminders.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_FeesReminders})
         '
@@ -392,7 +417,7 @@ Partial Class frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(907, 449)
+        Me.ClientSize = New System.Drawing.Size(1206, 449)
         Me.Controls.Add(Me.tc_Main)
         Me.Controls.Add(Me.RibbonStatusBar)
         Me.Controls.Add(Me.RibbonControl)
@@ -458,4 +483,7 @@ Partial Class frm_Main
     Friend WithEvents btn_Export_Mail_PDF_HTML As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Export_Mail_PDF As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Menu_MailFormats As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents btn_SmallCover As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents rpg_Covers As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents btn_BigCover As DevExpress.XtraBars.BarButtonItem
 End Class
