@@ -370,10 +370,10 @@ Namespace Database
             Return R
         End Function
 
-        Function GetForUser(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal UserID As Integer, ByVal WorkTypes As Enums.WorkType(), ByVal MatchWithOwner As Boolean) As IEnumerable(Of WorkbookItem)
+        Function GetForUser(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal UserID As Integer, ByVal WorkTypes As Enums.WorkType(), ByVal MatchWithOwner As Boolean, ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = String.Format("SELECT * FROM [Workbook] WHERE [{0}] = @UID AND [Status]<3 AND [WorkType] IN ({1});", If(MatchWithOwner, "Owner", "User"), String.Join(Of Integer)(",", WorkTypes))
+            Dim CommandString As String = String.Format("SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM dbo.[Workbook] WHERE [{0}] = @UID AND [Status]<3 AND [WorkType] IN ({1});", If(MatchWithOwner, "Owner", "User"), String.Join(Of Integer)(",", WorkTypes))
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -383,6 +383,13 @@ Namespace Database
 
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@UID", UserID)
+                Command.CommandType = CommandType.Text
+                Command.Notification = Nothing
+
+                Dim Dependency As SqlDependency = New SqlDependency(Command)
+                AddHandler Dependency.OnChange, Sub(ByVal sender As System.Object, ByVal e As System.Data.SqlClient.SqlNotificationEventArgs)
+                                                    Listener(sender, e)
+                                                End Sub
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
                         R.Add(Read(Reader, Jobs, Users))
