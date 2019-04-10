@@ -35,8 +35,11 @@ Namespace Database
         End Function
 
         Sub LoadConnection()
-            connection_ = New SqlConnection(String.Format("Server={0};Database={1};User Id={2};Password={3};Application Name=Office Management System;Pooling={4};MultipleActiveResultSets=true;",
-                                                          GetSettings.ServerName, GetSettings.DatabaseName, GetSettings.UserName, DecryptString(GetSettings.Password), GetSettings.Pooling))
+            Dim ConnectionString As String = String.Format("Server={0};Database={1};User Id={2};Password={3};Application Name=Office Management System;Pooling={4};MultipleActiveResultSets=true;",
+                                                          GetSettings.ServerName, GetSettings.DatabaseName, GetSettings.UserName, DecryptString(GetSettings.Password), GetSettings.Pooling)
+            connection_ = New SqlConnection(ConnectionString)
+            SqlDependency.Stop(ConnectionString)
+            SqlDependency.Start(ConnectionString)
         End Sub
 
     End Module
