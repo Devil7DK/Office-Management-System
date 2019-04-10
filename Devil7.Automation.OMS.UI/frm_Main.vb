@@ -19,6 +19,7 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Data.SqlClient
 Imports DevExpress.Data
 Imports DevExpress.XtraBars
 Imports DevExpress.XtraEditors
@@ -697,7 +698,7 @@ Public Class frm_Main
                       ProgressPanel_Home.Description = "Loading Home..."
                   End Sub)
         Try
-            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Normal, Enums.WorkType.Followup, Enums.WorkType.Transfer}, False)
+            Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Normal, Enums.WorkType.Followup, Enums.WorkType.Transfer}, False, AddressOf Home_OnChange)
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
                       End Sub)
@@ -1307,7 +1308,7 @@ Public Class frm_Main
                       ProgressPanel_AutoForwards.Description = "Loading AutoForwards..."
                   End Sub)
         Try
-            Dim AutoForwards As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.AutoForward}, False)
+            Dim AutoForwards As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.AutoForward}, False, AddressOf AutoForwards_OnChange)
             Me.Invoke(Sub()
                           gc_AutoForwards.DataSource = AutoForwards
                       End Sub)
@@ -1362,7 +1363,7 @@ Public Class frm_Main
                       ProgressPanel_Transferred.Description = "Loading Transferred..."
                   End Sub)
         Try
-            Dim Transferred As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Transfer}, True)
+            Dim Transferred As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Transfer}, True, AddressOf Transferred_OnChange)
             Me.Invoke(Sub()
                           gc_Transferred.DataSource = Transferred
                       End Sub)
@@ -1388,4 +1389,29 @@ Public Class frm_Main
     Private Sub frm_Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         Application.Exit()
     End Sub
+
+    Private Sub Home_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
+        If Not Loader_Home.IsBusy Then
+            Loader_Home.RunWorkerAsync()
+            Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
+            RemoveHandler Dependency.OnChange, AddressOf Home_OnChange
+        End If
+    End Sub
+
+    Private Sub AutoForwards_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
+        If Not Loader_AutoForwards.IsBusy Then
+            Loader_AutoForwards.RunWorkerAsync()
+            Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
+            RemoveHandler Dependency.OnChange, AddressOf AutoForwards_OnChange
+        End If
+    End Sub
+
+    Private Sub Transferred_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
+        If Not Loader_Transferred.IsBusy Then
+            Loader_Transferred.RunWorkerAsync()
+            Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
+            RemoveHandler Dependency.OnChange, AddressOf Transferred_OnChange
+        End If
+    End Sub
+
 End Class
