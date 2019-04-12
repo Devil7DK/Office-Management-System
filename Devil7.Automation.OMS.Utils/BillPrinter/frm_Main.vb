@@ -681,6 +681,11 @@ Public Class frm_Main
             rpg_Report.Text = "Fees Reminder"
         End If
     End Sub
+
+    Private Sub btn_Settings_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Settings.ItemClick
+        Dim D As New frm_Settings
+        D.ShowDialog()
+    End Sub
 #End Region
 
 End Class
