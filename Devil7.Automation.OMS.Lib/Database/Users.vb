@@ -76,9 +76,7 @@ Namespace Database
                         Catch ex As Exception
 
                         End Try
-                        Dim Desktop As String = Reader.Item("Desktop").ToString
-                        Dim Home As String = Reader.Item("Home").ToString
-                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo)
+                        R = New User(ID, Username, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show("Invalid Username or Password.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
@@ -140,7 +138,7 @@ Namespace Database
             Return R
         End Function
 
-        Function AddNew(Username As String, UserType As Enums.UserType, Password As String, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Desktop As String, Home As String) As User
+        Function AddNew(Username As String, UserType As Enums.UserType, Password As String, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image) As User
             Dim R As User = Nothing
 
             Dim CommandString As String = "INSERT INTO [Users] ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo);SELECT SCOPE_IDENTITY();"
@@ -163,7 +161,7 @@ Namespace Database
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo)
+                    R = New User(ID, Username, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                 Else
                     DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting user.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
@@ -172,10 +170,10 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, Username As String, UserType As Enums.UserType, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Desktop As String, Home As String) As Boolean
+        Function Update(ByVal ID As Integer, Username As String, UserType As Enums.UserType, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Desktop]=@desktop,[Home]=@home WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -192,8 +190,6 @@ Namespace Database
                 AddParameter(Command, "@permissions", Permissions.ToString)
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", ms.ToArray)
-                AddParameter(Command, "@desktop", Desktop)
-                AddParameter(Command, "@home", Home)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
                 If Result > 0 Then
@@ -257,9 +253,7 @@ Namespace Database
                         Catch ex As Exception
 
                         End Try
-                        Dim Desktop As String = Reader.Item("Desktop").ToString
-                        Dim Home As String = Reader.Item("Home").ToString
-                        R.Add(New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo))
+                        R.Add(New User(ID, Username, UserType, Address, Mobile, Email, Permissions, Status, Photo))
                     End While
                 End Using
             End Using
@@ -299,7 +293,7 @@ Namespace Database
                         End Try
                         Dim Desktop As String = Reader.Item("Desktop").ToString
                         Dim Home As String = Reader.Item("Home").ToString
-                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo)
+                        R = New User(ID, Username, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                     End If
                 End Using
             End Using

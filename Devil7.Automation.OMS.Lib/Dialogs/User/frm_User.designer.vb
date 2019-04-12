@@ -52,10 +52,6 @@
             Me.btn_Permission_Edit = New DevExpress.XtraEditors.SimpleButton()
             Me.OFD_Image = New System.Windows.Forms.OpenFileDialog()
             Me.Panel_Permissions = New System.Windows.Forms.Panel()
-            Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-            Me.txt_Home = New DevExpress.XtraEditors.ButtonEdit()
-            Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-            Me.txt_Desktop = New DevExpress.XtraEditors.ButtonEdit()
             Me.FBD = New System.Windows.Forms.FolderBrowserDialog()
             Me.Panel1.SuspendLayout()
             CType(Me.Photo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,8 +65,6 @@
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.lst_Permissions, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Permissions.SuspendLayout()
-            CType(Me.txt_Home.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.txt_Desktop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'Panel1
@@ -79,7 +73,7 @@
             Me.Panel1.Controls.Add(Me.btn_Cancel)
             Me.Panel1.Controls.Add(Me.btn_Done)
             Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-            Me.Panel1.Location = New System.Drawing.Point(0, 451)
+            Me.Panel1.Location = New System.Drawing.Point(0, 393)
             Me.Panel1.Name = "Panel1"
             Me.Panel1.Size = New System.Drawing.Size(440, 37)
             Me.Panel1.TabIndex = 0
@@ -191,7 +185,7 @@
             'LabelControl9
             '
             Me.LabelControl9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-            Me.LabelControl9.Location = New System.Drawing.Point(43, 424)
+            Me.LabelControl9.Location = New System.Drawing.Point(43, 370)
             Me.LabelControl9.Name = "LabelControl9"
             Me.LabelControl9.Size = New System.Drawing.Size(38, 13)
             Me.LabelControl9.TabIndex = 6
@@ -270,7 +264,7 @@
             '
             Me.txt_Status.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-            Me.txt_Status.Location = New System.Drawing.Point(87, 421)
+            Me.txt_Status.Location = New System.Drawing.Point(87, 367)
             Me.txt_Status.Name = "txt_Status"
             Me.txt_Status.Size = New System.Drawing.Size(345, 20)
             Me.txt_Status.TabIndex = 9
@@ -326,53 +320,11 @@
             Me.Panel_Permissions.Size = New System.Drawing.Size(39, 117)
             Me.Panel_Permissions.TabIndex = 21
             '
-            'LabelControl11
-            '
-            Me.LabelControl11.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-            Me.LabelControl11.Location = New System.Drawing.Point(22, 372)
-            Me.LabelControl11.Name = "LabelControl11"
-            Me.LabelControl11.Size = New System.Drawing.Size(59, 13)
-            Me.LabelControl11.TabIndex = 22
-            Me.LabelControl11.Text = "Home Path :"
-            '
-            'txt_Home
-            '
-            Me.txt_Home.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-            Me.txt_Home.Location = New System.Drawing.Point(87, 369)
-            Me.txt_Home.Name = "txt_Home"
-            Me.txt_Home.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-            Me.txt_Home.Size = New System.Drawing.Size(345, 20)
-            Me.txt_Home.TabIndex = 7
-            '
-            'LabelControl12
-            '
-            Me.LabelControl12.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-            Me.LabelControl12.Location = New System.Drawing.Point(10, 398)
-            Me.LabelControl12.Name = "LabelControl12"
-            Me.LabelControl12.Size = New System.Drawing.Size(71, 13)
-            Me.LabelControl12.TabIndex = 25
-            Me.LabelControl12.Text = "Desktop Path :"
-            '
-            'txt_Desktop
-            '
-            Me.txt_Desktop.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-            Me.txt_Desktop.Location = New System.Drawing.Point(87, 395)
-            Me.txt_Desktop.Name = "txt_Desktop"
-            Me.txt_Desktop.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-            Me.txt_Desktop.Size = New System.Drawing.Size(345, 20)
-            Me.txt_Desktop.TabIndex = 8
-            '
             'frm_User
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(440, 488)
-            Me.Controls.Add(Me.txt_Desktop)
-            Me.Controls.Add(Me.LabelControl12)
-            Me.Controls.Add(Me.txt_Home)
-            Me.Controls.Add(Me.LabelControl11)
+            Me.ClientSize = New System.Drawing.Size(440, 430)
             Me.Controls.Add(Me.Panel_Permissions)
             Me.Controls.Add(Me.lst_Permissions)
             Me.Controls.Add(Me.txt_Status)
@@ -414,8 +366,6 @@
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.lst_Permissions, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Permissions.ResumeLayout(False)
-            CType(Me.txt_Home.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.txt_Desktop.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
@@ -448,10 +398,6 @@
         Friend WithEvents btn_Permission_Edit As DevExpress.XtraEditors.SimpleButton
         Friend WithEvents OFD_Image As System.Windows.Forms.OpenFileDialog
         Friend WithEvents Panel_Permissions As System.Windows.Forms.Panel
-        Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents txt_Home As DevExpress.XtraEditors.ButtonEdit
-        Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents txt_Desktop As DevExpress.XtraEditors.ButtonEdit
         Friend WithEvents FBD As System.Windows.Forms.FolderBrowserDialog
     End Class
 End Namespace

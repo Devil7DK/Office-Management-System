@@ -28,15 +28,13 @@ Namespace Objects
             Me.ID = ID
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As Enums.UserType = Enums.UserType.User, Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing)
+        Sub New(ByVal ID As String, ByVal Username As String, Optional ByVal UserType As Enums.UserType = Enums.UserType.User, Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing)
             Me.ID = ID
             Me.Username = Username
             Me.UserType = UserType
             Me.Address = Address
             Me.Mobile = Mobile
             Me.Email = Email
-            Me.Desktop = Desktop
-            Me.Home = Home
             Me.Permissions = Permissions
             Me.Status = Status
             Me.img = Photo
@@ -50,8 +48,6 @@ Namespace Objects
         Property Email As String = ""
         Property Permissions As Enums.UserPermissions
         Property Status As String = ""
-        Property Desktop As String = ""
-        Property Home As String = ""
 
         Property Photo As Drawing.Image
             Get

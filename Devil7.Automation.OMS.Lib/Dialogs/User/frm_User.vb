@@ -88,8 +88,6 @@ Namespace Dialogs
                 txt_Email.Text = User.Email
                 txt_Status.Text = User.Status
                 Photo.Image = User.Photo
-                txt_Desktop.Text = User.Desktop
-                txt_Home.Text = User.Home
                 cmb_UserType.SelectedIndex = User.UserType
                 For Each i As Enums.UserPermissions In [Enum].GetValues(GetType(Enums.UserPermissions))
                     If User.Permissions.HasFlag(i) Then
@@ -116,7 +114,7 @@ Namespace Dialogs
         Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
             If txt_ConfirmPassword.Text = txt_Password.Text Then
                 If Mode = Enums.DialogMode.Add Then
-                    Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedIndex, txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, txt_Desktop.Text, txt_Home.Text)
+                    Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedIndex, txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image)
                     If Result IsNot Nothing Then
                         Me.User = Result
                         DevExpress.XtraEditors.XtraMessageBox.Show("User Successfully Added.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -124,27 +122,13 @@ Namespace Dialogs
                         Me.Close()
                     End If
                 ElseIf Mode = Enums.DialogMode.Edit Then
-                    Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, txt_Desktop.Text, txt_Home.Text)
+                    Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image)
                     If Result Then
                         DevExpress.XtraEditors.XtraMessageBox.Show("User Successfully Updated.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
                         Me.Close()
                     End If
                 End If
-            End If
-        End Sub
-
-        Private Sub txt_Home_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txt_Home.ButtonClick
-            If txt_Home.Text <> "" Then FBD.SelectedPath = txt_Home.Text
-            If FBD.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                txt_Home.Text = FBD.SelectedPath
-            End If
-        End Sub
-
-        Private Sub txt_Desktop_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles txt_Desktop.ButtonClick
-            If txt_Desktop.Text <> "" Then FBD.SelectedPath = txt_Desktop.Text
-            If FBD.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                txt_Desktop.Text = FBD.SelectedPath
             End If
         End Sub
 
