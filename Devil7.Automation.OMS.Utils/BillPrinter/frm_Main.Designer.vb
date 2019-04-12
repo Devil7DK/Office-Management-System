@@ -52,7 +52,7 @@ Partial Class frm_Main
         Me.rpg_Report = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Covers = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.rpg_Export = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.rpg_Lists = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.gc_Bills = New DevExpress.XtraGrid.GridControl()
         Me.gv_Bills = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -64,6 +64,8 @@ Partial Class frm_Main
         Me.gc_FeesReminders = New DevExpress.XtraGrid.GridControl()
         Me.gv_FeesReminders = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.dlg_Save = New System.Windows.Forms.SaveFileDialog()
+        Me.rp_Misc = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.rpg_Settings = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_ExportFormats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_MailFormats, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +86,7 @@ Partial Class frm_Main
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
         Me.RibbonControl.MaxItemId = 28
         Me.RibbonControl.Name = "RibbonControl"
-        Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Home})
+        Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Home, Me.rp_Misc})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.[False]
         Me.RibbonControl.ShowPageHeadersInFormCaption = DevExpress.Utils.DefaultBoolean.[False]
@@ -284,7 +286,7 @@ Partial Class frm_Main
         '
         'rp_Home
         '
-        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Items, Me.rpg_Report, Me.rpg_Covers, Me.rpg_Export, Me.RibbonPageGroup2})
+        Me.rp_Home.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Items, Me.rpg_Covers, Me.rpg_Report, Me.rpg_Export})
         Me.rp_Home.Name = "rp_Home"
         Me.rp_Home.Text = "Home"
         '
@@ -322,17 +324,15 @@ Partial Class frm_Main
         Me.rpg_Export.ShowCaptionButton = False
         Me.rpg_Export.Text = "Export"
         '
-        'RibbonPageGroup2
+        'rpg_Lists
         '
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Sender)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Services)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_FeesItems)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_FromAddresses)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.btn_Settings, True)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.SkinRibbonGalleryBarItem1)
-        Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
-        Me.RibbonPageGroup2.ShowCaptionButton = False
-        Me.RibbonPageGroup2.Text = "Others"
+        Me.rpg_Lists.ItemLinks.Add(Me.btn_Sender)
+        Me.rpg_Lists.ItemLinks.Add(Me.btn_Services)
+        Me.rpg_Lists.ItemLinks.Add(Me.btn_FeesItems)
+        Me.rpg_Lists.ItemLinks.Add(Me.btn_FromAddresses)
+        Me.rpg_Lists.Name = "rpg_Lists"
+        Me.rpg_Lists.ShowCaptionButton = False
+        Me.rpg_Lists.Text = "Lists"
         '
         'RibbonStatusBar
         '
@@ -412,6 +412,20 @@ Partial Class frm_Main
         Me.gv_FeesReminders.OptionsBehavior.Editable = False
         Me.gv_FeesReminders.OptionsBehavior.ReadOnly = True
         '
+        'rp_Misc
+        '
+        Me.rp_Misc.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.rpg_Lists, Me.rpg_Settings})
+        Me.rp_Misc.Name = "rp_Misc"
+        Me.rp_Misc.Text = "Misc"
+        '
+        'rpg_Settings
+        '
+        Me.rpg_Settings.ItemLinks.Add(Me.btn_Settings)
+        Me.rpg_Settings.ItemLinks.Add(Me.SkinRibbonGalleryBarItem1)
+        Me.rpg_Settings.Name = "rpg_Settings"
+        Me.rpg_Settings.ShowCaptionButton = False
+        Me.rpg_Settings.Text = "Settings"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -448,7 +462,7 @@ Partial Class frm_Main
     Friend WithEvents gc_Bills As DevExpress.XtraGrid.GridControl
     Friend WithEvents gv_Bills As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents rpg_Report As DevExpress.XtraBars.Ribbon.RibbonPageGroup
-    Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents rpg_Lists As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents btn_Refresh As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Add As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_Edit As DevExpress.XtraBars.BarButtonItem
@@ -485,4 +499,6 @@ Partial Class frm_Main
     Friend WithEvents btn_SmallCover As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents rpg_Covers As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents btn_BigCover As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents rp_Misc As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents rpg_Settings As DevExpress.XtraBars.Ribbon.RibbonPageGroup
 End Class
