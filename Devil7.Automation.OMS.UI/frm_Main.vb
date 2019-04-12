@@ -669,6 +669,8 @@ Public Class frm_Main
         While Loaded = False
             Threading.Thread.Sleep(1000)
         End While
+        Threading.Thread.Sleep(1000)
+
         Me.Invoke(Sub()
                       ProgressPanel_Home.Visible = True
                       rpg_Home.Enabled = False

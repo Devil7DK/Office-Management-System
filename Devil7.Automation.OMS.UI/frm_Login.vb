@@ -66,10 +66,8 @@ Public Class frm_Login
                   End Sub)
         Dim User As User = Users.Login(txt_Username.SelectedItem.ToString, txt_Password.Text)
         If User IsNot Nothing Then
-            Dim T As New Threading.Tasks.Task(Sub()
-                                                  Application.Run(New frm_Main(User, Me))
-                                              End Sub)
-            T.Start()
+            Dim D As New frm_Main(User, Me)
+            D.Show()
         Else
             Me.Invoke(Sub()
                           ProgressPanel.Visible = False
