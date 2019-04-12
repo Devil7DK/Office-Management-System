@@ -129,12 +129,6 @@
     <Compile Include="Comparers\CompareByName.vb" />
     <Compile Include="Comparers\CompareByPAN.vb" />
     <Compile Include="Comparers\CompareByFileNo.vb" />
-    <Compile Include="Controls\ExList.Designer.vb">
-      <DependentUpon>ExList.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ExList.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Controls\WorkBookItem.Designer.vb">
       <DependentUpon>WorkBookItem.vb</DependentUpon>
     </Compile>

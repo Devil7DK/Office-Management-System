@@ -20,6 +20,7 @@
 '=========================================================================='
 
 Imports Devil7.Automation.OMS.Lib.Objects
+Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Windows.Forms
 
@@ -70,10 +71,9 @@ Namespace Dialogs
                 cmb_TypeOfEngagement.SelectedItem = Client.TypeOfEngagement
                 txt_TIN.Text = Client.TIN
                 txt_CIN.Text = Client.CIN
-                lst_Partners.ListData = Client.Partners
                 cmb_Type.SelectedItem = Client.Type
-                lst_Credentials.ListData = Client.Credentials
-                lst_Jobs.ListData = Client.Jobs
+                gc_Partners.DataSource = Client.Partners
+                gc_Jobs.datasource = Client.Jobs
                 txt_Status.Text = Client.Status
                 pic_Photo.Image = Client.Photo
                 txt_GSTNo.Text = Client.GST
@@ -82,37 +82,14 @@ Namespace Dialogs
                 cmb_TypeOfEngagement.SelectedIndex = 0
                 txt_State.SelectedIndex = 32
 
-                lst_Credentials.ListData = New List(Of Credential)
-                lst_Partners.ListData = New List(Of Partner)
-                lst_Jobs.ListData = New List(Of JobUser)
+                gc_Partners.DataSource = New BindingList(Of Partner)
+                gc_Jobs.Datasource = New BindingList(Of JobUser)
             End If
             Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
         End Sub
 #End Region
 
 #Region "Button Events"
-#Region "Credential"
-        Private Sub lst_Credentials_OnAdd(List As List(Of Credential)) Handles lst_Credentials.OnAdd
-            Dim d As New frm_Credential(Enums.DialogMode.Add)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                List.Add(d.Credential)
-                lst_Credentials.RefreshData()
-            End If
-        End Sub
-
-        Private Sub lst_Credentials_OnEdit(Item As Credential) Handles lst_Credentials.OnEdit
-            Dim d As New frm_Credential(Enums.DialogMode.Edit, Item)
-            If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                Item.Name = d.Credential.Name
-                Item.Password = d.Credential.Password
-                Item.Password2 = d.Credential.Password2
-                Item.Password3 = d.Credential.Password3
-                Item.Template = d.Credential.Template
-                Item.Username = d.Credential.Username
-            End If
-            lst_Credentials.RefreshData()
-        End Sub
-#End Region
 #Region "Other"
         Private Sub btn_BrowseImage_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_BrowseImage.Click
             If OFD_Image.ShowDialog = System.Windows.Forms.DialogResult.OK Then
@@ -120,49 +97,11 @@ Namespace Dialogs
             End If
         End Sub
 #End Region
-#Region "Partner"
-        Private Sub lst_Partners_OnAdd(List As List(Of Partner)) Handles lst_Partners.OnAdd
-            Dim d As New frm_Partner(Enums.DialogMode.Add)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                List.Add(d.Partner)
-                lst_Partners.RefreshData()
-            End If
-        End Sub
-
-        Private Sub lst_Partners_OnEdit(Item As Partner) Handles lst_Partners.OnEdit
-            Dim d As New frm_Partner(Enums.DialogMode.Edit, Item)
-            If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                Item.Name = d.Partner.Name
-                Item.PAN = d.Partner.PAN
-                Item.DOB = d.Partner.DOB
-                Item.Address = d.Partner.Address
-            End If
-            lst_Partners.RefreshData()
-        End Sub
-#End Region
-#Region "Jobs"
-        Private Sub lst_Jobs_OnAdd(List As List(Of JobUser)) Handles lst_Jobs.OnAdd
-            Dim d As New frm_JobUser(Enums.DialogMode.Add, Jobs, Users)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                List.Add(d.JobUser)
-                lst_Jobs.RefreshData()
-            End If
-        End Sub
-
-        Private Sub lst_Jobs_OnEdit(Item As JobUser) Handles lst_Jobs.OnEdit
-            Dim d As New frm_JobUser(Enums.DialogMode.Edit, Jobs, Users, Item)
-            If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                Item.Job = d.JobUser.Job
-                Item.User = d.JobUser.User
-                lst_Jobs.RefreshData()
-            End If
-        End Sub
-#End Region
 #Region "Dialog"
         Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
             If Mode = Enums.DialogMode.Add Then
                 Try
-                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, lst_Partners.ListData, cmb_Type.SelectedItem.ToString, lst_Credentials.ListData, lst_Jobs.ListData, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, CType(gv_Partners.DataSource, BindingList(Of Partner)).ToList, cmb_Type.SelectedItem.ToString, Nothing, CType(gc_Jobs.DataSource, BindingList(Of JobUser)).ToList, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If item IsNot Nothing Then
                         Me.Client = item
                         DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -176,7 +115,7 @@ Namespace Dialogs
                 End Try
             ElseIf Mode = Enums.DialogMode.Edit Then
                 Try
-                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, lst_Partners.ListData, cmb_Type.SelectedItem, lst_Credentials.ListData, lst_Jobs.ListData, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, CType(gv_Partners.DataSource, BindingList(Of Partner)).ToList, cmb_Type.SelectedItem.ToString, Nothing, CType(gc_Jobs.DataSource, BindingList(Of JobUser)).ToList, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
                     If result Then
                         DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK
