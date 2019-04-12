@@ -78,7 +78,6 @@ Namespace Dialogs
                 cmb_UserType.Properties.Items.Add([Enum].GetName(GetType(Enums.UserType), i))
             Next
             cmb_UserType.SelectedIndex = 0
-            dgv_Credentials.DataSource = New System.ComponentModel.BindingList(Of Objects.Credential)
             If Mode = Enums.DialogMode.Edit AndAlso ID <> -1 Then
                 txt_Password.Enabled = False
                 txt_ConfirmPassword.Enabled = False
@@ -97,39 +96,7 @@ Namespace Dialogs
                         lst_Permissions.Items.Add(i)
                     End If
                 Next
-                dgv_Credentials.DataSource = User.Credentials
                 txt_ConfirmPassword.Text = txt_Password.Text
-            End If
-        End Sub
-
-        Private Sub btn_Credential_Add_Click(sender As System.Object, e As System.EventArgs) Handles btn_Credential_Add.Click
-            Dim d As New frm_Credential(Enums.DialogMode.Add)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)).Add(d.Credential)
-            End If
-        End Sub
-
-        Private Sub btn_Credential_Edit_Click(sender As System.Object, e As System.EventArgs) Handles btn_Credential_Edit.Click
-            If GridView1.SelectedRowsCount = 1 Then
-                Dim row As Objects.Credential = GridView1.GetRow(GridView1.GetSelectedRows()(0))
-                Dim d As New frm_Credential(Enums.DialogMode.Edit, row)
-                If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                    Dim bs = CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential))
-                    bs.Remove(row)
-                    bs.Add(d.Credential)
-                End If
-            End If
-        End Sub
-
-        Private Sub btn_Credential_Remove_Click(sender As System.Object, e As System.EventArgs) Handles btn_Credential_Remove.Click
-            If GridView1.SelectedRowsCount > 0 Then
-                Dim cd As New List(Of Objects.Credential)
-                For Each i As Integer In GridView1.GetSelectedRows
-                    cd.Add(GridView1.GetRow(i))
-                Next
-                For Each i As Objects.Credential In cd
-                    CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)).Remove(i)
-                Next
             End If
         End Sub
 
@@ -149,7 +116,7 @@ Namespace Dialogs
         Private Sub btn_Done_Click(sender As System.Object, e As System.EventArgs) Handles btn_Done.Click
             If txt_ConfirmPassword.Text = txt_Password.Text Then
                 If Mode = Enums.DialogMode.Add Then
-                    Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedIndex, txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
+                    Dim Result = Database.Users.AddNew(txt_Name.Text, cmb_UserType.SelectedIndex, txt_Password.Text, txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, txt_Desktop.Text, txt_Home.Text)
                     If Result IsNot Nothing Then
                         Me.User = Result
                         DevExpress.XtraEditors.XtraMessageBox.Show("User Successfully Added.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -157,7 +124,7 @@ Namespace Dialogs
                         Me.Close()
                     End If
                 ElseIf Mode = Enums.DialogMode.Edit Then
-                    Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, CType(dgv_Credentials.DataSource, System.ComponentModel.BindingList(Of Objects.Credential)), txt_Desktop.Text, txt_Home.Text)
+                    Dim Result = Database.Users.Update(ID, txt_Name.Text, cmb_UserType.SelectedIndex.ToString(), txt_Address.Text, txt_Mobile.Text, txt_Email.Text, GetPermissions(), txt_Status.Text, Photo.Image, txt_Desktop.Text, txt_Home.Text)
                     If Result Then
                         DevExpress.XtraEditors.XtraMessageBox.Show("User Successfully Updated.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK

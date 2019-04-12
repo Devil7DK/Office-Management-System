@@ -28,7 +28,7 @@ Namespace Objects
             Me.ID = ID
         End Sub
 
-        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As Enums.UserType = Enums.UserType.User, Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing, Optional ByVal Credentials As System.ComponentModel.BindingList(Of Credential) = Nothing)
+        Sub New(ByVal ID As String, ByVal Username As String, ByVal Desktop As String, ByVal Home As String, Optional ByVal UserType As Enums.UserType = Enums.UserType.User, Optional ByVal Address As String = "", Optional ByVal Mobile As String = "", Optional ByVal Email As String = "", Optional ByVal Permissions As Enums.UserPermissions = Nothing, Optional ByVal Status As String = "", Optional ByVal Photo As Drawing.Image = Nothing)
             Me.ID = ID
             Me.Username = Username
             Me.UserType = UserType
@@ -40,11 +40,6 @@ Namespace Objects
             Me.Permissions = Permissions
             Me.Status = Status
             Me.img = Photo
-            If Credentials Is Nothing Then
-                Me.Credentials = New System.ComponentModel.BindingList(Of Credential)
-            Else
-                Me.Credentials = Credentials
-            End If
         End Sub
 
         Property ID As Integer = -1
@@ -70,8 +65,6 @@ Namespace Objects
                 img = value
             End Set
         End Property
-
-        Property Credentials As System.ComponentModel.BindingList(Of Credential)
 
         Public Overrides Function ToString() As String
             Return Username.ToString()

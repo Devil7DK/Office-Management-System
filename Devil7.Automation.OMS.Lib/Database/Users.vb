@@ -76,10 +76,9 @@ Namespace Database
                         Catch ex As Exception
 
                         End Try
-                        Dim Credentials As IEnumerable(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString)
                         Dim Desktop As String = Reader.Item("Desktop").ToString
                         Dim Home As String = Reader.Item("Home").ToString
-                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
+                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                     Else
                         DevExpress.XtraEditors.XtraMessageBox.Show("Invalid Username or Password.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
@@ -141,10 +140,10 @@ Namespace Database
             Return R
         End Function
 
-        Function AddNew(Username As String, UserType As Enums.UserType, Password As String, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Credentials As System.ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As User
+        Function AddNew(Username As String, UserType As Enums.UserType, Password As String, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Desktop As String, Home As String) As User
             Dim R As User = Nothing
 
-            Dim CommandString As String = "INSERT INTO [Users] ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo],[Credentials]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo,@credentials);SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO [Users] ([Username],[UserType],[Password],[Address],[Mobile],[Email],[Permissions],[Status],[Photo]) VALUES (@username,@usertype,@password,@address,@mobile,@email,@permissions,@status,@photo);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -161,11 +160,10 @@ Namespace Database
                 AddParameter(Command, "@permissions", Permissions.ToString)
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", ms.ToArray)
-                AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
+                    R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                 Else
                     DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting user.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
@@ -174,10 +172,10 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, Username As String, UserType As Enums.UserType, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Credentials As System.ComponentModel.BindingList(Of Credential), Desktop As String, Home As String) As Boolean
+        Function Update(ByVal ID As Integer, Username As String, UserType As Enums.UserType, Address As String, Mobile As String, Email As String, Permissions As Enums.UserPermissions, Status As String, Photo As Drawing.Image, Desktop As String, Home As String) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Credentials]=@credentials,[Desktop]=@desktop,[Home]=@home WHERE [ID]=@ID;"
+            Dim CommandString As String = "UPDATE Users SET [Username]=@username,[UserType]=@usertype,[Address]=@address,[Mobile]=@mobile,[Email]=@email,[Permissions]=@permissions,[Status]=@status,[Photo]=@photo,[Desktop]=@desktop,[Home]=@home WHERE [ID]=@ID;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -194,7 +192,6 @@ Namespace Database
                 AddParameter(Command, "@permissions", Permissions.ToString)
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", ms.ToArray)
-                AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
                 AddParameter(Command, "@desktop", Desktop)
                 AddParameter(Command, "@home", Home)
 
@@ -260,10 +257,9 @@ Namespace Database
                         Catch ex As Exception
 
                         End Try
-                        Dim Credentials As IEnumerable(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString)
                         Dim Desktop As String = Reader.Item("Desktop").ToString
                         Dim Home As String = Reader.Item("Home").ToString
-                        R.Add(New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials))
+                        R.Add(New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo))
                     End While
                 End Using
             End Using
@@ -301,10 +297,9 @@ Namespace Database
                         Catch ex As Exception
 
                         End Try
-                        Dim Credentials As IEnumerable(Of Credential) = ObjectSerilizer.FromXML(Of System.ComponentModel.BindingList(Of Credential))(Reader.Item("Credentials").ToString)
                         Dim Desktop As String = Reader.Item("Desktop").ToString
                         Dim Home As String = Reader.Item("Home").ToString
-                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo, Credentials)
+                        R = New User(ID, Username, Desktop, Home, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                     End If
                 End Using
             End Using

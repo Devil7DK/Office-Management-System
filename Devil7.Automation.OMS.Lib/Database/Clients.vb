@@ -29,13 +29,13 @@ Namespace Database
 
 #Region "Update Functions"
         Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Credentials As List(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Client = Nothing
 
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
 
-            Dim CommandString As String = "INSERT INTO Clients ([PAN],[ClientName],[FatherName],[Mobile],[Phone],[Email],[DOB],[Address1],[Address2],[District],[Pincode],[State],[StateCode],[AadharNo],[Description],[TypeOfEngagement],[TIN],[CIN],[PartnerDirector],[Type],[Credentials],[Jobs],[Status],[Photo],[GST],[FileNo]) VALUES(@pan,@clientname,@fathername,@mobile,@phone,@email,@dob,@address1,@address2,@district,@pincode,@state,@statecode,@aadharno,@description,@typeofengagement,@tin,@cin,@partnerdirector,@type,@credentials,@jobs,@status,@photo,@gst,@fileno);SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Clients ([PAN],[ClientName],[FatherName],[Mobile],[Phone],[Email],[DOB],[Address1],[Address2],[District],[Pincode],[State],[StateCode],[AadharNo],[Description],[TypeOfEngagement],[TIN],[CIN],[PartnerDirector],[Type],[Jobs],[Status],[Photo],[GST],[FileNo]) VALUES(@pan,@clientname,@fathername,@mobile,@phone,@email,@dob,@address1,@address2,@district,@pincode,@state,@statecode,@aadharno,@description,@typeofengagement,@tin,@cin,@partnerdirector,@type,@jobs,@status,@photo,@gst,@fileno);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -61,7 +61,6 @@ Namespace Database
                 AddParameter(Command, "@cin", CIN)
                 AddParameter(Command, "@partnerdirector", ObjectSerilizer.ToXML(PartnersOrDirectors))
                 AddParameter(Command, "@type", Type)
-                AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
                 AddParameter(Command, "@jobs", JobUser.ToXml(Jobs))
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", img.GetBuffer)
@@ -70,7 +69,7 @@ Namespace Database
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New Client(ID, ClientName, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, Aadhar, Description, TypeOfEngagement, TIN, CIN, PartnersOrDirectors, Type, Credentials, Jobs, Status, Photo, GST, FileNo)
+                    R = New Client(ID, ClientName, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, Aadhar, Description, TypeOfEngagement, TIN, CIN, PartnersOrDirectors, Type, Jobs, Status, Photo, GST, FileNo)
                 Else
                     DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting client.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
@@ -80,12 +79,12 @@ Namespace Database
         End Function
 
         Function Update(ByVal ID As Integer, ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Credentials As List(Of Credential), ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
             Dim R As Boolean = False
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
 
-            Dim CommandString As String = "UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[District]=@district,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[TIN]=@tin,[CIN]=@cin,[PartnerDirector]=@partnerdirector,[Type]=@type,[Credentials]=@credentials,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo,[GST]=@gst,[FileNo]=@fileno WHERE [ID]=@id;"
+            Dim CommandString As String = "UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[District]=@district,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[TIN]=@tin,[CIN]=@cin,[PartnerDirector]=@partnerdirector,[Type]=@type,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo,[GST]=@gst,[FileNo]=@fileno WHERE [ID]=@id;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -112,7 +111,6 @@ Namespace Database
                 AddParameter(Command, "@cin", CIN)
                 AddParameter(Command, "@partnerdirector", ObjectSerilizer.ToXML(PartnersOrDirectors))
                 AddParameter(Command, "@type", Type)
-                AddParameter(Command, "@credentials", ObjectSerilizer.ToXML(Credentials))
                 AddParameter(Command, "@jobs", JobUser.ToXml(Jobs))
                 AddParameter(Command, "@status", Status)
                 AddParameter(Command, "@photo", img.GetBuffer)
@@ -239,13 +237,12 @@ Namespace Database
             Dim CIN As String = Reader.Item("CIN").ToString.Trim
             Dim Partners As List(Of Partner) = ObjectSerilizer.FromXML(Of List(Of Partner))(Reader.Item("PartnerDirector").ToString.Trim)
             Dim Type As String = Reader.Item("Type").ToString.Trim
-            Dim Credentials As List(Of Credential) = ObjectSerilizer.FromXML(Of List(Of Credential))(Reader.Item("Credentials").ToString.Trim)
             Dim JobUsers As List(Of JobUser) = JobUser.FromXML(Reader.Item("Jobs").ToString.Trim, Jobs, Users)
             Dim Status As String = Reader.Item("Status").ToString.Trim
             Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
             Dim GST As String = Reader.Item("GST").ToString.Trim
             Dim FileNo As String = Reader.Item("FileNo").ToString.Trim
-            Return New Client(ID, Name, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, Credentials, JobUsers, Status, Photo, GST, FileNo)
+            Return New Client(ID, Name, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, JobUsers, Status, Photo, GST, FileNo)
         End Function
 
         Private Function ReadMinimal(ByVal Reader As SqlDataReader) As ClientMinimal
