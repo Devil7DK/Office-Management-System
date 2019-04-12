@@ -1392,7 +1392,7 @@ Public Class frm_Main
 
     Private Sub Home_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
         If Not Loader_Home.IsBusy Then
-            Loader_Home.RunWorkerAsync()
+            If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
             Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
             RemoveHandler Dependency.OnChange, AddressOf Home_OnChange
         End If
@@ -1400,7 +1400,7 @@ Public Class frm_Main
 
     Private Sub AutoForwards_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
         If Not Loader_AutoForwards.IsBusy Then
-            Loader_AutoForwards.RunWorkerAsync()
+            If Not Loader_AutoForwards.IsBusy Then Loader_AutoForwards.RunWorkerAsync()
             Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
             RemoveHandler Dependency.OnChange, AddressOf AutoForwards_OnChange
         End If
