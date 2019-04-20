@@ -496,7 +496,7 @@ Public Class frm_Main
                   End Sub)
 
         Try
-            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Jobs, Users)
+            Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Jobs, Users, AddressOf Workbook_OnChange)
             Me.Invoke(Sub()
                           gc_WorkBook.DataSource = Workbook
                       End Sub)
@@ -924,7 +924,7 @@ Public Class frm_Main
                       ProgressPanel_Billing.Description = "Loading Billing..."
                   End Sub)
         Try
-            Dim Billing As List(Of Objects.WorkbookItem) = Database.Workbook.GetCompleted(True, Jobs, Users)
+            Dim Billing As List(Of Objects.WorkbookItem) = Database.Workbook.GetCompleted(True, Jobs, Users, AddressOf Billing_OnChange)
             Me.Invoke(Sub()
                           gc_Billing.DataSource = Billing
                       End Sub)
@@ -1117,7 +1117,7 @@ Public Class frm_Main
                       ProgressPanel_Pending.Description = "Loading Pending Bills..."
                   End Sub)
         Try
-            Dim Pending As List(Of Objects.WorkbookItem) = Database.Workbook.GetPending(True, Jobs, Users)
+            Dim Pending As List(Of Objects.WorkbookItem) = Database.Workbook.GetPending(True, Jobs, Users, AddressOf Pending_OnChange)
             Me.Invoke(Sub()
                           gc_Pending.DataSource = Pending
                       End Sub)
@@ -1413,6 +1413,30 @@ Public Class frm_Main
             Loader_Transferred.RunWorkerAsync()
             Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
             RemoveHandler Dependency.OnChange, AddressOf Transferred_OnChange
+        End If
+    End Sub
+
+    Private Sub Workbook_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
+        If Not Loader_Workbook.IsBusy Then
+            Loader_Workbook.RunWorkerAsync()
+            Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
+            RemoveHandler Dependency.OnChange, AddressOf Workbook_OnChange
+        End If
+    End Sub
+
+    Private Sub Billing_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
+        If Not Loader_Billing.IsBusy Then
+            Loader_Billing.RunWorkerAsync()
+            Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
+            RemoveHandler Dependency.OnChange, AddressOf Billing_OnChange
+        End If
+    End Sub
+
+    Private Sub Pending_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)
+        If Not Loader_Pending.IsBusy Then
+            Loader_Pending.RunWorkerAsync()
+            Dim Dependency As SqlDependency = DirectCast(sender, SqlDependency)
+            RemoveHandler Dependency.OnChange, AddressOf Pending_OnChange
         End If
     End Sub
 
