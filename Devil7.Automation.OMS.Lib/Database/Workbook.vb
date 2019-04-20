@@ -304,10 +304,10 @@ Namespace Database
 #End Region
 
 #Region "Load Functions - Multi"
-        Function GetIncomplete(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+        Function GetIncomplete(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]<3;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE [Status]<3;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -316,6 +316,10 @@ Namespace Database
             Users.Sort(New Comparers.CompareByID)
 
             Using Command As New SqlCommand(CommandString, Connection)
+                Dim Dependency As SqlDependency = New SqlDependency(Command)
+                AddHandler Dependency.OnChange, Sub(ByVal sender As System.Object, ByVal e As System.Data.SqlClient.SqlNotificationEventArgs)
+                                                    Listener(sender, e)
+                                                End Sub
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
                         R.Add(Read(Reader, Jobs, Users))
@@ -326,10 +330,10 @@ Namespace Database
             Return R
         End Function
 
-        Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+        Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=0;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE [Status]=3 AND [Billed]=0;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -338,6 +342,10 @@ Namespace Database
             Users.Sort(New Comparers.CompareByID)
 
             Using Command As New SqlCommand(CommandString, Connection)
+                Dim Dependency As SqlDependency = New SqlDependency(Command)
+                AddHandler Dependency.OnChange, Sub(ByVal sender As System.Object, ByVal e As System.Data.SqlClient.SqlNotificationEventArgs)
+                                                    Listener(sender, e)
+                                                End Sub
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
                         R.Add(Read(Reader, Jobs, Users))
@@ -348,10 +356,10 @@ Namespace Database
             Return R
         End Function
 
-        Function GetPending(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User)) As IEnumerable(Of WorkbookItem)
+        Function GetPending(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [Status]=3 AND [Billed]=2;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE [Status]=3 AND [Billed]=2;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -360,6 +368,10 @@ Namespace Database
             Users.Sort(New Comparers.CompareByID)
 
             Using Command As New SqlCommand(CommandString, Connection)
+                Dim Dependency As SqlDependency = New SqlDependency(Command)
+                AddHandler Dependency.OnChange, Sub(ByVal sender As System.Object, ByVal e As System.Data.SqlClient.SqlNotificationEventArgs)
+                                                    Listener(sender, e)
+                                                End Sub
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
                         R.Add(Read(Reader, Jobs, Users))
