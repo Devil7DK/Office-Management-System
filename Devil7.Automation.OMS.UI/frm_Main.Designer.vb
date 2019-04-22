@@ -299,7 +299,7 @@ Partial Class frm_Main
         'TVC_Client_District
         '
         Me.TVC_Client_District.Caption = "District"
-        Me.TVC_Client_District.FieldName = "District"
+        Me.TVC_Client_District.FieldName = "City"
         Me.TVC_Client_District.Name = "TVC_Client_District"
         Me.TVC_Client_District.Visible = True
         Me.TVC_Client_District.VisibleIndex = 7
@@ -1064,10 +1064,10 @@ Partial Class frm_Main
         'np_Clients
         '
         Me.np_Clients.Caption = "Clients"
-        Me.np_Clients.Controls.Add(Me.ProgressPanel_Clients)
         Me.np_Clients.Controls.Add(Me.gc_Clients)
+        Me.np_Clients.Controls.Add(Me.ProgressPanel_Clients)
         Me.np_Clients.Name = "np_Clients"
-        Me.np_Clients.Size = New System.Drawing.Size(1360, 275)
+        Me.np_Clients.Size = New System.Drawing.Size(1255, 229)
         '
         'ProgressPanel_Clients
         '
@@ -1078,7 +1078,7 @@ Partial Class frm_Main
         Me.ProgressPanel_Clients.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ProgressPanel_Clients.Location = New System.Drawing.Point(0, 0)
         Me.ProgressPanel_Clients.Name = "ProgressPanel_Clients"
-        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(1360, 275)
+        Me.ProgressPanel_Clients.Size = New System.Drawing.Size(1255, 229)
         Me.ProgressPanel_Clients.TabIndex = 4
         '
         'gc_Clients
@@ -1088,7 +1088,7 @@ Partial Class frm_Main
         Me.gc_Clients.MainView = Me.tv_Clients
         Me.gc_Clients.MenuManager = Me.RibbonControl
         Me.gc_Clients.Name = "gc_Clients"
-        Me.gc_Clients.Size = New System.Drawing.Size(1360, 275)
+        Me.gc_Clients.Size = New System.Drawing.Size(1255, 229)
         Me.gc_Clients.TabIndex = 1
         Me.gc_Clients.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.tv_Clients, Me.gv_Clients})
         '
