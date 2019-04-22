@@ -38,14 +38,6 @@ Public Class frm_Main
     Dim RAMUsed As ULong
     Dim Loaded As Boolean = False
 
-    Dim LoginInstance As frm_Login
-
-    Sub New(User As Objects.User, LoginInstance As frm_Login)
-        InitializeComponent()
-        Me.User = User
-        Me.LoginInstance = LoginInstance
-    End Sub
-
 #Region "Functions"
     Sub HideOptions()
         rpg_Clients.Visible = False
@@ -716,7 +708,6 @@ Public Class frm_Main
     End Sub
 
     Private Sub frm_Main_Shown(sender As Object, e As System.EventArgs) Handles Me.Shown
-        LoginInstance.BeginInvoke(Sub() LoginInstance.Close())
         Loaded = True
         If User.UserType = Enums.UserType.System Then
             XtraMessageBox.SmartTextWrap = True
@@ -828,6 +819,12 @@ Public Class frm_Main
     End Sub
 
     Private Sub frm_Main_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Dim D As New frm_Login
+        If D.ShowDialog = DialogResult.OK Then
+            Me.User = D.User
+        Else
+            Close()
+        End If
         Text = String.Format("{0} [{1}]", My.Application.Info.ProductName, User.Username)
         MainPane.SelectedPageIndex = 0
         cmb_HomeView.EditValue = My.Settings.ViewHome
@@ -1386,10 +1383,6 @@ Public Class frm_Main
 
     Private Sub btn_RefreshAutoForwards_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_RefreshAutoForwards.ItemClick
         If Not Loader_AutoForwards.IsBusy Then Loader_AutoForwards.RunWorkerAsync()
-    End Sub
-
-    Private Sub frm_Main_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        Application.Exit()
     End Sub
 
     Private Sub Home_OnChange(ByVal sender As Object, ByVal e As SqlNotificationEventArgs)

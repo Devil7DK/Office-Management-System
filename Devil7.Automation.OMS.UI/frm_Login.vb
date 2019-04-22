@@ -26,10 +26,18 @@ Imports Devil7.Automation.OMS.Lib.Objects
 
 Public Class frm_Login
 
-    Function IsAdmin() As Boolean
+#Region "Properties"
+    Property User As User
+#End Region
+
+#Region "Functions"
+    Private Function IsAdmin() As Boolean
         Return (New WindowsPrincipal(WindowsIdentity.GetCurrent())).IsInRole(WindowsBuiltInRole.Administrator)
     End Function
+#End Region
 
+
+#Region "Form Events"
     Private Sub frm_Login_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         XtraMessageBox.SmartTextWrap = True
         Devil7.Automation.OMS.Lib.Utils.SettingsManager.LoadSettings()
@@ -46,7 +54,9 @@ Public Class frm_Login
             XtraMessageBox.Show("Error on loading usernames." & vbNewLine & vbNewLine & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
+#End Region
 
+#Region "Button Events"
     Private Sub btn_ServerSettings_Click(sender As System.Object, e As System.EventArgs) Handles btn_ServerSettings.Click
         Dim D As New [Lib].Dialogs.frm_ServerSettings
         D.ShowDialog()
@@ -59,15 +69,18 @@ Public Class frm_Login
             My.Settings.Save()
         End If
     End Sub
+#End Region
 
+
+#Region "Other Events"
     Private Sub LoginWorker_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles LoginWorker.DoWork
         Me.Invoke(Sub()
                       ProgressPanel.Visible = True
                   End Sub)
         Dim User As User = Users.Login(txt_Username.SelectedItem.ToString, txt_Password.Text)
         If User IsNot Nothing Then
-            Dim D As New frm_Main(User, Me)
-            D.Show()
+            Me.User = User
+            Me.DialogResult = DialogResult.OK
         Else
             Me.Invoke(Sub()
                           ProgressPanel.Visible = False
@@ -80,5 +93,6 @@ Public Class frm_Login
             btn_Login.PerformClick()
         End If
     End Sub
+#End Region
 
 End Class
