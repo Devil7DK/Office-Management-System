@@ -63,7 +63,7 @@ Public Class data_Bill
             Dim Address As String = ""
 
             If Sender IsNot Nothing Then
-                Address = String.Format("{1},{0}{2},{0}{3} - {4}{0}{5} ({6})", vbNewLine, Receiver.AddressLine1.Trim.TrimEnd(","), Receiver.AddressLine2.Trim.TrimEnd(","), Receiver.District.Trim.TrimEnd(","), Receiver.PinCode, Receiver.State, Receiver.StateCode)
+                Address = String.Format("{1},{0}{2},{0}{3} - {4}{0}{5} ({6})", vbNewLine, Receiver.AddressLine1.Trim.TrimEnd(","), Receiver.AddressLine2.Trim.TrimEnd(","), Receiver.City.Trim.TrimEnd(","), Receiver.PinCode, Receiver.State, Receiver.StateCode)
             End If
 
             Return Address
