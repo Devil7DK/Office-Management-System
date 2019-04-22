@@ -157,6 +157,25 @@
         bGFjayIgLz4NCiAgPC9nPg0KPC9zdmc+Cw==
 </value>
   </data>
+  <data name="BarCheckItem1.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v18.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjE4LjIsIFZlcnNpb249MTguMi40
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAL4CAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iTGF5ZXJfMSI+DQogIDxnIGlkPSJTbmFwRW1wdHlUYWJsZVJvd1NlcGFy
+        YXRvcl8xXyI+DQogICAgPHBhdGggZD0iTTAsMTBsNiw0bC02LDQiIGZpbGw9IiMxMTc3RDciIGNsYXNz
+        PSJCbHVlIiAvPg0KICAgIDxwYXRoIGQ9Ik05LDEyaDE4YzAuNSwwLDEtMC41LDEtMVYzYzAtMC41LTAu
+        NS0xLTEtMUg5QzguNSwyLDgsMi41LDgsM3Y4QzgsMTEuNSw4LjUsMTIsOSwxMnogTTEwLDRoMTZ2Nkgx
+        MFY0eiAgICBNMjEuMiwyNkg5Yy0wLjUsMC0xLTAuNS0xLTF2LThjMC0wLjUsMC41LTEsMS0xaDE4YzAu
+        NSwwLDEsMC41LDEsMXYyLjJsLTIsMlYxOEgxMHY2aDkuMkwyMS4yLDI2eiIgZmlsbD0iIzcyNzI3MiIg
+        Y2xhc3M9IkJsYWNrIiAvPg0KICAgIDxwb2x5Z29uIHBvaW50cz0iMzIsMjIgMzAsMjAgMjYsMjQgMjIs
+        MjAgMjAsMjIgMjQsMjYgMjAsMzAgMjIsMzIgMjYsMjggMzAsMzIgMzIsMzAgMjgsMjYgICIgZmlsbD0i
+        I0QxMUMxQyIgY2xhc3M9IlJlZCIgLz4NCiAgPC9nPg0KPC9zdmc+Cw==
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

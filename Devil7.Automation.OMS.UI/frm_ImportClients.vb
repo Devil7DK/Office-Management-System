@@ -7,12 +7,14 @@ Public Class frm_ImportClients
 
 #Region "Variables"
     Dim Users As List(Of Objects.User)
+    Dim ExistingClients As List(Of Objects.Client)
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal Users As List(Of Objects.User))
+    Sub New(ByVal Users As List(Of Objects.User), ByVal Clients As List(Of Objects.Client))
         InitializeComponent()
         Me.Users = Users
+        Me.ExistingClients = Clients
     End Sub
 #End Region
 
@@ -99,13 +101,38 @@ Public Class frm_ImportClients
                                                        End If
                                                        If StateCode = 0 Then StateCode = 33
 
-                                                       R.Add(New Objects.Client(-1, Name, PAN, FatherName, Mobile, "", EMail, DOB, AddressLine1, AddressLine2, District, PINCode, State, StateCode, AadharNo, "", "N/A", New List(Of Objects.Partner), "Individual", New List(Of Objects.JobUser), RPerson, "Active", Res.My.Resources.Client_Default, GSTIN, FileNo))
+                                                       Dim ID As Integer = -1
+                                                       Dim Phone As String = ""
+                                                       Dim Description As String = ""
+                                                       Dim TypeOfEngagement As String = "N/A"
+                                                       Dim Partners As New List(Of Objects.Partner)
+                                                       Dim Type As String = "Individual"
+                                                       Dim Jobs As New List(Of Objects.JobUser)
+                                                       Dim Status As String = "Active"
+                                                       Dim Photo As Image = Res.My.Resources.Client_Default
+                                                       Dim ExistingClient As Objects.Client = ExistingClients.Find(Function(c) c.PAN.ToUpper = PAN.ToUpper)
+                                                       If ExistingClient IsNot Nothing Then
+                                                           ID = ExistingClient.ID
+                                                           Phone = ExistingClient.Phone
+                                                           Description = ExistingClient.Description
+                                                           TypeOfEngagement = ExistingClient.TypeOfEngagement
+                                                           Partners = ExistingClient.Partners
+                                                           Type = ExistingClient.Type
+                                                           Jobs = ExistingClient.Jobs
+                                                           Status = ExistingClient.Status
+                                                           Photo = ExistingClient.Photo
+                                                       End If
+                                                       R.Add(New Objects.Client(ID, Name, PAN, FatherName, Mobile, Phone, EMail, DOB, AddressLine1, AddressLine2, District, PINCode, State, StateCode, AadharNo, Description, TypeOfEngagement, Partners, Type, Jobs, RPerson, Status, Photo, GSTIN, FileNo))
                                                    End If
                                                End If
                                            End If
                                        End While
                                    End Using
                                End Using
+                               Me.Invoke(Sub()
+                                             gc_Clients.DataSource = R
+                                             gc_Clients.RefreshDataSource()
+                                         End Sub)
                            Catch ex As Exception
                                MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error")
                                Return False
@@ -117,12 +144,50 @@ Public Class frm_ImportClients
                    CloseProgressPanel()
                End Sub)
     End Function
+
+    Private Async Function ExportClients() As Task
+        Invoke(Sub()
+                   btn_ExportClients.Enabled = False
+                   ShowProgressPanel()
+               End Sub)
+        Await Task.Run(Sub()
+                           For Each Client As Objects.Client In gc_Clients.DataSource
+                               If Client.ID = -1 Then
+                                   Dim NewClient As Objects.Client = Database.Clients.AddNew(Client.Photo, Client.PAN, Client.Name, Client.FatherName, Client.Mobile, Client.Phone, Client.Email,
+                                                       Client.DOB, Client.AddressLine1, Client.AddressLine2, Client.City, Client.PinCode, Client.State, Client.StateCode, Client.AadharNo, Client.Description,
+                                                       Client.TypeOfEngagement, Client.Partners, Client.Type, Client.Jobs, Client.Status, Client.GST, Client.FileNo, Client.ResponsiblePerson)
+                                   If NewClient IsNot Nothing Then
+                                       Client = NewClient
+                                   End If
+                               Else
+                                   If Not btn_SkipExisting.Checked Then
+                                       Database.Clients.Update(Client.ID, Client.Photo, Client.PAN, Client.Name, Client.FatherName, Client.Mobile, Client.Phone, Client.Email,
+                                                           Client.DOB, Client.AddressLine1, Client.AddressLine2, Client.City, Client.PinCode, Client.State, Client.StateCode, Client.AadharNo, Client.Description,
+                                                           Client.TypeOfEngagement, Client.Partners, Client.Type, Client.Jobs, Client.Status, Client.GST, Client.FileNo, Client.ResponsiblePerson)
+                                   End If
+                               End If
+                           Next
+                       End Sub)
+        Invoke(Sub()
+                   gc_Clients.RefreshDataSource()
+                   btn_ExportClients.Enabled = True
+                   CloseProgressPanel()
+               End Sub)
+    End Function
 #End Region
 
 #Region "Button Events"
     Private Async Sub btn_ImportExcel_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_ImportExcel.ItemClick
         If dlg_OpenExcel.ShowDialog = DialogResult.OK Then
             Await LoadClients(dlg_OpenExcel.FileName)
+        End If
+    End Sub
+
+    Private Async Sub btn_ExportClients_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_ExportClients.ItemClick
+        If gc_Clients.DataSource IsNot Nothing AndAlso gc_Clients.DataSource.Count > 0 Then
+            If DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to export all of these clients to the database...? This process cannot be reversed!", "Sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+                Await ExportClients()
+            End If
         End If
     End Sub
 #End Region

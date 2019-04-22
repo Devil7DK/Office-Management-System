@@ -36,6 +36,7 @@ Partial Class frm_ImportClients
         Me.gc_Clients = New DevExpress.XtraGrid.GridControl()
         Me.gv_Clients = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.dlg_OpenExcel = New System.Windows.Forms.OpenFileDialog()
+        Me.btn_SkipExisting = New DevExpress.XtraBars.BarCheckItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_Clients, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Clients, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,9 +50,9 @@ Partial Class frm_ImportClients
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_ImportExcel, Me.btn_ExportClients})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.btn_ImportExcel, Me.btn_ExportClients, Me.btn_SkipExisting})
         Me.BarManager1.MainMenu = Me.Bar2
-        Me.BarManager1.MaxItemId = 4
+        Me.BarManager1.MaxItemId = 5
         Me.BarManager1.StatusBar = Me.Bar3
         '
         'Bar2
@@ -60,7 +61,7 @@ Partial Class frm_ImportClients
         Me.Bar2.DockCol = 0
         Me.Bar2.DockRow = 0
         Me.Bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ImportExcel), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ExportClients)})
+        Me.Bar2.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ImportExcel), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_ExportClients), New DevExpress.XtraBars.LinkPersistInfo(Me.btn_SkipExisting, True)})
         Me.Bar2.OptionsBar.AllowQuickCustomization = False
         Me.Bar2.OptionsBar.DrawDragBorder = False
         Me.Bar2.OptionsBar.MultiLine = True
@@ -147,6 +148,16 @@ Partial Class frm_ImportClients
         '
         Me.dlg_OpenExcel.Filter = "Excel Workbooks|*.xls;*.xlsx"
         '
+        'btn_SkipExisting
+        '
+        Me.btn_SkipExisting.BindableChecked = True
+        Me.btn_SkipExisting.Caption = "Skip Existing"
+        Me.btn_SkipExisting.Checked = True
+        Me.btn_SkipExisting.Id = 4
+        Me.btn_SkipExisting.ImageOptions.SvgImage = CType(resources.GetObject("BarCheckItem1.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_SkipExisting.Name = "btn_SkipExisting"
+        Me.btn_SkipExisting.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        '
         'frm_ImportClients
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,4 +193,5 @@ Partial Class frm_ImportClients
     Friend WithEvents btn_ImportExcel As DevExpress.XtraBars.BarLargeButtonItem
     Friend WithEvents btn_ExportClients As DevExpress.XtraBars.BarLargeButtonItem
     Friend WithEvents dlg_OpenExcel As OpenFileDialog
+    Friend WithEvents btn_SkipExisting As DevExpress.XtraBars.BarCheckItem
 End Class

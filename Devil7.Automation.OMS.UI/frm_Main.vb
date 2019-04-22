@@ -1434,7 +1434,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_Clients_Import_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Clients_Import.ItemClick
-        Dim D As New frm_ImportClients(Users)
+        Dim D As New frm_ImportClients(Users, Clients)
         D.ShowDialog()
     End Sub
 End Class
