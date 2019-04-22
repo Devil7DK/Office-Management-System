@@ -28,14 +28,14 @@ Namespace Database
     Public Module Clients
 
 #Region "Update Functions"
-        Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                     ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+        Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
+                      ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String, ByVal RPerson As User)
             Dim R As Client = Nothing
 
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
 
-            Dim CommandString As String = "INSERT INTO Clients ([PAN],[ClientName],[FatherName],[Mobile],[Phone],[Email],[DOB],[Address1],[Address2],[District],[Pincode],[State],[StateCode],[AadharNo],[Description],[TypeOfEngagement],[TIN],[CIN],[PartnerDirector],[Type],[Jobs],[Status],[Photo],[GST],[FileNo]) VALUES(@pan,@clientname,@fathername,@mobile,@phone,@email,@dob,@address1,@address2,@district,@pincode,@state,@statecode,@aadharno,@description,@typeofengagement,@tin,@cin,@partnerdirector,@type,@jobs,@status,@photo,@gst,@fileno);SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Clients ([PAN],[ClientName],[FatherName],[Mobile],[Phone],[Email],[DOB],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[AadharNo],[Description],[TypeOfEngagement],[PartnerDirector],[Type],[Jobs],[Status],[Photo],[GST],[FileNo],[RPerson]) VALUES(@pan,@clientname,@fathername,@mobile,@phone,@email,@dob,@address1,@address2,@city,@pincode,@state,@statecode,@aadharno,@description,@typeofengagement,@partnerdirector,@type,@jobs,@status,@photo,@gst,@fileno,@rperson);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -50,15 +50,13 @@ Namespace Database
                 AddParameter(Command, "@dob", Date.Parse(DOB))
                 AddParameter(Command, "@address1", AddressLine1)
                 AddParameter(Command, "@address2", AddressLine2)
-                AddParameter(Command, "@district", District)
+                AddParameter(Command, "@city", City)
                 AddParameter(Command, "@pincode", PinCode)
                 AddParameter(Command, "@state", State)
                 AddParameter(Command, "@statecode", StateCode)
                 AddParameter(Command, "@aadharno", Aadhar)
                 AddParameter(Command, "@description", Description)
                 AddParameter(Command, "@typeofengagement", TypeOfEngagement)
-                AddParameter(Command, "@tin", TIN)
-                AddParameter(Command, "@cin", CIN)
                 AddParameter(Command, "@partnerdirector", ObjectSerilizer.ToXML(PartnersOrDirectors))
                 AddParameter(Command, "@type", Type)
                 AddParameter(Command, "@jobs", JobUser.ToXml(Jobs))
@@ -66,10 +64,11 @@ Namespace Database
                 AddParameter(Command, "@photo", img.GetBuffer)
                 AddParameter(Command, "@gst", GST)
                 AddParameter(Command, "@fileno", FileNo)
+                AddParameter(Command, "@rperson", RPerson.ID)
 
                 Dim ID As Integer = Command.ExecuteScalar
                 If ID > 0 Then
-                    R = New Client(ID, ClientName, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, Aadhar, Description, TypeOfEngagement, TIN, CIN, PartnersOrDirectors, Type, Jobs, Status, Photo, GST, FileNo)
+                    R = New Client(ID, ClientName, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, City, PinCode, State, StateCode, Aadhar, Description, TypeOfEngagement, PartnersOrDirectors, Type, Jobs, RPerson, Status, Photo, GST, FileNo)
                 Else
                     DevExpress.XtraEditors.XtraMessageBox.Show("Unknown error while inserting client.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
@@ -78,13 +77,13 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
-                    ByVal TIN As String, ByVal CIN As String, ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String)
+        Function Update(ByVal ID As Integer, ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
+                     ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String, ByVal RPerson As User)
             Dim R As Boolean = False
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
 
-            Dim CommandString As String = "UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[District]=@district,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[TIN]=@tin,[CIN]=@cin,[PartnerDirector]=@partnerdirector,[Type]=@type,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo,[GST]=@gst,[FileNo]=@fileno WHERE [ID]=@id;"
+            Dim CommandString As String = "UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[City]=@City,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[PartnerDirector]=@partnerdirector,[Type]=@type,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo,[GST]=@gst,[FileNo]=@fileno,[RPerson]=@rperson WHERE [ID]=@id;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -100,15 +99,13 @@ Namespace Database
                 AddParameter(Command, "@dob", DOB)
                 AddParameter(Command, "@address1", AddressLine1)
                 AddParameter(Command, "@address2", AddressLine2)
-                AddParameter(Command, "@district", District)
+                AddParameter(Command, "@city", City)
                 AddParameter(Command, "@pincode", PinCode)
                 AddParameter(Command, "@state", State)
                 AddParameter(Command, "@statecode", StateCode)
                 AddParameter(Command, "@aadharno", Aadhar)
                 AddParameter(Command, "@description", Description)
                 AddParameter(Command, "@typeofengagement", TypeOfEngagement)
-                AddParameter(Command, "@tin", TIN)
-                AddParameter(Command, "@cin", CIN)
                 AddParameter(Command, "@partnerdirector", ObjectSerilizer.ToXML(PartnersOrDirectors))
                 AddParameter(Command, "@type", Type)
                 AddParameter(Command, "@jobs", JobUser.ToXml(Jobs))
@@ -116,6 +113,7 @@ Namespace Database
                 AddParameter(Command, "@photo", img.GetBuffer)
                 AddParameter(Command, "@gst", GST)
                 AddParameter(Command, "@fileno", FileNo)
+                AddParameter(Command, "@rperson", RPerson.ID)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
                 If Result > 0 Then
@@ -226,15 +224,13 @@ Namespace Database
             Dim DOB As String = Reader.Item("DOB").ToString.Trim
             Dim AddressLine1 As String = Reader.Item("Address1").ToString.Trim
             Dim AddressLine2 As String = Reader.Item("Address2").ToString.Trim
-            Dim District As String = Reader.Item("District").ToString.Trim
+            Dim City As String = Reader.Item("City").ToString.Trim
             Dim PinCode As String = Reader.Item("Pincode").ToString.Trim
             Dim State As String = Reader.Item("State").ToString.Trim
             Dim StateCode As String = Reader.Item("StateCode").ToString.Trim
             Dim AadharNo As String = Reader.Item("AadharNo").ToString.Trim
             Dim Description As String = Reader.Item("Description").ToString.Trim
             Dim TypeOfEngagement As String = Reader.Item("TypeOfEngagement").ToString.Trim
-            Dim TIN As String = Reader.Item("TIN").ToString.Trim
-            Dim CIN As String = Reader.Item("CIN").ToString.Trim
             Dim Partners As List(Of Partner) = ObjectSerilizer.FromXML(Of List(Of Partner))(Reader.Item("PartnerDirector").ToString.Trim)
             Dim Type As String = Reader.Item("Type").ToString.Trim
             Dim JobUsers As List(Of JobUser) = JobUser.FromXML(Reader.Item("Jobs").ToString.Trim, Jobs, Users)
@@ -242,7 +238,8 @@ Namespace Database
             Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
             Dim GST As String = Reader.Item("GST").ToString.Trim
             Dim FileNo As String = Reader.Item("FileNo").ToString.Trim
-            Return New Client(ID, Name, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, District, PinCode, State, StateCode, AadharNo, Description, TypeOfEngagement, TIN, CIN, Partners, Type, JobUsers, Status, Photo, GST, FileNo)
+            Dim RPerson As User = Users.Find(Function(C) C.ID = CInt(Reader.Item("RPerson")))
+            Return New Client(ID, Name, PAN, FatherName, Mobile, Phone, Email, DOB, AddressLine1, AddressLine2, City, PinCode, State, StateCode, AadharNo, Description, TypeOfEngagement, Partners, Type, JobUsers, RPerson, Status, Photo, GST, FileNo)
         End Function
 
         Private Function ReadMinimal(ByVal Reader As SqlDataReader) As ClientMinimal

@@ -28,6 +28,7 @@ Namespace Objects
                 Return ID_
             End Get
         End Property
+
         Property Photo As Drawing.Image = Nothing
         Property PAN As String = ""
         Property Name As String = ""
@@ -37,14 +38,12 @@ Namespace Objects
         Property Email As String = ""
         Property AddressLine1 As String = ""
         Property AddressLine2 As String = ""
-        Property District As String = ""
+        Property City As String = ""
         Property PinCode As String = ""
         Property State As String = ""
         Property StateCode As Integer = 0
         Property DOB As Date
         Property AadharNo As String = ""
-        Property TIN As String = ""
-        Property CIN As String = ""
         Property GST As String = ""
         Property FileNo As String = ""
         Property Type As String = ""
@@ -53,20 +52,20 @@ Namespace Objects
         Property Status As String = ""
         Property Partners As List(Of Partner)
         Property Jobs As List(Of JobUser)
+        Property ResponsiblePerson As User
 
         Sub New(ByVal ID As Integer)
             Me.ID_ = ID
         End Sub
 
-        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal District As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal AadharNo As String, ByVal Description As String, ByVal TypeOfEngagement As String, ByVal TIN As String, ByVal CIN As String, ByVal Partners As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal Photo As Drawing.Image, ByVal GST As String, ByVal FileNo As String)
+        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal AadharNo As String, ByVal Description As String, ByVal TypeOfEngagement As String, ByVal Partners As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal ResponsiblePerson As User, ByVal Status As String, ByVal Photo As Drawing.Image, ByVal GST As String, ByVal FileNo As String)
             Me.ID_ = ID
             Me.Name = Name
             Me.AadharNo = AadharNo
             Me.AddressLine1 = AddressLine1
             Me.AddressLine2 = AddressLine2
-            Me.CIN = CIN
+            Me.City = City
             Me.Description = Description
-            Me.District = District
             Me.DOB = Date.Parse(DOB)
             Me.Email = Email
             Me.FatherName = FatherName
@@ -80,11 +79,11 @@ Namespace Objects
             Me.State = State
             Me.StateCode = StateCode
             Me.Status = Status
-            Me.TIN = TIN
             Me.Type = Type
             Me.TypeOfEngagement = TypeOfEngagement
             Me.GST = GST
             Me.FileNo = FileNo
+            Me.ResponsiblePerson = ResponsiblePerson
         End Sub
 
         Public Overrides Function ToString() As String

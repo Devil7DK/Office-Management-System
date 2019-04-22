@@ -50,6 +50,11 @@ Namespace Dialogs
 
 #Region "Form Events"
         Private Sub frm_ClientAddEdit_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+            txt_ResponsiblePerson.Properties.Items.Clear()
+            For Each User As Objects.User In Users
+                txt_ResponsiblePerson.Properties.Items.Add(User)
+            Next
+
             If Mode = Enums.DialogMode.Edit AndAlso ID > -1 Then
                 Dim img As New System.IO.MemoryStream
                 pic_Photo.Image.Save(img, Imaging.ImageFormat.Jpeg)
@@ -62,28 +67,28 @@ Namespace Dialogs
                 txt_DOB.Text = Client.DOB
                 txt_AddressLine1.Text = Client.AddressLine1
                 txt_AddressLine2.Text = Client.AddressLine2
-                txt_District.Text = Client.District
+                txt_City.Text = Client.City
                 txt_Pincode.Text = Client.PinCode
                 txt_State.SelectedItem = Client.State
 
                 txt_Aadhar.Text = Client.AadharNo
                 txt_Description.Text = Client.Description
                 cmb_TypeOfEngagement.SelectedItem = Client.TypeOfEngagement
-                txt_TIN.Text = Client.TIN
-                txt_CIN.Text = Client.CIN
                 cmb_Type.SelectedItem = Client.Type
                 gc_Partners.DataSource = Client.Partners
-                gc_Jobs.datasource = Client.Jobs
+                gc_Jobs.DataSource = Client.Jobs
                 txt_Status.Text = Client.Status
                 pic_Photo.Image = Client.Photo
                 txt_GSTNo.Text = Client.GST
                 txt_FileNo.Text = Client.FileNo
+                txt_ResponsiblePerson.SelectedItem = Client.ResponsiblePerson
             Else
+                txt_ResponsiblePerson.SelectedIndex = 0
                 cmb_TypeOfEngagement.SelectedIndex = 0
                 txt_State.SelectedIndex = 32
 
                 gc_Partners.DataSource = New BindingList(Of Partner)
-                gc_Jobs.Datasource = New BindingList(Of JobUser)
+                gc_Jobs.DataSource = New BindingList(Of JobUser)
             End If
             Utils.Misc.CenterControl(Panel_Photo_Control, Enums.CenterType.Both)
         End Sub
@@ -101,7 +106,7 @@ Namespace Dialogs
         Private Sub btn_Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Done.Click
             If Mode = Enums.DialogMode.Add Then
                 Try
-                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, txt_TIN.Text, txt_CIN.Text, CType(gv_Partners.DataSource, BindingList(Of Partner)).ToList, cmb_Type.SelectedItem.ToString, CType(gc_Jobs.DataSource, BindingList(Of JobUser)).ToList, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim item As Objects.Client = Database.Clients.AddNew(pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem.ToString, CType(gv_Partners.DataSource, BindingList(Of Partner)).ToList, cmb_Type.SelectedItem.ToString, CType(gc_Jobs.DataSource, BindingList(Of JobUser)).ToList, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text, txt_ResponsiblePerson.SelectedItem)
                     If item IsNot Nothing Then
                         Me.Client = item
                         DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -115,7 +120,7 @@ Namespace Dialogs
                 End Try
             ElseIf Mode = Enums.DialogMode.Edit Then
                 Try
-                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_District.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, txt_TIN.Text, txt_CIN.Text, CType(gv_Partners.DataSource, BindingList(Of Partner)).ToList, cmb_Type.SelectedItem.ToString, CType(gc_Jobs.DataSource, BindingList(Of JobUser)).ToList, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text)
+                    Dim result As Boolean = Database.Clients.Update(ID, pic_Photo.Image, txt_PAN.Text, txt_ClientName.Text, txt_FatherName.Text, txt_Mobile.Text, txt_Phone.Text, txt_Email.Text, txt_DOB.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_Pincode.Text, txt_State.SelectedItem, txt_State.SelectedIndex, txt_Aadhar.Text, txt_Description.Text, cmb_TypeOfEngagement.SelectedItem, CType(gv_Partners.DataSource, BindingList(Of Partner)).ToList, cmb_Type.SelectedItem.ToString, CType(gc_Jobs.DataSource, BindingList(Of JobUser)).ToList, txt_Status.Text, txt_GSTNo.Text, txt_FileNo.Text, txt_ResponsiblePerson.SelectedItem)
                     If result Then
                         DevExpress.XtraEditors.XtraMessageBox.Show("Process Completed Successfully", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Me.DialogResult = System.Windows.Forms.DialogResult.OK

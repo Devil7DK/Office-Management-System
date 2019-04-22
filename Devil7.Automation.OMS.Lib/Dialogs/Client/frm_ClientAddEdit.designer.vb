@@ -51,7 +51,7 @@
             Me.Label13 = New DevExpress.XtraEditors.LabelControl()
             Me.Label15 = New DevExpress.XtraEditors.LabelControl()
             Me.Label16 = New DevExpress.XtraEditors.LabelControl()
-            Me.txt_District = New DevExpress.XtraEditors.TextEdit()
+            Me.txt_City = New DevExpress.XtraEditors.TextEdit()
             Me.Label17 = New DevExpress.XtraEditors.LabelControl()
             Me.Label18 = New DevExpress.XtraEditors.LabelControl()
             Me.txt_Mobile = New DevExpress.XtraEditors.TextEdit()
@@ -63,12 +63,6 @@
             Me.Label23 = New DevExpress.XtraEditors.LabelControl()
             Me.Label24 = New DevExpress.XtraEditors.LabelControl()
             Me.txt_Aadhar = New DevExpress.XtraEditors.TextEdit()
-            Me.Label25 = New DevExpress.XtraEditors.LabelControl()
-            Me.Label26 = New DevExpress.XtraEditors.LabelControl()
-            Me.Label27 = New DevExpress.XtraEditors.LabelControl()
-            Me.Label28 = New DevExpress.XtraEditors.LabelControl()
-            Me.txt_TIN = New DevExpress.XtraEditors.TextEdit()
-            Me.txt_CIN = New DevExpress.XtraEditors.TextEdit()
             Me.Label29 = New DevExpress.XtraEditors.LabelControl()
             Me.Label30 = New DevExpress.XtraEditors.LabelControl()
             Me.cmb_TypeOfEngagement = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -109,6 +103,9 @@
             Me.Panel_Control = New System.Windows.Forms.Panel()
             Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
             Me.btn_Done = New DevExpress.XtraEditors.SimpleButton()
+            Me.Label26 = New DevExpress.XtraEditors.LabelControl()
+            Me.Label25 = New DevExpress.XtraEditors.LabelControl()
+            Me.txt_ResponsiblePerson = New DevExpress.XtraEditors.ComboBoxEdit()
             Me.Panel_Main.SuspendLayout()
             Me.Panel_Details.SuspendLayout()
             Me.Panel_Controls_Layout.SuspendLayout()
@@ -121,12 +118,10 @@
             CType(Me.cmb_Type.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_AddressLine1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_AddressLine2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.txt_District.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.txt_City.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Mobile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Email.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Aadhar.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.txt_TIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.txt_CIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.cmb_TypeOfEngagement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,6 +138,7 @@
             Me.Panel_Photo_Control.SuspendLayout()
             CType(Me.pic_Photo, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.Panel_Control.SuspendLayout()
+            CType(Me.txt_ResponsiblePerson.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'OFD_Image
@@ -179,7 +175,7 @@
             Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
             Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
             Me.Panel_Controls_Layout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-            Me.Panel_Controls_Layout.Controls.Add(Me.gc_Jobs, 2, 23)
+            Me.Panel_Controls_Layout.Controls.Add(Me.gc_Jobs, 2, 22)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_Pincode, 2, 8)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label9, 0, 4)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label8, 0, 3)
@@ -201,7 +197,7 @@
             Me.Panel_Controls_Layout.Controls.Add(Me.Label13, 0, 6)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label15, 0, 7)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label16, 1, 7)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_District, 2, 7)
+            Me.Panel_Controls_Layout.Controls.Add(Me.txt_City, 2, 7)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label17, 0, 8)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label18, 1, 8)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_Mobile, 2, 11)
@@ -215,32 +211,28 @@
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_Aadhar, 2, 14)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label25, 0, 15)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label26, 1, 15)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label27, 0, 16)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label28, 1, 16)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_TIN, 2, 15)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_CIN, 2, 16)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label29, 0, 19)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label30, 1, 19)
-            Me.Panel_Controls_Layout.Controls.Add(Me.cmb_TypeOfEngagement, 2, 19)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label31, 0, 20)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label32, 1, 20)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_Description, 2, 20)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label33, 0, 21)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label34, 1, 21)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_Status, 2, 21)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label35, 0, 22)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label36, 0, 23)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label38, 1, 22)
-            Me.Panel_Controls_Layout.Controls.Add(Me.Label39, 1, 23)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label29, 0, 18)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label30, 1, 18)
+            Me.Panel_Controls_Layout.Controls.Add(Me.cmb_TypeOfEngagement, 2, 18)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label31, 0, 19)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label32, 1, 19)
+            Me.Panel_Controls_Layout.Controls.Add(Me.txt_Description, 2, 19)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label33, 0, 20)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label34, 1, 20)
+            Me.Panel_Controls_Layout.Controls.Add(Me.txt_Status, 2, 20)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label35, 0, 21)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label36, 0, 22)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label38, 1, 21)
+            Me.Panel_Controls_Layout.Controls.Add(Me.Label39, 1, 22)
             Me.Panel_Controls_Layout.Controls.Add(Me.Label6, 0, 2)
             Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl1, 1, 2)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_DOB, 2, 4)
-            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl2, 0, 17)
-            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl3, 0, 18)
-            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl4, 1, 17)
-            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl5, 1, 18)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_GSTNo, 2, 17)
-            Me.Panel_Controls_Layout.Controls.Add(Me.txt_FileNo, 2, 18)
+            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl2, 0, 16)
+            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl3, 0, 17)
+            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl4, 1, 16)
+            Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl5, 1, 17)
+            Me.Panel_Controls_Layout.Controls.Add(Me.txt_GSTNo, 2, 16)
+            Me.Panel_Controls_Layout.Controls.Add(Me.txt_FileNo, 2, 17)
             Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl6, 0, 9)
             Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl7, 0, 10)
             Me.Panel_Controls_Layout.Controls.Add(Me.LabelControl8, 0, 12)
@@ -250,11 +242,12 @@
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_State, 2, 9)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_StateCode, 2, 10)
             Me.Panel_Controls_Layout.Controls.Add(Me.txt_Phone, 2, 12)
-            Me.Panel_Controls_Layout.Controls.Add(Me.gc_Partners, 2, 22)
+            Me.Panel_Controls_Layout.Controls.Add(Me.gc_Partners, 2, 21)
+            Me.Panel_Controls_Layout.Controls.Add(Me.txt_ResponsiblePerson, 2, 15)
             Me.Panel_Controls_Layout.Dock = System.Windows.Forms.DockStyle.Top
             Me.Panel_Controls_Layout.Location = New System.Drawing.Point(0, 175)
             Me.Panel_Controls_Layout.Name = "Panel_Controls_Layout"
-            Me.Panel_Controls_Layout.RowCount = 24
+            Me.Panel_Controls_Layout.RowCount = 23
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -276,19 +269,19 @@
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
             Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle())
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+            Me.Panel_Controls_Layout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
             Me.Panel_Controls_Layout.Size = New System.Drawing.Size(639, 813)
             Me.Panel_Controls_Layout.TabIndex = 0
             '
             'gc_Jobs
             '
             Me.gc_Jobs.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gc_Jobs.Location = New System.Drawing.Point(203, 695)
+            Me.gc_Jobs.Location = New System.Drawing.Point(203, 682)
             Me.gc_Jobs.MainView = Me.gv_Jobs
             Me.gc_Jobs.Name = "gc_Jobs"
-            Me.gc_Jobs.Size = New System.Drawing.Size(433, 115)
+            Me.gc_Jobs.Size = New System.Drawing.Size(433, 128)
             Me.gc_Jobs.TabIndex = 81
             Me.gc_Jobs.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Jobs})
             '
@@ -497,7 +490,7 @@
             Me.Label15.Name = "Label15"
             Me.Label15.Size = New System.Drawing.Size(184, 20)
             Me.Label15.TabIndex = 27
-            Me.Label15.Text = "District"
+            Me.Label15.Text = "City"
             '
             'Label16
             '
@@ -508,14 +501,14 @@
             Me.Label16.TabIndex = 28
             Me.Label16.Text = ":"
             '
-            'txt_District
+            'txt_City
             '
-            Me.txt_District.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_District.EnterMoveNextControl = True
-            Me.txt_District.Location = New System.Drawing.Point(203, 185)
-            Me.txt_District.Name = "txt_District"
-            Me.txt_District.Size = New System.Drawing.Size(433, 20)
-            Me.txt_District.TabIndex = 7
+            Me.txt_City.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.txt_City.EnterMoveNextControl = True
+            Me.txt_City.Location = New System.Drawing.Point(203, 185)
+            Me.txt_City.Name = "txt_City"
+            Me.txt_City.Size = New System.Drawing.Size(433, 20)
+            Me.txt_City.TabIndex = 7
             '
             'Label17
             '
@@ -626,70 +619,12 @@
             Me.txt_Aadhar.Size = New System.Drawing.Size(433, 20)
             Me.txt_Aadhar.TabIndex = 13
             '
-            'Label25
-            '
-            Me.Label25.Appearance.Options.UseTextOptions = True
-            Me.Label25.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-            Me.Label25.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label25.Location = New System.Drawing.Point(3, 393)
-            Me.Label25.Name = "Label25"
-            Me.Label25.Size = New System.Drawing.Size(184, 20)
-            Me.Label25.TabIndex = 42
-            Me.Label25.Text = "TIN"
-            '
-            'Label26
-            '
-            Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label26.Location = New System.Drawing.Point(193, 393)
-            Me.Label26.Name = "Label26"
-            Me.Label26.Size = New System.Drawing.Size(4, 20)
-            Me.Label26.TabIndex = 43
-            Me.Label26.Text = ":"
-            '
-            'Label27
-            '
-            Me.Label27.Appearance.Options.UseTextOptions = True
-            Me.Label27.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-            Me.Label27.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label27.Location = New System.Drawing.Point(3, 419)
-            Me.Label27.Name = "Label27"
-            Me.Label27.Size = New System.Drawing.Size(184, 20)
-            Me.Label27.TabIndex = 44
-            Me.Label27.Text = "CIN"
-            '
-            'Label28
-            '
-            Me.Label28.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label28.Location = New System.Drawing.Point(193, 419)
-            Me.Label28.Name = "Label28"
-            Me.Label28.Size = New System.Drawing.Size(4, 20)
-            Me.Label28.TabIndex = 45
-            Me.Label28.Text = ":"
-            '
-            'txt_TIN
-            '
-            Me.txt_TIN.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_TIN.EnterMoveNextControl = True
-            Me.txt_TIN.Location = New System.Drawing.Point(203, 393)
-            Me.txt_TIN.Name = "txt_TIN"
-            Me.txt_TIN.Size = New System.Drawing.Size(433, 20)
-            Me.txt_TIN.TabIndex = 14
-            '
-            'txt_CIN
-            '
-            Me.txt_CIN.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_CIN.EnterMoveNextControl = True
-            Me.txt_CIN.Location = New System.Drawing.Point(203, 419)
-            Me.txt_CIN.Name = "txt_CIN"
-            Me.txt_CIN.Size = New System.Drawing.Size(433, 20)
-            Me.txt_CIN.TabIndex = 15
-            '
             'Label29
             '
             Me.Label29.Appearance.Options.UseTextOptions = True
             Me.Label29.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label29.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label29.Location = New System.Drawing.Point(3, 497)
+            Me.Label29.Location = New System.Drawing.Point(3, 471)
             Me.Label29.Name = "Label29"
             Me.Label29.Size = New System.Drawing.Size(184, 20)
             Me.Label29.TabIndex = 48
@@ -697,7 +632,7 @@
             '
             'Label30
             '
-            Me.Label30.Location = New System.Drawing.Point(193, 497)
+            Me.Label30.Location = New System.Drawing.Point(193, 471)
             Me.Label30.Name = "Label30"
             Me.Label30.Size = New System.Drawing.Size(4, 13)
             Me.Label30.TabIndex = 49
@@ -707,7 +642,7 @@
             '
             Me.cmb_TypeOfEngagement.Dock = System.Windows.Forms.DockStyle.Fill
             Me.cmb_TypeOfEngagement.EnterMoveNextControl = True
-            Me.cmb_TypeOfEngagement.Location = New System.Drawing.Point(203, 497)
+            Me.cmb_TypeOfEngagement.Location = New System.Drawing.Point(203, 471)
             Me.cmb_TypeOfEngagement.Name = "cmb_TypeOfEngagement"
             Me.cmb_TypeOfEngagement.Properties.Items.AddRange(New Object() {"N/A"})
             Me.cmb_TypeOfEngagement.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
@@ -719,7 +654,7 @@
             Me.Label31.Appearance.Options.UseTextOptions = True
             Me.Label31.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label31.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label31.Location = New System.Drawing.Point(3, 523)
+            Me.Label31.Location = New System.Drawing.Point(3, 497)
             Me.Label31.Name = "Label31"
             Me.Label31.Size = New System.Drawing.Size(184, 20)
             Me.Label31.TabIndex = 51
@@ -728,7 +663,7 @@
             'Label32
             '
             Me.Label32.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label32.Location = New System.Drawing.Point(193, 523)
+            Me.Label32.Location = New System.Drawing.Point(193, 497)
             Me.Label32.Name = "Label32"
             Me.Label32.Size = New System.Drawing.Size(4, 20)
             Me.Label32.TabIndex = 52
@@ -738,7 +673,7 @@
             '
             Me.txt_Description.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Description.EnterMoveNextControl = True
-            Me.txt_Description.Location = New System.Drawing.Point(203, 523)
+            Me.txt_Description.Location = New System.Drawing.Point(203, 497)
             Me.txt_Description.Name = "txt_Description"
             Me.txt_Description.Size = New System.Drawing.Size(433, 20)
             Me.txt_Description.TabIndex = 19
@@ -748,7 +683,7 @@
             Me.Label33.Appearance.Options.UseTextOptions = True
             Me.Label33.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label33.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label33.Location = New System.Drawing.Point(3, 549)
+            Me.Label33.Location = New System.Drawing.Point(3, 523)
             Me.Label33.Name = "Label33"
             Me.Label33.Size = New System.Drawing.Size(184, 20)
             Me.Label33.TabIndex = 54
@@ -757,7 +692,7 @@
             'Label34
             '
             Me.Label34.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label34.Location = New System.Drawing.Point(193, 549)
+            Me.Label34.Location = New System.Drawing.Point(193, 523)
             Me.Label34.Name = "Label34"
             Me.Label34.Size = New System.Drawing.Size(4, 20)
             Me.Label34.TabIndex = 55
@@ -767,7 +702,7 @@
             '
             Me.txt_Status.Dock = System.Windows.Forms.DockStyle.Fill
             Me.txt_Status.EnterMoveNextControl = True
-            Me.txt_Status.Location = New System.Drawing.Point(203, 549)
+            Me.txt_Status.Location = New System.Drawing.Point(203, 523)
             Me.txt_Status.Name = "txt_Status"
             Me.txt_Status.Size = New System.Drawing.Size(433, 20)
             Me.txt_Status.TabIndex = 20
@@ -778,9 +713,9 @@
             Me.Label35.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label35.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label35.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label35.Location = New System.Drawing.Point(3, 575)
+            Me.Label35.Location = New System.Drawing.Point(3, 549)
             Me.Label35.Name = "Label35"
-            Me.Label35.Size = New System.Drawing.Size(184, 114)
+            Me.Label35.Size = New System.Drawing.Size(184, 127)
             Me.Label35.TabIndex = 57
             Me.Label35.Text = "Partners/Directors"
             '
@@ -790,9 +725,9 @@
             Me.Label36.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.Label36.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label36.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label36.Location = New System.Drawing.Point(3, 695)
+            Me.Label36.Location = New System.Drawing.Point(3, 682)
             Me.Label36.Name = "Label36"
-            Me.Label36.Size = New System.Drawing.Size(184, 115)
+            Me.Label36.Size = New System.Drawing.Size(184, 128)
             Me.Label36.TabIndex = 58
             Me.Label36.Text = "Jobs"
             '
@@ -801,9 +736,9 @@
             Me.Label38.Appearance.Options.UseTextOptions = True
             Me.Label38.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label38.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label38.Location = New System.Drawing.Point(193, 575)
+            Me.Label38.Location = New System.Drawing.Point(193, 549)
             Me.Label38.Name = "Label38"
-            Me.Label38.Size = New System.Drawing.Size(4, 114)
+            Me.Label38.Size = New System.Drawing.Size(4, 127)
             Me.Label38.TabIndex = 60
             Me.Label38.Text = ":"
             '
@@ -812,9 +747,9 @@
             Me.Label39.Appearance.Options.UseTextOptions = True
             Me.Label39.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
             Me.Label39.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.Label39.Location = New System.Drawing.Point(193, 695)
+            Me.Label39.Location = New System.Drawing.Point(193, 682)
             Me.Label39.Name = "Label39"
-            Me.Label39.Size = New System.Drawing.Size(4, 115)
+            Me.Label39.Size = New System.Drawing.Size(4, 128)
             Me.Label39.TabIndex = 61
             Me.Label39.Text = ":"
             '
@@ -855,7 +790,7 @@
             Me.LabelControl2.Appearance.Options.UseTextOptions = True
             Me.LabelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl2.Location = New System.Drawing.Point(3, 445)
+            Me.LabelControl2.Location = New System.Drawing.Point(3, 419)
             Me.LabelControl2.Name = "LabelControl2"
             Me.LabelControl2.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl2.TabIndex = 66
@@ -866,7 +801,7 @@
             Me.LabelControl3.Appearance.Options.UseTextOptions = True
             Me.LabelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
             Me.LabelControl3.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl3.Location = New System.Drawing.Point(3, 471)
+            Me.LabelControl3.Location = New System.Drawing.Point(3, 445)
             Me.LabelControl3.Name = "LabelControl3"
             Me.LabelControl3.Size = New System.Drawing.Size(184, 20)
             Me.LabelControl3.TabIndex = 67
@@ -875,7 +810,7 @@
             'LabelControl4
             '
             Me.LabelControl4.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl4.Location = New System.Drawing.Point(193, 445)
+            Me.LabelControl4.Location = New System.Drawing.Point(193, 419)
             Me.LabelControl4.Name = "LabelControl4"
             Me.LabelControl4.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl4.TabIndex = 68
@@ -884,7 +819,7 @@
             'LabelControl5
             '
             Me.LabelControl5.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.LabelControl5.Location = New System.Drawing.Point(193, 471)
+            Me.LabelControl5.Location = New System.Drawing.Point(193, 445)
             Me.LabelControl5.Name = "LabelControl5"
             Me.LabelControl5.Size = New System.Drawing.Size(4, 20)
             Me.LabelControl5.TabIndex = 69
@@ -893,7 +828,7 @@
             'txt_GSTNo
             '
             Me.txt_GSTNo.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_GSTNo.Location = New System.Drawing.Point(203, 445)
+            Me.txt_GSTNo.Location = New System.Drawing.Point(203, 419)
             Me.txt_GSTNo.Name = "txt_GSTNo"
             Me.txt_GSTNo.Properties.Mask.EditMask = "[0-9]{2}[A-Z]{3}[ABCFGHLJPTK][A-Z][0-9]{4}[A-Z][0-9]{1}[Z]{1}[A-Z0-9]{1}"
             Me.txt_GSTNo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx
@@ -903,7 +838,7 @@
             'txt_FileNo
             '
             Me.txt_FileNo.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.txt_FileNo.Location = New System.Drawing.Point(203, 471)
+            Me.txt_FileNo.Location = New System.Drawing.Point(203, 445)
             Me.txt_FileNo.Name = "txt_FileNo"
             Me.txt_FileNo.Size = New System.Drawing.Size(433, 20)
             Me.txt_FileNo.TabIndex = 17
@@ -1002,10 +937,10 @@
             'gc_Partners
             '
             Me.gc_Partners.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.gc_Partners.Location = New System.Drawing.Point(203, 575)
+            Me.gc_Partners.Location = New System.Drawing.Point(203, 549)
             Me.gc_Partners.MainView = Me.gv_Partners
             Me.gc_Partners.Name = "gc_Partners"
-            Me.gc_Partners.Size = New System.Drawing.Size(433, 114)
+            Me.gc_Partners.Size = New System.Drawing.Size(433, 127)
             Me.gc_Partners.TabIndex = 80
             Me.gc_Partners.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gv_Partners})
             '
@@ -1098,6 +1033,36 @@
             Me.btn_Done.TabStop = False
             Me.btn_Done.Text = "Done"
             '
+            'Label26
+            '
+            Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.Label26.Location = New System.Drawing.Point(193, 393)
+            Me.Label26.Name = "Label26"
+            Me.Label26.Size = New System.Drawing.Size(4, 20)
+            Me.Label26.TabIndex = 43
+            Me.Label26.Text = ":"
+            '
+            'Label25
+            '
+            Me.Label25.Appearance.Options.UseTextOptions = True
+            Me.Label25.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+            Me.Label25.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.Label25.Location = New System.Drawing.Point(3, 393)
+            Me.Label25.Name = "Label25"
+            Me.Label25.Size = New System.Drawing.Size(184, 20)
+            Me.Label25.TabIndex = 42
+            Me.Label25.Text = "Responsible Person"
+            '
+            'txt_ResponsiblePerson
+            '
+            Me.txt_ResponsiblePerson.Dock = System.Windows.Forms.DockStyle.Fill
+            Me.txt_ResponsiblePerson.Location = New System.Drawing.Point(203, 393)
+            Me.txt_ResponsiblePerson.Name = "txt_ResponsiblePerson"
+            Me.txt_ResponsiblePerson.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+            Me.txt_ResponsiblePerson.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+            Me.txt_ResponsiblePerson.Size = New System.Drawing.Size(433, 20)
+            Me.txt_ResponsiblePerson.TabIndex = 82
+            '
             'frm_ClientAddEdit
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1122,12 +1087,10 @@
             CType(Me.cmb_Type.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_AddressLine1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_AddressLine2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.txt_District.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.txt_City.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Mobile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Email.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Aadhar.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.txt_TIN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.txt_CIN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.cmb_TypeOfEngagement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Description.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.txt_Status.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1144,6 +1107,7 @@
             Me.Panel_Photo_Control.ResumeLayout(False)
             CType(Me.pic_Photo, System.ComponentModel.ISupportInitialize).EndInit()
             Me.Panel_Control.ResumeLayout(False)
+            CType(Me.txt_ResponsiblePerson.Properties, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -1176,7 +1140,7 @@
         Friend WithEvents Label15 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents Label16 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents txt_Pincode As DevExpress.XtraEditors.TextEdit
-        Friend WithEvents txt_District As DevExpress.XtraEditors.TextEdit
+        Friend WithEvents txt_City As DevExpress.XtraEditors.TextEdit
         Friend WithEvents Label17 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents Label18 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents txt_Mobile As DevExpress.XtraEditors.TextEdit
@@ -1188,12 +1152,6 @@
         Friend WithEvents Label23 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents Label24 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents txt_Aadhar As DevExpress.XtraEditors.TextEdit
-        Friend WithEvents Label25 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents Label26 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents Label27 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents Label28 As DevExpress.XtraEditors.LabelControl
-        Friend WithEvents txt_TIN As DevExpress.XtraEditors.TextEdit
-        Friend WithEvents txt_CIN As DevExpress.XtraEditors.TextEdit
         Friend WithEvents Label29 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents Label30 As DevExpress.XtraEditors.LabelControl
         Friend WithEvents cmb_TypeOfEngagement As DevExpress.XtraEditors.ComboBoxEdit
@@ -1232,5 +1190,8 @@
         Friend WithEvents gv_Jobs As DevExpress.XtraGrid.Views.Grid.GridView
         Friend WithEvents gc_Partners As DevExpress.XtraGrid.GridControl
         Friend WithEvents gv_Partners As DevExpress.XtraGrid.Views.Grid.GridView
+        Friend WithEvents Label25 As DevExpress.XtraEditors.LabelControl
+        Friend WithEvents Label26 As DevExpress.XtraEditors.LabelControl
+        Friend WithEvents txt_ResponsiblePerson As DevExpress.XtraEditors.ComboBoxEdit
     End Class
 End Namespace
