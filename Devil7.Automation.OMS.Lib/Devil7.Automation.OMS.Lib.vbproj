@@ -280,6 +280,7 @@
     <Compile Include="Objects\JobUser.vb" />
     <Compile Include="Objects\Note.vb" />
     <Compile Include="Objects\Partner.vb" />
+    <Compile Include="Objects\Receiver.vb" />
     <Compile Include="Objects\Sender.vb" />
     <Compile Include="Objects\Service.vb" />
     <Compile Include="Objects\WorkbookItem.vb" />
