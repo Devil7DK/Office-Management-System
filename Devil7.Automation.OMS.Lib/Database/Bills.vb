@@ -31,7 +31,7 @@ Namespace Database
 #End Region
 
 #Region "Update Functions"
-        Function AddNew(ByVal SerialNo As String, ByVal [Date] As Date, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Services As List(Of Service), ByVal CloseConnection As Boolean) As Bill
+        Function AddNew(ByVal SerialNo As String, ByVal [Date] As Date, ByVal Sender As Sender, ByVal Receiver As Receiver, ByVal Services As List(Of Service), ByVal CloseConnection As Boolean) As Bill
             Dim R As Bill = Nothing
 
             Dim CommandString As String = String.Format("INSERT INTO {0} ([SerialNo],[Date],[Sender],[Receiver],[Services]) VALUES (@SerialNo,@Date,@Sender,@Receiver,@Services);SELECT SCOPE_IDENTITY();", TableName)
@@ -59,7 +59,7 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal SerialNo As String, ByVal [Date] As Date, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal Services As List(Of Service), ByVal CloseConnection As Boolean) As Boolean
+        Function Update(ByVal ID As Integer, ByVal SerialNo As String, ByVal [Date] As Date, ByVal Sender As Sender, ByVal Receiver As Receiver, ByVal Services As List(Of Service), ByVal CloseConnection As Boolean) As Boolean
             Dim R As Boolean = False
 
             Dim CommandString As String = String.Format("UPDATE {0} SET [SerialNo]=@SerialNo,[Date]=@Date,[Sender]=@Sender,[Receiver]=@Receiver,[Services]=@Services WHERE [ID]=@ID;", TableName)
@@ -119,7 +119,7 @@ Namespace Database
             Dim SerialNo As String = Reader.Item("SerialNo").ToString
             Dim [Date] As String = Reader.Item("Date")
             Dim Sender As Sender = Utils.FromXML(Of Sender)(Reader.Item("Sender").ToString)
-            Dim Receiver As ClientMinimal = Utils.FromXML(Of ClientMinimal)(Reader.Item("Receiver").ToString)
+            Dim Receiver As Receiver = Utils.FromXML(Of Receiver)(Reader.Item("Receiver").ToString)
             Dim Services As List(Of Service) = Utils.FromXML(Of List(Of Service))(Reader.Item("Services").ToString)
             Return New Bill(ID, SerialNo, [Date], Sender, Receiver, Services)
         End Function

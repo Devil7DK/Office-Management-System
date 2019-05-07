@@ -31,7 +31,7 @@ Namespace Database
 #End Region
 
 #Region "Update Functions"
-        Function AddNew(ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As FeesReminder
+        Function AddNew(ByVal Sender As Sender, ByVal Receiver As Receiver, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As FeesReminder
             Dim R As FeesReminder = Nothing
 
             Dim CommandString As String = String.Format("INSERT INTO {0} ([Sender],[Receiver],[OpeningBalance],[Items],[CustomText]) VALUES (@Sender,@Receiver,@OpeningBalance,@Items,@CustomText);SELECT SCOPE_IDENTITY();", TableName)
@@ -59,7 +59,7 @@ Namespace Database
             Return R
         End Function
 
-        Function Update(ByVal ID As Integer, ByVal Sender As Sender, ByVal Receiver As ClientMinimal, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As Boolean
+        Function Update(ByVal ID As Integer, ByVal Sender As Sender, ByVal Receiver As Receiver, ByVal OpeningBalance As Double, ByVal Items As List(Of FeesItem), ByVal CustomText As String, ByVal CloseConnection As Boolean) As Boolean
             Dim R As Boolean = False
 
             Dim CommandString As String = String.Format("UPDATE {0} SET [Sender]=@Sender,[Receiver]=@Receiver,[OpeningBalance]=@OpeningBalance,[Items]=@Items,[CustomText]=@CustomText WHERE [ID]=@ID;", TableName)
@@ -117,7 +117,7 @@ Namespace Database
         Function Read(ByVal Reader As SqlDataReader) As FeesReminder
             Dim ID As Integer = Reader.Item("ID")
             Dim Sender As Sender = Utils.FromXML(Of Sender)(Reader.Item("Sender").ToString)
-            Dim Receiver As ClientMinimal = Utils.FromXML(Of ClientMinimal)(Reader.Item("Receiver").ToString)
+            Dim Receiver As Receiver = Utils.FromXML(Of Receiver)(Reader.Item("Receiver").ToString)
             Dim OpeningBalance As Double = Reader.Item("OpeningBalance")
             Dim Items As List(Of FeesItem) = Utils.FromXML(Of List(Of FeesItem))(Reader.Item("Items").ToString)
             Dim CustomText As String = Reader.Item("CustomText").ToString
