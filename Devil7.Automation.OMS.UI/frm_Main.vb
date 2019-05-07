@@ -722,10 +722,16 @@ Public Class frm_Main
 
     Private Sub UpdateStatus(sender As System.Object, e As EventArgs)
         Try
+            Dim GridView As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            If MainPane.SelectedPage Is np_Home Then
+                GridView = gv_Home
+            ElseIf MainPane.SelectedPage Is np_AutoForwards Then
+                GridView = gv_AutoForwards
+            End If
             Dim s As Enums.WorkStatus = sender.Tag.ToString.Split(":")(0)
             Dim cs As String = sender.Tag.ToString.Split(":")(1)
-            If gv_Home.SelectedRowsCount = 1 Then
-                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+            If GridView IsNot Nothing AndAlso GridView.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = GridView.GetRow(GridView.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStatus(row, cs, s, (row.GetHistory & vbNewLine & "Status updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim, Jobs, Users) Then
                     row.Status = s
                     XtraMessageBox.Show("Successfully updated status of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -741,9 +747,15 @@ Public Class frm_Main
 
     Private Sub UpdatePriority(sender As System.Object, e As EventArgs)
         Try
+            Dim GridView As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            If MainPane.SelectedPage Is np_Home Then
+                GridView = gv_Home
+            ElseIf MainPane.SelectedPage Is np_AutoForwards Then
+                GridView = gv_AutoForwards
+            End If
             Dim s As Enums.Priority = sender.Tag
-            If gv_Home.SelectedRowsCount = 1 Then
-                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+            If GridView IsNot Nothing AndAlso GridView.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = GridView.GetRow(GridView.GetSelectedRows()(0))
                 If Database.Workbook.UpdatePriority(row.ID, s, (row.GetHistory & vbNewLine & "Priority updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.PriorityOfWork = s
                     XtraMessageBox.Show("Successfully updated priority of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -759,8 +771,14 @@ Public Class frm_Main
 
     Private Sub UpdateStep(sender As System.Object, e As EventArgs)
         Try
-            If gv_Home.SelectedRowsCount = 1 Then
-                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+            Dim GridView As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            If MainPane.SelectedPage Is np_Home Then
+                GridView = gv_Home
+            ElseIf MainPane.SelectedPage Is np_AutoForwards Then
+                GridView = gv_AutoForwards
+            End If
+            If GridView IsNot Nothing AndAlso GridView.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = GridView.GetRow(GridView.GetSelectedRows()(0))
                 If Database.Workbook.UpdateStep(row.ID, sender.Caption, (row.GetHistory & vbNewLine & "Step/Stage updated by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     row.CurrentStep = sender.Caption
                     XtraMessageBox.Show("Successfully updated step of selected work.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -776,8 +794,14 @@ Public Class frm_Main
 
     Private Sub UpdateRemarks(sender As System.Object, e As EventArgs)
         Try
-            If gv_Home.SelectedRowsCount = 1 Then
-                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+            Dim GridView As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+            If MainPane.SelectedPage Is np_Home Then
+                GridView = gv_Home
+            ElseIf MainPane.SelectedPage Is np_AutoForwards Then
+                GridView = gv_AutoForwards
+            End If
+            If GridView IsNot Nothing AndAlso GridView.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = GridView.GetRow(GridView.GetSelectedRows()(0))
 
                 Dim i As New InputBox("Update Remarks", "Edit Remarks :", row.Remarks)
                 If i.ShowDialog = DialogResult.OK Then
@@ -796,6 +820,12 @@ Public Class frm_Main
     End Sub
 
     Private Sub AssignTo(sender As System.Object, e As EventArgs)
+        Dim GridView As DevExpress.XtraGrid.Views.Grid.GridView = Nothing
+        If MainPane.SelectedPage Is np_Home Then
+            GridView = gv_Home
+        ElseIf MainPane.SelectedPage Is np_AutoForwards Then
+            GridView = gv_AutoForwards
+        End If
         Dim user As Objects.User = Me.User
         Try
             For Each i As Objects.User In Users
@@ -803,8 +833,8 @@ Public Class frm_Main
                     user = i
                 End If
             Next
-            If gv_Home.SelectedRowsCount = 1 Then
-                Dim row As Objects.WorkbookItem = gv_Home.GetRow(gv_Home.GetSelectedRows()(0))
+            If GridView IsNot Nothing AndAlso GridView.SelectedRowsCount = 1 Then
+                Dim row As Objects.WorkbookItem = GridView.GetRow(GridView.GetSelectedRows()(0))
                 If Database.Workbook.AssignTo(row.ID, user.ID, (row.GetHistory & vbNewLine & "Work transferred from " & row.AssignedTo.Username & " to " & user.Username & " by " & Me.User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                     XtraMessageBox.Show("Successfully assigned selected work to the user " & user.Username & ".", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Not Loader_Home.IsBusy Then Loader_Home.RunWorkerAsync()
