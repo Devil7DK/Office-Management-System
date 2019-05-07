@@ -1,7 +1,7 @@
 ﻿Public Class frm_Cover
 
 #Region "Variables"
-    Dim Receivers As List(Of [Lib].Objects.ClientMinimal)
+    Dim Receivers As List(Of [Lib].Objects.Receiver)
 #End Region
 
 #Region "Properties"
@@ -14,27 +14,28 @@
         End Set
     End Property
 
-    Property Receiver As [Lib].Objects.ClientMinimal
+    Property Receiver As [Lib].Objects.Receiver
         Get
-            Return Receivers.Find(Function(c) c.ID = txt_Receiver.EditValue)
+            Return Receivers.Find(Function(c) c.RID = txt_Receiver.EditValue)
         End Get
-        Set(value As [Lib].Objects.ClientMinimal)
-            txt_Receiver.EditValue = value.ID
+        Set(value As [Lib].Objects.Receiver)
+            txt_Receiver.EditValue = value.RID
         End Set
     End Property
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal Senders As List(Of [Lib].Objects.Sender), ByVal Receivers As List(Of [Lib].Objects.ClientMinimal))
+    Sub New(ByVal Senders As List(Of [Lib].Objects.Sender), ByVal Receivers As List(Of [Lib].Objects.Receiver))
         InitializeComponent()
 
         Me.Receivers = Receivers
 
         txt_Sender.Properties.Items.AddRange(Senders.ToArray)
         txt_Receiver.Properties.DataSource = Receivers
+        SetupReceiverColumns(txt_Receiver)
 
         If Senders.Count > 0 Then txt_Sender.SelectedItem = Senders(0)
-        If Receivers.Count > 0 Then txt_Receiver.EditValue = Receivers(0).ID
+        If Receivers.Count > 0 Then txt_Receiver.EditValue = Receivers(0).RID
     End Sub
 #End Region
 

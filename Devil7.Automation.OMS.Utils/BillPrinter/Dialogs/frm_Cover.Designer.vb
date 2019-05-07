@@ -61,7 +61,7 @@ Partial Class frm_Cover
         Me.txt_Receiver.Name = "txt_Receiver"
         Me.txt_Receiver.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_Receiver.Properties.DisplayMember = "Name"
-        Me.txt_Receiver.Properties.ValueMember = "ID"
+        Me.txt_Receiver.Properties.ValueMember = "RID"
         Me.txt_Receiver.Size = New System.Drawing.Size(316, 20)
         Me.txt_Receiver.TabIndex = 3
         '

@@ -27,7 +27,7 @@ Imports System.ComponentModel
 Public Class frm_Main
 
 #Region "Variables"
-    Dim ReceiversList As New List(Of ClientMinimal)
+    Dim ReceiversList As New List(Of Receiver)
     Dim SendersList As New List(Of Sender)
     Dim JobsList As New List(Of Job)
     Dim UsersList As New List(Of User)
@@ -48,7 +48,7 @@ Public Class frm_Main
         If ProgressOverlayHandle IsNot Nothing Then DevExpress.XtraSplashScreen.SplashScreenManager.CloseOverlayForm(ProgressOverlayHandle)
     End Sub
 
-    Private Function GetFeesReminderReport(ByVal FeesReminder As FeesReminder, Optional ByVal Client As Client = Nothing) As report_FeesReminder
+    Private Function GetFeesReminderReport(ByVal FeesReminder As FeesReminder, Optional ByVal Receiver As Receiver = Nothing) As report_FeesReminder
         Dim Items As New List(Of data_FeesReminder_Item)
         If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
         For Each i As FeesItem In FeesReminder.Items
@@ -62,15 +62,11 @@ Public Class frm_Main
             Items.Add(New data_FeesReminder_Item(i.Date, i.Name, Dr, Cr))
         Next
 
-        If Client Is Nothing Then
-            Client = Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList)
-        End If
-
-        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Client, Items, FeesReminder.CustomText)
+        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Receiver, Items, FeesReminder.CustomText)
         Return New report_FeesReminder(ReportData, My.Computer.Keyboard.CtrlKeyDown)
     End Function
 
-    Private Function GetFeesReminderReportMail(ByVal FeesReminder As FeesReminder, Optional ByVal Client As Client = Nothing) As report_FeesReminder_Mail
+    Private Function GetFeesReminderReportMail(ByVal FeesReminder As FeesReminder, Optional ByVal Receiver As Receiver = Nothing) As report_FeesReminder_Mail
         Dim Items As New List(Of data_FeesReminder_Item)
         If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
         For Each i As FeesItem In FeesReminder.Items
@@ -84,11 +80,7 @@ Public Class frm_Main
             Items.Add(New data_FeesReminder_Item(i.Date, i.Name, Dr, Cr))
         Next
 
-        If Client Is Nothing Then
-            Client = Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList)
-        End If
-
-        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Client, Items, FeesReminder.CustomText)
+        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Receiver, Items, FeesReminder.CustomText)
         Return New report_FeesReminder_Mail(ReportData)
     End Function
 #End Region
@@ -228,7 +220,7 @@ Public Class frm_Main
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
                 Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                 Dim Report As New report_Bill(ReportData, False)
                 Dim Viewer As New frm_ReportViewer(Report)
                 Viewer.ShowDialog()
@@ -256,28 +248,26 @@ Public Class frm_Main
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
                 Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                Dim Client As Client = Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList)
-                Dim ReportData As New data_Bill(Bill, Client, My.Computer.Keyboard.CtrlKeyDown, 18)
+                Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                 Dim Report As New report_Bill(ReportData, True)
 
                 Using MS As New IO.MemoryStream
                     Report.ExportToHtml(MS, HTMLOptions)
                     HTML = System.Text.Encoding.UTF8.GetString(MS.ToArray)
                 End Using
-                ToAddress = Client.Email
+                ToAddress = Bill.Receiver.Email
                 Subject = Bill.Sender.BillHeading.Replace("|", " ")
             End If
         ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
             If gv_FeesReminders.SelectedRowsCount = 1 Then
                 Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
-                Dim Client As Client = Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList)
                 Dim Report As report_FeesReminder_Mail = GetFeesReminderReportMail(FeesReminder)
 
                 Using MS As New IO.MemoryStream
                     Report.ExportToHtml(MS, HTMLOptions)
                     HTML = System.Text.Encoding.UTF8.GetString(MS.ToArray)
                 End Using
-                ToAddress = Client.Email
+                ToAddress = FeesReminder.Receiver.Email
                 Subject = "Fees Reminder"
             End If
         End If
@@ -303,8 +293,7 @@ Public Class frm_Main
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
                 Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                Dim Client As Client = Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList)
-                Dim ReportData As New data_Bill(Bill, Client, My.Computer.Keyboard.CtrlKeyDown, 18)
+                Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                 Dim Report As New report_Bill(ReportData, True)
 
                 FilePath = IO.Path.Combine(TempDir, "Bill.pdf")
@@ -312,13 +301,12 @@ Public Class frm_Main
                 PDFOptions.DocumentOptions.Subject = Bill.Sender.BillHeading.Replace("|", " ")
                 PDFOptions.DocumentOptions.Title = Bill.Sender.BillHeading.Split("|")(0)
                 Report.ExportToPdf(FilePath, PDFOptions)
-                ToAddress = Client.Email
+                ToAddress = Bill.Receiver.Email
                 Subject = Bill.Sender.BillHeading.Replace("|", " ")
             End If
         ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
             If gv_FeesReminders.SelectedRowsCount = 1 Then
                 Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
-                Dim Client As Client = Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList)
                 Dim Report As report_FeesReminder = GetFeesReminderReport(FeesReminder)
 
                 FilePath = IO.Path.Combine(TempDir, "FeesReminder.pdf")
@@ -326,7 +314,7 @@ Public Class frm_Main
                 PDFOptions.DocumentOptions.Subject = FeesReminder.Sender.BillHeading.Replace("|", " ")
                 PDFOptions.DocumentOptions.Title = FeesReminder.Sender.BillHeading.Split("|")(0)
                 Report.ExportToPdf(FilePath, PDFOptions)
-                ToAddress = Client.Email
+                ToAddress = FeesReminder.Receiver.Email
                 Subject = "Fees Reminder"
             End If
         End If
@@ -357,8 +345,7 @@ Public Class frm_Main
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
                 Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                Dim Client As Client = Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList)
-                Dim ReportData As New data_Bill(Bill, Client, My.Computer.Keyboard.CtrlKeyDown, 18)
+                Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                 Dim Report As New report_Bill(ReportData, True)
 
                 FilePath = IO.Path.Combine(TempDir, "Bill.pdf")
@@ -370,13 +357,12 @@ Public Class frm_Main
                     Report.ExportToHtml(MS, HTMLOptions)
                     HTML = System.Text.Encoding.UTF8.GetString(MS.ToArray)
                 End Using
-                ToAddress = Client.Email
+                ToAddress = Bill.Receiver.Email
                 Subject = Bill.Sender.BillHeading.Replace("|", " ")
             End If
         ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
             If gv_FeesReminders.SelectedRowsCount = 1 Then
                 Dim FeesReminder As FeesReminder = gv_FeesReminders.GetRow(gv_FeesReminders.GetSelectedRows(0))
-                Dim Client As Client = Database.Clients.GetClientByID(FeesReminder.Receiver.ID, JobsList, UsersList)
                 Dim Report_HTML As report_FeesReminder_Mail = GetFeesReminderReportMail(FeesReminder)
                 Dim Report_PDF As report_FeesReminder = GetFeesReminderReport(FeesReminder)
 
@@ -389,7 +375,7 @@ Public Class frm_Main
                     Report_HTML.ExportToHtml(MS, HTMLOptions)
                     HTML = System.Text.Encoding.UTF8.GetString(MS.ToArray)
                 End Using
-                ToAddress = Client.Email
+                ToAddress = FeesReminder.Receiver.Email
                 Subject = "Fees Reminder"
             End If
         End If
@@ -410,7 +396,7 @@ Public Class frm_Main
             If gv_Bills.SelectedRowsCount = 1 Then
                 If dlg_Save.ShowDialog = DialogResult.OK Then
                     Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                     Dim Report As New report_Bill(ReportData, True)
                     PDFOptions.DocumentOptions.Author = Bill.Sender.Name
                     PDFOptions.DocumentOptions.Subject = Bill.Sender.BillHeading.Replace("|", " ")
@@ -444,7 +430,7 @@ Public Class frm_Main
             If gv_Bills.SelectedRowsCount = 1 Then
                 If dlg_Save.ShowDialog = DialogResult.OK Then
                     Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                     Dim Report As New report_Bill(ReportData, True)
                     Report.ExportToHtml(dlg_Save.FileName, HTMLOptions)
                 End If
@@ -471,7 +457,7 @@ Public Class frm_Main
             If gv_Bills.SelectedRowsCount = 1 Then
                 If dlg_Save.ShowDialog = DialogResult.OK Then
                     Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                     Dim Report As New report_Bill(ReportData, True)
                     Report.ExportToMht(dlg_Save.FileName, MHTOptions)
                 End If
@@ -499,7 +485,7 @@ Public Class frm_Main
             If gv_Bills.SelectedRowsCount = 1 Then
                 If dlg_Save.ShowDialog = DialogResult.OK Then
                     Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                     Dim Report As New report_Bill(ReportData, True)
                     Report.ExportToImage(dlg_Save.FileName, ImageOptions)
                 End If
@@ -526,7 +512,7 @@ Public Class frm_Main
             If gv_Bills.SelectedRowsCount = 1 Then
                 If dlg_Save.ShowDialog = DialogResult.OK Then
                     Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                     Dim Report As New report_Bill(ReportData, True)
                     Report.ExportToRtf(dlg_Save.FileName, RTFOptions)
                 End If
@@ -553,7 +539,7 @@ Public Class frm_Main
             If gv_Bills.SelectedRowsCount = 1 Then
                 If dlg_Save.ShowDialog = DialogResult.OK Then
                     Dim Bill As Bill = gv_Bills.GetRow(gv_Bills.GetSelectedRows(0))
-                    Dim ReportData As New data_Bill(Bill, Database.Clients.GetClientByID(Bill.Receiver.ID, JobsList, UsersList), My.Computer.Keyboard.CtrlKeyDown, 18)
+                    Dim ReportData As New data_Bill(Bill, Bill.Receiver, My.Computer.Keyboard.CtrlKeyDown, 18)
                     Dim Report As New report_Bill(ReportData, True)
                     docxOptions.DocumentOptions.Author = Bill.Sender.Name
                     docxOptions.DocumentOptions.Subject = Bill.Sender.BillHeading.Replace("|", " ")
@@ -580,24 +566,18 @@ Public Class frm_Main
     Private Sub btn_SmallCover_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_SmallCover.ItemClick
         Dim D As New frm_Cover(SendersList, ReceiversList)
         If D.ShowDialog = DialogResult.OK Then
-            Dim Client As Client = Database.GetClientByID(D.Receiver.ID, JobsList, UsersList)
-            If Client IsNot Nothing Then
-                Dim Report As New report_SmallCover(New data_Cover(D.Sender, Client))
-                Dim Viewer As New frm_ReportViewer(Report)
-                Viewer.ShowDialog()
-            End If
+            Dim Report As New report_SmallCover(New data_Cover(D.Sender, D.Receiver))
+            Dim Viewer As New frm_ReportViewer(Report)
+            Viewer.ShowDialog()
         End If
     End Sub
 
     Private Sub btn_BigCover_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_BigCover.ItemClick
         Dim D As New frm_Cover(SendersList, ReceiversList)
         If D.ShowDialog = DialogResult.OK Then
-            Dim Client As Client = Database.GetClientByID(D.Receiver.ID, JobsList, UsersList)
-            If Client IsNot Nothing Then
-                Dim Report As New report_BigCover(New data_Cover(D.Sender, Client))
-                Dim Viewer As New frm_ReportViewer(Report)
-                Viewer.ShowDialog()
-            End If
+            Dim Report As New report_BigCover(New data_Cover(D.Sender, D.Receiver))
+            Dim Viewer As New frm_ReportViewer(Report)
+            Viewer.ShowDialog()
         End If
     End Sub
 #End Region
@@ -634,11 +614,11 @@ Public Class frm_Main
             MsgBox("Unable to load senders." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        Try
-            ReceiversList = Database.Clients.GetMinimal
-        Catch ex As Exception
-            MsgBox("Unable to load receivers/clients." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
-        End Try
+        'Try
+        ReceiversList = Database.Receivers.GetAll(False)
+        'Catch ex As Exception
+        'MsgBox("Unable to load receivers/Receivers." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+        'End Try
 
         Dim EstimateBills As New List(Of Objects.Bill)
         Try

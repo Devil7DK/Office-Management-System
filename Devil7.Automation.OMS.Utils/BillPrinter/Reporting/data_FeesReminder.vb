@@ -24,7 +24,7 @@ Public Class data_FeesReminder
 
 #Region "Properties/Fields"
     Property Sender As Sender
-    Property Receiver As Client
+    Property Receiver As Receiver
     Property Items As List(Of data_FeesReminder_Item)
     Property CustomText As String
 
@@ -50,7 +50,7 @@ Public Class data_FeesReminder
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal Sender As Sender, ByVal Receiver As Client, ByVal Items As List(Of data_FeesReminder_Item), ByVal CustomText As String)
+    Sub New(ByVal Sender As Sender, ByVal Receiver As Receiver, ByVal Items As List(Of data_FeesReminder_Item), ByVal CustomText As String)
         Me.Sender = Sender
         Me.Receiver = Receiver
         Me.Items = Items

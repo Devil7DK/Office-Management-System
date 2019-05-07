@@ -101,6 +101,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.vb" />
     <Compile Include="Dialogs\frm_Cover.Designer.vb">
       <DependentUpon>frm_Cover.vb</DependentUpon>
     </Compile>

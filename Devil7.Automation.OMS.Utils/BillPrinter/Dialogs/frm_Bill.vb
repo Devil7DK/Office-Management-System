@@ -26,7 +26,7 @@ Public Class frm_Bill
 #Region "Variabls"
     Dim ID As Integer = 0
     Dim Mode As Enums.DialogMode
-    Dim ReceiversList As New List(Of ClientMinimal)
+    Dim ReceiversList As New List(Of Receiver)
     Dim SendersList As New List(Of Sender)
     Dim UsersList As New List(Of User)
     Dim JobsList As New List(Of Job)
@@ -40,7 +40,7 @@ Public Class frm_Bill
 #End Region
 
 #Region "Constructors"
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of ClientMinimal), ByVal SendersList As List(Of Sender), ByVal JobsList As List(Of Job), ByVal UsersList As List(Of User), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of Receiver), ByVal SendersList As List(Of Sender), ByVal JobsList As List(Of Job), ByVal UsersList As List(Of User), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
         InitializeComponent()
 
         Me.Mode = Mode
@@ -104,7 +104,7 @@ Public Class frm_Bill
 
             End Try
             Try
-                txt_Receiver.EditValue = Item.Receiver.ID
+                txt_Receiver.EditValue = Item.Receiver.RID
             Catch ex As Exception
 
             End Try
@@ -115,7 +115,7 @@ Public Class frm_Bill
         End If
         Try
             If txt_Receiver.EditValue = Nothing Then
-                txt_Receiver.EditValue = ReceiversList(0).ID
+                txt_Receiver.EditValue = ReceiversList(0).RID
             End If
         Catch ex As Exception
         End Try
@@ -125,7 +125,6 @@ Public Class frm_Bill
             End If
         Catch ex As Exception
         End Try
-
     End Sub
 #End Region
 
@@ -152,15 +151,15 @@ Public Class frm_Bill
 
     Private Sub btn_Ok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Ok.Click
         If Me.Mode = Enums.DialogMode.Add Then
-            Me.Item = Database.Bills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.ID = txt_Receiver.EditValue), GridView_Services.DataSource, True)
+            Me.Item = Database.Bills.AddNew(txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.RID = txt_Receiver.EditValue), GridView_Services.DataSource, True)
             If Me.Item IsNot Nothing Then
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             End If
         Else
-            Dim Result As Boolean = Database.Bills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.ID = txt_Receiver.EditValue), GridView_Services.DataSource, True)
+            Dim Result As Boolean = Database.Bills.Update(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.RID = txt_Receiver.EditValue), GridView_Services.DataSource, True)
             If Result Then
-                Me.Item = New Bill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.ID = txt_Receiver.EditValue), GridView_Services.DataSource)
+                Me.Item = New Bill(ID, txt_SerialNumber.Text, txt_Date.EditValue, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.RID = txt_Receiver.EditValue), GridView_Services.DataSource)
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             Else
@@ -202,6 +201,10 @@ Public Class frm_Bill
                 txt_Receiver.EditValue = d.Client.ID
             End If
         End If
+    End Sub
+
+    Private Sub txt_Receiver_Popup(sender As Object, e As EventArgs) Handles txt_Receiver.Popup
+        SetupReceiverColumns(txt_Receiver)
     End Sub
 #End Region
 

@@ -26,7 +26,7 @@ Public Class data_Bill
     Property SerialNumber As String
     Property EstimateDate As Date
     Property Sender As Sender
-    Property Receiver As Client
+    Property Receiver As Receiver
     Property Services As List(Of Service)
     Property TotalFees As Double
     Property HasGSTIN As Boolean
@@ -84,7 +84,7 @@ Public Class data_Bill
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal Bill As Bill, ByVal Receiver As Client, ByVal PrintTaxDetails As Boolean, ByVal GSTPercentage As Double)
+    Sub New(ByVal Bill As Bill, ByVal Receiver As Receiver, ByVal PrintTaxDetails As Boolean, ByVal GSTPercentage As Double)
         Me.SerialNumber = Bill.SerialNo
         Me.EstimateDate = Bill.Date
         Me.Sender = Bill.Sender

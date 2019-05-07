@@ -28,7 +28,7 @@ Public Class frm_FeesReminder
 #Region "Variabls"
     Dim ID As Integer = 0
     Dim Mode As Enums.DialogMode
-    Dim ReceiversList As New List(Of ClientMinimal)
+    Dim ReceiversList As New List(Of Receiver)
     Dim SendersList As New List(Of Sender)
 #End Region
 
@@ -40,7 +40,7 @@ Public Class frm_FeesReminder
 #End Region
 
 #Region "Constructors"
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal DetailsList As List(Of String), ByVal ReceiversList As List(Of ClientMinimal), ByVal SendersList As List(Of Sender), Optional ByVal Item As FeesReminder = Nothing)
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal DetailsList As List(Of String), ByVal ReceiversList As List(Of Receiver), ByVal SendersList As List(Of Sender), Optional ByVal Item As FeesReminder = Nothing)
         InitializeComponent()
 
         Me.Mode = Mode
@@ -94,7 +94,8 @@ Public Class frm_FeesReminder
         End If
 
         If ReceiversList.Count > 0 Then
-            cmb_Receiver.Properties.Items.AddRange(ReceiversList.ToArray)
+            cmb_Receiver.Properties.DataSource = ReceiversList
+            SetupReceiverColumns(cmb_Receiver)
         End If
         If SendersList.Count > 0 Then
             cmb_Sender.Properties.Items.AddRange(SendersList.ToArray)
@@ -119,19 +120,7 @@ Public Class frm_FeesReminder
 
             End Try
             Try
-                Dim index As Integer = -1
-                For ind As Integer = 0 To cmb_Receiver.Properties.Items.Count - 1
-                    Dim i As ClientMinimal = cmb_Receiver.Properties.Items(ind)
-                    If i.ID = Item.Receiver.ID Then
-                        index = ind
-                    End If
-                Next
-                If index >= 0 Then
-                    cmb_Receiver.SelectedIndex = index
-                Else
-                    cmb_Receiver.Properties.Items.Add(New ClientMinimal(Item.Receiver.ID, Item.Receiver.Name, Item.Receiver.PAN))
-                    cmb_Receiver.SelectedIndex = cmb_Receiver.Properties.Items.Count - 1
-                End If
+                cmb_Receiver.EditValue = Item.Receiver.RID
             Catch ex As Exception
 
             End Try
@@ -140,12 +129,6 @@ Public Class frm_FeesReminder
             gc_Details.DataSource = Item.Items
             gc_Details.RefreshDataSource()
         End If
-        Try
-            If cmb_Receiver.SelectedIndex = -1 Then
-                cmb_Receiver.SelectedIndex = 0
-            End If
-        Catch ex As Exception
-        End Try
         Try
             If cmb_Sender.SelectedIndex = -1 Then
                 cmb_Sender.SelectedIndex = 0
@@ -180,15 +163,15 @@ Public Class frm_FeesReminder
 
     Private Sub btn_Ok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Ok.Click
         If Me.Mode = Enums.DialogMode.Add Then
-            Me.Item = Database.FeesReminders.AddNew(cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, txt_OpeningBalance.Value, gv_Details.DataSource, txt_Body.Text, True)
+            Me.Item = Database.FeesReminders.AddNew(cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.RID = cmb_Receiver.EditValue), txt_OpeningBalance.Value, gv_Details.DataSource, txt_Body.Text, True)
             If Me.Item IsNot Nothing Then
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             End If
         Else
-            Dim Result As Boolean = Database.FeesReminders.Update(ID, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, txt_OpeningBalance.Value, gv_Details.DataSource, txt_Body.Text, True)
+            Dim Result As Boolean = Database.FeesReminders.Update(ID, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.RID = cmb_Receiver.EditValue), txt_OpeningBalance.Value, gv_Details.DataSource, txt_Body.Text, True)
             If Result Then
-                Me.Item = New FeesReminder(ID, cmb_Sender.SelectedItem, cmb_Receiver.SelectedItem, txt_OpeningBalance.Value, gv_Details.DataSource, txt_Body.Text)
+                Me.Item = New FeesReminder(ID, cmb_Sender.SelectedItem, ReceiversList.Find(Function(c) c.RID = cmb_Receiver.EditValue), txt_OpeningBalance.Value, gv_Details.DataSource, txt_Body.Text)
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
                 Me.Close()
             Else

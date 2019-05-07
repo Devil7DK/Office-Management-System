@@ -25,7 +25,6 @@ Partial Class frm_FeesReminder
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_FeesReminder))
         Me.table_Details_Main = New System.Windows.Forms.TableLayoutPanel()
-        Me.cmb_Receiver = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.lbl_Sender = New DevExpress.XtraEditors.LabelControl()
         Me.lbl_Receiver = New DevExpress.XtraEditors.LabelControl()
         Me.lbl_Splitter1 = New DevExpress.XtraEditors.LabelControl()
@@ -37,6 +36,7 @@ Partial Class frm_FeesReminder
         Me.lbl_Splitter4 = New DevExpress.XtraEditors.LabelControl()
         Me.txt_Body = New DevExpress.XtraEditors.TextEdit()
         Me.txt_OpeningBalance = New DevExpress.XtraEditors.SpinEdit()
+        Me.cmb_Receiver = New DevExpress.XtraEditors.LookUpEdit()
         Me.group_Details = New DevExpress.XtraEditors.GroupControl()
         Me.gc_Details = New DevExpress.XtraGrid.GridControl()
         Me.menu_Details = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -63,10 +63,10 @@ Partial Class frm_FeesReminder
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Ok = New DevExpress.XtraEditors.SimpleButton()
         Me.table_Details_Main.SuspendLayout()
-        CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmb_Sender.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Body.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_OpeningBalance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.group_Details, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.group_Details.SuspendLayout()
         CType(Me.gc_Details, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +90,6 @@ Partial Class frm_FeesReminder
         Me.table_Details_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
         Me.table_Details_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
         Me.table_Details_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.table_Details_Main.Controls.Add(Me.cmb_Receiver, 2, 1)
         Me.table_Details_Main.Controls.Add(Me.lbl_Sender, 0, 0)
         Me.table_Details_Main.Controls.Add(Me.lbl_Receiver, 0, 1)
         Me.table_Details_Main.Controls.Add(Me.lbl_Splitter1, 1, 0)
@@ -102,6 +101,7 @@ Partial Class frm_FeesReminder
         Me.table_Details_Main.Controls.Add(Me.lbl_Splitter4, 1, 3)
         Me.table_Details_Main.Controls.Add(Me.txt_Body, 2, 2)
         Me.table_Details_Main.Controls.Add(Me.txt_OpeningBalance, 2, 3)
+        Me.table_Details_Main.Controls.Add(Me.cmb_Receiver, 2, 1)
         Me.table_Details_Main.Dock = System.Windows.Forms.DockStyle.Top
         Me.table_Details_Main.Location = New System.Drawing.Point(0, 0)
         Me.table_Details_Main.Name = "table_Details_Main"
@@ -112,16 +112,6 @@ Partial Class frm_FeesReminder
         Me.table_Details_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.table_Details_Main.Size = New System.Drawing.Size(534, 107)
         Me.table_Details_Main.TabIndex = 0
-        '
-        'cmb_Receiver
-        '
-        Me.cmb_Receiver.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cmb_Receiver.Location = New System.Drawing.Point(113, 30)
-        Me.cmb_Receiver.Name = "cmb_Receiver"
-        Me.cmb_Receiver.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmb_Receiver.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cmb_Receiver.Size = New System.Drawing.Size(418, 20)
-        Me.cmb_Receiver.TabIndex = 1
         '
         'lbl_Sender
         '
@@ -249,6 +239,17 @@ Partial Class frm_FeesReminder
         Me.txt_OpeningBalance.Properties.MaxValue = New Decimal(New Integer() {100000000, 0, 0, 0})
         Me.txt_OpeningBalance.Size = New System.Drawing.Size(418, 20)
         Me.txt_OpeningBalance.TabIndex = 3
+        '
+        'cmb_Receiver
+        '
+        Me.cmb_Receiver.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cmb_Receiver.Location = New System.Drawing.Point(113, 30)
+        Me.cmb_Receiver.Name = "cmb_Receiver"
+        Me.cmb_Receiver.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmb_Receiver.Properties.DisplayMember = "Name"
+        Me.cmb_Receiver.Properties.ValueMember = "RID"
+        Me.cmb_Receiver.Size = New System.Drawing.Size(418, 20)
+        Me.cmb_Receiver.TabIndex = 6
         '
         'group_Details
         '
@@ -558,10 +559,10 @@ Partial Class frm_FeesReminder
         Me.Text = "Details"
         Me.table_Details_Main.ResumeLayout(False)
         Me.table_Details_Main.PerformLayout()
-        CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmb_Sender.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Body.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_OpeningBalance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmb_Receiver.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.group_Details, System.ComponentModel.ISupportInitialize).EndInit()
         Me.group_Details.ResumeLayout(False)
         Me.group_Details.PerformLayout()
@@ -589,7 +590,6 @@ Partial Class frm_FeesReminder
     Friend WithEvents lbl_Splitter1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lbl_Splitter2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cmb_Sender As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents cmb_Receiver As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents group_Details As DevExpress.XtraEditors.GroupControl
     Friend WithEvents gc_Details As DevExpress.XtraGrid.GridControl
     Friend WithEvents gv_Details As DevExpress.XtraGrid.Views.Grid.GridView
@@ -621,4 +621,5 @@ Partial Class frm_FeesReminder
     Friend WithEvents lbl_Date As DevExpress.XtraEditors.LabelControl
     Friend WithEvents txt_Date As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cmb_Receiver As DevExpress.XtraEditors.LookUpEdit
 End Class
