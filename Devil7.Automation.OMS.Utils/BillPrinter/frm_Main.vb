@@ -32,7 +32,7 @@ Public Class frm_Main
     Dim JobsList As New List(Of Job)
     Dim UsersList As New List(Of User)
 
-    Dim ServicesList As New List(Of String)
+    Dim TemplatesList As New List(Of Objects.BillItemTemplate)
     Dim FeesItemsList As New List(Of String)
     Dim FromAddressList As New List(Of ExMailAddress)
 
@@ -122,11 +122,8 @@ Public Class frm_Main
 
             End Try
 
-            Dim d As New frm_Bill(Enums.DialogMode.Add, ServicesList, ReceiversList, SendersList, JobsList, UsersList, Serial:=sa)
+            Dim d As New frm_Bill(Enums.DialogMode.Add, TemplatesList, ReceiversList, SendersList, JobsList, UsersList, Serial:=sa)
             If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                If d.ServicesEdited Then
-                    Database.Services.Save(d.AllServices, True)
-                End If
                 Loader.RunWorkerAsync()
             End If
         ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
@@ -144,13 +141,10 @@ Public Class frm_Main
         If tc_Main.SelectedTabPage Is tab_Bills Then
             If gv_Bills.SelectedRowsCount = 1 Then
                 Dim r = CType(gv_Bills.GetRow(gv_Bills.GetSelectedRows(0)), Bill)
-                Dim d As New frm_Bill(Enums.DialogMode.Edit, ServicesList, ReceiversList, SendersList, JobsList, UsersList, r)
+                Dim d As New frm_Bill(Enums.DialogMode.Edit, TemplatesList, ReceiversList, SendersList, JobsList, UsersList, r)
                 If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                    If d.ServicesEdited Then
-                        Database.Services.Save(d.AllServices, True)
-                    End If
+                    Loader.RunWorkerAsync()
                 End If
-                Loader.RunWorkerAsync()
             End If
         ElseIf tc_Main.SelectedTabPage Is tab_FeesReminders Then
             If gv_FeesReminders.SelectedRowsCount = 1 Then
@@ -201,7 +195,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_Services_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Services.ItemClick
-        Dim n As New frm_Services
+        Dim n As New frm_BillItems
         If n.ShowDialog() = DialogResult.OK Then If Not Loader.IsBusy Then Loader.RunWorkerAsync()
     End Sub
 
@@ -591,9 +585,9 @@ Public Class frm_Main
                End Sub)
 
         Try
-            ServicesList = Database.Services.Load(False)
+            TemplatesList = Database.BillItemTemplates.GetAll(False).ToList
         Catch ex As Exception
-            MsgBox("Unable to load services." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+            MsgBox("Unable to load fees item templates." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
         Try
@@ -614,11 +608,11 @@ Public Class frm_Main
             MsgBox("Unable to load senders." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try
 
-        'Try
-        ReceiversList = Database.Receivers.GetAll(False)
-        'Catch ex As Exception
-        'MsgBox("Unable to load receivers/Receivers." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
-        'End Try
+        Try
+            ReceiversList = Database.Receivers.GetAll(False)
+        Catch ex As Exception
+            MsgBox("Unable to load receivers/Receivers." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
+        End Try
 
         Dim EstimateBills As New List(Of Objects.Bill)
         Try

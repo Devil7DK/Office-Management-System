@@ -68,18 +68,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property LastUsedService() As String
-            Get
-                Return CType(Me("LastUsedService"),String)
-            End Get
-            Set
-                Me("LastUsedService") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("It is a gentle reminder to pay my fees of Rs.[Total]/-. Which is outstanding in m"& _ 
             "y records.")>  _
         Public Property FeesReminderDefaultText() As String

@@ -22,7 +22,6 @@ Partial Class frm_Bill
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_Bill))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -42,7 +41,7 @@ Partial Class frm_Bill
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GridControl_Services = New DevExpress.XtraGrid.GridControl()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridView_Services = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -52,8 +51,8 @@ Partial Class frm_Bill
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.cmb_Services = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txt_Fees = New DevExpress.XtraEditors.SpinEdit()
+        Me.select_BillItem = New Devil7.Automation.OMS.[Lib].Controls.BillItemSelect()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.btn_Cancel = New DevExpress.XtraEditors.SimpleButton()
         Me.btn_Ok = New DevExpress.XtraEditors.SimpleButton()
@@ -72,7 +71,6 @@ Partial Class frm_Bill
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
-        CType(Me.cmb_Services.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Fees.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -296,10 +294,10 @@ Partial Class frm_Bill
         '
         Me.GridControl_Services.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GridControl_Services.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl_Services.Location = New System.Drawing.Point(2, 75)
+        Me.GridControl_Services.Location = New System.Drawing.Point(2, 112)
         Me.GridControl_Services.MainView = Me.GridView_Services
         Me.GridControl_Services.Name = "GridControl_Services"
-        Me.GridControl_Services.Size = New System.Drawing.Size(530, 161)
+        Me.GridControl_Services.Size = New System.Drawing.Size(530, 124)
         Me.GridControl_Services.TabIndex = 1
         Me.GridControl_Services.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView_Services})
         '
@@ -329,39 +327,41 @@ Partial Class frm_Bill
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(530, 55)
+        Me.PanelControl1.Size = New System.Drawing.Size(530, 92)
         Me.PanelControl1.TabIndex = 0
         '
         'TableLayoutPanel2
         '
+        Me.TableLayoutPanel2.AutoSize = True
+        Me.TableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.TableLayoutPanel2.ColumnCount = 4
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 77.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.btn_Add, 3, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.LabelControl10, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.LabelControl11, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.LabelControl12, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.LabelControl13, 1, 1)
-        Me.TableLayoutPanel2.Controls.Add(Me.cmb_Services, 2, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.txt_Fees, 2, 1)
+        Me.TableLayoutPanel2.Controls.Add(Me.select_BillItem, 2, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(2, 2)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 2
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(526, 51)
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(526, 88)
         Me.TableLayoutPanel2.TabIndex = 0
         '
         'btn_Add
         '
         Me.btn_Add.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btn_Add.Location = New System.Drawing.Point(479, 3)
+        Me.btn_Add.Location = New System.Drawing.Point(452, 3)
         Me.btn_Add.Name = "btn_Add"
         Me.TableLayoutPanel2.SetRowSpan(Me.btn_Add, 2)
-        Me.btn_Add.Size = New System.Drawing.Size(44, 45)
+        Me.btn_Add.Size = New System.Drawing.Size(71, 82)
         Me.btn_Add.TabIndex = 0
         Me.btn_Add.Text = "Add"
         '
@@ -373,7 +373,7 @@ Partial Class frm_Bill
         Me.LabelControl10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LabelControl10.Location = New System.Drawing.Point(3, 3)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(43, 19)
+        Me.LabelControl10.Size = New System.Drawing.Size(35, 57)
         Me.LabelControl10.TabIndex = 1
         Me.LabelControl10.Text = "Service"
         '
@@ -383,9 +383,9 @@ Partial Class frm_Bill
         Me.LabelControl11.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.LabelControl11.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
         Me.LabelControl11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl11.Location = New System.Drawing.Point(3, 28)
+        Me.LabelControl11.Location = New System.Drawing.Point(3, 66)
         Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(43, 20)
+        Me.LabelControl11.Size = New System.Drawing.Size(35, 19)
         Me.LabelControl11.TabIndex = 1
         Me.LabelControl11.Text = "Fees"
         '
@@ -394,9 +394,9 @@ Partial Class frm_Bill
         Me.LabelControl12.Appearance.Options.UseTextOptions = True
         Me.LabelControl12.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
         Me.LabelControl12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl12.Location = New System.Drawing.Point(52, 3)
+        Me.LabelControl12.Location = New System.Drawing.Point(44, 3)
         Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(3, 19)
+        Me.LabelControl12.Size = New System.Drawing.Size(4, 57)
         Me.LabelControl12.TabIndex = 1
         Me.LabelControl12.Text = ":"
         '
@@ -405,31 +405,31 @@ Partial Class frm_Bill
         Me.LabelControl13.Appearance.Options.UseTextOptions = True
         Me.LabelControl13.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top
         Me.LabelControl13.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControl13.Location = New System.Drawing.Point(52, 28)
+        Me.LabelControl13.Location = New System.Drawing.Point(44, 66)
         Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(3, 20)
+        Me.LabelControl13.Size = New System.Drawing.Size(4, 19)
         Me.LabelControl13.TabIndex = 1
         Me.LabelControl13.Text = ":"
-        '
-        'cmb_Services
-        '
-        Me.cmb_Services.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cmb_Services.Location = New System.Drawing.Point(61, 3)
-        Me.cmb_Services.Name = "cmb_Services"
-        Me.cmb_Services.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmb_Services.Size = New System.Drawing.Size(412, 20)
-        Me.cmb_Services.TabIndex = 2
         '
         'txt_Fees
         '
         Me.txt_Fees.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt_Fees.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.txt_Fees.Location = New System.Drawing.Point(61, 28)
+        Me.txt_Fees.Location = New System.Drawing.Point(54, 66)
         Me.txt_Fees.Name = "txt_Fees"
         Me.txt_Fees.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.txt_Fees.Properties.MaxValue = New Decimal(New Integer() {10000000, 0, 0, 0})
-        Me.txt_Fees.Size = New System.Drawing.Size(412, 20)
+        Me.txt_Fees.Size = New System.Drawing.Size(392, 20)
         Me.txt_Fees.TabIndex = 3
+        '
+        'select_BillItem
+        '
+        Me.select_BillItem.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.select_BillItem.Location = New System.Drawing.Point(54, 3)
+        Me.select_BillItem.Name = "select_BillItem"
+        Me.select_BillItem.Size = New System.Drawing.Size(392, 57)
+        Me.select_BillItem.TabIndex = 4
+        Me.select_BillItem.Templates = Nothing
         '
         'PanelControl2
         '
@@ -487,9 +487,9 @@ Partial Class frm_Bill
         CType(Me.GridView_Services, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        CType(Me.cmb_Services.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Fees.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -523,11 +523,11 @@ Partial Class frm_Bill
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents cmb_Services As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txt_Fees As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents RemoveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents btn_Receiver_Add As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents txt_Receiver As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents select_BillItem As [Lib].Controls.BillItemSelect
 End Class

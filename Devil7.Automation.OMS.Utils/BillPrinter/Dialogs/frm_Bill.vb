@@ -34,13 +34,12 @@ Public Class frm_Bill
 
 #Region "Properties"
     Property Item As Bill
-    Property AllServices As New List(Of String)
-    Property ServicesEdited As Boolean = False
+    Property Templates As New List(Of Objects.BillItemTemplate)
     Property ReceiversEdited As Boolean = False
 #End Region
 
 #Region "Constructors"
-    Sub New(ByVal Mode As Enums.DialogMode, ByVal ServicesList As List(Of String), ByVal ReceiversList As List(Of Receiver), ByVal SendersList As List(Of Sender), ByVal JobsList As List(Of Job), ByVal UsersList As List(Of User), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
+    Sub New(ByVal Mode As Enums.DialogMode, ByVal TemplatesList As List(Of Objects.BillItemTemplate), ByVal ReceiversList As List(Of Receiver), ByVal SendersList As List(Of Sender), ByVal JobsList As List(Of Job), ByVal UsersList As List(Of User), Optional ByVal Item As Bill = Nothing, Optional ByVal Serial As String = "")
         InitializeComponent()
 
         Me.Mode = Mode
@@ -51,7 +50,7 @@ Public Class frm_Bill
         Me.SendersList = SendersList
         Me.UsersList = UsersList
         Me.JobsList = JobsList
-        Me.AllServices = ServicesList
+        Me.Templates = TemplatesList
         Me.ReceiversList = ReceiversList
         If Item IsNot Nothing Then
             ID = Item.ID
@@ -62,18 +61,9 @@ Public Class frm_Bill
 #Region "Form Events"
     Private Sub frm_Data_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         GridControl_Services.DataSource = New List(Of Service)
-        If AllServices.Count > 0 Then
-            cmb_Services.Properties.Items.AddRange(AllServices.ToArray)
-            If My.Settings.LastUsedService <> "" Then
-                Dim Index As Integer = cmb_Services.Properties.Items.IndexOf(My.Settings.LastUsedService)
-                If Index > 0 Then
-                    cmb_Services.SelectedIndex = Index
-                Else
-                    cmb_Services.SelectedIndex = 0
-                End If
-            Else
-                cmb_Services.SelectedIndex = 0
-            End If
+        If Templates.Count > 0 Then
+            select_BillItem.Templates = Templates
+            select_BillItem.RefreshTemplates()
         End If
 
         If ReceiversList.Count > 0 Then
@@ -131,19 +121,11 @@ Public Class frm_Bill
 #Region "Button Events"
     Private Sub btn_Add_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_Add.Click
         Try
-            If cmb_Services.Text.Trim <> "" Then
-                Dim ser As New Service(cmb_Services.Text, txt_Fees.Value)
+            If select_BillItem.BillItem.Trim <> "" Then
+                Dim ser As New Service(select_BillItem.BillItem, txt_Fees.Value)
                 Dim s = CType(GridControl_Services.DataSource, List(Of Service))
                 s.Add(ser)
                 GridControl_Services.RefreshDataSource()
-                If AllServices.Contains(ser.Name) = False Then
-                    AllServices.Add(cmb_Services.Text)
-                    cmb_Services.Properties.Items.Clear()
-                    cmb_Services.Properties.Items.AddRange(AllServices.ToArray)
-                    ServicesEdited = True
-                End If
-                My.Settings.LastUsedService = cmb_Services.Text
-                My.Settings.Save()
             End If
         Catch ex As Exception
         End Try

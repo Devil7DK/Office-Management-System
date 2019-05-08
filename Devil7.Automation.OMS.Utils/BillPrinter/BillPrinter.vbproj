@@ -102,6 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.vb" />
+    <Compile Include="Dialogs\frm_BillItems.Designer.vb">
+      <DependentUpon>frm_BillItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_BillItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_Cover.Designer.vb">
       <DependentUpon>frm_Cover.vb</DependentUpon>
     </Compile>
@@ -154,12 +160,6 @@
       <DependentUpon>frm_SendMail.vb</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\frm_SendMail.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\frm_Services.designer.vb">
-      <DependentUpon>frm_Services.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\frm_Services.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frm_Settings.Designer.vb">
@@ -237,6 +237,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frm_BillItems.resx">
+      <DependentUpon>frm_BillItems.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Cover.resx">
       <DependentUpon>frm_Cover.vb</DependentUpon>
     </EmbeddedResource>
@@ -263,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_SendMail.resx">
       <DependentUpon>frm_SendMail.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\frm_Services.resx">
-      <DependentUpon>frm_Services.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_Settings.resx">
       <DependentUpon>frm_Settings.vb</DependentUpon>
