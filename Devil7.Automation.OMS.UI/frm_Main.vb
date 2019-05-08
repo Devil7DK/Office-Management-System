@@ -688,12 +688,10 @@ Public Class frm_Main
                     Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Billed, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                         XtraMessageBox.Show("Successfully marked selected items as 'Billed'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        gc_Billing.DataSource.Remove(row)
                     Else
                         XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as billed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
-                gc_Billing.RefreshDataSource()
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
@@ -708,12 +706,10 @@ Public Class frm_Main
                     Dim row As Objects.WorkbookItem = gv_Billing.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Pending, (row.GetHistory & vbNewLine & "Marked as 'Pending' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                         XtraMessageBox.Show("Successfully marked selected items as 'Pending'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        gc_Billing.DataSource.Remove(row)
                     Else
                         XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as pending.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
-                gc_Billing.RefreshDataSource()
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error on marking selected items as pending.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
@@ -728,12 +724,10 @@ Public Class frm_Main
                     Dim row As Objects.WorkbookItem = gv_Pending.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.Billed, (row.GetHistory & vbNewLine & "Marked as 'Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                         XtraMessageBox.Show("Successfully marked selected items as 'Billed'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        gc_Pending.DataSource.Remove(row)
                     Else
                         XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as billed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
-                gc_Pending.RefreshDataSource()
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error on marking selected items as billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
@@ -748,12 +742,10 @@ Public Class frm_Main
                     Dim row As Objects.WorkbookItem = gv_Pending.GetRow(i)
                     If Database.Workbook.UpdateBilledStatus(row.ID, Enums.BillingStatus.NotBilled, (row.GetHistory & vbNewLine & "Marked as 'Not Billed' by " & User.Username & " at " & Now.ToString("dd/MM/yyyy hh:mm:ss tt")).ToString.Trim) Then
                         XtraMessageBox.Show("Successfully marked selected items as 'Not Billed'.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        gc_Pending.DataSource.Remove(row)
                     Else
                         XtraMessageBox.Show("Unknown error while marking item " & row.ID & " as not billed.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     End If
                 Next
-                gc_Pending.RefreshDataSource()
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error on marking selected items as not billed.{0}{0}{0}Additional Information:{0}{1}{0}{0}{2}", vbNewLine, ex.Message, ex.StackTrace) _
@@ -830,10 +822,7 @@ Public Class frm_Main
 
     Private Sub btn_AddWork_Self_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_AddWork_Self.ItemClick
         Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users, SelfEdit:=True)
-        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-            CType(gc_Home.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
-            gc_Home.RefreshDataSource()
-        End If
+        d.ShowDialog()
     End Sub
 #End Region
 
@@ -938,19 +927,14 @@ Public Class frm_Main
 
     Private Sub btn_AddWork_ItemClick(sender As System.Object, e As ItemClickEventArgs) Handles btn_AddWork.ItemClick
         Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Add, User, Jobs, ClientsMinimal, Users)
-        If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-            CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Add(d.WorkItemSelected)
-            gc_WorkBook.RefreshDataSource()
-        End If
+        d.ShowDialog()
     End Sub
 
     Private Sub btn_EditWork_ItemClick(sender As System.Object, e As ItemClickEventArgs) Handles btn_EditWork.ItemClick
         If gv_WorkBook.SelectedRowsCount = 1 Then
             Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(gv_WorkBook.GetSelectedRows()(0))
             Dim d As New Dialogs.frm_WorkBook(Enums.DialogMode.Edit, User, Jobs, ClientsMinimal, Users, row.ID)
-            If d.ShowDialog = System.Windows.Forms.DialogResult.OK Then
-                If Not Loader_Workbook.IsBusy Then Loader_Workbook.RunWorkerAsync()
-            End If
+            d.ShowDialog()
         End If
     End Sub
 
@@ -959,9 +943,8 @@ Public Class frm_Main
             Dim sr As Integer() = gv_WorkBook.GetSelectedRows
             For Each i As Integer In sr
                 Dim row As Objects.WorkbookItem = gv_WorkBook.GetRow(i)
-                If Database.Workbook.Remove(row.ID) Then CType(gc_WorkBook.DataSource, List(Of Objects.WorkbookItem)).Remove(row)
+                Database.Workbook.Remove(row.ID)
             Next
-            gc_WorkBook.RefreshDataSource()
         End If
     End Sub
 #End Region
