@@ -291,8 +291,6 @@ Namespace Database
                         Catch ex As Exception
 
                         End Try
-                        Dim Desktop As String = Reader.Item("Desktop").ToString
-                        Dim Home As String = Reader.Item("Home").ToString
                         R = New User(ID, Username, UserType, Address, Mobile, Email, Permissions, Status, Photo)
                     End If
                 End Using
