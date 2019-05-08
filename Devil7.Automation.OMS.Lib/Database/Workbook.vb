@@ -284,7 +284,7 @@ Namespace Database
         Function GetWorkbookItemByID(ByVal ID As Integer) As WorkbookItem
             Dim R As WorkbookItem = Nothing
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE [ID]=@ID"
+            Dim CommandString As String = "SELECT * FROM dbo.[Workbook] WHERE [ID]=@ID"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -307,7 +307,7 @@ Namespace Database
         Function GetIncomplete(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE [Status]<3;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM dbo.[Workbook] WHERE [Status]<3;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -333,7 +333,7 @@ Namespace Database
         Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE ([Status]=3 OR [WorkType]=3) AND [Billed]=0;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM dbo.[Workbook] WHERE ([Status]=3 OR [WorkType]=3) AND [Billed]=0;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -359,7 +359,7 @@ Namespace Database
         Function GetPending(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE [Status]=3 AND [Billed]=2;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM dbo.[Workbook] WHERE [Status]=3 AND [Billed]=2;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -415,7 +415,7 @@ Namespace Database
         Function GetForClientsBetweenDates(ByVal CloseConnection As Boolean, ByVal ClientIDs As List(Of Integer), ByVal FromDate As Date, ByVal ToDate As Date) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT * FROM [Workbook] WHERE charindex(',' + CAST([ClientID] as nvarchar(5)) + ',', @ClientIDs) > 0 AND (([DateAdded] between @FromDate and @ToDate) OR ([DateCompleted] between @FromDate and @ToDate));"
+            Dim CommandString As String = "SELECT * FROM dbo.[Workbook] WHERE charindex(',' + CAST([ClientID] as nvarchar(5)) + ',', @ClientIDs) > 0 AND (([DateAdded] between @FromDate and @ToDate) OR ([DateCompleted] between @FromDate and @ToDate));"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -437,7 +437,7 @@ Namespace Database
         Function GetWorkbookItemsCount(ByVal Client As Integer, ByVal Job As String, ByVal Period As String, ByVal PeriodType As Enums.PeriodType) As Integer
             Dim R As Integer = 0
 
-            Dim CommandString As String = String.Format("SELECT COUNT(*) FROM [Workbook] WHERE [ClientID]=@Client AND [Job]=@Job AND [{0}]=@{0};", If(PeriodType = Enums.PeriodType.Assessment, "AssessmentDetails", "FinancialDetails"))
+            Dim CommandString As String = String.Format("SELECT COUNT(*) FROM dbo.[Workbook] WHERE [ClientID]=@Client AND [Job]=@Job AND [{0}]=@{0};", If(PeriodType = Enums.PeriodType.Assessment, "AssessmentDetails", "FinancialDetails"))
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
