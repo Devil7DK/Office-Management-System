@@ -333,7 +333,7 @@ Namespace Database
         Function GetCompleted(ByVal CloseConnection As Boolean, ByVal Jobs As List(Of Job), ByVal Users As List(Of User), ByVal Listener As Action(Of System.Object, System.Data.SqlClient.SqlNotificationEventArgs)) As IEnumerable(Of WorkbookItem)
             Dim R As New List(Of WorkbookItem)
 
-            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE [Status]=3 AND [Billed]=0;"
+            Dim CommandString As String = "SELECT [ID],[User],[Job],[DueDate],[ClientID],[Client],[DateAdded],[DateCompleted],[Status],[Description],[Remarks],[Folder],[TargetDate],[Priority],[DateUpdated],[CurrentStep],[AssessmentDetails],[FinancialDetails],[Owner],[History],[Billed],[WorkType] FROM [Workbook] WHERE ([Status]=3 OR [WorkType]=3) AND [Billed]=0;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
