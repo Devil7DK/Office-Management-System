@@ -129,12 +129,25 @@
     <Compile Include="Comparers\CompareByName.vb" />
     <Compile Include="Comparers\CompareByPAN.vb" />
     <Compile Include="Comparers\CompareByFileNo.vb" />
+    <Compile Include="Controls\BillItemArgs.Designer.vb">
+      <DependentUpon>BillItemArgs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BillItemArgs.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BillItemSelect.Designer.vb">
+      <DependentUpon>BillItemSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BillItemSelect.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\WorkBookItem.Designer.vb">
       <DependentUpon>WorkBookItem.vb</DependentUpon>
     </Compile>
     <Compile Include="Controls\WorkBookItem.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Database\BillItemTemplates.vb" />
     <Compile Include="Database\Clients.vb" />
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
@@ -145,7 +158,6 @@
     <Compile Include="Database\Receivers.vb" />
     <Compile Include="Database\Senders.vb" />
     <Compile Include="Database\EMailAddresses.vb" />
-    <Compile Include="Database\Services.vb" />
     <Compile Include="Database\Workbook.vb" />
     <Compile Include="Database\Jobs.vb" />
     <Compile Include="Database\Users.vb" />
@@ -258,6 +270,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Enums\BillingStatus.vb" />
+    <Compile Include="Enums\BillItemType.vb" />
     <Compile Include="Enums\Effect.vb" />
     <Compile Include="Enums\PeriodType.vb" />
     <Compile Include="Enums\CenterType.vb" />
@@ -271,6 +284,7 @@
     <Compile Include="Enums\WorkType.vb" />
     <Compile Include="Objects\AttachmentFile.vb" />
     <Compile Include="Objects\AutoForward.vb" />
+    <Compile Include="Objects\BillItem.vb" />
     <Compile Include="Objects\ClientMinimal.vb" />
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\Bill.vb" />
@@ -321,6 +335,12 @@
     <Compile Include="Objects\User.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\BillItemArgs.resx">
+      <DependentUpon>BillItemArgs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\BillItemSelect.resx">
+      <DependentUpon>BillItemSelect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\WorkBookItem.resx">
       <DependentUpon>WorkBookItem.vb</DependentUpon>
     </EmbeddedResource>
@@ -430,6 +450,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\close.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
