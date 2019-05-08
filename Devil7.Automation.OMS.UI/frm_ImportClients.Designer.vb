@@ -28,6 +28,7 @@ Partial Class frm_ImportClients
         Me.Bar2 = New DevExpress.XtraBars.Bar()
         Me.btn_ImportExcel = New DevExpress.XtraBars.BarLargeButtonItem()
         Me.btn_ExportClients = New DevExpress.XtraBars.BarLargeButtonItem()
+        Me.btn_SkipExisting = New DevExpress.XtraBars.BarCheckItem()
         Me.Bar3 = New DevExpress.XtraBars.Bar()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -36,7 +37,6 @@ Partial Class frm_ImportClients
         Me.gc_Clients = New DevExpress.XtraGrid.GridControl()
         Me.gv_Clients = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.dlg_OpenExcel = New System.Windows.Forms.OpenFileDialog()
-        Me.btn_SkipExisting = New DevExpress.XtraBars.BarCheckItem()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gc_Clients, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gv_Clients, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +81,16 @@ Partial Class frm_ImportClients
         Me.btn_ExportClients.Id = 3
         Me.btn_ExportClients.ImageOptions.SvgImage = CType(resources.GetObject("btn_ExportClients.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.btn_ExportClients.Name = "btn_ExportClients"
+        '
+        'btn_SkipExisting
+        '
+        Me.btn_SkipExisting.BindableChecked = True
+        Me.btn_SkipExisting.Caption = "Skip Existing"
+        Me.btn_SkipExisting.Checked = True
+        Me.btn_SkipExisting.Id = 4
+        Me.btn_SkipExisting.ImageOptions.SvgImage = CType(resources.GetObject("btn_SkipExisting.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_SkipExisting.Name = "btn_SkipExisting"
+        Me.btn_SkipExisting.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
         'Bar3
         '
@@ -147,16 +157,6 @@ Partial Class frm_ImportClients
         'dlg_OpenExcel
         '
         Me.dlg_OpenExcel.Filter = "Excel Workbooks|*.xls;*.xlsx"
-        '
-        'btn_SkipExisting
-        '
-        Me.btn_SkipExisting.BindableChecked = True
-        Me.btn_SkipExisting.Caption = "Skip Existing"
-        Me.btn_SkipExisting.Checked = True
-        Me.btn_SkipExisting.Id = 4
-        Me.btn_SkipExisting.ImageOptions.SvgImage = CType(resources.GetObject("BarCheckItem1.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.btn_SkipExisting.Name = "btn_SkipExisting"
-        Me.btn_SkipExisting.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
         'frm_ImportClients
         '
