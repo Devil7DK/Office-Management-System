@@ -33,6 +33,7 @@ Namespace Objects
         Property PAN As String = ""
         Property Name As String = ""
         Property FatherName As String = ""
+        Property TradeName As String
         Property Mobile As String = ""
         Property Phone As String = ""
         Property Email As String = ""
@@ -58,7 +59,7 @@ Namespace Objects
             Me.ID_ = ID
         End Sub
 
-        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String, ByVal FatherName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal AadharNo As String, ByVal Description As String, ByVal TypeOfEngagement As String, ByVal Partners As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal ResponsiblePerson As User, ByVal Status As String, ByVal Photo As Drawing.Image, ByVal GST As String, ByVal FileNo As String)
+        Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PAN As String, ByVal FatherName As String, ByVal TradeName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal AadharNo As String, ByVal Description As String, ByVal TypeOfEngagement As String, ByVal Partners As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal ResponsiblePerson As User, ByVal Status As String, ByVal Photo As Drawing.Image, ByVal GST As String, ByVal FileNo As String)
             Me.ID_ = ID
             Me.Name = Name
             Me.AadharNo = AadharNo
@@ -79,6 +80,7 @@ Namespace Objects
             Me.State = State
             Me.StateCode = StateCode
             Me.Status = Status
+            Me.TradeName = TradeName
             Me.Type = Type
             Me.TypeOfEngagement = TypeOfEngagement
             Me.GST = GST
