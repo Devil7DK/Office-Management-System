@@ -242,5 +242,20 @@ Namespace Utils
         Public Function IsValidEmailFormat(ByVal s As String) As Boolean
             Return Text.RegularExpressions.Regex.IsMatch(s, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
         End Function
+
+        Public Function isValidPAN(ByVal PAN As String) As Boolean
+            Dim RegEx_PAN As Text.RegularExpressions.Regex = New Text.RegularExpressions.Regex("^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$")
+
+            If PAN.Trim.Length = 10 Then
+                If RegEx_PAN.IsMatch(PAN.Trim) Then
+                    Return True
+                Else
+                    Return False
+                End If
+            Else
+                Return False
+            End If
+        End Function
+
     End Module
 End Namespace
