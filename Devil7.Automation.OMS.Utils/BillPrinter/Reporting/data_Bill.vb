@@ -45,7 +45,6 @@ Public Class data_Bill
         End Get
     End Property
 
-
     ReadOnly Property SenderAddress As String
         Get
             Dim Address As String = ""
@@ -55,6 +54,16 @@ Public Class data_Bill
             End If
 
             Return Address
+        End Get
+    End Property
+
+    ReadOnly Property ReceiverName As String
+        Get
+            If My.Settings.PrintLegalName And Receiver.LegalName <> "" Then
+                Return String.Format("{1}{0}{2}", vbNewLine, Receiver.LegalName, Receiver.Name)
+            Else
+                Return Receiver.Name
+            End If
         End Get
     End Property
 

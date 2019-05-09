@@ -102,6 +102,18 @@ Namespace My
                 Me("LastUsedMail") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property PrintLegalName() As String
+            Get
+                Return CType(Me("PrintLegalName"),String)
+            End Get
+            Set
+                Me("PrintLegalName") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

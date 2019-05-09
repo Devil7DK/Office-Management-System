@@ -28,6 +28,16 @@ Public Class data_FeesReminder
     Property Items As List(Of data_FeesReminder_Item)
     Property CustomText As String
 
+    ReadOnly Property ReceiverName As String
+        Get
+            If My.Settings.PrintLegalName And Receiver.LegalName <> "" Then
+                Return String.Format("{1}{0}{2}", vbNewLine, Receiver.LegalName, Receiver.Name)
+            Else
+                Return Receiver.Name
+            End If
+        End Get
+    End Property
+
     ReadOnly Property Text As String
         Get
             If CustomText <> "" Then

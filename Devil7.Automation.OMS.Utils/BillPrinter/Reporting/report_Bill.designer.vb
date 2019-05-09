@@ -21,6 +21,7 @@ Partial Public Class report_Bill
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(report_Bill))
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.table_Data = New DevExpress.XtraReports.UI.XRTable()
         Me.row_BillEntry = New DevExpress.XtraReports.UI.XRTableRow()
@@ -31,15 +32,11 @@ Partial Public Class report_Bill
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.lbl_Receiver_GSTIN = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.pic_Logo = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.lbl_Sender_GSTIN = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
@@ -80,12 +77,16 @@ Partial Public Class report_Bill
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.XrRichText1 = New DevExpress.XtraReports.UI.XRRichText()
+        Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         CType(Me.table_Data, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_Notes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_Total, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_TaxDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -174,7 +175,7 @@ Partial Public Class report_Bill
         '
         'ReportHeader
         '
-        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel22, Me.XrLabel2, Me.lbl_Receiver_GSTIN, Me.XrLabel12, Me.XrLabel11, Me.XrLabel7, Me.pic_Logo, Me.lbl_Sender_GSTIN, Me.XrLabel4, Me.XrLabel3, Me.XrLabel10, Me.XrLabel1, Me.XrLabel24, Me.XrLabel31})
+        Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrRichText2, Me.XrLabel22, Me.lbl_Receiver_GSTIN, Me.XrLabel12, Me.XrLabel7, Me.pic_Logo, Me.lbl_Sender_GSTIN, Me.XrLabel10, Me.XrLabel1, Me.XrLabel24, Me.XrLabel31, Me.XrRichText1})
         Me.ReportHeader.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.ReportHeader.HeightF = 389.1774!
         Me.ReportHeader.Name = "ReportHeader"
@@ -197,16 +198,6 @@ Partial Public Class report_Bill
         Me.XrLabel22.StylePriority.UseTextAlignment = False
         Me.XrLabel22.Text = "Serial No :"
         Me.XrLabel22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Receiver].[Name]")})
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 255.3564!)
-        Me.XrLabel2.Multiline = True
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(446.3697!, 23.0!)
-        Me.XrLabel2.Text = "XrLabel2"
         '
         'lbl_Receiver_GSTIN
         '
@@ -243,18 +234,6 @@ Partial Public Class report_Bill
         Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         Me.XrLabel12.TextFormatString = "{0:d}"
         '
-        'XrLabel11
-        '
-        Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ReceiversAddress]")})
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0!, 278.3566!)
-        Me.XrLabel11.Multiline = True
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(446.3697!, 79.62967!)
-        Me.XrLabel11.StylePriority.UseBorders = False
-        Me.XrLabel11.Text = "XrLabel11"
-        '
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold)
@@ -290,30 +269,6 @@ Partial Public Class report_Bill
         Me.lbl_Sender_GSTIN.Text = "lbl_Sender_GSTIN"
         Me.lbl_Sender_GSTIN.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.lbl_Sender_GSTIN.TextFormatString = "GSTIN :{0}"
-        '
-        'XrLabel4
-        '
-        Me.XrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SenderAddress]")})
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 137.5834!)
-        Me.XrLabel4.Multiline = True
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(446.3697!, 55.0!)
-        Me.XrLabel4.StylePriority.UseBorders = False
-        Me.XrLabel4.Text = "XrLabel4"
-        '
-        'XrLabel3
-        '
-        Me.XrLabel3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Sender].[Name]")})
-        Me.XrLabel3.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 114.5834!)
-        Me.XrLabel3.Multiline = True
-        Me.XrLabel3.Name = "XrLabel3"
-        Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(446.3697!, 23.00001!)
-        Me.XrLabel3.StylePriority.UseFont = False
-        Me.XrLabel3.Text = "XrLabel3"
         '
         'XrLabel10
         '
@@ -799,6 +754,24 @@ Partial Public Class report_Bill
         '
         Me.BindingSource1.DataSource = GetType(Devil7.Automation.OMS.Utils.BillPrinter.data_Bill)
         '
+        'XrRichText1
+        '
+        Me.XrRichText1.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.XrRichText1.LocationFloat = New DevExpress.Utils.PointFloat(0.001176198!, 114.5834!)
+        Me.XrRichText1.Name = "XrRichText1"
+        Me.XrRichText1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrRichText1.SerializableRtfString = resources.GetString("XrRichText1.SerializableRtfString")
+        Me.XrRichText1.SizeF = New System.Drawing.SizeF(446.3685!, 78.00001!)
+        '
+        'XrRichText2
+        '
+        Me.XrRichText2.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 255.3565!)
+        Me.XrRichText2.Name = "XrRichText2"
+        Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
+        Me.XrRichText2.SizeF = New System.Drawing.SizeF(446.3702!, 102.6299!)
+        '
         'report_Bill
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter, Me.GroupHeader1})
@@ -812,6 +785,8 @@ Partial Public Class report_Bill
         CType(Me.table_Total, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table_TaxDetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -821,15 +796,11 @@ Partial Public Class report_Bill
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents BindingSource1 As BindingSource
-    Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents lbl_Sender_GSTIN As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents lbl_Receiver_GSTIN As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents table_Data As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents row_BillEntry As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
@@ -874,4 +845,6 @@ Partial Public Class report_Bill
     Friend WithEvents XrTableCell19 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents pic_Logo As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents XrRichText1 As DevExpress.XtraReports.UI.XRRichText
+    Friend WithEvents XrRichText2 As DevExpress.XtraReports.UI.XRRichText
 End Class
