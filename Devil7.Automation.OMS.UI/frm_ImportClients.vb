@@ -102,6 +102,7 @@ Public Class frm_ImportClients
                                                        If StateCode = 0 Then StateCode = 33
 
                                                        Dim ID As Integer = -1
+                                                       Dim TradeName As String = ""
                                                        Dim Phone As String = ""
                                                        Dim Description As String = ""
                                                        Dim TypeOfEngagement As String = "N/A"
@@ -113,6 +114,7 @@ Public Class frm_ImportClients
                                                        Dim ExistingClient As Objects.Client = ExistingClients.Find(Function(c) c.PAN.ToUpper = PAN.ToUpper)
                                                        If ExistingClient IsNot Nothing Then
                                                            ID = ExistingClient.ID
+                                                           TradeName = ExistingClient.TradeName
                                                            Phone = ExistingClient.Phone
                                                            Description = ExistingClient.Description
                                                            TypeOfEngagement = ExistingClient.TypeOfEngagement
@@ -122,7 +124,7 @@ Public Class frm_ImportClients
                                                            Status = ExistingClient.Status
                                                            Photo = ExistingClient.Photo
                                                        End If
-                                                       R.Add(New Objects.Client(ID, Name, PAN, FatherName, Mobile, Phone, EMail, DOB, AddressLine1, AddressLine2, District, PINCode, State, StateCode, AadharNo, Description, TypeOfEngagement, Partners, Type, Jobs, RPerson, Status, Photo, GSTIN, FileNo))
+                                                       R.Add(New Objects.Client(ID, Name, PAN, FatherName, TradeName, Mobile, Phone, EMail, DOB, AddressLine1, AddressLine2, District, PINCode, State, StateCode, AadharNo, Description, TypeOfEngagement, Partners, Type, Jobs, RPerson, Status, Photo, GSTIN, FileNo))
                                                    End If
                                                End If
                                            End If
@@ -153,7 +155,7 @@ Public Class frm_ImportClients
         Await Task.Run(Sub()
                            For Each Client As Objects.Client In gc_Clients.DataSource
                                If Client.ID = -1 Then
-                                   Dim NewClient As Objects.Client = Database.Clients.AddNew(Client.Photo, Client.PAN, Client.Name, Client.FatherName, Client.Mobile, Client.Phone, Client.Email,
+                                   Dim NewClient As Objects.Client = Database.Clients.AddNew(Client.Photo, Client.PAN, Client.Name, Client.FatherName, Client.TradeName, Client.Mobile, Client.Phone, Client.Email,
                                                        Client.DOB, Client.AddressLine1, Client.AddressLine2, Client.City, Client.PinCode, Client.State, Client.StateCode, Client.AadharNo, Client.Description,
                                                        Client.TypeOfEngagement, Client.Partners, Client.Type, Client.Jobs, Client.Status, Client.GST, Client.FileNo, Client.ResponsiblePerson)
                                    If NewClient IsNot Nothing Then
@@ -161,7 +163,7 @@ Public Class frm_ImportClients
                                    End If
                                Else
                                    If Not btn_SkipExisting.Checked Then
-                                       Database.Clients.Update(Client.ID, Client.Photo, Client.PAN, Client.Name, Client.FatherName, Client.Mobile, Client.Phone, Client.Email,
+                                       Database.Clients.Update(Client.ID, Client.Photo, Client.PAN, Client.Name, Client.FatherName, Client.TradeName, Client.Mobile, Client.Phone, Client.Email,
                                                            Client.DOB, Client.AddressLine1, Client.AddressLine2, Client.City, Client.PinCode, Client.State, Client.StateCode, Client.AadharNo, Client.Description,
                                                            Client.TypeOfEngagement, Client.Partners, Client.Type, Client.Jobs, Client.Status, Client.GST, Client.FileNo, Client.ResponsiblePerson)
                                    End If
