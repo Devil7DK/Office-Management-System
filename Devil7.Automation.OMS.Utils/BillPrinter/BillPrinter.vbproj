@@ -102,6 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.vb" />
+    <Compile Include="Dialogs\frm_AddReceiver.Designer.vb">
+      <DependentUpon>frm_AddReceiver.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_AddReceiver.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_BillItems.Designer.vb">
       <DependentUpon>frm_BillItems.vb</DependentUpon>
     </Compile>
@@ -130,6 +136,12 @@
       <DependentUpon>frm_FromAddress.vb</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\frm_FromAddress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\frm_Receivers.Designer.vb">
+      <DependentUpon>frm_Receivers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_Receivers.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\frm_ReportViewer.designer.vb">
@@ -237,6 +249,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\frm_AddReceiver.resx">
+      <DependentUpon>frm_AddReceiver.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_BillItems.resx">
       <DependentUpon>frm_BillItems.vb</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_FromAddress.resx">
       <DependentUpon>frm_FromAddress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_Receivers.resx">
+      <DependentUpon>frm_Receivers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_ReportViewer.resx">
       <DependentUpon>frm_ReportViewer.vb</DependentUpon>

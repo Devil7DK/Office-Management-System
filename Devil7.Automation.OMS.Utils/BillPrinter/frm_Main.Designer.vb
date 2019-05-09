@@ -66,6 +66,7 @@ Partial Class frm_Main
         Me.gc_FeesReminders = New DevExpress.XtraGrid.GridControl()
         Me.gv_FeesReminders = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.dlg_Save = New System.Windows.Forms.SaveFileDialog()
+        Me.btn_Receivers = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_ExportFormats, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Menu_MailFormats, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,9 +83,9 @@ Partial Class frm_Main
         'RibbonControl
         '
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems, Me.btn_Export_PDF, Me.btn_Export_Others, Me.btn_Export_Word, Me.btn_Export_HTML, Me.btn_Export_RTF, Me.btn_Export_Image, Me.btn_Export_MHTML, Me.btn_Export_Mail_HTML, Me.btn_FromAddresses, Me.btn_Export_Mail_PDF_HTML, Me.btn_Export_Mail_PDF, Me.btn_SmallCover, Me.btn_BigCover})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_Refresh, Me.btn_Add, Me.btn_Edit, Me.btn_Remove, Me.btn_Print, Me.btn_Sender, Me.btn_Services, Me.btn_Settings, Me.SkinRibbonGalleryBarItem1, Me.btn_Export_Excel, Me.btn_FeesItems, Me.btn_Export_PDF, Me.btn_Export_Others, Me.btn_Export_Word, Me.btn_Export_HTML, Me.btn_Export_RTF, Me.btn_Export_Image, Me.btn_Export_MHTML, Me.btn_Export_Mail_HTML, Me.btn_FromAddresses, Me.btn_Export_Mail_PDF_HTML, Me.btn_Export_Mail_PDF, Me.btn_SmallCover, Me.btn_BigCover, Me.btn_Receivers})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 29
+        Me.RibbonControl.MaxItemId = 30
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Home, Me.rp_Misc})
         Me.RibbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.[False]
@@ -336,6 +337,7 @@ Partial Class frm_Main
         Me.rpg_Lists.ItemLinks.Add(Me.btn_Services)
         Me.rpg_Lists.ItemLinks.Add(Me.btn_FeesItems)
         Me.rpg_Lists.ItemLinks.Add(Me.btn_FromAddresses)
+        Me.rpg_Lists.ItemLinks.Add(Me.btn_Receivers)
         Me.rpg_Lists.Name = "rpg_Lists"
         Me.rpg_Lists.ShowCaptionButton = False
         Me.rpg_Lists.Text = "Lists"
@@ -426,6 +428,13 @@ Partial Class frm_Main
         Me.gv_FeesReminders.OptionsBehavior.Editable = False
         Me.gv_FeesReminders.OptionsBehavior.ReadOnly = True
         '
+        'btn_Receivers
+        '
+        Me.btn_Receivers.Caption = "Receivers"
+        Me.btn_Receivers.Id = 29
+        Me.btn_Receivers.ImageOptions.SvgImage = CType(resources.GetObject("BarButtonItem1.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_Receivers.Name = "btn_Receivers"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -501,4 +510,5 @@ Partial Class frm_Main
     Friend WithEvents btn_BigCover As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents rp_Misc As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents rpg_Settings As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents btn_Receivers As DevExpress.XtraBars.BarButtonItem
 End Class

@@ -176,11 +176,16 @@ Public Class frm_Bill
     End Sub
 
     Private Sub btn_Receiver_Add_Click(sender As Object, e As EventArgs) Handles btn_Receiver_Add.Click
-        Dim d As New Dialogs.frm_ClientAddEdit(Enums.DialogMode.Add, JobsList, UsersList)
+        Dim ExistingPAN As New List(Of String)
+        For Each i As Receiver In ReceiversList
+            ExistingPAN.Add(i.PAN)
+        Next
+
+        Dim d As New frm_AddReceiver(ExistingPAN)
         If d.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            If d.Client IsNot Nothing Then
-                txt_Receiver.Properties.DataSource.Add(d.Client)
-                txt_Receiver.EditValue = d.Client.ID
+            If d.Receiver IsNot Nothing Then
+                txt_Receiver.Properties.DataSource.Add(d.Receiver)
+                txt_Receiver.EditValue = "R" & d.Receiver.RID
             End If
         End If
     End Sub

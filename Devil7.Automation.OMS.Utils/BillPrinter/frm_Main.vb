@@ -660,6 +660,13 @@ Public Class frm_Main
         Dim D As New frm_Settings
         D.ShowDialog()
     End Sub
+
+    Private Sub btn_Receivers_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Receivers.ItemClick
+        Dim D As New frm_Receivers
+        If D.ShowDialog() = DialogResult.OK Then
+            If Not Loader.IsBusy Then Loader.RunWorkerAsync()
+        End If
+    End Sub
 #End Region
 
 End Class

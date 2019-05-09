@@ -22,7 +22,6 @@ Partial Class frm_FeesReminder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_FeesReminder))
         Me.table_Details_Main = New System.Windows.Forms.TableLayoutPanel()
         Me.lbl_Sender = New DevExpress.XtraEditors.LabelControl()
@@ -39,7 +38,7 @@ Partial Class frm_FeesReminder
         Me.cmb_Receiver = New DevExpress.XtraEditors.LookUpEdit()
         Me.group_Details = New DevExpress.XtraEditors.GroupControl()
         Me.gc_Details = New DevExpress.XtraGrid.GridControl()
-        Me.menu_Details = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.menu_Details = New System.Windows.Forms.ContextMenuStrip()
         Me.menu_Item_Remove = New System.Windows.Forms.ToolStripMenuItem()
         Me.gv_Details = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
