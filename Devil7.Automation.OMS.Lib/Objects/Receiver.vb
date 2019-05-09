@@ -22,8 +22,16 @@
 Namespace Objects
     Public Class Receiver
 
+#Region "Variables"
+        Dim RID_ As String = "-1"
+#End Region
+
 #Region "Properties"
-        ReadOnly Property RID As String = ""
+        ReadOnly Property RID As String
+            Get
+                Return RID_
+            End Get
+        End Property
 
         Property PAN As String = ""
         Property Name As String = ""
@@ -41,12 +49,16 @@ Namespace Objects
 #End Region
 
 #Region "Constructor"
+        Sub New()
+            Me.RID_ = "-1"
+        End Sub
+
         Sub New(ByVal RID As String)
-            Me.RID = RID
+            Me.RID_ = RID
         End Sub
 
         Sub New(ByVal RID As String, ByVal Name As String, ByVal LegalName As String, ByVal PAN As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal GST As String)
-            Me.RID = RID
+            Me.RID_ = RID
             Me.Name = Name
             Me.LegalName = LegalName
             Me.AddressLine1 = AddressLine1
@@ -67,6 +79,10 @@ Namespace Objects
         Public Overrides Function ToString() As String
             Return Name.ToString()
         End Function
+
+        Sub ForceSetID(ByVal RID As String)
+            Me.RID_ = RID
+        End Sub
 #End Region
 
     End Class
