@@ -190,7 +190,7 @@ Public Class frm_Bill
         End If
     End Sub
 
-    Private Sub txt_Receiver_Popup(sender As Object, e As EventArgs) Handles txt_Receiver.Popup
+    Private Sub txt_Receiver_BeforePopup(sender As Object, e As EventArgs) Handles txt_Receiver.BeforePopup
         SetupReceiverColumns(txt_Receiver)
     End Sub
 #End Region

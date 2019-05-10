@@ -32,19 +32,22 @@
 
         txt_Sender.Properties.Items.AddRange(Senders.ToArray)
         txt_Receiver.Properties.DataSource = Receivers
-        SetupReceiverColumns(txt_Receiver)
 
         If Senders.Count > 0 Then txt_Sender.SelectedItem = Senders(0)
         If Receivers.Count > 0 Then txt_Receiver.EditValue = Receivers(0).RID
     End Sub
 #End Region
 
-#Region "Button Events"
+#Region "Events"
     Private Sub btn_OK_Click(sender As Object, e As EventArgs) Handles btn_OK.Click
         If txt_Sender.SelectedItem IsNot Nothing AndAlso txt_Receiver.EditValue > 0 Then
             Me.DialogResult = DialogResult.OK
             Me.Close()
         End If
+    End Sub
+
+    Private Sub txt_Receiver_BeforePopup(sender As Object, e As EventArgs) Handles txt_Receiver.BeforePopup
+        SetupReceiverColumns(txt_Receiver)
     End Sub
 #End Region
 

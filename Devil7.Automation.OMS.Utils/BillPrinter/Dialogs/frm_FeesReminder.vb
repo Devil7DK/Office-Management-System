@@ -95,7 +95,6 @@ Public Class frm_FeesReminder
 
         If ReceiversList.Count > 0 Then
             cmb_Receiver.Properties.DataSource = ReceiversList
-            SetupReceiverColumns(cmb_Receiver)
         End If
         If SendersList.Count > 0 Then
             cmb_Sender.Properties.Items.AddRange(SendersList.ToArray)
@@ -216,6 +215,10 @@ Public Class frm_FeesReminder
 
     Private Sub gv_Details_RowDeleted(sender As Object, e As RowDeletedEventArgs) Handles gv_Details.RowDeleted
         UpdateTotal()
+    End Sub
+
+    Private Sub cmb_Receiver_BeforePopup(sender As Object, e As EventArgs) Handles cmb_Receiver.BeforePopup
+        SetupReceiverColumns(cmb_Receiver)
     End Sub
 #End Region
 
