@@ -59,8 +59,8 @@ Public Class data_Bill
 
     ReadOnly Property ReceiverName As String
         Get
-            If My.Settings.PrintLegalName And Receiver.LegalName <> "" Then
-                Return String.Format("{1}{0}{2}", vbNewLine, Receiver.LegalName, Receiver.Name)
+            If My.Settings.PrintTradeName And Receiver.TradeName <> "" Then
+                Return String.Format("{1}{0}{2}", vbNewLine, Receiver.TradeName, Receiver.Name)
             Else
                 Return Receiver.Name
             End If

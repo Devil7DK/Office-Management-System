@@ -39,7 +39,7 @@ Namespace Database
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
 
-            Dim CommandString As String = "INSERT INTO Clients ([PAN],[ClientName],[FatherName],[TradeName],[Mobile],[Phone],[Email],[DOB],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[AadharNo],[Description],[TypeOfEngagement],[PartnerDirector],[Type],[Jobs],[Status],[Photo],[GST],[FileNo],[RPerson]) VALUES(@pan,@clientname,@fathername,@tradename,@mobile,@phone,@email,@dob,@address1,@address2,@city,@pincode,@state,@statecode,@aadharno,@description,@typeofengagement,@partnerdirector,@type,@jobs,@status,@photo,@gst,@fileno,@rperson);SELECT SCOPE_IDENTITY();"
+            Dim CommandString As String = "INSERT INTO Clients ([PAN],[ClientName],[FatherName],[TradeName],[Mobile],[Phone],[Email],[DOB],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[AadharNo],[Description],[TypeOfEngagement],[PartnerDirector],[Type],[Jobs],[Status],[Photo],[GST],[FileNo],[RPerson]) VALUES(@pan,@clientname,@fathername,@TradeName,@mobile,@phone,@email,@dob,@address1,@address2,@city,@pincode,@state,@statecode,@aadharno,@description,@typeofengagement,@partnerdirector,@type,@jobs,@status,@photo,@gst,@fileno,@rperson);SELECT SCOPE_IDENTITY();"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -48,7 +48,7 @@ Namespace Database
                 AddParameter(Command, "@pan", PAN)
                 AddParameter(Command, "@clientname", ClientName)
                 AddParameter(Command, "@fathername", FatherName)
-                AddParameter(Command, "@tradename", TradeName)
+                AddParameter(Command, "@TradeName", TradeName)
                 AddParameter(Command, "@mobile", Mobile)
                 AddParameter(Command, "@phone", Phone)
                 AddParameter(Command, "@email", Email)
@@ -88,7 +88,7 @@ Namespace Database
             Dim img As New System.IO.MemoryStream
             Photo.Save(img, Drawing.Imaging.ImageFormat.Png)
 
-            Dim CommandString As String = "UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[TradeName]=@tradename,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[City]=@City,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[PartnerDirector]=@partnerdirector,[Type]=@type,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo,[GST]=@gst,[FileNo]=@fileno,[RPerson]=@rperson WHERE [ID]=@id;"
+            Dim CommandString As String = "UPDATE Clients SET [PAN]=@pan,[ClientName]=@clientname,[FatherName]=@fathername,[TradeName]=@TradeName,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[DOB]=@dob,[Address1]=@address1,[Address2]=@address2,[City]=@City,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[AadharNo]=@aadharno,[Description]=@description,[TypeOfEngagement]=@typeofengagement,[PartnerDirector]=@partnerdirector,[Type]=@type,[Jobs]=@jobs,[Status]=@status,[Photo]=@photo,[GST]=@gst,[FileNo]=@fileno,[RPerson]=@rperson WHERE [ID]=@id;"
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -98,7 +98,7 @@ Namespace Database
                 AddParameter(Command, "@pan", PAN)
                 AddParameter(Command, "@clientname", ClientName)
                 AddParameter(Command, "@fathername", FatherName)
-                AddParameter(Command, "@tradename", TradeName)
+                AddParameter(Command, "@TradeName", TradeName)
                 AddParameter(Command, "@mobile", Mobile)
                 AddParameter(Command, "@phone", Phone)
                 AddParameter(Command, "@email", Email)

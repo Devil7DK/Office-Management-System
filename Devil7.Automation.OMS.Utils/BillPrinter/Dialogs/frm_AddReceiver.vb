@@ -21,7 +21,7 @@
         Dim InputControls As New Dictionary(Of String, DevExpress.XtraEditors.BaseEdit)
         InputControls.Add("PAN", txt_PAN)
         InputControls.Add("Name", txt_Name)
-        InputControls.Add("Legal Name", txt_LegalName)
+        InputControls.Add("Trade Name", txt_TradeName)
         InputControls.Add("Mobile", txt_Mobile)
         InputControls.Add("Phone Number", txt_Phone)
         InputControls.Add("E-Mail ID", txt_EMail)
@@ -50,7 +50,7 @@
             Exit Sub
         End If
 
-        Me.Receiver = New [Lib].Objects.Receiver("", txt_Name.Text, txt_LegalName.Text, txt_PAN.Text, txt_Mobile.Text, txt_Phone.Text, txt_EMail.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_State.SelectedIndex + 1, txt_GSTIN.Text)
+        Me.Receiver = New [Lib].Objects.Receiver("", txt_Name.Text, txt_TradeName.Text, txt_PAN.Text, txt_Mobile.Text, txt_Phone.Text, txt_EMail.Text, txt_AddressLine1.Text, txt_AddressLine2.Text, txt_City.Text, txt_PINCode.Text, txt_State.Text, txt_State.SelectedIndex + 1, txt_GSTIN.Text)
         [Lib].Database.Receivers.AddNew(Me.Receiver)
         DialogResult = DialogResult.OK
         Close()

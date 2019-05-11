@@ -22,7 +22,7 @@ Partial Class frm_AddReceiver
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_AddReceiver))
         Me.txt_PAN = New DevExpress.XtraEditors.TextEdit()
         Me.txt_Name = New DevExpress.XtraEditors.TextEdit()
-        Me.txt_LegalName = New DevExpress.XtraEditors.TextEdit()
+        Me.txt_TradeName = New DevExpress.XtraEditors.TextEdit()
         Me.txt_Mobile = New DevExpress.XtraEditors.TextEdit()
         Me.txt_Phone = New DevExpress.XtraEditors.TextEdit()
         Me.txt_EMail = New DevExpress.XtraEditors.TextEdit()
@@ -33,7 +33,7 @@ Partial Class frm_AddReceiver
         Me.txt_GSTIN = New DevExpress.XtraEditors.TextEdit()
         Me.lbl_PAN = New DevExpress.XtraEditors.LabelControl()
         Me.lbl_Name = New DevExpress.XtraEditors.LabelControl()
-        Me.lbl_LegalName = New DevExpress.XtraEditors.LabelControl()
+        Me.lbl_TradeName = New DevExpress.XtraEditors.LabelControl()
         Me.lbl_Mobile = New DevExpress.XtraEditors.LabelControl()
         Me.lbl_Phone = New DevExpress.XtraEditors.LabelControl()
         Me.lbl_EMail = New DevExpress.XtraEditors.LabelControl()
@@ -47,7 +47,7 @@ Partial Class frm_AddReceiver
         Me.txt_State = New DevExpress.XtraEditors.ComboBoxEdit()
         CType(Me.txt_PAN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Name.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt_LegalName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt_TradeName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Mobile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_Phone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt_EMail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,15 +82,15 @@ Partial Class frm_AddReceiver
         Me.txt_Name.Size = New System.Drawing.Size(303, 20)
         Me.txt_Name.TabIndex = 2
         '
-        'txt_LegalName
+        'txt_TradeName
         '
-        Me.txt_LegalName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txt_TradeName.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txt_LegalName.EnterMoveNextControl = True
-        Me.txt_LegalName.Location = New System.Drawing.Point(95, 64)
-        Me.txt_LegalName.Name = "txt_LegalName"
-        Me.txt_LegalName.Size = New System.Drawing.Size(303, 20)
-        Me.txt_LegalName.TabIndex = 3
+        Me.txt_TradeName.EnterMoveNextControl = True
+        Me.txt_TradeName.Location = New System.Drawing.Point(95, 64)
+        Me.txt_TradeName.Name = "txt_TradeName"
+        Me.txt_TradeName.Size = New System.Drawing.Size(303, 20)
+        Me.txt_TradeName.TabIndex = 3
         '
         'txt_Mobile
         '
@@ -190,13 +190,13 @@ Partial Class frm_AddReceiver
         Me.lbl_Name.TabIndex = 19
         Me.lbl_Name.Text = "Name :"
         '
-        'lbl_LegalName
+        'lbl_TradeName
         '
-        Me.lbl_LegalName.Location = New System.Drawing.Point(27, 67)
-        Me.lbl_LegalName.Name = "lbl_LegalName"
-        Me.lbl_LegalName.Size = New System.Drawing.Size(62, 13)
-        Me.lbl_LegalName.TabIndex = 20
-        Me.lbl_LegalName.Text = "Legal Name :"
+        Me.lbl_TradeName.Location = New System.Drawing.Point(27, 67)
+        Me.lbl_TradeName.Name = "lbl_TradeName"
+        Me.lbl_TradeName.Size = New System.Drawing.Size(62, 13)
+        Me.lbl_TradeName.TabIndex = 20
+        Me.lbl_TradeName.Text = "Trade Name :"
         '
         'lbl_Mobile
         '
@@ -306,7 +306,7 @@ Partial Class frm_AddReceiver
         Me.Controls.Add(Me.lbl_EMail)
         Me.Controls.Add(Me.lbl_Phone)
         Me.Controls.Add(Me.lbl_Mobile)
-        Me.Controls.Add(Me.lbl_LegalName)
+        Me.Controls.Add(Me.lbl_TradeName)
         Me.Controls.Add(Me.lbl_Name)
         Me.Controls.Add(Me.lbl_PAN)
         Me.Controls.Add(Me.txt_GSTIN)
@@ -317,7 +317,7 @@ Partial Class frm_AddReceiver
         Me.Controls.Add(Me.txt_EMail)
         Me.Controls.Add(Me.txt_Phone)
         Me.Controls.Add(Me.txt_Mobile)
-        Me.Controls.Add(Me.txt_LegalName)
+        Me.Controls.Add(Me.txt_TradeName)
         Me.Controls.Add(Me.txt_Name)
         Me.Controls.Add(Me.txt_PAN)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -328,7 +328,7 @@ Partial Class frm_AddReceiver
         Me.Text = "Add Receiver"
         CType(Me.txt_PAN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Name.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt_LegalName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt_TradeName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Mobile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_Phone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt_EMail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -345,7 +345,7 @@ Partial Class frm_AddReceiver
 
     Friend WithEvents txt_PAN As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_Name As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txt_LegalName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_TradeName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_Mobile As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_Phone As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_EMail As DevExpress.XtraEditors.TextEdit
@@ -356,7 +356,7 @@ Partial Class frm_AddReceiver
     Friend WithEvents txt_GSTIN As DevExpress.XtraEditors.TextEdit
     Friend WithEvents lbl_PAN As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lbl_Name As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents lbl_LegalName As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents lbl_TradeName As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lbl_Mobile As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lbl_Phone As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lbl_EMail As DevExpress.XtraEditors.LabelControl

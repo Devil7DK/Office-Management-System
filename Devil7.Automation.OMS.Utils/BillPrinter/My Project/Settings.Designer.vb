@@ -106,12 +106,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property PrintLegalName() As String
+        Public Property PrintTradeName() As String
             Get
-                Return CType(Me("PrintLegalName"),String)
+                Return CType(Me("PrintTradeName"),String)
             End Get
             Set
-                Me("PrintLegalName") = value
+                Me("PrintTradeName") = value
             End Set
         End Property
     End Class

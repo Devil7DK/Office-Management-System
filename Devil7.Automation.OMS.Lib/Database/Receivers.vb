@@ -34,7 +34,7 @@ Namespace Database
 
 #Region "Update Functions"
         Sub AddNew(ByVal Item As Receiver)
-            Dim CommandString As String = String.Format("INSERT INTO {0} ([PAN],[ClientName],[LegalName],[Mobile],[Phone],[Email],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[GST]) VALUES(@pan,@clientname,@legalname,@mobile,@phone,@email,@address1,@address2,@city,@pincode,@state,@statecode,@gst);SELECT SCOPE_IDENTITY();", Table1Name)
+            Dim CommandString As String = String.Format("INSERT INTO {0} ([PAN],[ClientName],[TradeName],[Mobile],[Phone],[Email],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[GST]) VALUES(@pan,@clientname,@TradeName,@mobile,@phone,@email,@address1,@address2,@city,@pincode,@state,@statecode,@gst);SELECT SCOPE_IDENTITY();", Table1Name)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -42,7 +42,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 AddParameter(Command, "@pan", Item.PAN)
                 AddParameter(Command, "@clientname", Item.Name)
-                AddParameter(Command, "@legalname", Item.LegalName)
+                AddParameter(Command, "@TradeName", Item.TradeName)
                 AddParameter(Command, "@mobile", Item.Mobile)
                 AddParameter(Command, "@phone", Item.Phone)
                 AddParameter(Command, "@email", Item.Email)
@@ -66,7 +66,7 @@ Namespace Database
         Function Update(ByVal Item As Objects.Receiver) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = String.Format("UPDATE {0} SET [PAN]=@pan,[ClientName]=@clientname,[LegalName]=@legalname,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[Address1]=@address1,[Address2]=@address2,[City]=@City,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[GST]=@gst WHERE [ID]=@id;", Table1Name)
+            Dim CommandString As String = String.Format("UPDATE {0} SET [PAN]=@pan,[ClientName]=@clientname,[TradeName]=@TradeName,[Mobile]=@mobile,[Phone]=@phone,[Email]=@email,[Address1]=@address1,[Address2]=@address2,[City]=@City,[Pincode]=@pincode,[State]=@state,[StateCode]=@statecode,[GST]=@gst WHERE [ID]=@id;", Table1Name)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -75,7 +75,7 @@ Namespace Database
                 AddParameter(Command, "@id", Item.RID)
                 AddParameter(Command, "@pan", Item.PAN)
                 AddParameter(Command, "@clientname", Item.Name)
-                AddParameter(Command, "@legalname", Item.LegalName)
+                AddParameter(Command, "@TradeName", Item.TradeName)
                 AddParameter(Command, "@mobile", Item.Mobile)
                 AddParameter(Command, "@phone", Item.Phone)
                 AddParameter(Command, "@email", Item.Email)
@@ -140,7 +140,7 @@ Namespace Database
         End Function
 
         Private Sub LoadFromTable(ByVal TableName As String, ByVal List As List(Of Receiver), ByVal CloseConnection As Boolean, ByVal AddPrefix As Boolean)
-            Dim CommandString As String = String.Format("SELECT [ID],[PAN],[ClientName],[LegalName],[Mobile],[Phone],[Email],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[GST] FROM [{0}];", TableName)
+            Dim CommandString As String = String.Format("SELECT [ID],[PAN],[ClientName],[TradeName],[Mobile],[Phone],[Email],[Address1],[Address2],[City],[Pincode],[State],[StateCode],[GST] FROM [{0}];", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -161,7 +161,7 @@ Namespace Database
         Private Function Read(ByVal Reader As SqlDataReader, ByVal Prefix As String, ByVal AddPrefix As Boolean) As Receiver
             Dim RID As String = If(AddPrefix, Prefix, "") & Reader.Item("ID").ToString
             Dim Name As String = Reader.Item("ClientName").ToString.Trim
-            Dim LegalName As String = Reader.Item("LegalName").ToString.Trim
+            Dim TradeName As String = Reader.Item("TradeName").ToString.Trim
             Dim PAN As String = Reader.Item("PAN").ToString.Trim
             Dim Mobile As String = Reader.Item("Mobile").ToString.Trim
             Dim Phone As String = Reader.Item("Phone").ToString.Trim
@@ -173,7 +173,7 @@ Namespace Database
             Dim State As String = Reader.Item("State").ToString.Trim
             Dim StateCode As String = Reader.Item("StateCode").ToString.Trim
             Dim GST As String = Reader.Item("GST").ToString.Trim
-            Return New Receiver(RID, Name, LegalName, PAN, Mobile, Phone, Email, AddressLine1, AddressLine2, City, PinCode, State, StateCode, GST)
+            Return New Receiver(RID, Name, TradeName, PAN, Mobile, Phone, Email, AddressLine1, AddressLine2, City, PinCode, State, StateCode, GST)
         End Function
 #End Region
 

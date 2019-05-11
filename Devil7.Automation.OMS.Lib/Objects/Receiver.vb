@@ -35,7 +35,7 @@ Namespace Objects
 
         Property PAN As String = ""
         Property Name As String = ""
-        Property LegalName As String = ""
+        Property TradeName As String = ""
         Property Mobile As String = ""
         Property Phone As String = ""
         Property Email As String = ""
@@ -57,10 +57,10 @@ Namespace Objects
             Me.RID_ = RID
         End Sub
 
-        Sub New(ByVal RID As String, ByVal Name As String, ByVal LegalName As String, ByVal PAN As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal GST As String)
+        Sub New(ByVal RID As String, ByVal Name As String, ByVal TradeName As String, ByVal PAN As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As Integer, ByVal GST As String)
             Me.RID_ = RID
             Me.Name = Name
-            Me.LegalName = LegalName
+            Me.TradeName = TradeName
             Me.AddressLine1 = AddressLine1
             Me.AddressLine2 = AddressLine2
             Me.City = City

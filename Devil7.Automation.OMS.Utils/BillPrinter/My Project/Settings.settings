@@ -14,7 +14,7 @@
     <Setting Name="LastUsedMail" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="PrintLegalName" Type="System.String" Scope="User">
+    <Setting Name="PrintTradeName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
