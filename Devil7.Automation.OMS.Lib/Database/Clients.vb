@@ -27,6 +27,10 @@ Imports Devil7.Automation.OMS.Lib.Utils
 Namespace Database
     Public Module Clients
 
+#Region "Variables"
+        Dim TableName As String = "Clients"
+#End Region
+
 #Region "Update Functions"
         Function AddNew(ByVal Photo As Drawing.Image, ByVal PAN As String, ByVal ClientName As String, ByVal FatherName As String, ByVal TradeName As String, ByVal Mobile As String, ByVal Phone As String, ByVal Email As String, ByVal DOB As String, ByVal AddressLine1 As String, ByVal AddressLine2 As String, ByVal City As String, ByVal PinCode As String, ByVal State As String, ByVal StateCode As String, ByVal Aadhar As String, ByVal Description As String, ByVal TypeOfEngagement As String,
                       ByVal PartnersOrDirectors As List(Of Partner), ByVal Type As String, ByVal Jobs As List(Of JobUser), ByVal Status As String, ByVal GST As String, ByVal FileNo As String, ByVal RPerson As User) As Client
@@ -212,6 +216,28 @@ Namespace Database
 
             Return R
         End Function
+
+        Function GetBirtyDayBabys() As List(Of ClientMinimalWithContact)
+            Dim R As New List(Of ClientMinimalWithContact)
+
+            Dim CommandString As String = String.Format("SELECT [ID],[Photo],[PAN],[ClientName],[Mobile],[Email],[Phone] FROM [{0}] WHERE DAY([DOB])=@Day AND MONTH([DOB])=@Month;", TableName)
+            Dim Connection As SqlConnection = GetConnection()
+
+            If Connection.State <> ConnectionState.Open Then Connection.Open()
+
+
+            Using Command As New SqlCommand(CommandString, Connection)
+                AddParameter(Command, "@Day", Today.Day)
+                AddParameter(Command, "@Month", Today.Month)
+                Using Reader As SqlDataReader = Command.ExecuteReader
+                    While Reader.Read
+                        R.Add(ReadMinimalWithContact(Reader))
+                    End While
+                End Using
+            End Using
+
+            Return R
+        End Function
 #End Region
 
 #Region "Other Functions"
@@ -250,6 +276,17 @@ Namespace Database
             Dim Name As String = Reader.Item("ClientName").ToString.Trim
             Dim PAN As String = Reader.Item("PAN").ToString.Trim
             Return New ClientMinimal(ID, Name, PAN)
+        End Function
+
+        Private Function ReadMinimalWithContact(ByVal Reader As SqlDataReader) As ClientMinimalWithContact
+            Dim ID As Integer = CInt(Reader.Item("ID").ToString.Trim)
+            Dim Name As String = Reader.Item("ClientName").ToString.Trim
+            Dim PAN As String = Reader.Item("PAN").ToString.Trim
+            Dim Mobile As String = Reader.Item("Mobile").ToString.Trim
+            Dim Phone As String = Reader.Item("Phone").ToString.Trim
+            Dim EMail As String = Reader.Item("Email").ToString.Trim
+            Dim Photo As Drawing.Image = If(TypeOf Reader.Item("Photo") Is DBNull, Res.My.Resources.Client_Default, Drawing.Image.FromStream(New IO.MemoryStream(CType(Reader.Item("Photo"), Byte()))))
+            Return New ClientMinimalWithContact(ID, Photo, Name, PAN, Mobile, Phone, EMail)
         End Function
 #End Region
 
