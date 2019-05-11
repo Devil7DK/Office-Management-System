@@ -137,6 +137,17 @@ Namespace My
                 Me("ViewPending") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property BDayShown() As Date
+            Get
+                Return CType(Me("BDayShown"),Date)
+            End Get
+            Set
+                Me("BDayShown") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

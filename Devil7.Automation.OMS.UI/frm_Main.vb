@@ -35,6 +35,7 @@ Public Class frm_Main
     Dim Clients As List(Of Objects.Client)
     Dim Jobs As List(Of Objects.Job)
     Dim ClientsMinimal As List(Of Objects.ClientMinimal)
+    Dim BirthdayBabys As List(Of Objects.ClientMinimalWithContact)
 
     Dim RAMUsed As ULong
     Dim Loaded As Boolean = False
@@ -149,7 +150,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub LoadClientsMinimal(ByVal ProgressPanel As DevExpress.XtraWaitForm.ProgressPanel, ByVal LoadIfUnloaded As Boolean)
-        If LoadIfUnloaded And Jobs IsNot Nothing Then Exit Sub
+        If LoadIfUnloaded And ClientsMinimal IsNot Nothing Then Exit Sub
 
         Me.Invoke(Sub()
                       ProgressPanel.Description = "Loading Clients..."
@@ -161,6 +162,7 @@ Public Class frm_Main
             End While
         Else
             ClientsMinimal = Database.Clients.GetMinimal()
+            BirthdayBabys = Database.Clients.GetBirtyDayBabys
         End If
     End Sub
 #End Region
@@ -209,6 +211,11 @@ Public Class frm_Main
         End If
         If gc_Clients.DataSource Is Nothing Then
             If Not Loader_Clients.IsBusy Then Loader_Clients.RunWorkerAsync()
+        End If
+        If BirthdayBabys IsNot Nothing AndAlso BirthdayBabys.Count > 0 Then
+            btn_BirthdayBabys.Visibility = BarItemVisibility.Always
+        Else
+            btn_BirthdayBabys.Visibility = BarItemVisibility.Never
         End If
     End Sub
 
@@ -400,6 +407,15 @@ Public Class frm_Main
         LoadUsers(ProgressPanel_Home, True, False, sender, e)
         LoadJobs(ProgressPanel_Home, True, False, sender, e)
         LoadClientsMinimal(ProgressPanel_Home, True)
+
+        If BirthdayBabys IsNot Nothing AndAlso BirthdayBabys.Count > 0 AndAlso My.Settings.BDayShown <> Today Then
+            Me.Invoke(Sub()
+                          Dim D As New frm_BirthdayBabys(BirthdayBabys)
+                          D.ShowDialog()
+                      End Sub)
+            My.Settings.BDayShown = Today
+            My.Settings.Save()
+        End If
 
         Me.Invoke(Sub()
                       ProgressPanel_Home.Description = "Loading Home..."
@@ -783,6 +799,13 @@ Public Class frm_Main
     Private Sub btn_Clients_Import_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_Clients_Import.ItemClick
         Dim D As New frm_ImportClients(Users, Clients)
         D.ShowDialog()
+    End Sub
+
+    Private Sub btn_BirthdayBabys_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_BirthdayBabys.ItemClick
+        If BirthdayBabys IsNot Nothing AndAlso BirthdayBabys.Count > 0 Then
+            Dim D As New frm_BirthdayBabys(BirthdayBabys)
+            D.ShowDialog()
+        End If
     End Sub
 #End Region
 

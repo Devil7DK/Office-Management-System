@@ -23,5 +23,8 @@
     <Setting Name="ViewPending" Type="System.String" Scope="User">
       <Value Profile="(Default)">Minimal</Value>
     </Setting>
+    <Setting Name="BDayShown" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
