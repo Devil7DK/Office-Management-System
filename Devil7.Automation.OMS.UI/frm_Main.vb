@@ -107,6 +107,64 @@ Public Class frm_Main
     End Sub
 #End Region
 
+#Region "Loader Functions"
+    Private Sub LoadUsers(ByVal ProgressPanel As DevExpress.XtraWaitForm.ProgressPanel, ByVal LoadIfUnloaded As Boolean, ByVal RunOnNewThread As Boolean, Optional sender As Object = Nothing, Optional e As ComponentModel.DoWorkEventArgs = Nothing)
+        If LoadIfUnloaded And Users IsNot Nothing Then Exit Sub
+
+        Me.Invoke(Sub()
+                      ProgressPanel.Description = "Loading Users..."
+                  End Sub)
+
+        If RunOnNewThread And Not Loader_Users.IsBusy Then
+            Loader_Users.RunWorkerAsync()
+        Else
+            If Loader_Users.IsBusy Then
+                While Loader_Users.IsBusy
+                    Application.DoEvents()
+                End While
+            Else
+                Loader_Users_DoWork(sender, e)
+            End If
+        End If
+    End Sub
+
+    Private Sub LoadJobs(ByVal ProgressPanel As DevExpress.XtraWaitForm.ProgressPanel, ByVal LoadIfUnloaded As Boolean, ByVal RunOnNewThread As Boolean, Optional sender As Object = Nothing, Optional e As ComponentModel.DoWorkEventArgs = Nothing)
+        If LoadIfUnloaded And Jobs IsNot Nothing Then Exit Sub
+
+        Me.Invoke(Sub()
+                      ProgressPanel.Description = "Loading Jobs..."
+                  End Sub)
+
+        If RunOnNewThread And Not Loader_Jobs.IsBusy Then
+            Loader_Jobs.RunWorkerAsync()
+        Else
+            If Loader_Jobs.IsBusy Then
+                While Loader_Jobs.IsBusy
+                    Application.DoEvents()
+                End While
+            Else
+                Loader_Jobs_DoWork(sender, e)
+            End If
+        End If
+    End Sub
+
+    Private Sub LoadClientsMinimal(ByVal ProgressPanel As DevExpress.XtraWaitForm.ProgressPanel, ByVal LoadIfUnloaded As Boolean)
+        If LoadIfUnloaded And Jobs IsNot Nothing Then Exit Sub
+
+        Me.Invoke(Sub()
+                      ProgressPanel.Description = "Loading Clients..."
+                  End Sub)
+
+        If Loader_Clients.IsBusy Then
+            While Loader_Clients.IsBusy
+                Application.DoEvents()
+            End While
+        Else
+            ClientsMinimal = Database.Clients.GetMinimal()
+        End If
+    End Sub
+#End Region
+
 #Region "Navigation Functions"
     Sub HideOptions()
         rpg_Clients.Visible = False
@@ -273,18 +331,8 @@ Public Class frm_Main
                       rpg_AutoForwards.Enabled = False
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_AutoForwards.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_AutoForwards.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
+        LoadUsers(ProgressPanel_AutoForwards, True, False, sender, e)
+        LoadJobs(ProgressPanel_AutoForwards, True, False, sender, e)
 
         Me.Invoke(Sub()
                       ProgressPanel_AutoForwards.Description = "Loading AutoForwards..."
@@ -311,26 +359,17 @@ Public Class frm_Main
                       ProgressPanel_Clients.Visible = True
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Clients.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Clients.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
+        LoadUsers(ProgressPanel_Clients, True, False, sender, e)
+        LoadJobs(ProgressPanel_Clients, True, False, sender, e)
 
         Me.Invoke(Sub()
                       ProgressPanel_Workbook.Description = "Loading Clients..."
                   End Sub)
-        ClientsMinimal = Database.Clients.GetMinimal()
 
         Try
+            Dim ClientsMinimal As List(Of Objects.ClientMinimal) = Database.Clients.GetMinimal()
+            Me.ClientsMinimal = ClientsMinimal
+
             Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(Jobs, Users, True)
             Me.Clients = Clients
             Me.Invoke(Sub()
@@ -358,25 +397,9 @@ Public Class frm_Main
                       rpg_Home.Enabled = False
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Home.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Home.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
-
-        If ClientsMinimal Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Workbook.Description = "Loading Clients..."
-                      End Sub)
-            ClientsMinimal = Database.Clients.GetMinimal()
-        End If
+        LoadUsers(ProgressPanel_Home, True, False, sender, e)
+        LoadJobs(ProgressPanel_Home, True, False, sender, e)
+        LoadClientsMinimal(ProgressPanel_Home, True)
 
         Me.Invoke(Sub()
                       ProgressPanel_Home.Description = "Loading Home..."
@@ -403,12 +426,7 @@ Public Class frm_Main
                       ProgressPanel_Jobs.Visible = True
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Jobs.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
+        LoadUsers(ProgressPanel_Jobs, True, False, sender, e)
 
         Try
             Dim Jobs As List(Of Objects.Job) = Database.Jobs.GetAll(True)
@@ -434,26 +452,9 @@ Public Class frm_Main
                       ProgressPanel_Workbook.Visible = True
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Workbook.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Workbook.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
-
-        If ClientsMinimal Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Workbook.Description = "Loading Clients..."
-                      End Sub)
-            ClientsMinimal = Database.Clients.GetMinimal()
-        End If
+        LoadUsers(ProgressPanel_Workbook, True, False, sender, e)
+        LoadJobs(ProgressPanel_Workbook, True, False, sender, e)
+        LoadClientsMinimal(ProgressPanel_Workbook, True)
 
         Me.Invoke(Sub()
                       ProgressPanel_Workbook.Description = "Loading Workbook..."
@@ -505,18 +506,8 @@ Public Class frm_Main
                       ProgressPanel_Billing.Visible = True
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Billing.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Billing.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
+        LoadUsers(ProgressPanel_Billing, True, False, sender, e)
+        LoadJobs(ProgressPanel_Billing, True, False, sender, e)
 
         Me.Invoke(Sub()
                       ProgressPanel_Billing.Description = "Loading Billing..."
@@ -543,18 +534,8 @@ Public Class frm_Main
                       ProgressPanel_Pending.Visible = True
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Pending.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Pending.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
+        LoadUsers(ProgressPanel_Pending, True, False, sender, e)
+        LoadJobs(ProgressPanel_Pending, True, False, sender, e)
 
         Me.Invoke(Sub()
                       ProgressPanel_Pending.Description = "Loading Pending Bills..."
@@ -584,18 +565,8 @@ Public Class frm_Main
                       rpg_Transferred.Enabled = False
                   End Sub)
 
-        If Users Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Transferred.Description = "Loading Users..."
-                      End Sub)
-            Loader_Users_DoWork(Me, Nothing)
-        End If
-        If Jobs Is Nothing Then
-            Me.Invoke(Sub()
-                          ProgressPanel_Transferred.Description = "Loading Jobs..."
-                      End Sub)
-            Loader_Jobs_DoWork(Me, Nothing)
-        End If
+        LoadUsers(ProgressPanel_Transferred, True, False, sender, e)
+        LoadJobs(ProgressPanel_Transferred, True, False, sender, e)
 
         Me.Invoke(Sub()
                       ProgressPanel_Transferred.Description = "Loading Transferred..."
