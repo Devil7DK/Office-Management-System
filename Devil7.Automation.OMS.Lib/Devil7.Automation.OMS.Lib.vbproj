@@ -197,6 +197,12 @@
     <Compile Include="Dialogs\Client\XtraUserControl1.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_BirthdayBabys.Designer.vb">
+      <DependentUpon>frm_BirthdayBabys.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_BirthdayBabys.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\frm_DetailedWorkbookItem.Designer.vb">
       <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
     </Compile>
@@ -359,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\Client\XtraUserControl1.resx">
       <DependentUpon>XtraUserControl1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_BirthdayBabys.resx">
+      <DependentUpon>frm_BirthdayBabys.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\frm_DetailedWorkbookItem.resx">
       <DependentUpon>frm_DetailedWorkbookItem.vb</DependentUpon>
