@@ -625,15 +625,18 @@ Public Class frm_Main
         Else
             Close()
         End If
-        If Me.User Is Nothing Then Close()
-        Text = String.Format("{0} [{1}]", My.Application.Info.ProductName, User.Username)
-        MainPane.SelectedPageIndex = 0
-        cmb_HomeView.EditValue = My.Settings.ViewHome
-        cmb_WorkbookView.EditValue = My.Settings.ViewWorkbook
-        cmb_BillingView.EditValue = My.Settings.ViewBilling
-        cmb_PendingView.EditValue = My.Settings.ViewPending
-        cmb_ClientsSort.EditValue = My.Settings.SortClient
-        ProcessPermissions()
+        If Me.User Is Nothing Then
+            Close()
+        Else
+            Text = String.Format("{0} [{1}]", My.Application.Info.ProductName, User.Username)
+            MainPane.SelectedPageIndex = 0
+            cmb_HomeView.EditValue = My.Settings.ViewHome
+            cmb_WorkbookView.EditValue = My.Settings.ViewWorkbook
+            cmb_BillingView.EditValue = My.Settings.ViewBilling
+            cmb_PendingView.EditValue = My.Settings.ViewPending
+            cmb_ClientsSort.EditValue = My.Settings.SortClient
+            ProcessPermissions()
+        End If
     End Sub
 #End Region
 
