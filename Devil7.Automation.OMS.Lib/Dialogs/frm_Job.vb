@@ -70,8 +70,8 @@ Namespace Dialogs
             Else
                 txt_PrimaryPeriod.SelectedIndex = 0
             End If
-            If gc_AutoForwards.DataSource IsNot Nothing Then gc_AutoForwards.DataSource = New List(Of AutoForward)
-            If gc_FollowUps.DataSource IsNot Nothing Then gc_FollowUps.DataSource = New List(Of Job)
+            If gc_AutoForwards.DataSource Is Nothing Then gc_AutoForwards.DataSource = New List(Of AutoForward)
+            If gc_FollowUps.DataSource Is Nothing Then gc_FollowUps.DataSource = New List(Of Job)
             txt_Name.Focus()
         End Sub
 #End Region
