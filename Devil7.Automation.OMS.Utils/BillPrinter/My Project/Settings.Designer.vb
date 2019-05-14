@@ -105,10 +105,10 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property PrintTradeName() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PrintTradeName() As Boolean
             Get
-                Return CType(Me("PrintTradeName"),String)
+                Return CType(Me("PrintTradeName"),Boolean)
             End Get
             Set
                 Me("PrintTradeName") = value

@@ -48,7 +48,7 @@ Public Class frm_Main
         If ProgressOverlayHandle IsNot Nothing Then DevExpress.XtraSplashScreen.SplashScreenManager.CloseOverlayForm(ProgressOverlayHandle)
     End Sub
 
-    Private Function GetFeesReminderReport(ByVal FeesReminder As FeesReminder, Optional ByVal Receiver As Receiver = Nothing) As report_FeesReminder
+    Private Function GetFeesReminderReport(ByVal FeesReminder As FeesReminder) As report_FeesReminder
         Dim Items As New List(Of data_FeesReminder_Item)
         If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
         For Each i As FeesItem In FeesReminder.Items
@@ -62,11 +62,11 @@ Public Class frm_Main
             Items.Add(New data_FeesReminder_Item(i.Date, i.Name, Dr, Cr))
         Next
 
-        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Receiver, Items, FeesReminder.CustomText)
+        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, FeesReminder.Receiver, Items, FeesReminder.CustomText)
         Return New report_FeesReminder(ReportData, My.Computer.Keyboard.CtrlKeyDown)
     End Function
 
-    Private Function GetFeesReminderReportMail(ByVal FeesReminder As FeesReminder, Optional ByVal Receiver As Receiver = Nothing) As report_FeesReminder_Mail
+    Private Function GetFeesReminderReportMail(ByVal FeesReminder As FeesReminder) As report_FeesReminder_Mail
         Dim Items As New List(Of data_FeesReminder_Item)
         If FeesReminder.OpeningBalance > 0 Then Items.Add(New data_FeesReminder_Item(Nothing, "Opening Balance", FeesReminder.OpeningBalance, 0))
         For Each i As FeesItem In FeesReminder.Items
@@ -80,7 +80,7 @@ Public Class frm_Main
             Items.Add(New data_FeesReminder_Item(i.Date, i.Name, Dr, Cr))
         Next
 
-        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, Receiver, Items, FeesReminder.CustomText)
+        Dim ReportData As New data_FeesReminder(FeesReminder.Sender, FeesReminder.Receiver, Items, FeesReminder.CustomText)
         Return New report_FeesReminder_Mail(ReportData)
     End Function
 #End Region

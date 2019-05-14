@@ -40,7 +40,7 @@
 
 #Region "Events"
     Private Sub btn_OK_Click(sender As Object, e As EventArgs) Handles btn_OK.Click
-        If txt_Sender.SelectedItem IsNot Nothing AndAlso txt_Receiver.EditValue > 0 Then
+        If txt_Sender.SelectedItem IsNot Nothing AndAlso txt_Receiver.EditValue <> "" Then
             Me.DialogResult = DialogResult.OK
             Me.Close()
         End If

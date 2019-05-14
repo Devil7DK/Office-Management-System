@@ -20,8 +20,8 @@ Partial Public Class report_Bill
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(report_Bill))
+        Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.table_Data = New DevExpress.XtraReports.UI.XRTable()
         Me.row_BillEntry = New DevExpress.XtraReports.UI.XRTableRow()
@@ -31,6 +31,7 @@ Partial Public Class report_Bill
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
+        Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
         Me.lbl_Receiver_GSTIN = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
@@ -41,6 +42,7 @@ Partial Public Class report_Bill
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrRichText1 = New DevExpress.XtraReports.UI.XRRichText()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.table_Header = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell5 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -77,16 +79,14 @@ Partial Public Class report_Bill
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.XrRichText1 = New DevExpress.XtraReports.UI.XRRichText()
-        Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         CType(Me.table_Data, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_Notes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_Total, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table_TaxDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -180,6 +180,15 @@ Partial Public Class report_Bill
         Me.ReportHeader.HeightF = 389.1774!
         Me.ReportHeader.Name = "ReportHeader"
         Me.ReportHeader.StylePriority.UseFont = False
+        '
+        'XrRichText2
+        '
+        Me.XrRichText2.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 255.3565!)
+        Me.XrRichText2.Name = "XrRichText2"
+        Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
+        Me.XrRichText2.SizeF = New System.Drawing.SizeF(446.3702!, 102.6299!)
         '
         'XrLabel22
         '
@@ -337,6 +346,15 @@ Partial Public Class report_Bill
         Me.XrLabel31.StylePriority.UseTextAlignment = False
         Me.XrLabel31.Text = "Tax Invoice"
         Me.XrLabel31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
+        '
+        'XrRichText1
+        '
+        Me.XrRichText1.Font = New System.Drawing.Font("Century Gothic", 9.75!)
+        Me.XrRichText1.LocationFloat = New DevExpress.Utils.PointFloat(0.001176198!, 114.5834!)
+        Me.XrRichText1.Name = "XrRichText1"
+        Me.XrRichText1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrRichText1.SerializableRtfString = resources.GetString("XrRichText1.SerializableRtfString")
+        Me.XrRichText1.SizeF = New System.Drawing.SizeF(446.3685!, 78.00001!)
         '
         'XrTable2
         '
@@ -754,24 +772,6 @@ Partial Public Class report_Bill
         '
         Me.BindingSource1.DataSource = GetType(Devil7.Automation.OMS.Utils.BillPrinter.data_Bill)
         '
-        'XrRichText1
-        '
-        Me.XrRichText1.Font = New System.Drawing.Font("Century Gothic", 9.75!)
-        Me.XrRichText1.LocationFloat = New DevExpress.Utils.PointFloat(0.001176198!, 114.5834!)
-        Me.XrRichText1.Name = "XrRichText1"
-        Me.XrRichText1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrRichText1.SerializableRtfString = resources.GetString("XrRichText1.SerializableRtfString")
-        Me.XrRichText1.SizeF = New System.Drawing.SizeF(446.3685!, 78.00001!)
-        '
-        'XrRichText2
-        '
-        Me.XrRichText2.Font = New System.Drawing.Font("Century Gothic", 9.75!)
-        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 255.3565!)
-        Me.XrRichText2.Name = "XrRichText2"
-        Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
-        Me.XrRichText2.SizeF = New System.Drawing.SizeF(446.3702!, 102.6299!)
-        '
         'report_Bill
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter, Me.PageFooter, Me.GroupHeader1})
@@ -780,13 +780,13 @@ Partial Public Class report_Bill
         Me.Margins = New System.Drawing.Printing.Margins(85, 85, 50, 75)
         Me.Version = "18.2"
         CType(Me.table_Data, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table_Notes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table_Total, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table_TaxDetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
