@@ -152,6 +152,7 @@
     <Compile Include="Database\Common.vb" />
     <Compile Include="Database\Connection.vb" />
     <Compile Include="Database\Bills.vb" />
+    <Compile Include="Database\DigitalKeyInfos.vb" />
     <Compile Include="Database\FeesItems.vb" />
     <Compile Include="Database\FeesReminders.vb" />
     <Compile Include="Database\Notes.vb" />
