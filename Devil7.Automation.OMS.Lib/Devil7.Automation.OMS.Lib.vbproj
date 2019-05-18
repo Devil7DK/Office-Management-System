@@ -297,6 +297,7 @@
     <Compile Include="Objects\Client.vb" />
     <Compile Include="Objects\Bill.vb" />
     <Compile Include="Objects\ClientMinimalWithContact.vb" />
+    <Compile Include="Objects\DigitalKeyInfo.vb" />
     <Compile Include="Objects\ExMailAddress.vb" />
     <Compile Include="Objects\FeesItem.vb" />
     <Compile Include="Objects\FeesReminder.vb" />

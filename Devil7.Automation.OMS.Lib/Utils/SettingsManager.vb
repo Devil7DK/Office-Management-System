@@ -55,6 +55,7 @@ Namespace Utils
             Property Password As String = ""
             Property Pooling As Boolean = False
             Property DefaultStorage As String = ""
+            Property DigitalAlertDays As Integer = 30
         End Class
 
     End Module
