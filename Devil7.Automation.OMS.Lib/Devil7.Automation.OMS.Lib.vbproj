@@ -277,6 +277,8 @@
     </Compile>
     <Compile Include="Enums\BillingStatus.vb" />
     <Compile Include="Enums\BillItemType.vb" />
+    <Compile Include="Enums\DigitalKeyStatus.vb" />
+    <Compile Include="Enums\DigitalKeyValidity.vb" />
     <Compile Include="Enums\Effect.vb" />
     <Compile Include="Enums\PeriodType.vb" />
     <Compile Include="Enums\CenterType.vb" />
