@@ -257,5 +257,14 @@ Namespace Utils
             End If
         End Function
 
+        Public Sub MakeColumnsFilterable(ByVal GridView As DevExpress.XtraGrid.Views.Grid.GridView)
+            If GridView.Columns.Count = 0 Then GridView.PopulateColumns()
+            For Each Column As DevExpress.XtraGrid.Columns.GridColumn In GridView.Columns
+                Column.OptionsFilter.AllowFilter = True
+                Column.OptionsFilter.AllowAutoFilter = True
+                Column.FilterMode = DevExpress.XtraGrid.ColumnFilterMode.DisplayText
+            Next
+        End Sub
+
     End Module
 End Namespace
