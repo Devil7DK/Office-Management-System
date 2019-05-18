@@ -202,6 +202,7 @@ Partial Class frm_Main
         Me.Loader_Transferred = New System.ComponentModel.BackgroundWorker()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.PopupMenu2 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.btn_DigitalKeyRegister = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RibbonMenu, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RAMUsage_Progress, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -375,9 +376,9 @@ Partial Class frm_Main
         '
         Me.RibbonControl.ApplicationButtonDropDownControl = Me.RibbonMenu
         Me.RibbonControl.ExpandCollapseItem.Id = 0
-        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2, Me.btn_ClientJobsReport, Me.switch_PreviewPane, Me.btn_AddWork_Self, Me.btn_RefreshAutoForwards, Me.btn_RefreshTransferred, Me.btn_Clients_Import, Me.btn_BirthdayBabys})
+        Me.RibbonControl.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl.ExpandCollapseItem, Me.btn_AddClient, Me.btn_EditClient, Me.btn_RemoveClient, Me.btn_AddWork, Me.btn_EditWork, Me.btn_RemoveWork, Me.btn_RefreshWork, Me.btn_RefreshClients, Me.btn_RefreshJobs, Me.btn_RefreshUsers, Me.btn_EditProfile, Me.btn_ChangePassword, Me.btn_Exit, Me.btn_Clients_CardView, Me.btn_Clients_DetailsView, Me.grp_btn_Clients_View, Me.btn_RefreshHome, Me.btn_RefreshBilling, Me.btn_MarkBilled, Me.RAMUsage, Me.btn_FreeRAM, Me.btn_GenerateReport, Me.cmb_HomeView, Me.cmb_WorkbookView, Me.cmb_BillingView, Me.cmb_ClientsSort, Me.cmb_PendingView, Me.btn_RefreshPending, Me.btn_MarkPending, Me.btn_MarkBilled_2, Me.btn_MarkNotPaid, Me.btn_MarkIncomplete, Me.btn_MarkIncomplete_2, Me.btn_ClientJobsReport, Me.switch_PreviewPane, Me.btn_AddWork_Self, Me.btn_RefreshAutoForwards, Me.btn_RefreshTransferred, Me.btn_Clients_Import, Me.btn_BirthdayBabys, Me.btn_DigitalKeyRegister})
         Me.RibbonControl.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl.MaxItemId = 60
+        Me.RibbonControl.MaxItemId = 61
         Me.RibbonControl.Name = "RibbonControl"
         Me.RibbonControl.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.rp_Edit})
         Me.RibbonControl.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RAMUsage_Progress, Me.cmb_HomeView_Editor, Me.cmb_WorkbookView_View, Me.cmb_BillingView_Edit, Me.cmb_ClientsSort_Edit, Me.cmb_PendingView_Edit})
@@ -796,6 +797,7 @@ Partial Class frm_Main
         Me.rpg_Clients.ItemLinks.Add(Me.btn_ClientJobsReport)
         Me.rpg_Clients.ItemLinks.Add(Me.btn_Clients_Import)
         Me.rpg_Clients.ItemLinks.Add(Me.btn_BirthdayBabys, True)
+        Me.rpg_Clients.ItemLinks.Add(Me.btn_DigitalKeyRegister)
         Me.rpg_Clients.Name = "rpg_Clients"
         Me.rpg_Clients.ShowCaptionButton = False
         Me.rpg_Clients.Text = "Actions"
@@ -1669,6 +1671,13 @@ Partial Class frm_Main
         Me.PopupMenu2.Name = "PopupMenu2"
         Me.PopupMenu2.Ribbon = Me.RibbonControl
         '
+        'btn_DigitalKeyRegister
+        '
+        Me.btn_DigitalKeyRegister.Caption = "Digital Key Register"
+        Me.btn_DigitalKeyRegister.Id = 60
+        Me.btn_DigitalKeyRegister.ImageOptions.SvgImage = CType(resources.GetObject("btn_DigitalKeyRegister.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.btn_DigitalKeyRegister.Name = "btn_DigitalKeyRegister"
+        '
         'frm_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1879,4 +1888,5 @@ Partial Class frm_Main
     Friend WithEvents PopupMenu2 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents btn_Clients_Import As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents btn_BirthdayBabys As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents btn_DigitalKeyRegister As DevExpress.XtraBars.BarButtonItem
 End Class

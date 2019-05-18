@@ -880,6 +880,12 @@ Public Class frm_Main
             D.ShowDialog()
         End If
     End Sub
+
+
+    Private Sub btn_DigitalKeyRegister_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_DigitalKeyRegister.ItemClick
+        Dim D As New frm_DigitalKeys(Me.Clients)
+        D.ShowDialog()
+    End Sub
 #End Region
 
 #Region "Home"
