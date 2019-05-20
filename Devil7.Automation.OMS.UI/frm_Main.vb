@@ -348,6 +348,7 @@ Public Class frm_Main
             Dim AutoForwards As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.AutoForward}, False, AddressOf AutoForwards_OnChange)
             Me.Invoke(Sub()
                           gc_AutoForwards.DataSource = AutoForwards
+                          Utils.Misc.MakeColumnsFilterable(gv_AutoForwards)
                       End Sub)
             SetupHomeColumns(gv_AutoForwards)
         Catch ex As Exception
@@ -424,6 +425,7 @@ Public Class frm_Main
             Dim Home As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Normal, Enums.WorkType.Followup, Enums.WorkType.Transfer}, False, AddressOf Home_OnChange)
             Me.Invoke(Sub()
                           gc_Home.DataSource = Home
+                          Utils.Misc.MakeColumnsFilterable(gv_Home)
                       End Sub)
             SetupHomeColumns(gv_Home)
         Catch ex As Exception
@@ -450,6 +452,7 @@ Public Class frm_Main
             Me.Jobs = Jobs
             Me.Invoke(Sub()
                           gc_Jobs.DataSource = Jobs
+                          Utils.Misc.MakeColumnsFilterable(gv_Jobs)
                           gc_Jobs.RefreshDataSource()
                       End Sub)
         Catch ex As Exception
@@ -480,6 +483,7 @@ Public Class frm_Main
             Dim Workbook As List(Of Objects.WorkbookItem) = Database.Workbook.GetIncomplete(True, Jobs, Users, AddressOf Workbook_OnChange)
             Me.Invoke(Sub()
                           gc_WorkBook.DataSource = Workbook
+                          Utils.Misc.MakeColumnsFilterable(gv_WorkBook)
                       End Sub)
             SetupWorkbookColumns()
         Catch ex As Exception
@@ -532,6 +536,7 @@ Public Class frm_Main
             Dim Billing As List(Of Objects.WorkbookItem) = Database.Workbook.GetCompleted(True, Jobs, Users, AddressOf Billing_OnChange)
             Me.Invoke(Sub()
                           gc_Billing.DataSource = Billing
+                          Utils.Misc.MakeColumnsFilterable(gv_Billing)
                       End Sub)
             SetupBillingColumns()
         Catch ex As Exception
@@ -560,6 +565,7 @@ Public Class frm_Main
             Dim Pending As List(Of Objects.WorkbookItem) = Database.Workbook.GetPending(True, Jobs, Users, AddressOf Pending_OnChange)
             Me.Invoke(Sub()
                           gc_Pending.DataSource = Pending
+                          Utils.Misc.MakeColumnsFilterable(gv_Pending)
                       End Sub)
             SetupPendingColumns()
         Catch ex As Exception
@@ -591,6 +597,7 @@ Public Class frm_Main
             Dim Transferred As List(Of Objects.WorkbookItem) = Database.Workbook.GetForUser(True, Jobs, Users, User.ID, {Enums.WorkType.Transfer}, True, AddressOf Transferred_OnChange)
             Me.Invoke(Sub()
                           gc_Transferred.DataSource = Transferred
+                          Utils.Misc.MakeColumnsFilterable(gv_Transferred)
                       End Sub)
             SetupHomeColumns(gv_Transferred)
         Catch ex As Exception
@@ -789,6 +796,7 @@ Public Class frm_Main
     Private Sub btn_Clients_DetailsView_ItemClick(sender As System.Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_Clients_DetailsView.ItemClick
         If gc_Clients.MainView IsNot gv_Clients Then
             gc_Clients.MainView = gv_Clients
+            Utils.Misc.MakeColumnsFilterable(gv_Clients)
         End If
     End Sub
 
