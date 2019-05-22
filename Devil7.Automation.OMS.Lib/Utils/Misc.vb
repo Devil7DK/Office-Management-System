@@ -266,6 +266,12 @@ Namespace Utils
             Next
         End Sub
 
+        Public Sub FitColumnsToContent(ByVal GridView As DevExpress.XtraGrid.Views.Grid.GridView)
+            If GridView.Columns.Count = 0 Then GridView.PopulateColumns()
+            GridView.OptionsView.ColumnAutoWidth = False
+            GridView.BestFitColumns()
+        End Sub
+
         Public Function ColorLerp(ByVal color1 As Drawing.Color, ByVal color2 As Drawing.Color, ByVal value As Single) As Drawing.Color
             Dim R As Double = ((1 - value) * Convert.ToInt32(color1.R)) + (value * Convert.ToInt32(color2.R))
             Dim B As Double = ((1 - value) * Convert.ToInt32(color1.B)) + (value * Convert.ToInt32(color2.B))
