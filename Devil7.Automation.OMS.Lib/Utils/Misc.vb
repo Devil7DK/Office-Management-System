@@ -266,5 +266,16 @@ Namespace Utils
             Next
         End Sub
 
+        Public Function ColorLerp(ByVal color1 As Drawing.Color, ByVal color2 As Drawing.Color, ByVal value As Single) As Drawing.Color
+            Dim R As Double = ((1 - value) * Convert.ToInt32(color1.R)) + (value * Convert.ToInt32(color2.R))
+            Dim B As Double = ((1 - value) * Convert.ToInt32(color1.B)) + (value * Convert.ToInt32(color2.B))
+            Dim G As Double = ((1 - value) * Convert.ToInt32(color1.G)) + (value * Convert.ToInt32(color2.G))
+            Dim A As Byte = 255
+            If R > 255 Then R = 255
+            If G > 255 Then G = 255
+            If B > 255 Then B = 255
+            Return Drawing.Color.FromArgb(A, Convert.ToByte(R), Convert.ToByte(G), Convert.ToByte(B))
+        End Function
+
     End Module
 End Namespace
