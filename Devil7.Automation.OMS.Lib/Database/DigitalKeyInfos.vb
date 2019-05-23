@@ -33,7 +33,7 @@ Namespace Database
 
 #Region "Update Functions"
         Sub AddNew(ByVal Item As DigitalKeyInfo)
-            Dim CommandString As String = String.Format("INSERT INTO {0} ([Client],[ValidFrom],[ValidTo],[Status],[Remarks]) VALUES(@Client,@ValidFrom,@ValidTo,@Status,@Remarks);SELECT SCOPE_IDENTITY();", TableName)
+            Dim CommandString As String = String.Format("INSERT INTO {0} ([Client],[ValidFrom],[ValidTo],[Status],[Possession],[Remarks]) VALUES(@Client,@ValidFrom,@ValidTo,@Status,@Possession,@Remarks);SELECT SCOPE_IDENTITY();", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -57,7 +57,7 @@ Namespace Database
         Function Update(ByVal Item As DigitalKeyInfo) As Boolean
             Dim R As Boolean = False
 
-            Dim CommandString As String = String.Format("UPDATE {0} SET [Client]=@Client,[ValidFrom]=@ValidFrom,[ValidTo]=@ValidTo,[Status]=@Status,[Remarks]=@Remarks WHERE [ID]=@ID;", TableName)
+            Dim CommandString As String = String.Format("UPDATE {0} SET [Client]=@Client,[ValidFrom]=@ValidFrom,[ValidTo]=@ValidTo,[Status]=@Status,[Possession]=@Possession,[Remarks]=@Remarks WHERE [ID]=@ID;", TableName)
             Dim Connection As SqlConnection = GetConnection()
 
             If Connection.State <> ConnectionState.Open Then Connection.Open()
@@ -68,6 +68,7 @@ Namespace Database
                 AddParameter(Command, "@ValidFrom", Item.ValidFrom)
                 AddParameter(Command, "@ValidTo", Item.ValidTo)
                 AddParameter(Command, "@Status", CInt(Item.Status))
+                AddParameter(Command, "@Possession", CInt(Item.Status))
                 AddParameter(Command, "@Remarks", Item.Remarks)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
@@ -117,8 +118,9 @@ Namespace Database
             Date.TryParse(Reader.Item("ValidFrom"), ValidFrom)
             Date.TryParse(Reader.Item("ValidTo"), ValidTo)
             Dim Status As Enums.DigitalKeyStatus = CInt(Reader.Item("Status").ToString)
+            Dim Possession As Enums.Possession = CInt(Reader.Item("Possession").ToString)
             Dim Remarks As String = Reader.Item("Remarks").ToString
-            Return New DigitalKeyInfo(ID, Client, ValidFrom, ValidTo, Status, Remarks)
+            Return New DigitalKeyInfo(ID, Client, ValidFrom, ValidTo, Status, Possession, Remarks)
         End Function
 
         Function GetAll(ByVal Clients As List(Of Client), ByVal CloseConnection As Boolean) As List(Of DigitalKeyInfo)

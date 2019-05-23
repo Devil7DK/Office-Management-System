@@ -118,6 +118,8 @@ Namespace Objects
             End Get
         End Property
 
+        Property Possession As Enums.Possession
+
         Property Remarks As String
 #End Region
 
@@ -129,14 +131,16 @@ Namespace Objects
             Me.ValidTo = Nothing
             Me.Status = Enums.DigitalKeyStatus.NA
             Me.Remarks = ""
+            Me.Possession = Enums.Possession.WithUs
         End Sub
 
-        Sub New(ByVal ID As Integer, ByVal Client As Client, ByVal ValidFrom As Date, ByVal ValidTo As Date, ByVal Status As Enums.DigitalKeyStatus, ByVal Remarks As String)
+        Sub New(ByVal ID As Integer, ByVal Client As Client, ByVal ValidFrom As Date, ByVal ValidTo As Date, ByVal Status As Enums.DigitalKeyStatus, ByVal Possession As Enums.Possession, ByVal Remarks As String)
             Me.ID_ = ID
             Me.Client = Client
             Me.ValidFrom = ValidFrom
             Me.ValidTo = ValidTo
             Me.Status = Status
+            Me.Possession = Possession
             Me.Remarks = Remarks
         End Sub
 #End Region
