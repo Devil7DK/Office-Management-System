@@ -282,6 +282,12 @@
     <Compile Include="Dialogs\User\frm_User.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\frm_DigitalKeysAlert.Designer.vb">
+      <DependentUpon>frm_DigitalKeysAlert.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\frm_DigitalKeysAlert.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Enums\BillingStatus.vb" />
     <Compile Include="Enums\BillItemType.vb" />
     <Compile Include="Enums\DigitalKeyStatus.vb" />
@@ -417,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\User\frm_User.resx">
       <DependentUpon>frm_User.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\frm_DigitalKeysAlert.resx">
+      <DependentUpon>frm_DigitalKeysAlert.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
