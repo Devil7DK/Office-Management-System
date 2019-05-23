@@ -148,6 +148,17 @@ Namespace My
                 Me("BDayShown") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property DigitalAlertShown() As Date
+            Get
+                Return CType(Me("DigitalAlertShown"),Date)
+            End Get
+            Set
+                Me("DigitalAlertShown") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

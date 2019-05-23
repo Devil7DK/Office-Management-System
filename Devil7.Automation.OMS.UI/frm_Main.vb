@@ -36,6 +36,8 @@ Public Class frm_Main
     Dim Jobs As List(Of Objects.Job)
     Dim ClientsMinimal As List(Of Objects.ClientMinimal)
     Dim BirthdayBabys As List(Of Objects.ClientMinimalWithContact)
+    Dim DigitalKeyInfos As List(Of Objects.DigitalKeyInfo)
+    Dim AlertKeys As List(Of Objects.DigitalKeyInfo)
 
     Dim RAMUsed As ULong
     Dim Loaded As Boolean = False
@@ -380,7 +382,19 @@ Public Class frm_Main
 
             Dim Clients As List(Of Objects.Client) = Database.Clients.GetAll(Jobs, Users, True)
             Me.Clients = Clients
+
+            AlertKeys = New List(Of Objects.DigitalKeyInfo)
+            If DigitalKeyInfos Is Nothing Then
+                DigitalKeyInfos = Database.DigitalKeyInfos.GetAll(Clients, True)
+                AlertKeys = DigitalKeyInfos.FindAll(Function(c) c.Validity = Enums.DigitalKeyValidity.Expired Or c.Validity = Enums.DigitalKeyValidity.ExpiringSoon Or c.Validity = Enums.DigitalKeyValidity.ExpiringToday)
+            End If
             Me.Invoke(Sub()
+                          If AlertKeys IsNot Nothing AndAlso AlertKeys.Count > 0 AndAlso My.Settings.DigitalAlertShown <> Today Then
+                              Dim D As New Dialogs.frm_DigitalKeysAlert(AlertKeys)
+                              D.ShowDialog()
+                              My.Settings.DigitalAlertShown = Today
+                              My.Settings.Save()
+                          End If
                           gc_Clients.DataSource = Clients
                           SortClients()
                       End Sub)
@@ -889,6 +903,12 @@ Public Class frm_Main
         End If
     End Sub
 
+    Private Sub btn_DigitalKeysToRenew_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_DigitalKeysToRenew.ItemClick
+        Dim D As New Dialogs.frm_DigitalKeysAlert(Me.AlertKeys)
+        If D.ShowDialog() = DialogResult.OK Then
+            AlertKeys = Nothing
+        End If
+    End Sub
 
     Private Sub btn_DigitalKeyRegister_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_DigitalKeyRegister.ItemClick
         Dim D As New frm_DigitalKeys(Me.Clients)
