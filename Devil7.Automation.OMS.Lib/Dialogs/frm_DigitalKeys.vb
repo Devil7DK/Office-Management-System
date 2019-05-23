@@ -127,6 +127,37 @@ Public Class frm_DigitalKeys
             e.RepositoryItem = Editor
         End If
     End Sub
+
+    Private Sub gv_DigitalKeys_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles gv_DigitalKeys.RowCellStyle
+        If e.Column.FieldName = "DaysToExpire" Then
+            If e.CellValue IsNot Nothing Then
+                Try
+                    Dim Value As Integer = CInt(e.CellValue)
+                    e.Appearance.BackColor = Utils.Misc.ColorLerp(System.Drawing.Color.Red, System.Drawing.Color.LightGreen, If(Value > 365, 1, (Value / 365)))
+                Catch ex As Exception
+
+                End Try
+            End If
+        ElseIf e.Column.FieldName = "Validity" Then
+            If e.CellValue IsNot Nothing Then
+                Try
+                    Dim Value As Enums.DigitalKeyValidity = CInt(e.CellValue)
+                    Select Case Value
+                        Case Enums.DigitalKeyValidity.Valid
+                            e.Appearance.BackColor = System.Drawing.Color.LightGreen
+                        Case Enums.DigitalKeyValidity.ExpiringSoon
+                            e.Appearance.BackColor = System.Drawing.Color.LightYellow
+                        Case Enums.DigitalKeyValidity.ExpiringToday
+                            e.Appearance.BackColor = System.Drawing.Color.FromArgb(255, 255, 81, 81)
+                        Case Enums.DigitalKeyValidity.Expired
+                            e.Appearance.BackColor = System.Drawing.Color.Red
+                    End Select
+                Catch ex As Exception
+
+                End Try
+            End If
+        End If
+    End Sub
 #End Region
 
 End Class
