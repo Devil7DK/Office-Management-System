@@ -911,7 +911,7 @@ Public Class frm_Main
     End Sub
 
     Private Sub btn_DigitalKeyRegister_ItemClick(sender As Object, e As ItemClickEventArgs) Handles btn_DigitalKeyRegister.ItemClick
-        Dim D As New frm_DigitalKeys(Me.Clients)
+        Dim D As New frm_DigitalKeys(Me.User, Me.Clients)
         D.ShowDialog()
     End Sub
 #End Region
