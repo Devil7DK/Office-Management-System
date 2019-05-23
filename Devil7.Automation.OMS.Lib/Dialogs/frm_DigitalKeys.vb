@@ -10,6 +10,7 @@ Public Class frm_DigitalKeys
     Dim ProgressOverlayHandle As DevExpress.XtraSplashScreen.IOverlaySplashScreenHandle
     Dim Edited As Boolean = False
     Dim Clients As List(Of Objects.Client)
+    Dim User As Objects.User
 #End Region
 
 #Region "Properties"
@@ -31,10 +32,11 @@ Public Class frm_DigitalKeys
 #End Region
 
 #Region "Constructor"
-    Sub New(ByVal Clients As List(Of Objects.Client))
+    Sub New(ByVal User As Objects.User, ByVal Clients As List(Of Objects.Client))
         InitializeComponent()
 
         Me.Clients = Clients
+        Me.User = User
     End Sub
 #End Region
 
@@ -82,6 +84,7 @@ Public Class frm_DigitalKeys
         Await Threading.Tasks.Task.Run(Sub()
                                            Dim Row As Objects.DigitalKeyInfo = CType(e.Row, Objects.DigitalKeyInfo)
                                            If e.RowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle Then
+                                               Row.History.Add(String.Format("Digital Key info added by {0} at {1}", User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
                                                Database.DigitalKeyInfos.AddNew(Row)
                                                Edited = True
                                                Invoke(Sub() gc_DigitalKeys.RefreshDataSource())
@@ -155,6 +158,19 @@ Public Class frm_DigitalKeys
                 Catch ex As Exception
 
                 End Try
+            End If
+        End If
+    End Sub
+
+    Private Sub gv_DigitalKeys_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles gv_DigitalKeys.CellValueChanged
+        If e.RowHandle <> DevExpress.XtraGrid.GridControl.NewItemRowHandle Then
+            Dim Row As Objects.DigitalKeyInfo = gv_DigitalKeys.GetRow(e.RowHandle)
+            If e.Column.FieldName = "Client" Or e.Column.FieldName = "ValidFrom" Or e.Column.FieldName = "ValidTo" Or e.Column.FieldName = "Remarks" Then
+                Row.History.Insert(0, String.Format("'{0}' changed to '{1}' by {2} at {3}", e.Column.FieldName, e.Value.ToString, User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
+            ElseIf e.Column.FieldName = "Status" Then
+                Row.History.Insert(0, String.Format("'Status' changed to '{0}' by {1} at {2}", [Enum].GetName(GetType(Enums.DigitalKeyStatus), e.Value), User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
+            ElseIf e.Column.FieldName = "Possession" Then
+                Row.History.Insert(0, String.Format("'Possession' changed to '{0}' by {1} at {2}", [Enum].GetName(GetType(Enums.Possession), e.Value), User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
             End If
         End If
     End Sub
