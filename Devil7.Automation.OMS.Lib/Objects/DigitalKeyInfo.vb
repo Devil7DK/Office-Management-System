@@ -121,6 +121,8 @@ Namespace Objects
         Property Possession As Enums.Possession
 
         Property Remarks As String
+
+        Property History As List(Of String)
 #End Region
 
 #Region "Constructor"
@@ -132,9 +134,10 @@ Namespace Objects
             Me.Status = Enums.DigitalKeyStatus.NA
             Me.Remarks = ""
             Me.Possession = Enums.Possession.WithUs
+            Me.History = New List(Of String)
         End Sub
 
-        Sub New(ByVal ID As Integer, ByVal Client As Client, ByVal ValidFrom As Date, ByVal ValidTo As Date, ByVal Status As Enums.DigitalKeyStatus, ByVal Possession As Enums.Possession, ByVal Remarks As String)
+        Sub New(ByVal ID As Integer, ByVal Client As Client, ByVal ValidFrom As Date, ByVal ValidTo As Date, ByVal Status As Enums.DigitalKeyStatus, ByVal Possession As Enums.Possession, ByVal Remarks As String, ByVal History As List(Of String))
             Me.ID_ = ID
             Me.Client = Client
             Me.ValidFrom = ValidFrom
@@ -142,6 +145,7 @@ Namespace Objects
             Me.Status = Status
             Me.Possession = Possession
             Me.Remarks = Remarks
+            Me.History = History
         End Sub
 #End Region
 
