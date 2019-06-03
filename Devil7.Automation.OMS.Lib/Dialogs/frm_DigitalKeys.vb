@@ -198,4 +198,11 @@ Public Class frm_DigitalKeys
     End Sub
 #End Region
 
+#Region "Other Events"
+    Private Sub switch_Editable_CheckedChanged(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles switch_Editable.CheckedChanged
+        gv_DigitalKeys.OptionsBehavior.Editable = switch_Editable.Checked
+        gv_DigitalKeys.OptionsBehavior.ReadOnly = Not switch_Editable.Checked
+    End Sub
+#End Region
+
 End Class
