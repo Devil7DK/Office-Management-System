@@ -42,11 +42,19 @@ Public Class frm_DigitalKeys
 
 #Region "Subs"
     Sub ShowProgressOverlay()
-        ProgressOverlayHandle = DevExpress.XtraSplashScreen.SplashScreenManager.ShowOverlayForm(Me)
+        If InvokeRequired Then
+            Invoke(Sub() ShowProgressOverlay())
+        Else
+            ProgressOverlayHandle = DevExpress.XtraSplashScreen.SplashScreenManager.ShowOverlayForm(Me)
+        End If
     End Sub
 
     Sub CloseProgressOverlay()
-        If ProgressOverlayHandle IsNot Nothing Then DevExpress.XtraSplashScreen.SplashScreenManager.CloseOverlayForm(ProgressOverlayHandle)
+        If InvokeRequired Then
+            Invoke(Sub() CloseProgressOverlay())
+        Else
+            If ProgressOverlayHandle IsNot Nothing Then DevExpress.XtraSplashScreen.SplashScreenManager.CloseOverlayForm(ProgressOverlayHandle)
+        End If
     End Sub
 #End Region
 
@@ -80,27 +88,34 @@ Public Class frm_DigitalKeys
 
 #Region "Grid Events"
     Private Async Sub gv_DigitalKeys_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles gv_DigitalKeys.RowUpdated
-        ShowProgressOverlay()
-        Await Threading.Tasks.Task.Run(Sub()
-                                           Dim Row As Objects.DigitalKeyInfo = CType(e.Row, Objects.DigitalKeyInfo)
-                                           If e.RowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle Then
-                                               Row.History.Add(String.Format("Digital Key info added by {0} at {1}", User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
-                                               Database.DigitalKeyInfos.AddNew(Row)
-                                               Edited = True
-                                               Invoke(Sub() gc_DigitalKeys.RefreshDataSource())
-                                           Else
-                                               Database.DigitalKeyInfos.Update(Row)
-                                               Edited = True
-                                               Invoke(Sub() gc_DigitalKeys.RefreshDataSource())
-                                           End If
-                                       End Sub)
-        CloseProgressOverlay()
+        Try
+            Await Threading.Tasks.Task.Run(Sub()
+                                               Dim Row As Objects.DigitalKeyInfo = CType(e.Row, Objects.DigitalKeyInfo)
+                                               If e.RowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle Then
+                                                   ShowProgressOverlay()
+                                                   Row.History.Add(String.Format("Digital Key info added by {0} at {1}", User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
+                                                   Database.DigitalKeyInfos.AddNew(Row)
+                                                   Edited = True
+                                               ElseIf Row.ID > 0 Then
+                                                   ShowProgressOverlay()
+                                                   Database.DigitalKeyInfos.Update(Row)
+                                                   Edited = True
+                                               Else
+                                                   Exit Sub
+                                               End If
+                                           End Sub)
+        Catch ex As Exception
+
+        Finally
+            CloseProgressOverlay()
+            Invoke(Sub() gc_DigitalKeys.RefreshDataSource())
+        End Try
     End Sub
 
     Private Async Sub gv_DigitalKeys_KeyDown(sender As Object, e As KeyEventArgs) Handles gv_DigitalKeys.KeyDown
-        ShowProgressOverlay()
         Await Threading.Tasks.Task.Run(Sub()
                                            If e.KeyCode = Keys.Delete AndAlso gv_DigitalKeys.SelectedRowsCount > 0 Then
+                                               ShowProgressOverlay()
                                                For Each i As Integer In gv_DigitalKeys.GetSelectedRows
                                                    Dim Item As Objects.DigitalKeyInfo = CType(gv_DigitalKeys.GetRow(i), Objects.DigitalKeyInfo)
                                                    Database.DigitalKeyInfos.Remove(CInt(Item.ID))
@@ -108,9 +123,9 @@ Public Class frm_DigitalKeys
                                                    Edited = True
                                                Next
                                                Invoke(Sub() gc_DigitalKeys.RefreshDataSource())
+                                               CloseProgressOverlay()
                                            End If
                                        End Sub)
-        CloseProgressOverlay()
     End Sub
 
     Private Sub gv_DigitalKeys_CustomRowCellEdit(sender As Object, e As CustomRowCellEditEventArgs) Handles gv_DigitalKeys.CustomRowCellEdit
@@ -171,6 +186,13 @@ Public Class frm_DigitalKeys
                 Row.History.Insert(0, String.Format("'Status' changed to '{0}' by {1} at {2}", [Enum].GetName(GetType(Enums.DigitalKeyStatus), e.Value), User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
             ElseIf e.Column.FieldName = "Possession" Then
                 Row.History.Insert(0, String.Format("'Possession' changed to '{0}' by {1} at {2}", [Enum].GetName(GetType(Enums.Possession), e.Value), User.Username, Now.ToString("dd/MM/yyyy hh:mm:ss tt")))
+            End If
+        Else
+            If e.Column.FieldName = "ValidFrom" Then
+                Dim Row As Objects.DigitalKeyInfo = gv_DigitalKeys.GetRow(e.RowHandle)
+                If Row.ValidTo < Date.Parse("31-12-1999") Then
+                    Row.ValidTo = Row.ValidFrom.AddYears(2)
+                End If
             End If
         End If
     End Sub
