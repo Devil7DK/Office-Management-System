@@ -56,9 +56,9 @@ Namespace Dialogs
             Next
 
             If Mode = Enums.DialogMode.Edit AndAlso ID > -1 Then
-                Dim img As New System.IO.MemoryStream
+                Dim img As New IO.MemoryStream
                 pic_Photo.Image.Save(img, Imaging.ImageFormat.Jpeg)
-                Dim Client As Objects.Client = Database.Clients.GetClientByID(ID, Jobs, Users)
+                Dim Client As Client = Database.Clients.GetClientByID(ID, Jobs, Users)
                 txt_PAN.Text = Client.PAN
                 txt_ClientName.Text = Client.Name
                 txt_FatherName.Text = Client.FatherName
@@ -76,8 +76,8 @@ Namespace Dialogs
                 txt_Description.Text = Client.Description
                 cmb_TypeOfEngagement.SelectedItem = Client.TypeOfEngagement
                 cmb_Type.SelectedItem = Client.Type
-                gc_Partners.DataSource = Client.Partners
-                gc_Jobs.DataSource = Client.Jobs
+                gc_Partners.DataSource = New BindingList(Of Partner)(Client.Partners)
+                gc_Jobs.DataSource = New BindingList(Of JobUser)(Client.Jobs)
                 txt_Status.Text = Client.Status
                 pic_Photo.Image = Client.Photo
                 txt_GSTNo.Text = Client.GST
