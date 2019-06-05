@@ -73,8 +73,12 @@ Namespace Objects
                     Return Nothing
                 Else
                     Using MS As New IO.MemoryStream()
-                        Logo.Save(MS, Logo.RawFormat)
-                        Return MS.ToArray
+                        Try
+                            Logo.Save(MS, Logo.RawFormat)
+                            Return MS.ToArray
+                        Catch ex As Exception
+                            Return (New List(Of Byte)).ToArray
+                        End Try
                     End Using
                 End If
             End Get

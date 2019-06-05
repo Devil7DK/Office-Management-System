@@ -114,17 +114,27 @@ Namespace Database
 #End Region
 
 #Region "Load Functions"
-        Function Read(ByVal Reader As SqlDataReader) As Bill
+        Function Read(ByVal Reader As SqlDataReader, ByVal Senders As List(Of Sender), ByVal Receivers As List(Of Receiver)) As Bill
             Dim ID As Integer = Reader.Item("ID")
             Dim SerialNo As String = Reader.Item("SerialNo").ToString
             Dim [Date] As String = Reader.Item("Date")
             Dim Sender As Sender = Utils.FromXML(Of Sender)(Reader.Item("Sender").ToString)
             Dim Receiver As Receiver = Utils.FromXML(Of Receiver)(Reader.Item("Receiver").ToString)
             Dim Services As List(Of Service) = Utils.FromXML(Of List(Of Service))(Reader.Item("Services").ToString)
+
+            If Sender IsNot Nothing Then
+                Dim NewSender As Sender = Senders.Find(Function(c) c.ID = Sender.ID)
+                If NewSender IsNot Nothing Then Sender = NewSender
+            End If
+            If Receiver IsNot Nothing Then
+                Dim NewReceiver As Receiver = Receivers.Find(Function(c) c.RID = Receiver.RID)
+                If NewReceiver IsNot Nothing Then Receiver = NewReceiver
+            End If
+
             Return New Bill(ID, SerialNo, [Date], Sender, Receiver, Services)
         End Function
 
-        Function GetAll(ByVal CloseConnection As Boolean) As List(Of Bill)
+        Function GetAll(ByVal CloseConnection As Boolean, ByVal Senders As List(Of Sender), ByVal Receivers As List(Of Receiver)) As List(Of Bill)
             Dim R As New List(Of Bill)
 
             Dim CommandString As String = String.Format("SELECT * FROM {0};", TableName)
@@ -135,7 +145,7 @@ Namespace Database
             Using Command As New SqlCommand(CommandString, Connection)
                 Using Reader As SqlDataReader = Command.ExecuteReader
                     While Reader.Read
-                        R.Add(Read(Reader))
+                        R.Add(Read(Reader, Senders, Receivers))
                     End While
                 End Using
             End Using

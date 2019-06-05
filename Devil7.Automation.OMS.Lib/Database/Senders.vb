@@ -54,7 +54,7 @@ Namespace Database
                 AddParameter(Command, "@email", Email)
                 AddParameter(Command, "@gstin", GSTIN)
                 AddParameter(Command, "@BillHeading", BillHeading)
-                AddParameter(Command, "@printlogo", PrintLogo)
+                AddParameter(Command, "@printlogo", CInt(PrintLogo))
 
                 Dim LogoParm As New SqlParameter("@logo", SqlDbType.Image)
                 If Logo IsNot Nothing Then
@@ -102,7 +102,7 @@ Namespace Database
                 AddParameter(Command, "@email", Email)
                 AddParameter(Command, "@gstin", GSTIN)
                 AddParameter(Command, "@BillHeading", BillHeading)
-                AddParameter(Command, "@printlogo", PrintLogo)
+                AddParameter(Command, "@printlogo", If(PrintLogo, 1, 0))
 
                 Dim LogoParm As New SqlParameter("@logo", SqlDbType.Image)
                 If Logo IsNot Nothing Then
@@ -164,8 +164,7 @@ Namespace Database
             Dim PhoneNo As String = Reader.Item("PhoneNo").ToString()
             Dim MobileNo As String = Reader.Item("MobileNo").ToString()
             Dim Email As String = Reader.Item("Email").ToString()
-            Dim PrintLogo As Boolean = False
-            Boolean.TryParse(Reader.Item("PrintLogo").ToString, PrintLogo)
+            Dim PrintLogo As Boolean = (CInt(Reader.Item("PrintLogo").ToString) = 1)
             Dim Logo As Drawing.Image = Nothing
             Dim LogoBytes = Reader.Item("Logo")
             If LogoBytes IsNot Nothing AndAlso TypeOf LogoBytes Is Byte() Then
