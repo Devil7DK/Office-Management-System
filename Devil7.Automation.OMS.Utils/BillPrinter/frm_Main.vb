@@ -616,7 +616,7 @@ Public Class frm_Main
 
         Dim EstimateBills As New List(Of Objects.Bill)
         Try
-            EstimateBills = Database.Bills.GetAll(False)
+            EstimateBills = Database.Bills.GetAll(False, SendersList, ReceiversList)
         Catch ex As Exception
             MsgBox("Unable to load bills." & vbNewLine & vbNewLine & ex.Message, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error")
         End Try

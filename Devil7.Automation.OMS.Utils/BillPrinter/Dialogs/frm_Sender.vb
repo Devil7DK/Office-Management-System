@@ -95,6 +95,7 @@ Public Class frm_Sender
                 txt_GSTIN.Text = Item.GSTIN
                 txt_EstimateBillHeading.Text = Item.BillHeading
                 pic_Logo.Image = Item.Logo
+                switch_PrintLogo.IsOn = Item.PrintLogo
             End If
         Catch ex As Exception
         End Try
