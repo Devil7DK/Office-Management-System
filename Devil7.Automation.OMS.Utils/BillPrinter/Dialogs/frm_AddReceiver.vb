@@ -21,16 +21,10 @@
         Dim InputControls As New Dictionary(Of String, DevExpress.XtraEditors.BaseEdit)
         InputControls.Add("PAN", txt_PAN)
         InputControls.Add("Name", txt_Name)
-        InputControls.Add("Trade Name", txt_TradeName)
-        InputControls.Add("Mobile", txt_Mobile)
-        InputControls.Add("Phone Number", txt_Phone)
-        InputControls.Add("E-Mail ID", txt_EMail)
         InputControls.Add("Address Line 1", txt_AddressLine1)
-        InputControls.Add("Address Line 2", txt_AddressLine2)
         InputControls.Add("City", txt_City)
         InputControls.Add("PIN Code", txt_PINCode)
         InputControls.Add("State", txt_State)
-        InputControls.Add("GSTIN", txt_GSTIN)
 
         For Each Key As String In InputControls.Keys
             Dim Edit As DevExpress.XtraEditors.BaseEdit = InputControls.Item(Key)
