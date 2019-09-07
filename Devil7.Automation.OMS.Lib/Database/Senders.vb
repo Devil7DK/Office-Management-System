@@ -57,12 +57,11 @@ Namespace Database
                 AddParameter(Command, "@printlogo", CInt(PrintLogo))
 
                 Dim LogoParm As New SqlParameter("@logo", SqlDbType.Image)
-                If Logo IsNot Nothing Then
-                    Using MS As New IO.MemoryStream
-                        Logo.Save(MS, Logo.RawFormat)
-                        LogoParm.Value = MS.ToArray
-                    End Using
-                End If
+                If Logo Is Nothing Then Logo = Utils.GenerateLogo(Name)
+                Using MS As New IO.MemoryStream
+                    Logo.Save(MS, Logo.RawFormat)
+                    LogoParm.Value = MS.ToArray
+                End Using
                 Command.Parameters.Add(LogoParm)
 
                 Dim ID As Integer = Command.ExecuteScalar
@@ -105,12 +104,11 @@ Namespace Database
                 AddParameter(Command, "@printlogo", If(PrintLogo, 1, 0))
 
                 Dim LogoParm As New SqlParameter("@logo", SqlDbType.Image)
-                If Logo IsNot Nothing Then
-                    Using MS As New IO.MemoryStream
-                        Logo.Save(MS, Logo.RawFormat)
-                        LogoParm.Value = MS.ToArray
-                    End Using
-                End If
+                If Logo Is Nothing Then Logo = Utils.GenerateLogo(Name)
+                Using MS As New IO.MemoryStream
+                    Logo.Save(MS, Logo.RawFormat)
+                    LogoParm.Value = MS.ToArray
+                End Using
                 Command.Parameters.Add(LogoParm)
 
                 Dim Result As Integer = Command.ExecuteNonQuery
