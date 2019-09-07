@@ -40,7 +40,7 @@ Public Class data_Bill
             If Sender IsNot Nothing AndAlso Sender.Logo IsNot Nothing Then
                 Return Sender.Logo
             Else
-                Return GenerateLogo(Sender.Name)
+                Return [Lib].Utils.GenerateLogo(Sender.Name)
             End If
         End Get
     End Property
@@ -113,25 +113,6 @@ Public Class data_Bill
             Me.SubHeading = ""
         End If
     End Sub
-#End Region
-
-#Region "Functions"
-    Function GenerateLogo(ByVal Name As String) As Image
-        If String.IsNullOrEmpty(Name) Then
-            Name = "D"
-        End If
-
-        Dim Image As New Bitmap(100, 100)
-        Dim G As Graphics = Graphics.FromImage(Image)
-        Dim Rect As New Rectangle(10, 10, 80, 80)
-        G.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
-        G.FillEllipse(Brushes.LightGreen, Rect)
-        G.DrawEllipse(New Pen(Brushes.Black, 2), Rect)
-        G.DrawString(Name.Substring(0, 1), New Font("Century Gothic", 30, FontStyle.Bold), Brushes.White, Rect, New StringFormat With {.LineAlignment = StringAlignment.Center, .Alignment = StringAlignment.Center})
-        G.Dispose()
-
-        Return Image
-    End Function
 #End Region
 
 End Class

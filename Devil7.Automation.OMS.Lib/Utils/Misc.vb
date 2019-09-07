@@ -19,6 +19,7 @@
 '                                                                          '
 '=========================================================================='
 
+Imports System.Drawing
 Imports System.Windows.Forms
 
 Namespace Utils
@@ -159,7 +160,7 @@ Namespace Utils
         End Sub
 
         Public Function AmountInWords(ByVal nAmount As String, Optional ByVal wAmount _
-                As String = vbNullString, Optional ByVal nSet As Object = Nothing) As String
+                As String = "", Optional ByVal nSet As Object = Nothing) As String
             'Let's make sure entered value is numeric
             If Not IsNumeric(nAmount) Then Return "Please enter numeric values only."
 
@@ -240,11 +241,11 @@ Namespace Utils
         End Function
 
         Public Function IsValidEmailFormat(ByVal s As String) As Boolean
-            Return Text.RegularExpressions.Regex.IsMatch(s, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
+            Return System.Text.RegularExpressions.Regex.IsMatch(s, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
         End Function
 
         Public Function isValidPAN(ByVal PAN As String) As Boolean
-            Dim RegEx_PAN As Text.RegularExpressions.Regex = New Text.RegularExpressions.Regex("^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$")
+            Dim RegEx_PAN As System.Text.RegularExpressions.Regex = New System.Text.RegularExpressions.Regex("^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$")
 
             If PAN.Trim.Length = 10 Then
                 If RegEx_PAN.IsMatch(PAN.Trim) Then
@@ -281,6 +282,23 @@ Namespace Utils
             If G > 255 Then G = 255
             If B > 255 Then B = 255
             Return Drawing.Color.FromArgb(A, Convert.ToByte(R), Convert.ToByte(G), Convert.ToByte(B))
+        End Function
+
+        Public Function GenerateLogo(ByVal Name As String) As Image
+            If String.IsNullOrEmpty(Name) Then
+                Name = "D"
+            End If
+
+            Dim Image As New Bitmap(100, 100)
+            Dim G As Graphics = Graphics.FromImage(Image)
+            Dim Rect As New Rectangle(10, 10, 80, 80)
+            G.SmoothingMode = Drawing2D.SmoothingMode.HighQuality
+            G.FillEllipse(Brushes.LightGreen, Rect)
+            G.DrawEllipse(New Pen(Brushes.Black, 2), Rect)
+            G.DrawString(Name.Substring(0, 1), New Font("Century Gothic", 30, FontStyle.Bold), Brushes.White, Rect, New StringFormat With {.LineAlignment = StringAlignment.Center, .Alignment = StringAlignment.Center})
+            G.Dispose()
+
+            Return Image
         End Function
 
     End Module
